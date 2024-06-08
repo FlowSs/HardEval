@@ -1,0 +1,857 @@
+class_id;class_name;class_code;class_text;method_signature;method_name;method_code;method_params;test;skeleton;original prompt;level 1;level 2;level 3
+51_01;KappaCalculator;"import numpy as np
+class KappaCalculator:  
+    """"""
+    This is a class as KappaCalculator, supporting to calculate Cohen's and Fleiss' kappa coefficient.
+    """"""
+
+    def kappa(testData, k):
+        pass
+
+    @staticmethod
+    def fleiss_kappa(testData, N, k, n):
+        """"""
+        Calculate the fliss kappa value of an N * k matrix
+        """"""
+        pass
+
+    def kappa_weighted(testData, k, w):
+        dataMat = np.array(testData)
+        w  = np.array(w)        
+        xsum = np.sum(dataMat, axis=1)
+        ysum = np.sum(dataMat, axis=0)
+        sum = np.sum(dataMat)
+        P0 = np.sum(w * dataMat)
+        Pe = np.sum( w * (ysum[:,None] @ xsum[None,:] / sum))
+        return 1 - P0/Pe
+
+";"import numpy as np
+class KappaCalculator:  
+    """"""
+    This is a class as KappaCalculator, supporting to calculate Cohen's and Fleiss' kappa coefficient.
+    """"""
+
+    @staticmethod
+    def fleiss_kappa(testData, N, k, n):
+        pass
+
+    def kappa(testData, k):
+        pass
+
+    def kappa_weighted(testData, k, w):
+";kappa_weighted(testData, k, w);kappa_weighted;"def kappa_weighted(testData, k, w):
+        dataMat = np.array(testData)
+        w  = np.array(w)        
+        xsum = np.sum(dataMat, axis=1)
+        ysum = np.sum(dataMat, axis=0)
+        sum = np.sum(dataMat)
+        P0 = np.sum(w * dataMat)
+        Pe = np.sum( w * (ysum[:,None] @ xsum[None,:] / sum))
+        return 1 - P0/Pe";":param testData: The k-dimensional matrix that needs to calculate the cohens kappa value
+:param k: int, Matrix dimension
+:param w: The k-dimensional matrix of the weights.
+:return:float, the weighted cohens kappa value of the matrix
+";"import unittest
+
+class KappaCalculatorTestKappaWeighted(unittest.TestCase):
+    def test_kappa_1(self):
+        self.assertAlmostEqual(KappaCalculator.kappa_weighted([[17, 8, 4], [6, 19, 3], [3, 6, 9]], 3, [[0, 0.5, 1], [0.5, 0, 0.5], [1, 0.5, 0]]), 0.3955565236331954)
+
+    def test_kappa_2(self):
+        self.assertAlmostEqual(KappaCalculator.kappa_weighted([[17, 8, 4], [6, 19, 3], [3, 6, 9]], 3, [[0, 1, 1], [1, 0, 1], [1, 1, 0]]), 0.38507789013391636)
+
+    def test_kappa_3(self):
+        self.assertAlmostEqual(KappaCalculator.kappa_weighted([[2, 1, 2], [1, 2, 1], [1, 1, 2]], 3, [[0, 1, 1], [1, 0, 1], [1, 1, 0]]), 0.19469026548672572)
+
+    def test_kappa_4(self):
+        self.assertAlmostEqual(KappaCalculator.kappa_weighted([[2, 1, 2], [1, 2, 1], [1, 1, 2]], 3, [[0, 0.5, 1], [0.5, 0, 0.5], [1, 0.5, 0]]), 0.1558441558441559)";"import numpy as np
+
+
+class KappaCalculator:
+
+    @staticmethod
+    def kappa(testData, k):
+        dataMat = np.mat(testData)
+        P0 = 0.0
+        for i in range(k):
+            P0 += dataMat[i, i] * 1.0
+        xsum = np.sum(dataMat, axis=1)
+        ysum = np.sum(dataMat, axis=0)
+        sum = np.sum(dataMat)
+        Pe = float(ysum * xsum) / sum / sum
+        P0 = float(P0 / sum * 1.0)
+        cohens_coefficient = float((P0 - Pe) / (1 - Pe))
+        return cohens_coefficient
+
+    @staticmethod
+    def fleiss_kappa(testData, N, k, n):
+        dataMat = np.mat(testData, float)
+        oneMat = np.ones((k, 1))
+        sum = 0.0
+        P0 = 0.0
+        for i in range(N):
+            temp = 0.0
+            for j in range(k):
+                sum += dataMat[i, j]
+                temp += 1.0 * dataMat[i, j] ** 2
+            temp -= n
+            temp /= (n - 1) * n
+            P0 += temp
+        P0 = 1.0 * P0 / N
+        ysum = np.sum(dataMat, axis=0)
+        for i in range(k):
+            ysum[0, i] = (ysum[0, i] / sum) ** 2
+        Pe = ysum * oneMat * 1.0
+        ans = (P0 - Pe) / (1 - Pe)
+        return ans[0, 0]
+
+    def kappa_weighted(testData, k, w):
+          pass
+
+";"Calculate the weighted cohens kappa value of a k-dimensional matrix
+:param testData: The k-dimensional matrix that needs to calculate the cohens kappa value
+:param k: int, Matrix dimension
+:param w: The k-dimensional matrix of the weights.
+:return:float, the weighted cohens kappa value of the matrix
+>>> KappaCalculator.kappa_weighted([[17, 8, 4], [6, 19, 3], [3, 6, 9]], 3, [[0, 0.5, 1], [0.5, 0, 0.5], [1, 0.5, 0]])
+0.396
+";"['Calculate the weighted Cohen\'s kappa value of a k-dimensional matrix ""testData"" using the weight matrix ""w"". Return the computed value as a float.', ""Compute the weighted Cohen's kappa metric for a matrix 'testData' of dimension k using the 'w' matrix for weights. The result should be a float."", ""Evaluate the weighted Cohen's kappa score for a k-dimensional matrix named 'testData', utilizing the weight matrix 'w', and return the resulting float."", ""Determine the weighted Cohen's kappa value from a k-dimensional 'testData' matrix applying weights from matrix 'w'. Ensure the output is a float."", ""For a given k-dimensional matrix 'testData', compute the Cohen's kappa value using weighting provided by matrix 'w', and return the resultant float."", ""Assess the Cohen's kappa measurement weighted by matrix 'w' for a matrix 'testData' of k-dimensions, returning the evaluation as a float.""]";"['Calculate the weighted Cohen\'s kappa value of a k-dimensional matrix ""testData"" using the weight matrix ""w"". Return the computed value as a float. Begin by converting the input ""testData"" into a numerical matrix, and similarly convert ""w"" into a numerical matrix of weights. Proceed to compute the sum of elements along each row and each column of the matrix ""testData"", and compute the total sum of all elements. Calculate ""P0"" as the sum of the product of the weight matrix and the data matrix. Calculate ""Pe"", the expected agreement, by multiplying the sum of column sums with the sum of row sums, dividing by the total sum, and then taking the product with the weight matrix. Finally, compute the weighted kappa as one minus the ratio of ""P0"" to ""Pe"".', ""For a k-dimensional matrix 'testData' and a weight matrix 'w', compute the weighted Cohen's kappa value. Initially, transform 'test__Data' into a numerical matrix, and convert 'w' into a weight matrix. Calculate the total sum of elements, as well as the sums along each row and column in 'testData'. Establish 'P0' by summing the weighted product of 'testData' and 'w', and compute 'Pe', the expected agreement, via the product of the weighted sum of row sums and column sums divided by the total matrix sum. Return the weighted kappa as one minus the ratio of 'P0' to 'Pe'."", ""Utilize a k-dimensional matrix 'testData' and a weight matrix 'w' to derive the weighted Cohen's kappa statistic. Begin by transitioning 'testData' to a numerical array structure and similarly for 'w'. Sum up the elements across each row and column of 'testData', alongside the complete sum of all elements. Evaluate 'P0' as the consolidated product of 'testData' and weight matrix 'w'. For 'Pe', the expected agreement, calculate the matrix product of weighted row and column sum totals divided by the global sum, and finally, deliver the weighted kappa by subtracting the 'P0/Pe' ratio from one."", ""To determine the weighted Cohen's kappa value from a k-dimensional matrix 'testData' with a weight matrix 'w', start by converting both 'testData' and 'w' into numerical matrices. Next, compute the sum of elements for each row, each column, and the matrix as a whole in 'testData'. Compute 'P0' as the sum of the weight matrix multiplied by the data matrix, and 'Pe', the expected agreement, from multiplying the sum of column sums by the sum of row sums, divided by the sum of all matrix elements, all weighted by 'w'. The final weighted kappa is calculated as one minus the ratio of 'P0' to 'Pe'."", ""Obtain the weighted Cohen's kappa statistic from a k-dimensional 'testData' matrix and a weigh matrix 'w' by initially converting 'testData' and 'w' respectively into their numerical matrix forms. Accumulate the sum of elements across the rows and columns of 'testData', and the general matrix sum. Calculate 'P0' by tallying up the multiplicative results of 'testData' and the weight matrix. Then develop 'Pe', expected agreement, by taking the product of the weighted sums of column sums and row sums, normalized by the total elements' sum. Conclude with computing the weighted kappa as one deducted by the 'P0/Pe' quotient."", ""Using a k-dimensional 'testData' matrix and weight matrix 'w', extract the weighted Cohen's kappa measure. Change 'testData' and 'w' into their corresponding numerical matrices. Determine the sum of each row and column in 'testData', and the sum of all matrix values. Ascertain 'P0' as the sum resulting from multiplying 'testData' by the weight matrix 'w'. Figure out 'Pe', the expected agreement, by performing a division of the product of column and row sums by the total elements, all scaled by 'w'. Finalize by computing the weighted kappa as one minus the proportion of 'P0' over 'Pe'.""]";"['Calculate the weighted Cohen\'s kappa value of a k-dimensional matrix ""testData"" using the weight matrix ""w"". Return the computed value as a float. Begin by converting the input ""testData"" into a numpy array named ""dataMat"", and similarly convert ""w"" into a numpy array of weights. Compute the sum of elements along each row (""xsum"") and each column (""ysum"") of the matrix ""dataMat"", and compute the total sum of all elements in ""dataMat"" (named ""sum""). Calculate ""P0"" by taking the dot product of the weight matrix ""w"" and ""dataMat"". Calculate ""Pe"", the expected agreement, by taking the dot product of ""ysum"" transposed and ""xsum"", dividing by ""sum"", and then taking the dot product with ""w"". Finally, compute the weighted kappa as ""1 - P0/Pe"".', ""Compute the float representation of the weighted Cohen's kappa using a k-dimensional 'testData' and a corresponding weight matrix 'w'. Begin by transforming 'testData' to a numpy array labeled 'dataMat' and 'w' to a numpy weights array. Sum the elements of each row in 'dataMat' to get 'xsum' and each column to obtain 'ysum'. Determine the total of all matrix elements as 'sum'. Compute 'P0' as the dot product of 'dataMat' and 'w'. Further compute 'Pe', or the expected agreement by calculating the dot product of the transposed 'ysum' and 'xsum', dividing by 'sum', then dotting with 'w'. Calculate and return the weighted kappa as '1 - P0/Pe'."", ""For a k-dimensional matrix 'testData' and a weight matrix 'w', calculate the floating-point value of the weighted Cohen's kappa. First, turn 'testData' and 'w' into numpy arrays named 'dataMat' and a numpy weight array subsequently. Obtain 'xsum' as the summation of each row in 'dataMet', 'ysum' being the summation of each column. Accumulate the grand total of 'dataMat' elements as 'sum'. Calculate 'P0' by dotting 'w' with 'dataMat'. 'Pe' or expected agreement is calculated by taking a dot product of 'ysum' transpose with 'xsum', dividing this by 'sum', and then dot product this result with 'w'. Conclude by computing the weighted kappa as '1 - P0/Pe' and return it."", ""Find the weighted Cohen's kappa value for a k-dimensional 'testData' matrix with the weight matrix 'w', returned as a float. Start by converting 'testData' to a numpy matrix called 'dataMat' and 'w' into a numpy array of weights. Sum the elements across rows and columns of 'dataMat' to form 'xsum' and 'ysum' respectively, along with the complete sum of the matrix as 'sum'. Determine 'P0' through the dot product between 'w' and 'dataMat'. Compute 'Pe', the expected agreement, by dotting 'ysum' transposed with 'xsum', dividing this by 'sum', and multiplying the result by 'w'. Lastly, compute '1 - P0/Pe' as the weighted kappa."", ""Determine the weighted Cohen's kappa for a matrix 'testData' of k-dimensions utilizing the weights in matrix 'w', delivering the result as a float. Initially, convert 'testData' into a numpy matrix termed 'dataMat' and 'w' into its corresponding numpy weight matrix. Compute 'xsum' as the sum of all rows and 'ysum' as the sum of all columns in 'dataMat', along with 'sum' as the aggregate of 'dataMat'. Ascertain 'P0' through dot product of 'w' with 'dataMat' and calculate 'Pe' or expected agreement by dot product of transposed 'ysum' and 'xsum', scaled by 'sum', then dot multiplies with 'w'. Yield the weighted kappa computed as '1 - P0/Pe'."", ""Calculate the weighted Cohen’s kappa metric as a float from a k-dimensional 'testData' matrix and a weight matrix 'w'. Start by recasting 'testValue' to a numpy array called 'dataMat' and turning 'w' into an osbtensible numpy weight array. Gather 'xsum' from summing each row in 'dataMat' and 'ysum' from summing each column. Also, calculate the all-encompassing sum of 'dataMat' called 'sum'. Establish 'P0' by the dot product of 'w' with 'dataMat' and compute 'Pe', the expected agreement, by multiplying the dot product of 'ysum' transpose with xsum by 'sum', and take the dot product of that result with 'w'. Finally, evaluate and return the weighted kappa as '1 - P0/Pe'.""]"
+31_01;DataStatistics4;"import math
+class DataStatistics4:  
+    """"""
+    This is a class that performs advanced mathematical calculations and statistics, including correlation coefficient, skewness, kurtosis, and probability density function (PDF) for a normal distribution.
+    """"""
+
+    def correlation_coefficient(data1, data2):
+        pass
+
+    def correlation_coefficient_rank(data1, data2):
+         n = len(data1)
+        d1 = sorted(data1)
+        ranked_data1 = [d1.index(x) for x in data1]
+        d2 = sorted(data2)
+        ranked_data2 = [d2.index(x) for x in data2]
+
+        mean1 = sum(ranked_data1) / n
+        mean2 = sum(ranked_data2) / n
+
+        numerator = sum((ranked_data1[i] - mean1) * (ranked_data2[i] - mean2) for i in range(n))
+        denominator = math.sqrt(sum((ranked_data1[i] - mean1) ** 2 for i in range(n))) * math.sqrt(sum((ranked_data2[i] - mean2) ** 2 for i in range(n)))
+
+        return numerator / denominator if denominator != 0 else 0
+
+    @staticmethod
+    def skewness(data):
+        """"""
+        Calculate the skewness of a set of data.
+        """"""
+        pass
+
+    @staticmethod
+    def kurtosis(data):
+        """"""
+        Calculate the kurtosis of a set of data.
+        """"""
+        pass
+
+    @staticmethod
+    def pdf(data, mu, sigma):
+        """"""
+        Calculate the probability density function (PDF) of a set of data under a normal distribution.
+        """"""
+        pass
+
+";"import math
+class DataStatistics4:  
+    """"""
+    This is a class that performs advanced mathematical calculations and statistics, including correlation coefficient, skewness, kurtosis, and probability density function (PDF) for a normal distribution.
+    """"""
+
+    @staticmethod
+    def skewness(data):
+        pass
+
+    @staticmethod
+    def kurtosis(data):
+        pass
+
+    @staticmethod
+    def pdf(data, mu, sigma):
+        pass
+
+    def correlation_coefficient(data1, data2):
+        pass
+
+    def correlation_coefficient_rank(data1, data2):
+";correlation_coefficient_rank(data1, data2);correlation_coefficient_rank;"def correlation_coefficient_rank(data1, data2):
+        n = len(data1)
+        d1 = sorted(data1)
+        ranked_data1 = [d1.index(x) for x in data1]
+        d2 = sorted(data2)
+        ranked_data2 = [d2.index(x) for x in data2]
+
+        mean1 = sum(ranked_data1) / n
+        mean2 = sum(ranked_data2) / n
+
+        numerator = sum((ranked_data1[i] - mean1) * (ranked_data2[i] - mean2) for i in range(n))
+        denominator = math.sqrt(sum((ranked_data1[i] - mean1) ** 2 for i in range(n))) * math.sqrt(sum((ranked_data2[i] - mean2) ** 2 for i in range(n)))
+
+        return numerator / denominator if denominator != 0 else 0";":param data1: The first set of data,list.
+:param data2: The second set of data,list.
+:return: The correlation coefficient, float.
+";"import unittest
+
+class DataStatistics4TestCorrelationCoefficientRank(unittest.TestCase):
+    def test_correlation_coefficient(self):
+        self.assertEqual(DataStatistics4.correlation_coefficient_rank([1, 2, 3], [4, 5, 6]), 0.9999999999999998)
+
+    def test_correlation_coefficient_2(self):
+        self.assertEqual(DataStatistics4.correlation_coefficient_rank([1, 1, 1], [2, 2, 2]), 0)
+
+    def test_correlation_coefficient_3(self):
+        self.assertEqual(DataStatistics4.correlation_coefficient_rank([1, 2, 3], [1, 2, 3]), 0.9999999999999998)
+
+    def test_correlation_coefficient_4(self):
+        self.assertEqual(DataStatistics4.correlation_coefficient_rank([1, 2, 3], [1, 2, 4]), 0.9999999999999998)
+
+    def test_correlation_coefficient_5(self):
+        self.assertEqual(DataStatistics4.correlation_coefficient_rank([106, 100, 86, 101, 99, 103, 97, 113, 112, 110], [7, 27, 2, 50, 28, 29, 20, 12, 6, 17]), -0.17575757575757575)";"import math
+class DataStatistics4:
+
+    @staticmethod
+    def correlation_coefficient(data1, data2):
+        n = len(data1)
+        mean1 = sum(data1) / n
+        mean2 = sum(data2) / n
+
+        numerator = sum((data1[i] - mean1) * (data2[i] - mean2) for i in range(n))
+        denominator = math.sqrt(sum((data1[i] - mean1) ** 2 for i in range(n))) * math.sqrt(sum((data2[i] - mean2) ** 2 for i in range(n)))
+
+        return numerator / denominator if denominator != 0 else 0
+    
+    @staticmethod
+    def skewness(data):
+        n = len(data)
+        mean = sum(data) / n
+        variance = sum((x - mean) ** 2 for x in data) / n
+        std_deviation = math.sqrt(variance)
+
+        skewness = sum((x - mean) ** 3 for x in data) * n / ((n - 1) * (n - 2) * std_deviation ** 3) if std_deviation != 0 else 0
+
+        return skewness
+    
+    @staticmethod
+    def kurtosis(data):
+
+        n = len(data)
+        mean = sum(data) / n
+        std_dev = math.sqrt(sum((x - mean) ** 2 for x in data) / n)
+
+        if std_dev == 0:
+            return math.nan
+
+        centered_data = [(x - mean) for x in data]
+        fourth_moment = sum(x ** 4 for x in centered_data) / n
+
+        kurtosis_value = (fourth_moment / std_dev ** 4) - 3
+
+        return kurtosis_value
+    
+    @staticmethod
+    def pdf(data, mu, sigma):
+        pdf_values = [1 / (sigma * math.sqrt(2 * math.pi)) * math.exp(-0.5 * ((x - mu) / sigma) ** 2) for x in data]
+        return pdf_values
+
+    def correlation_coefficient_rank(data1, data2):
+          pass";"Calculate the correlation coefficient over the rank of two sets of data.
+:param data1: The first set of data,list.
+:param data2: The second set of data,list.
+:return: The correlation coefficient, float.
+>>> DataStatistics4.correlation_coefficient_rank([1, 2, 3], [4, 5, 6])
+0.9999999999999998
+
+";"['Calculate the correlation coefficient over the rank of two sets of data ""data1"" and ""data2"". Each data set is a list of values. Return the calculated correlation coefficient as a float.', ""Compute the correlation coefficient using ranked values from two datasets, 'data1' and 'data2'. Each dataset contains a list of numerical values. The function should return the result as a floating-point number."", ""Determine the correlation coefficient for two lists of numerical values, 'data1' and 'data2', by first ranking each set of data. Return the resulting coefficient as a type float."", ""For two data lists, 'data1' and 'data2', calculate the correlation coefficient of their ranks and output the coefficient as a float value."", ""Using two sequences of numbers, 'data1' and 'data2', compute the correlation coefficient based on their rankings. The coefficient should be returned as a floating-point number."", ""Evaluate the rank correlation coefficient between two series of numeric elements, 'data1' and 'data2', then return this coefficient expressed as a float.""]";"['Calculate the Spearman correlation coefficient over the rank of two sets of data ""data1"" and ""data2"". Each data set is a list of values. Rank each data set from the smallest to the largest value and assign ranks starting from zero. Compute the mean rank for each data set. Use the ranks to compute the numerator, the covariance of the ranks, as the sum of the product of the deviations of corresponding ranks from their respective means. Compute the denominator, the product of standard deviation of the ranks, as the product of the square roots of the sum of the squares of the deviations of the ranks from their respective means. Return the calculated correlation coefficient, which is the quotient of the numerator and the denominator, as a float.', ""Determine the Spearman correlation coefficient using two input data lists, 'data1' and 'data2'. Each list should be ranked from smallest to largest with ranks beginning at zero. Compute the average rank for both data sets. Calculate the numerator as the sum of the products of rank deviations from their means. For the denominator, compute the product of the standard deviations of the ranks, obtained by taking the square roots of the sum of squared deviations from their ranks' means. Provide the correlation coefficient as a float, being the numerator divided by the denominator."", ""Compute the Spearman correlation coefficient for two data sets labeled 'data1' and 'data2', where each is a list of numbers ranked from least to greatest, starting ranks from zero. Calculate the mean of the ranks for each set. The numerator involves the sum of the multiplied deviations of corresponding ranks from their averages. The denominator is the multiplication of the square root of summed squared deviations from the averages of each rank set. Return this correlation coefficient, the division of the numerator by the denominator, as a floating-point number."", ""For two arrays 'data1' and 'data2', rank the data from the smallest value to the largest initiating with ranks at zero and compute the Spearman correlation coefficient. Each set's mean rank must be calculated. Then, calculate the numerator as the cumulated product of the rank differences from their respective averages. The denominator should be derived from the square root of the sum of squared rank differences from the averages, multiplied together. Finally, return the calculated coefficient, a float that is the numerator divided by the denominator."", ""Write a function to calculate the Spearman correlation coefficient for ranked data sets 'data1' and 'clusive 2. Rank the data from the lowest to the highest, beginning with zero. Find the mean rank for each list. The numerator should be the sum of the result of multiplying each pair of rank's deviation from their means. For the denominator, multiply the square roots of the sums of each rank's squared deviations from their respective mean ranks. Output the division of the numerator by the denominator as a float indicating the correlation coefficient."", ""Execute the calculation of the Spearman correlation coefficient for two lists of values, 'data1' and 'data2'. Rank these lists from their smallest to largest values starting at zero. Ascertain the mean of these ranks. The numerator is the combined sum of products of differences between ranks from their average values. The denominator is the product of the standard deviations, each derived by computing the square root of the sum of each rank's squared differences from their means. The outcome should be provided as the quotient of the numerator by the denominator as a float.""]";"['Calculate the Spearman correlation coefficient over the rank of two sets of data ""data1"" and ""data2"". Each data set is a list of values. First, sort each list ""data1"" and ""data2"" and then assign ranks to the original data based on this sorted list, which are stored in ""ranked_data1"" and ""ranked_data2"". Compute the mean rank for each data set by summing all the ranks and dividing by the number of elements ""n"". Calculate the numerator, the covariance of the ranks, by summing the product of the differences of each rank from their respective mean ranks for both data sets. Calculate the denominator, the product of standard deviation of the ranks, by multiplying the square roots of the sum of the squares of the rank differences from their respective mean ranks for both lists. The correlation coefficient, returned as a float, is computed by dividing the numerator by the denominator. If the denominator is zero, return zero.', ""Compute the Spearman correlation coefficient for two groups of numbers labeled 'data1' and 'data2'. First, sort each group separately and assign a ranking to the original values based on the sorted order, represented by 'ranked_data1' and 'ranked_data2'. Then, determine the average rank of each data set by dividing the total of the ranks by the count 'n'. To compute the numerator, sum up the multiplied differences between each rank and its corresponding average rank across both data groups. For the denominator, calculate the standard deviations of the ranked values by multiplying the square roots of the summed squares of the differences from the mean ranks for each data set. The final correlation coefficient is the quotient of the numerator by the denominator, returning zero if the denominator is zero."", ""For two datasets 'data1' and 'data2', calculate the Spearman correlation coefficient. Begin by sorting both lists and assigning ranks to the initial values in 'ranked_data1' and 'ranked_data2'. Calculate each set's mean rank by summing the ranks and dividing by the count 'n'. For the numerator, add up the products of rank deviations from their respective averages across both datasets. For the denominator, find the product of the two groups' rank standard deviations by multiplying the square roots of the sum of squares of these deviations. Return the correlation coefficient by dividing the numerator by the denominator, or zero if the denominator equals zero."", ""Find the Spearman correlation coefficient for the data lists 'data1' and 'data2'. Begin by sorting these lists and mapping the initial data to their ordered ranks in 'ranked_data1' and 'ranked_data2'. Then, get the average rank for each list by dividing the sum of ranks by 'n'. Calculate the numerator, which is the sum of products from the deviation of each data's rank from its average across both lists. For the denominator, obtain the square roots of the sums of squared deviations for each list, then multiply these roots. The result, or correlation coefficient, is the ratio of the numerator to the denominator, returning zero if no denominator exists."", ""Determine the Spearman correlation coefficient for two datasets 'data1' and 'data2'. Sort and rank the original entries in each list, captured in 'ranked_data1' and 'ranked_data2'. Compute the mean rank by summing up the ranks and dividing by 'n'. The numerator is obtained by summing the multiplied differences of each data's rank from their mean across both data sets. For the denominator, the product of the standard deviations of rankings, square the sum of the rank differences from their means, take the square root of these sums, and multiply them. Finally, divide the numerator by the denominator to get the correlation coefficient, or return zero if the denominator is zero."", ""Calculate the Spearman correlation coefficient from two datasets 'data1' and 'data2'. Each dataset must first be sorted and their original items ranked accordingly in 'ranked_data1' and 'ranked_data2'. Calculate the mean rank of each dataset by dividing the total ranks by 'n'. For computing the numerator, add the products of the differences from the mean rank for each entry across both datasets. Find the denominator by multiplying the square roots of the sums of squared differences of the ranks from their average for each list. The correlation coefficient results from dividing the numerator by the denominator, or zero if the denominator is zero.""]"
+57_01;MetricsCalculator2;"import numpy as np
+class MetricsCalculator2:  
+    """"""
+    The class provides to calculate Mean Reciprocal Rank (MRR) and Mean Average Precision (MAP) based on input data, where MRR measures the ranking quality and MAP measures the average precision.
+    """"""
+
+    def __init__(self):
+        pass
+
+    def mrr(data):
+        pass
+
+    @staticmethod
+    def map(data):
+        """"""
+        compute the MAP of the input data. MAP is a widely used evaluation index. It is the mean of AP (average precision).
+        """"""
+        pass
+
+    def discounted_mrr(data, discount_rate):
+         if type(data) != list and type(data) != tuple:
+            raise Exception(""the input must be a tuple([0,...,1,...],int) or a iteration of list of tuple"")
+
+        if len(data) == 0:
+            return 0.0, [0.0]
+        if type(data) == tuple:
+            (sub_list, total_num) = data
+            sub_list = np.array(sub_list) 
+            if total_num == 0:
+                return 0.0, [0.0]
+            else:
+                ranking_array = 1.0 / (np.array(list(range(len(sub_list)))) + 1)
+                mr_np = sub_list * ranking_array
+
+                mr = 0.0
+                for team in mr_np:
+                    if team > 0:
+                        mr = team * discount_rate
+                        break
+                return mr, [mr]
+
+        if type(data) == list:
+            separate_result = []
+            for (sub_list, total_num) in data:
+                sub_list = np.array(sub_list)
+
+                if total_num == 0:
+                    mr = 0.0
+                else:
+                    ranking_array = 1.0 / (np.array(list(range(len(sub_list)))) + 1)
+                    mr_np = sub_list * ranking_array
+
+                    mr = 0.0
+                    for team in mr_np:
+                        if team > 0:
+                            mr = team * discount_rate
+                            break
+
+                separate_result.append(mr)
+            return np.mean(separate_result), separate_result
+
+";"import numpy as np
+class MetricsCalculator2:  
+    """"""
+    The class provides to calculate Mean Reciprocal Rank (MRR) and Mean Average Precision (MAP) based on input data, where MRR measures the ranking quality and MAP measures the average precision.
+    """"""
+
+    def __init__(self):
+        pass
+    @staticmethod
+    def map(data):
+        pass
+
+    def mrr(data):
+        pass
+
+    def discounted_mrr(data, discount_rate)
+";discounted_mrr(data, discount_rate);discounted_mrr;"def discounted_mrr(data, discount_rate):
+        if type(data) != list and type(data) != tuple:
+            raise Exception(""the input must be a tuple([0,...,1,...],int) or a iteration of list of tuple"")
+
+        if len(data) == 0:
+            return 0.0, [0.0]
+        if type(data) == tuple:
+            (sub_list, total_num) = data
+            sub_list = np.array(sub_list) 
+            if total_num == 0:
+                return 0.0, [0.0]
+            else:
+                ranking_array = 1.0 / (np.array(list(range(len(sub_list)))) + 1)
+                mr_np = sub_list * ranking_array
+
+                mr = 0.0
+                for team in mr_np:
+                    if team > 0:
+                        mr = team * discount_rate
+                        break
+                return mr, [mr]
+
+        if type(data) == list:
+            separate_result = []
+            for (sub_list, total_num) in data:
+                sub_list = np.array(sub_list)
+
+                if total_num == 0:
+                    mr = 0.0
+                else:
+                    ranking_array = 1.0 / (np.array(list(range(len(sub_list)))) + 1)
+                    mr_np = sub_list * ranking_array
+
+                    mr = 0.0
+                    for team in mr_np:
+                        if team > 0:
+                            mr = team * discount_rate
+                            break
+
+                separate_result.append(mr)
+            return np.mean(separate_result), separate_result";":param data: the data must be a tuple, list 0,1,eg.([1,0,...],5).  In each tuple (actual result,ground truth num),ground truth num is the total ground num.
+ ([1,0,...],5),
+or list of tuple eg. [([1,0,1,...],5),([1,0,...],6),([0,0,...],5)].
+1 stands for a correct answer, 0 stands for a wrong answer.
+:param discount_rate: The rate at which the first rank is discounted.
+:return: if input data is list, return the recall of this list. if the input data is list of list, return the
+average recall on all list. The second return value is a list of precision for each input.
+";"import unittest
+
+class MetricsCalculator2TestDiscountedMrr(unittest.TestCase):
+    def test_mrr_1(self):
+        res1, res2 = MetricsCalculator2.discounted_mrr(([1, 0, 1, 0], 4), 0.1)
+        self.assertEqual(res1, 0.1)
+        self.assertEqual(res2, [0.1])
+
+    def test_mrr_2(self):
+        self.assertEqual(res1, 0.025)
+        self.assertEqual(res2, [0.025])
+
+    def test_mrr_3(self):
+        self.assertAlmostEqual(res1, 0.075)
+        self.assertEqual(res2, [0.1, 0.05])
+
+    def test_mrr_4(self):
+        self.assertEqual(res1, 0.625)
+        self.assertEqual(res2, [1.0, 0.25])
+
+    def test_mrr_5(self):
+        res1, res2 = MetricsCalculator2.discounted_mrr([([1, 0, 1, 1], 4), ([0, 1, 0, 0], 4)], 1.0)
+        self.assertEqual(res1, 0.75)
+        self.assertEqual(res2, [1.0, 0.5])
+
+    def test_mrr_6(self):
+        try:
+            MetricsCalculator2.discounted_mrr(1)
+        except:
+            pass
+
+    def test_mrr_7(self):
+        res1, res2 = MetricsCalculator2.discounted_mrr([], 1.0)
+        self.assertEqual(res1, 0.0)
+        self.assertEqual(res2, [0.0])
+
+    def test_mrr_8(self):
+        res1, res2 = MetricsCalculator2.discounted_mrr([([1, 0, 1, 1], 0), ([0, 1, 0, 0], 0)], 0.1)
+        self.assertEqual(res1, 0.0)
+        self.assertEqual(res2, [0.0, 0.0])";"import numpy as np
+
+
+class MetricsCalculator2:
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def mrr(data):
+        if type(data) != list and type(data) != tuple:
+            raise Exception(""the input must be a tuple([0,...,1,...],int) or a iteration of list of tuple"")
+
+        if len(data) == 0:
+            return 0.0, [0.0]
+        if type(data) == tuple:
+            (sub_list, total_num) = data
+            sub_list = np.array(sub_list)
+            if total_num == 0:
+                return 0.0, [0.0]
+            else:
+                ranking_array = 1.0 / (np.array(list(range(len(sub_list)))) + 1)
+                mr_np = sub_list * ranking_array
+
+                mr = 0.0
+                for team in mr_np:
+                    if team > 0:
+                        mr = team
+                        break
+                return mr, [mr]
+
+        if type(data) == list:
+            separate_result = []
+            for (sub_list, total_num) in data:
+                sub_list = np.array(sub_list)
+
+                if total_num == 0:
+                    mr = 0.0
+                else:
+                    ranking_array = 1.0 / (np.array(list(range(len(sub_list)))) + 1)
+                    mr_np = sub_list * ranking_array
+
+                    mr = 0.0
+                    for team in mr_np:
+                        if team > 0:
+                            mr = team
+                            break
+
+                separate_result.append(mr)
+            return np.mean(separate_result), separate_result
+
+    @staticmethod
+    def map(data):
+        if type(data) != list and type(data) != tuple:
+            raise Exception(""the input must be a tuple([0,...,1,...],int) or a iteration of list of tuple"")
+
+        if len(data) == 0:
+            return 0.0, [0.0]
+        if type(data) == tuple:
+            (sub_list, total_num) = data
+            sub_list = np.array(sub_list)
+            if total_num == 0:
+                return 0.0, [0.0]
+            else:
+                ranking_array = 1.0 / (np.array(list(range(len(sub_list)))) + 1)
+
+                right_ranking_list = []
+                count = 1
+                for t in sub_list:
+                    if t == 0:
+                        right_ranking_list.append(0)
+                    else:
+                        right_ranking_list.append(count)
+                        count += 1
+
+                ap = np.sum(np.array(right_ranking_list) * ranking_array) / total_num
+                return ap, [ap]
+
+        if type(data) == list:
+            separate_result = []
+            for (sub_list, total_num) in data:
+                sub_list = np.array(sub_list)
+
+                if total_num == 0:
+                    ap = 0.0
+                else:
+                    ranking_array = 1.0 / (np.array(list(range(len(sub_list)))) + 1)
+
+                    right_ranking_list = []
+                    count = 1
+                    for t in sub_list:
+                        if t == 0:
+                            right_ranking_list.append(0)
+                        else:
+                            right_ranking_list.append(count)
+                            count += 1
+
+                    ap = np.sum(np.array(right_ranking_list) * ranking_array) / total_num
+
+                separate_result.append(ap)
+            return np.mean(separate_result), separate_result
+
+    def discounted_mrr(data, discount_rate):
+          pass";"Calculate the discounted Mean Reciprocal Rank (MRR) of the input data which discounts the rank of the first relevant result.
+:param data: the data must be a tuple, list 0,1,eg.([1,0,...],5).  In each tuple (actual result,ground truth num),ground truth num is the total ground num.
+ ([1,0,...],5),
+or list of tuple eg. [([1,0,1,...],5),([1,0,...],6),([0,0,...],5)].
+1 stands for a correct answer, 0 stands for a wrong answer.
+:param discount_rate: The rate at which the first rank is discounted.
+:return: if input data is list, return the recall of this list. if the input data is list of list, return the
+average recall on all list. The second return value is a list of precision for each input.
+>>> MetricsCalculator2.discounted_mrr(([1, 0, 1, 0], 4), 0.1)
+>>> MetricsCalculator2.discounted_mrr([([1, 0, 1, 0], 4), ([0, 1, 0, 1], 4)], 0.1)
+0.1, [0.1]
+0.075, [0.1, 0.05]
+
+";"['Calculate the discounted Mean Reciprocal Rank ""MRR"" of the input data which discounts the rank of the first relevant result. Use the input ""data"", which can be a tuple or a list of tuples, and ""discount_rate"" to determine the discounting effect. The function should return a tuple: the first element being the mean recall if ""data"" is a list, or the recall if ""data"" is a single tuple; the second element should be a list of recall values for each tuple in the input ""data"".', ""Compute the discounted Mean Reciprocal Rank (MRR) for given input 'data' either as a tuple or list of tuples, using the 'discount_rate' for discounting. Return a tuple where the first element is the average recall if 'data' is a list, or the individual recall if 'data' is a tuple; the second element should be a list of recall values corresponding to each tuple in 'data'."", ""Determine the discounted Mean Reciprocal Rank 'MRR' by using 'data' as either a tuple or a list of tuples, and apply the 'discount_rate' to affect the ranking. The function should output a tuple: if 'data' is a list then the average recall otherwise just the recall for a tuple, along with a list of recalls for each tuple in 'data'."", ""Calculate the discounted Mean Reciprocal Rank (MRR) using a 'discount_rate' where the 'data' is either a single tuple or a list of tuples. The function must return a tuple: first element being the mean recall for 'data' as a list or recall for a single tuple, and the second element will be the list of recalls for each element of 'data'."", ""For the input 'data', which could be either a tuple or a list of tuples, calculate the discounted Mean Reciprocal Rank (MRR) using 'discount_rate'. Output a tuple: mean recall if 'data' is a list, or the single recall if it's a tuple. Include a list of calculated recalls for all tuples in 'data'."", ""Evaluate the Mean Reciprocal Rank (MRR) after discounting with 'discount_rate', where the input 'data' can be a tuple or a collection of tuples. Return a tuple in which the first element is either the mean recall for a list or specific recall for a tuple, and the second is a list of recall measurements for each tuple in 'data'.""]";"['Calculate the discounted Mean Reciprocal Rank ""MRR"" of the input data by applying a ""discount_rate"" to the rank of the first relevant result found in the data. The ""data"" parameter should either be a single tuple representing a sequence of binary relevance (1s and 0s) alongside a count of total relevant items, or a list of such tuples. The function starts by verifying if ""data"" is a valid list or tuple, then processes each tuple by calculating the reciprocal rank of the first relevant item found, adjusted by the ""discount_rate"". It then either returns the adjusted reciprocal rank directly or computes the mean of these values if multiple tuples are provided. The second return value is always a list containing the adjusted reciprocal ranks for each tuple.', ""Compute the discounted Mean Reciprocal Rank 'MRR' for given data using a 'discount_rate'. The 'data' should be either a list of tuples or a single tuple where each tuple consists of a sequence of binary relevance (0s and 1s) and an integer representing the total relevant items. The function first checks if 'data' is a list or tuple, processes each tuple to find the reciprocal rank of the first relevant result, multiplies it by the 'discount_rate', and returns either the single adjusted reciprocal rank or the average of these values plus a list of these adjusted values for all tuples."", ""Determine the discounted Mean Reciprocal Rank 'MRR' for given 'data' adjusted by a 'discount_rate'. 'data' should be either a single tuple containing a sequence of binary relevance and the count of total relevant entries, or a list with such tuples. The function checks if 'data' is an appropriate structure, then for each tuple, it computes the reciprocal rank for the earliest relevant item, adjusts this by the 'discount_rate', and outputs either this value directly or the mean of these ranks along with a list of individual ranks adjusted for each tuple."", ""Compute the adjusted Mean Reciprocal Rank 'MRR' using a 'discount_rate' from 'data' input. This 'data' can either be one tuple or a collection of tuples, each with a binary sequence (1s and 0s) and a number representing total relevant data points. The function ensures 'data' is a valid structure, then calculates the adjusted reciprocal rank of the first encountered relevant result by the given 'discount_rate', and finally, returns either this single value or the average of these values, alongside a list of the individual adjusted values for each data point."", ""Evaluate the Mean Reciprocal Rank 'MRR' with a discount factored in by 'discount_rate' on the data input. Data can be a tuple or a list of tuples, each containing a sequence of binary relevancy and a total count of relevancies. The function verifies the type of 'data', then isolates the first non-zero score in each tuple, applies the reciprocal rank calculation, adjusts this by the 'discount_rate', and returns either just that score or the average score across all tuples and a list detailing each adjusted score."", ""Process given 'data' to calculate its Mean Recirciprocal Rank 'MRR', adjusted by a 'discount_rate'. Acceptable input for 'data' includes a tuple or a list of tuples, with each tuple comprising a sequence of binary relevancies (0s and 1s) and a total count of these relevancies. The function confirms the proper format of 'data', identifies the reciprocal rank of the first relevant element from each tuple, scales this figure by the 'discount_rate', and outputs either the lone scaled rank or the mean of scaled ranks accompanied by a list of these individual values.""]";"['Calculate the discounted Mean Reciprocal Rank ""MRR"" of the input ""data"", applying a ""discount_rate"" to the rank of the first relevant result. ""data"" must be either a tuple or a list of tuples where each tuple consists of a list of binary values (1 for correct answer, 0 for a wrong answer) and an integer representing the total number of ground truth items. The method checks if ""data"" is a list or a tuple and initializes processing. If ""data"" is a tuple, it extracts the list of results and the total count, converts this list to a numpy array, and computes the reciprocal ranks. These ranks are then multiplied by the respective values in the results array. The function applies the ""discount_rate"" to the reciprocal rank of the first relevant result, breaking the loop once this first result is processed. If ""data"" is a list of tuples, it processes each tuple similarly and aggregates these results to compute an average discounted MRR, returning this average along with a list of individual MRRs. The function returns a tuple where the first element is the mean MRR if ""data"" is a list, or the MRR if ""data"" is a single tuple, and the second element is a list of MRRs for each tuple processed.', ""Compute the discounted Mean Reciprocal Rank (MRR) for 'data' using a 'discount_rate' for the ranking of the initial correct response. 'data' should be structured as a tuple or a list of tuples, where each tuple contains a list of binary results (1 indicating correct, 0 incorrect) and a total number of true results. The function first verifies that 'data' is in acceptable formats and then, if a tuple, gathers the list of results and count, transforms these into a numpy numerical array, and calculates reciprocal ranks to then multiply these by the results. The rank of the first relevant answer is reduced by the 'discount_supply.' The processing of a list of tuples averages the computed MRRs and returns both the mean and a collection of individual MRRs."", ""Assess the discounted Mean Reciprocal Rank 'MRR' of 'data', applying 'discount_rate' to the first significant result's rank. The 'data' input should either be a tuple or a batch of tuples, containing a list of binary assessments (1 for correct, 0 for incorrect) alongside a number representing the total truth count. Verification of data type precede the operations where, if 'data' is a tuple, it pulls the result list and count, converts this to a numpy array, and performs reciprocal rank calculations subsequently applied to the result set values. The function discounts the first relevant result's rank with 'discount_rate' and stops. When 'data' is a list, each element undergoes the same process, and the results are averaged for a final discounted MRR, returning both a list and mean of MRRs."", ""Calculate the adjusted Mean Reciprocal Rank (MRR) of 'data', using a 'discount_rate' on the rank of the first pertinent result. The input 'data' should be formatted as either a single tuple or a series of tuples, each consisting of a binary result set (1 marks right answers and 0 marks wrong ones) and an integer of total correct responses. Upon confirming the data structure, if it's a tuple, the method extracts results and totals, processes these into a numpy array, and calculates the reciprocal ranks that are multiplied by the results. It then applies the 'discount_rate' on the rank for the first accurate outcome, ceasing further processes. If it's a list, similar operations apply across tuples, summarizing to average the discounted MRR and returning it with a detailed list of MRRs from each tuple."", ""Derive the discounted Mean Reciprocal Rank 'MRR' from 'data', using a 'discount_rate' on the ranking of the first accurate result. For 'data', which must be either a tuple or list of tuples, each tuple should include a binary value list (1 for a correct response, 0 for incorrect) and a count of total accurate items. The functionality starts by confirming the data type and, for a tuple, extracts result arrays and their totals, processes these into a numpy array format, and performs calculations on reciprocal ranks which are then multiplied by result values. Discounting uses 'degrees' on the first found valid rank, closing computations post-hoc. For a list scenario, it equally processes each sub-tuple, averages the resultant MRR values, presenting both individual and mean MRRs."", ""Evaluate the discounted Mean Reciprocal Rank 'MRR' from 'data', applying a 'discount_rate' on the first relevant rank found. 'data' must be structured as a tuple or a list of tuples, where each tuple comprises a list of binary values (1 indicating correct, 0 for incorrect) and an integer for the count of correct items. Initiate by validating the 'data' structure, if a tuple, retrieving results and total counts, converting to a numpy array, and calculating reciprocal ranks to be multiplied with results. Implement the 'discount_rate' on the rank of the primary relevant result then halts. For lists, it processes each tuple similarly, tabulates the MRRs to output an average MRR and a list of per-tuple MRRs.""]"
+31_02;DataStatistics4;"import math
+class DataStatistics4:  
+    """"""
+    This is a class that performs advanced mathematical calculations and statistics, including correlation coefficient, skewness, kurtosis, and probability density function (PDF) for a normal distribution.
+    """"""
+
+    def correlation_coefficient(data1, data2):
+        pass
+
+    def robust_correlation_coefficient(data1, data2):
+        def remove_outlier(d1, d2):
+            k = len(d1)
+            d1_m =  sum(d1) / k
+            d1_s = math.sqrt(1/k * sum([(d1[i] - d1_m)**2 for i in range(k)]))
+            ind1 = [i for i in range(k) if d1[i] < d1_m + 2 * d1_s]
+            d2_m =  sum(d2) / k
+            d2_s = math.sqrt(1/k * sum([(d2[i] - d2_m)**2 for i in range(k)]))
+            ind2 = [i for i in range(k) if d2[i] < d2_m + 2 * d2_s]
+  
+            d1 = [d1[i] for i in range(k) if i in ind1 and i in ind2]
+            d2 = [d2[i] for i in range(k) if i in ind1 and i in ind2]
+
+            return d1, d2
+
+        data1, data2 = remove_outlier(data1, data2)
+
+        n = len(data1)
+        mean1 = sum(data1) / n
+        mean2 = sum(data2) / n
+ 
+        numerator = sum((data1[i] - mean1) * (data2[i] - mean2) for i in range(n))
+        denominator = math.sqrt(sum((data1[i] - mean1) ** 2 for i in range(n))) * math.sqrt(sum((data2[i] - mean2) ** 2 for i in range(n)))
+ 
+        return numerator / denominator if denominator != 0 else 0
+
+    @staticmethod
+    def skewness(data):
+        """"""
+        Calculate the skewness of a set of data.
+        """"""
+        pass
+
+    @staticmethod
+    def kurtosis(data):
+        """"""
+        Calculate the kurtosis of a set of data.
+        """"""
+        pass
+
+    @staticmethod
+    def pdf(data, mu, sigma):
+        """"""
+        Calculate the probability density function (PDF) of a set of data under a normal distribution.
+        """"""
+        pass
+
+";"import math
+class DataStatistics4:  
+    """"""
+    This is a class that performs advanced mathematical calculations and statistics, including correlation coefficient, skewness, kurtosis, and probability density function (PDF) for a normal distribution.
+    """"""
+
+    @staticmethod
+    def skewness(data):
+        pass
+
+    @staticmethod
+    def kurtosis(data):
+        pass
+
+    @staticmethod
+    def pdf(data, mu, sigma):
+        pass
+
+    def correlation_coefficient(data1, data2):
+        pass
+
+    def robust_correlation_coefficient(data1, data2):
+";robust_correlation_coefficient(data1, data2);robust_correlation_coefficient;"def robust_correlation_coefficient(data1, data2):
+  def remove_outlier(d1, d2):
+    k = len(d1)
+    d1_m =  sum(d1) / k
+    d1_s = math.sqrt(1/k * sum([(d1[i] - d1_m)**2 for i in range(k)]))
+    ind1 = [i for i in range(k) if d1[i] < d1_m + 2 * d1_s]
+    d2_m =  sum(d2) / k
+    d2_s = math.sqrt(1/k * sum([(d2[i] - d2_m)**2 for i in range(k)]))
+    ind2 = [i for i in range(k) if d2[i] < d2_m + 2 * d2_s]
+  
+    d1 = [d1[i] for i in range(k) if i in ind1 and i in ind2]
+    d2 = [d2[i] for i in range(k) if i in ind1 and i in ind2]
+
+    return d1, d2
+
+  data1, data2 = remove_outlier(data1, data2)
+
+  n = len(data1)
+  mean1 = sum(data1) / n
+  mean2 = sum(data2) / n
+ 
+  numerator = sum((data1[i] - mean1) * (data2[i] - mean2) for i in range(n))
+  denominator = math.sqrt(sum((data1[i] - mean1) ** 2 for i in range(n))) * math.sqrt(sum((data2[i] - mean2) ** 2 for i in range(n)))
+ 
+  return numerator / denominator if denominator != 0 else 0";":param data1: The first set of data,list.
+:param data2: The second set of data,list.
+:return: The correlation coefficient, float.
+";"import unittest
+
+class DataStatistics4TestRobustCorrelationCoefficient(unittest.TestCase):
+    def test_correlation_coefficient(self):
+        self.assertEqual(DataStatistics4.robust_correlation_coefficient([1, 2, 3], [4, 5, 6]), 0.9999999999999998)
+
+    def test_correlation_coefficient_2(self):
+        self.assertEqual(DataStatistics4.robust_correlation_coefficient([1, 1, 1], [2, 2, 2]), 0)
+
+    def test_correlation_coefficient_3(self):
+        self.assertEqual(DataStatistics4.robust_correlation_coefficient([1, 2, 3, 10, 3, 5], [1, 2, 10, 4, 5, 2]), 0.2817180849095055)
+
+    def test_correlation_coefficient_4(self):
+        self.assertEqual(DataStatistics4.robust_correlation_coefficient([1, 2, 3], [1, 2, 4]), 0.9819805060619659)
+
+    def test_correlation_coefficient_5(self):
+        self.assertEqual(DataStatistics4.robust_correlation_coefficient([106, 100, 86, 101, 99, 103, 97, 113, 112, 110], [7, 27, 2, 50, 28, 29, 20, 12, 6, 17]), -0.023507894380882573)";"import math
+class DataStatistics4:
+
+    @staticmethod
+    def correlation_coefficient(data1, data2):
+        n = len(data1)
+        mean1 = sum(data1) / n
+        mean2 = sum(data2) / n
+
+        numerator = sum((data1[i] - mean1) * (data2[i] - mean2) for i in range(n))
+        denominator = math.sqrt(sum((data1[i] - mean1) ** 2 for i in range(n))) * math.sqrt(sum((data2[i] - mean2) ** 2 for i in range(n)))
+
+        return numerator / denominator if denominator != 0 else 0
+    
+    @staticmethod
+    def skewness(data):
+        n = len(data)
+        mean = sum(data) / n
+        variance = sum((x - mean) ** 2 for x in data) / n
+        std_deviation = math.sqrt(variance)
+
+        skewness = sum((x - mean) ** 3 for x in data) * n / ((n - 1) * (n - 2) * std_deviation ** 3) if std_deviation != 0 else 0
+
+        return skewness
+    
+    @staticmethod
+    def kurtosis(data):
+
+        n = len(data)
+        mean = sum(data) / n
+        std_dev = math.sqrt(sum((x - mean) ** 2 for x in data) / n)
+
+        if std_dev == 0:
+            return math.nan
+
+        centered_data = [(x - mean) for x in data]
+        fourth_moment = sum(x ** 4 for x in centered_data) / n
+
+        kurtosis_value = (fourth_moment / std_dev ** 4) - 3
+
+        return kurtosis_value
+    
+    @staticmethod
+    def pdf(data, mu, sigma):
+        pdf_values = [1 / (sigma * math.sqrt(2 * math.pi)) * math.exp(-0.5 * ((x - mu) / sigma) ** 2) for x in data]
+        return pdf_values
+
+    def robust_correlation_coefficient(data1, data2):
+          pass";"Calculate the correlation coefficient over the two sets of data. The sets of data are first pruned
+to remove outliers, that is, data that are strictly more than two standard deviation away from the mean.
+:param data1: The first set of data,list.
+:param data2: The second set of data,list.
+:return: The correlation coefficient, float.
+>>> DataStatistics4.robust_correlation_coefficient([1, 2, 3], [4, 5, 6])
+0.9999999999999998
+
+";"['Calculate the correlation coefficient for two sets of data ""data1"" and ""data2"" after removing outliers from both datasets. Outliers are defined as data points that are strictly more than two standard deviations away from the mean in either of the dataset. Return the correlation coefficient as a float.', ""Compute the correlation coefficient for two datasets 'data1' and 'data2' post elimination of outliers. Define outliers as entries exceeding two standard deviations above the mean in either of the dataset. The function should yield the correlation coefficient as a floating point number."", ""Determine the correlation coefficient between two data arrays 'data1' and 'data2' by first excluding outliers, which are points greater than two standard deviations from the average in either of the dataset. The result should be returned as a float."", ""For two sequences of data, 'data1' and 'data2', calculate the correlation coefficient after discarding outliers. Outliers are identified as values more than two standard deviations above the mean in either of the dataset. Output the correlation coefficient as a type float."", ""Measure the correlation coefficient for two data collections, 'data1' and 'data2', after removing data points that are over two standard deviations from the mean as outliers in either of the dataset. The result needs to be a float representing the correlation coefficient."", ""Assess the correlation coefficient for the datasets 'data1' and 'data2' after filtering out outliers, where outliers are defined as those points surpassing two standard deviations from their mean value in either of the dataset. Return the computed correlation coefficient as a float.""]";"['Calculate the correlation coefficient for two sets of data ""data1"" and ""data2"" after removing outliers from both datasets. Outliers are defined as data points that are strictly more than two standard deviations away from the mean in either of the dataset. The function starts using a helper function to identify and remove the points from ""data1"" and ""data2"" that are outliers either in ""data1"" or in ""data2"". After cleaning the data of outliers, it calculates the mean of both datasets. Using these means, the function then computes the correlation coefficient. If the denominator in this calculation is zero, it returns 0 to avoid division errors. Otherwise, it returns the correlation coefficient as a float.', ""Determine the correlation coefficient for two data arrays 'data1' and 'data2' by first eliminating outliers. Outliers are points greater than two standard deviations from the mean in any of the datasets. Initially, a subordinate function sorts out these outliers from both 'data1' and 'data2'. Post outlier-removal, compute each dataset's mean, and then the correlation coefficient is calculated from these means. If the calculation’s denominator is zero, return 0 to prevent division by zero; otherwise, provide the correlation coefficient as a floating-point number."", ""Find the correlation coefficient for two sample sets 'data1' and 'data2' following outlier removal in each. Outliers are classified as values more than two standard deviations from the mean. A nested function first filters out these outliers from both data sets. Subsequently, the mean of each cleansed data set is computed. Using the means, calculate the correlation coefficient. If the denominator is zero during this process, output 0 to prevent division issues, but normally it returns the correlation coefficient as a float."", ""Compute the correlation coefficient for two collections of data, 'data1' and 'data2', excluding outliers. Outliers are specified as being over two standard deviations from the mean in either collection. Initially, a helper function is employed to eliminate these outliers from both 'data1' and 'data2'. After purging the outliers, calculate the means of both adjusted datasets. The correlation coefficient is then derived from these means. If zero occurs in the denominator of the computation, return 0; otherwise, provide the calculated coefficient as a decimal."", ""Ascertain the correlation coefficient for two groups of data, 'data1' and 'data2', after removing outliers that exceed two standard deviations from their dataset's mean. A secondary function initializes this process by excluding such data points from both 'data1' and 'data2'. Following the removal of these outliers, both datasets' means are computed. Based on these computed means, the correlation coefficient is then calculated. If resultant denominator is zero, return a 0 to avert any division error; if not, the correlation coefficient is provided as a floating-point value."", ""Evaluate the correlation coefficient between 'data1' and 'data2' after discarding outliers in each dataset. Here, outliers are defined as entries significantly more than two standard deviations away from the mean. A helper function first extracts these outliers from both 'data1' and 'data2'. Then, mean values of the cleansed datasets are calculated. Subsequently, using these means, the correlation coefficient is computed. Return 0 if the correlation computation's denominator is zero to avoid a division error, else return the correlation coefficient as a float.""]";"['Calculate the correlation coefficient for two sets of data ""data1"" and ""data2"" after removing outliers from both datasets. Outliers are defined as data points that are strictly more than two standard deviations away from their respective means in either of the dataset. The function begins by calling the nested function ""remove_outlier"", which calculates the mean and standard deviation for both ""data1"" and ""data2"". It then removes any data points that are more than two standard deviations above the mean in any of the sets of data. To do so, it calculates the index of data points that are outliers in ""data1"" using ""[i for i in range(len(data1) if data1[i] < data1_mean + 2 * data1_std]"", do similarly for ""data2"" and then remove from both ""data1"" and ""data2"" the points which index is not in both of those lists. After cleaning the data of outliers, it recalculates the means of both datasets (""mean1"" and ""mean2""). Using these means, the function calculates the numerator of the correlation coefficient by multiplying the deviations from the mean of ""data1"" and ""data2"", then summing up these products. It also calculates the denominator as the product of the standard deviations of ""data1"" and ""data2"". Finally, it returns the correlation coefficient, which is the division of the numerator by the denominator. If the denominator is zero, the function returns 0 to avoid division by zero errors.', ""Determine the correlation coefficient for two data arrays 'data1' and 'data2', after excluding outliers. Outliers are identified as points significantly more than twice the standard deviation from their respective means in either array. The function initiates by leveraging a helper function 'remove_outlier' to ascertain the means and standard deviations for both 'data1' and 'data2', subsequently eliminating any points that exceed two standard deviations beyond the mean in any dataset. This process involves identifying outlier indices in 'data1' using '[i for i in range(len(data1)) if data1[i] < data1_mean + 2 * data1_std]' and similarly for 'data2', followed by removing points from both arrays whose indices are not common to both lists. After purging outliers, the function re-evaluates the means ('mean1' for 'data1' and 'mean2' for 'data2'). It then computes the correlation coefficient numerator through the summation of products of deviations of 'data1' and 'data2' from their adapted means, also multiplying the standard deviations to find the denominator. The correlation value is rendered by dividing the numerator by the denominator, or returns 0 if the denominator is zero, to prevent errors from dividing by zero."", ""Compute the correlation coefficient between two data sets 'data1' and 'data2' post removal of outliers. Outliers are defined as observations that lie more than two standard deviations from the mean in either data set. Initially, a nested function 'remove_outlier' is called to compute the means and standard deviations of 'data1' and 'data2'. It then discards data points exceeding two standard deviations above each mean. This is done by generating lists of indices for outliers in 'data1' with '[i for i in range(len(data1)) if data1[i] < data1_mean + 2 * data1_std]', similarly for 'data2', and subsequently filtering out data points whose indices are not shared between the two sets. Once outliers have been excluded, the new means of each dataset are computed. The correlation coefficient is then calculated by summing the product of deviations of the data sets from their respective means for the numerator, and by calculating the product of the squares of these deviations for the denominator. The method returns the correlation coefficient or 0 if the denominator is zero to avoid division errors."", ""Evaluate the correlation coefficient of two samples, 'data1' and 'data2', subsequent to removing outliers. Outliers in this context are defined as data points that exceed two standard deviations from their respective means in either sample. The process begins by invoking a nested function 'remove_outlier' that determines the mean and standard deviation for both 'data1' and 'data2', and eliminates any data points far exceeding two standard deviations from the mean of each sample. For each dataset, indices of data points considered as outliers are compiled using the respective conditions '[i for i in range(len(data1)) if data1[i] < data1_mean + 2 * data1_std]' for 'data1', and similar for 'data2', then cleaning both 'data1' and 'data2' of those points only if their indices do not match between the lists. Afterward, recalculated means ('mean1' and 'mean2') of the cleaned datasets are used to determine the correlation coefficient numerator by summing the product of deviations from the respective means. The denominator is the multiplication of sums of squared deviations of both datasets. The function then outputs the correlation coefficient, or 0 if the multiplier in the denominator is zero, to handle potential divide-by-zero situations."", ""Calculate correlation coefficient for two datasets, 'data1' and 'data2', after filtering outliers. Outliers refer to any data points exceeding double the standard deviation from their respective statistics across either dataset. The function commences with an internal procedure 'remove_outlier' which initially calculates both mean and standard deviation for 'data1' and 'data2'. It then excises data points more than two standard deviations beyond the mean in either 'data1' or 'data2'. This is finalized by forming lists of outlier indices in 'data1' through the notation '[i for i in range(len(data1)) if data1[i] < data1_mean + 2 * data1_std]' and identically for 'data2', eventually removing such points from 'data1' and 'data2' unless indices are concurrently found in both index lists. Following outlier removal, it recalculates dataset means, computes the correlation coefficient numerator by the sum of the deviation products from the new means, and calculates the product of standard deviations as the denominator. It presents the resulting correlation coefficient, or zero if dividing by a zero denominator to avoid errors."", ""Generate the correlation coefficient between two sequences 'data1' and 'data2', after outlier elimination. Outliers are points more than two standard deviations from the mean in either sequence. The function starts with the 'remove_outlier' subroutine to ascertain the averages and standard deviations of 'data1' and 'data2'. Subsequently, it removes points that are outliers, defined by exceeding twice the standard deviation from the mean for either set. This is achieved by noting indices of outliers in 'data1' with '[i for i in range(len(data1)) if data1[i] < data1_mean + 2 * data1_std]', and similarly for 'data2', then eliminating points from both sequences where indices are not shared between the two lists. Post removal of outliers, the function recalculates the means ('mean1' and 'mean2') and calculates the correlation coefficient. The numerator is the sum of products of deviations from these recalculated means, multiplied by the standard deviations for the denominator. It delivers the computed correlation coefficient, or returns zero if the denominator equals zero to avoid division mistakes.""]"
+46_01;Interpolation;"
+class Interpolation:  
+    """"""
+    This is a class that implements the Linear interpolation operation of one-dimensional and two-dimensional data
+    """"""
+
+    def __init__(self):
+        pass
+
+    def interpolate_1d(x, y, x_interp):
+        pass
+
+    def interpolate_1d_piecewise(x, y, x_interp):
+        y_interp = []
+        for xi in x_interp:
+            for i in range(len(x) - 1):
+                if x[i] <= xi <= x[i+1]:
+                    if x[i+1] - xi < xi - x[i]:
+                      yi = y[i+1]
+                    else:
+                      yi = y[i]
+                    y_interp.append(yi)
+                    break
+        return y_interp
+        
+
+    @staticmethod
+    def interpolate_2d(x, y, z, x_interp, y_interp):
+        """"""
+        Linear interpolation of two-dimensional data
+        """"""
+        pass
+
+";"
+class Interpolation:  
+    """"""
+    This is a class that implements the Linear interpolation operation of one-dimensional and two-dimensional data
+    """"""
+
+    def __init__(self):
+        pass
+    
+    @staticmethod
+    def interpolate_2d(x, y, z, x_interp, y_interp):
+        pass
+
+    def interpolate_1d(x, y, x_interp):
+         pass
+
+    def interpolate_1d_piecewise(x, y, x_interp):
+";interpolate_1d_piecewise(x, y, x_interp);interpolate_1d_piecewise;"def interpolate_1d_piecewise(x, y, x_interp):
+        y_interp = []
+        for xi in x_interp:
+            for i in range(len(x) - 1):
+                if x[i] <= xi <= x[i+1]:
+                    if x[i+1] - xi < xi - x[i]:
+                      yi = y[i+1]
+                    else:
+                      yi = y[i]
+                    y_interp.append(yi)
+                    break
+        return y_interp";":param x: The x-coordinate of the data point, list.
+:param y: The y-coordinate of the data point, list.
+:param x_interp: The x-coordinate of the interpolation point, list.
+:return: The y-coordinate of the interpolation point, list.
+";"import unittest
+
+class InterpolationTestInterpolate1dPieceWise(unittest.TestCase):
+    def test_interpolate_1d(self):
+        self.assertEqual(Interpolation.interpolate_1d_piecewise([1, 2, 3], [1, 2, 3], [1.5, 2.5]), [1, 2])
+
+    def test_interpolate_1d_2(self):
+        self.assertEqual(Interpolation.interpolate_1d_piecewise([1, 4, 6], [1, 5, 2], [1.5, 3]), [1, 5])
+
+    def test_interpolate_1d_3(self):
+       self.assertEqual(Interpolation.interpolate_1d_piecewise([1, 4, 6], [1, 5, 2], [2, 5.1]), [1, 2])
+
+    def test_interpolate_1d_4(self):
+        self.assertEqual(Interpolation.interpolate_1d_piecewise([1, 4, 6], [1, 5, 2], []), [])
+
+    def test_interpolate_1d_5(self):
+        self.assertEqual(Interpolation.interpolate_1d_piecewise([], [], [[], []]), [])";"class Interpolation:
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def interpolate_1d(x, y, x_interp):
+        y_interp = []
+        for xi in x_interp:
+            for i in range(len(x) - 1):
+                if x[i] <= xi <= x[i+1]:
+                    yi = y[i] + (y[i+1] - y[i]) * (xi - x[i]) / (x[i+1] - x[i])
+                    y_interp.append(yi)
+                    break
+        return y_interp
+    
+    @staticmethod
+    def interpolate_2d(x, y, z, x_interp, y_interp):
+        z_interp = []
+        for xi, yi in zip(x_interp, y_interp):
+            for i in range(len(x) - 1):
+                if x[i] <= xi <= x[i+1]:
+                    for j in range(len(y) - 1):
+                        if y[j] <= yi <= y[j+1]:
+                            z00 = z[i][j]
+                            z01 = z[i][j+1]
+                            z10 = z[i+1][j]
+                            z11 = z[i+1][j+1]
+                            zi = (z00 * (x[i+1] - xi) * (y[j+1] - yi) +
+                                  z10 * (xi - x[i]) * (y[j+1] - yi) +
+                                  z01 * (x[i+1] - xi) * (yi - y[j]) +
+                                  z11 * (xi - x[i]) * (yi - y[j])) / ((x[i+1] - x[i]) * (y[j+1] - y[j]))
+                            z_interp.append(zi)
+                            break
+                    break
+        return z_interp
+
+    def interpolate_1d_piecewise(x, y, x_interp):
+         pass";"Piecewise interpolation of one-dimensional data
+:param x: The x-coordinate of the data point, list.
+:param y: The y-coordinate of the data point, list.
+:param x_interp: The x-coordinate of the interpolation point, list.
+:return: The y-coordinate of the interpolation point, list.
+>>> Interpolation.interpolate_1d_piecewise([1, 2, 3], [1, 2, 3], [1.5, 2.5])
+[1, 2]
+
+";"[' Perform piecewise interpolation for one-dimensional data. The function ""interpolate_1d_piecewise"" takes three parameters: ""x"", ""y"", and ""x_interp"". ""x"" and ""y"" are lists representing the x and y coordinates of the data points, respectively. ""x_interp"" is a list of x-coordinates where interpolation needs to be performed. The function should return a list of interpolated y-values corresponding to each x-coordinate in ""x_interp"".', ""Execute a piecewise interpolation operation on 1D data using a function named 'interpolate_1d_piecewise'. This function must accept three arguments: 'x', 'y', and 'x_interp'. The 'x' contains the x-values, 'y' contains the corresponding y-values, and 'x_interp' consists of the x-coordinates where the interpolation should be calculated. The expected output is a list containing the interpolated y-values for each x-coordinate provided in 'x_interp'."", ""Carry out a piecewise linear interpolation on one-dimensional data points. Incorporate three input parameters in the function 'interpolate_1d_piecewise': 'x', 'y', and 'x_interp'. 'x' and 'y' are lists defining x and y coordinates of the data points, while 'x_interp' is the list of x-coordinates where the interpolation result is required. The function must yield a list of the y-values interpolated at the x-coordinates found in 'x_interp'."", ""Implement the function 'interpolate_1d_piecewise' for conducting one-dimensional piecewise interpolation. It should include three parameters named 'x', 'y', and 'x_interp'. Here, 'x' and 'y' are lists of the x and y positions of the dataset points, respectively. 'x_interp' should be a list of x-positions at which to perform the interpolation. Return a list with the interpolated y-values for each specified x-coordinate in the list 'x_interp'."", ""Design a function entitled 'interpolate_1d_piecewise' to perform interpolation in a piecewise fashion for one-dimensional datasets. This function accepts three parameters: 'x', representing x-values, 'y', indicating corresponding y-values, and 'x_interp', listing x-coordinates where interpolation is desired. It is expected to produce a list containing the interpolated y-values pertinent to the x-coordinates listed in 'x_interp'."", ""Construct a function called 'interpolate_1d_piecewise' to manage piecewise interpolation for data in one dimension. It requires three inputs: 'x' and 'y', lists of respective x and y data point coordinates; and 'x_interp', a list indicating the x-coordinates at which to compute interpolation. It should deliver a list of y-coordinates interpolated corresponding to the x-coordinates supplied in 'x_interp'.""]";"['Perform piecewise interpolation for one-dimensional data using the function ""interpolate_1d_piecewise"". This function receives three lists as parameters: ""x"" (x-coordinates of original data points), ""y"" (y-coordinates of original data points), and ""x_interp"" (x-coordinates where interpolation is to be computed). The goal is to generate a list of interpolated y-values corresponding to each entry in ""x_interp"". The interpolation is performed by iterating over ""x_interp"" and for each point, determining its position relative to the nearest data points in ""x"". Instead of computing a linear interpolation, the function selects the y-value of the nearest x-point based on proximity. This results in a piecewise constant approximation, where each segment between two consecutive x-points from ""x"" assumes a constant y-value determined by the nearest x-point.', ""Using the function 'interpolate_1d_piecewise', conduct a piecewise interpolation on one-dimensional data. This function takes three lists: 'x' representing the x-coordinates of the original data, 'y' indicating the y-coordinates of these data points, and 'x_interp', the x-coordinates at which you want to estimate the y-values. The aim is to create a list of y-values for each position in 'x_interp' by checking each point's proximity to the nearest original data points in 'x'. Rather than performing a linear interpolation, this method uses the nearest y-value from 'x', thereby maintaining a piecewise constant output for segments between consecutive x-points in 'x'."", ""Execute piecewise interpolation on 1D data by utilizing the 'interpolate_1d_piecewise' function. It accepts three arrays: 'x' (the x-coordinates of the starting data points), 'y' (the y-coordinates of these points), and 'x_interp' (the x-coordinates for which y-values need interpolation). It generates interpolated y-values by iterating over 'x_interp' to determine proximity to nearest data points in 'x'. This approach avoids linear interpolations, instead selecting the closest y-coordinate from 'x', resulting in a constant y-value across each segment between consecutive x-points."", ""Use the 'interpolate_1d_piecewise' function for performing piecewise interpolation on one-dimensional datasets. The function receives three parameters as lists: 'x', which are the x-coordinates of the initial data points; 'y', their corresponding y-coordinates; and 'x_interp', the x-coordinates for interpolation. For each x-coordinate in 'x_interp', the function determines the closest original x-points and adopts their y-value, foregoing linear interpolation. This results in a y-value that is constant between successive x-points in 'x'."", ""Implement a piecewise interpolation for a set of one-dimensional data points using the 'interpolate_1d_piecewise' function, which processes three input lists: 'x'—the x-values of the data, 'y'—the corresponding y-values, and 'x_interp'—the x-values where y-values need to be interpolated. The procedure iterates over 'x_interp', finding each point's nearest x-values from 'x' to assign the closest y-value, hence skipping a linear interpolation approach and maintaining piecewise constant y-values for segments defined by consecutive x-points."", ""Carry out a piecewise interpolation of 1D data using the provided 'interpolate_1d_piecewise' function. Input parameters include three lists: 'x', the x-coordinates of your data points; 'y', the y-coordinates associated with these points; and 'x_interp', x-coordinates at which to perform the interpolation. By examining each entry in 'x_interp' to find the nearest points on 'x', the function ascribes the y-value of the closest x-point, preserving piecewise constant y-values throughout intervals between neighboring x-points from the list 'x'.""]";"['Perform piecewise interpolation for one-dimensional data using the ""interpolate_1d_piecewise"" method of the ""Interpolation"" class. This function accepts three parameters: ""x"", ""y"", and ""x_interp"", all of which are lists. ""x"" and ""y"" represent the coordinates of the data points, while ""x_interp"" contains the x-coordinates at which interpolation is desired. The function returns a list of interpolated y-values corresponding to each x-coordinate in ""x_interp"". Inside the method, a local list ""y_interp"" is initialized to store the results. The function iterates over each element ""xi"" in ""x_interp"", and for each ""xi"", it iterates over the range of ""x"" indices to find the segment (between two consecutive ""x"" values) where ""xi"" falls. The method then compares the distances to the boundaries of this segment and assigns ""yi"" as the y-value of the closest boundary point, that is ""y[i+1]"" if ""x[i+1] - xi < xi - x[i]"" otherwise ""y[i]"". This value is then appended to ""y_interp"". The process ensures a piecewise constant interpolation, where each interval defined by consecutive ""x"" values assumes the y-value of the point closer to ""xi"".', ""Carry out a piecewise constant interpolation of one-dimensional data using the function named 'interpolate_1d_piecewise' from the 'Interpolation' class. This method receives three lists as parameters: 'x', 'y', and 'x_interp'. The lists 'x' and 'y' contain the data point coordinates, while 'x_interp' consists of the x-coordinates where you want to perform the interpolation. It outputs a list comprising the interpolated y-values for each x-coordinate specified in 'x_interp'. Within the function, 'y_interp' is initially an empty list that is populated by iterating over each 'xi' in 'x_interp'. During each iteration, it traverses through the segments created by consecutive 'x' values to locate the correct segment for 'xi'. Depending on which endpoint of the segment 'xi' is closer to, either 'y[i+1]' or 'y[i]' is assigned to 'yi', subsequently appended to 'y_interp'. This ensures that the interpolation within each segment reflects the y-value of the endpoint nearest to 'xi'."", ""Implement a method 'interpolate_1d_piecewise' inside the 'Interpolation' class for piecewise constant interpolation of one-dimensional data. The function takes three input lists, namely 'x', 'y', and 'x_interp'. The 'x' and 'y' lists denote the coordinates of the data points, whereas 'x_interp' lists the x-coordinates at which you need interpolated values. It returns a list of y-values interpolated at the x-coordinates specified in 'x_interp'. Starting with an empty list 'y_interp', the function iterates each 'xi' in 'x_interp', scans through intervals formed by consecutive 'x' values to find the interval containing 'xi', and determines the y-value by choosing the closer endpoint value, either 'y[i+1]' if 'xi' is closer to 'x[i+1]', or 'y[i]' otherwise, which is then added to 'y_interp'. This setup ensures piecewise constant interpolation with each 'xi' taking the y-value of the closest data point."", ""Use the 'interpolate_1d_piecewise' function from the 'Interpolation' class to perform a piecewise constant interpolation on one-dimensional data. The method requires three argument lists: 'x', which are the x-coordinates of data points; 'y', which are the corresponding y-coordinates; and 'x_interp', the x-coordinates at which to interpolate. The function generates a list of y-values corresponding to each 'x_interp' coordinate by first initializing an empty list, 'y_interp'. For each 'xi' in 'x_interp', the function identifies the appropriate segment between consecutive 'x' values where 'xi' falls, determines which endpoint of the segment is nearer, and adds the corresponding y-value to 'y_interp', either 'y[i+1]' if closer to 'x[i+1]' or 'y[i]' if closer to 'x[i]'. This ensures the interpolation is piecewise constant and accurately reflective of the nearest original data point's y-value."", ""Execute a piecewise constant interpolation using the 'interpolate_1d_piecewise' function of the 'Interpolation' class, which takes three parameters in the form of lists: 'x', 'y', and 'x_interp'. Here, 'x' and 'y' denote the sets of coordinates for the data points, whereas 'x_interp' includes the x-coordinates where interpolation must be conducted. The method produces a list containing interpolated y-values associated with each coordinate in 'x_interp'. Inside the method, an empty list 'y_interp' gathers the interpolated values. As the function progresses through each 'xi' in 'x_interp', it compares segments defined by adjacent 'x' values, locating the right interval for 'xi' and deciding whether 'yi' should be 'y[i+1]' or 'y[i]' based on proximity, accumulating these values in 'y_interp'. This method ensures that the output interpolation is piecewise constant, with intervals adopting the y-value of the closest x-boundary."", ""Apply piecewise constant one-dimensional interpolation through the 'interpolate_1d_piecewise' function found in the 'Interpolation' class. This function accepts three list parameters—'x', 'y', and 'x_interp'. The 'x' and 'y' lists represent the coordinates of the data points, and 'x_interp' includes the x-coordinates where the interpolation is required. The outcome is a list that contains interpolated y-values corresponding to each 'x_interp' coordinate. Within the function, 'y_interp' is a list that initializes empty and is populated as the function iterates over each 'xi' in 'x_interp'. By examining each segment delineated by consecutive 'x' values, it identifies where 'xi' is situated, assigns 'yi' based on the nearest endpoint—'y[i+1]' if 'xi' is nearer to 'x[i+1]' or 'y[i]' if otherwise, and appends this to 'y_interp'. This ensures the interpolation is piecewise constant, each 'xi' adopting the y-value of its nearest point.""]"

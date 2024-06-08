@@ -1,0 +1,7 @@
+You are given a Python function in ### Function and a prompt in ### Prompt. Your task will be to reword the given prompt in order to generate a variation of said prompt. Keep in mind that the will be used by an LLM to generate the function. You must make sure that the reworded prompt have the same level of information, the same structure and the same length as the given prompt. It is very important that the reworded prompt keeps the same semantic as the original prompt. However, you can modify the synthax in the reworded prompt as much as you want. Please give five suggestions of reworde.d prompts. Make sure that each suggestion is derived using only the the prompt and not any other rewording. Please, format your answer as a Python List object so that each reworded prompt is an element of this Python List.
+
+### Function
+INSERT_FUNCTION
+
+### Prompt
+INSERT_PROMPT

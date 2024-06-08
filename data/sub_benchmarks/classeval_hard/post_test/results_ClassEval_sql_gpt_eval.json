@@ -1,0 +1,1842 @@
+{
+    "0": {
+        "level 1": [
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'\\'{name}\\'' for name in exclude_names])})\"\n\n",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    exclude_names_str = \"', '\".join(exclude_names)\n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ('{exclude_names_str}')\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'{name}' for name in exclude_names])})\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        sql_query = f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'{name}' for name in exclude_names])})\"\n        return sql_query",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    sql = f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({','.join([f'\"{name}\"' for name in exclude_names])})\"\n    return sql",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        query = f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({','.join(['?' for _ in exclude_names])})\"\n        return query",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join(['?' for _ in range(len(exclude_names))])})\"\n    return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        sql = \"SELECT * FROM \" + self.table_name + \" WHERE age BETWEEN \" + str(min_age) + \" AND \" + str(max_age) + \" AND name NOT IN (\"\n        for i in range(len(exclude_names)):\n            sql += \"'\" + exclude_names[i] + \"'\"\n            if i < len(exclude_names) - 1:\n                sql += \", \"\n        sql += \");\"\n        return sql",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        query = f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'{name}' for name in exclude_names])})\"\n        return query",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'\\'{name}\\'' for name in exclude_names])})\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        sql = f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'{self.quote_string(name)}' for name in exclude_names])})\"\n        return sql",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        sql = f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"\n        return sql",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        sql_query = f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"\n        return sql_query",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        sql_query = f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"\n        return sql_query",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        names_str = ', '.join([f\"'{name}'\" for name in exclude_names])\n        return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({names_str})\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        return \"SELECT * FROM {} WHERE age BETWEEN {} AND {} AND name NOT IN ({})\".format(self.table_name, min_age, max_age, ', '.join([\"'{}'\".format(name) for name in exclude_names]))",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        return \"SELECT * FROM {table} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({names});\".format(table=self.table_name, min_age=min_age, max_age=max_age, names=\", \".join([\"'{}'\".format(name) for name in exclude_names]))",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age >= {min_age} AND age <= {max_age} AND name NOT IN ({','.join([f'\"{name}\"' for name in exclude_names])})\"\n        return f\"SELECT * FROM {self.table_name} WHERE {condition}\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    sql = \"SELECT * FROM {} WHERE age BETWEEN {} AND {} AND name NOT IN ({})\".format(self.table_name, min_age, max_age, \", \".join([f\"'{name}'\" for name in exclude_names]))\n    return sql",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({','.join([f'{repr(name)}' for name in exclude_names])});\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'{self._prepare_value(name)}' for name in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        sql = f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join(['?' for _ in range(len(exclude_names))])})\"\n        return sql",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        exclude_names_str = ', '.join([f\"'{name}'\" for name in exclude_names])\n        return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({exclude_names_str});\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    sql_query = f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'{self._sanitize_string(name)}' for name in exclude_names])});\"\n    return sql_query",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        query = f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name NOT IN ({', '.join([f'{name}' for name in exclude_names])})\"\n        return query",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        query = f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({','.join([f'\"{name}\"' for name in exclude_names])})\"\n        return query",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        sql_query = f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name NOT IN ({', '.join([f'\\'{name}\\'' for name in exclude_names])})\"\n        return sql_query",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    sql = f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"\n    return sql",
+                false
+            ]
+        ],
+        "level 2": [
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join(['\"' + name + '\"' for name in exclude_names])})\"\n        return f\"SELECT * FROM {self.table_name} WHERE {condition}\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'\\'{name}\\'' for name in exclude_names])})\"\n    return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"\n        return f\"SELECT * FROM {self.table_name} WHERE {condition};\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN ({','.join(['?' for _ in exclude_names])})\"\n        return f\"SELECT * FROM {self.table_name} WHERE {condition}\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join(['?' for _ in exclude_names])})\"\n    return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    age_condition = f\"age BETWEEN {min_age} AND {max_age}\"\n    if exclude_names:\n        names_condition = \" AND \".join([f\"name != '{name}'\" for name in exclude_names])\n        condition = f\"{age_condition} AND {names_condition}\"\n    else:\n        condition = age_condition\n    return f\"SELECT * FROM {self.table_name} WHERE {condition}\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    age_condition = f\"age BETWEEN {min_age} AND {max_age}\"\n    name_condition = \" AND \".join([f\"name != '{name}'\" for name in exclude_names])\n    if name_condition:\n        name_condition = f\" AND {name_condition}\"\n    return f\"SELECT * FROM {self.table_name} WHERE {age_condition}{name_condition};\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    age_condition = f\"age BETWEEN {min_age} AND {max_age}\"\n    names_condition = \" AND \".join([f\"name != '{name}'\" for name in exclude_names])\n    condition = f\"{age_condition} AND {names_condition}\"\n    return f\"SELECT * FROM {self.table_name} WHERE {condition};\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    age_condition = f\"age >= {min_age} AND age <= {max_age}\"\n    excluded_names_condition = \" AND \".join([f\"name != '{name}'\" for name in exclude_names])\n    if excluded_names_condition:\n        excluded_names_condition = f\"({excluded_names_condition})\"\n    condition = f\"{age_condition} AND {excluded_names_condition}\" if excluded_names_condition else age_condition\n    return f\"SELECT * FROM {self.table_name} WHERE {condition}\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    name_condition = \" AND name NOT IN ({})\".format(\", \".join([\"'{}'\".format(name) for name in exclude_names]))\n    return \"SELECT * FROM {} WHERE age BETWEEN {} AND {}{}\".format(self.table_name, min_age, max_age, name_condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join(['?' for _ in exclude_names])})\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({','.join([f'\"{name}\"' for name in exclude_names])})\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    \n    query = f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name NOT IN ({', '.join([f'\\'{name}\\'' for name in exclude_names])})\"\n    return query\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join(['\"' + name + '\"' for name in exclude_names])})\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition_age = f\"age >= {min_age} AND age <= {max_age}\"\n        condition_names = \" AND \".join([f\"name != '{name}'\" for name in exclude_names])\n        condition = f\"{condition_age} AND {condition_names}\"\n        return f\"SELECT * FROM {self.table_name} WHERE {condition}\"\n\n",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        name_condition = \" AND \".join([f\"name != '{name}'\" for name in exclude_names])\n        age_condition = f\"age >= {min_age} AND age <= {max_age}\"\n        return f\"SELECT * FROM {self.table_name} WHERE {age_condition} AND {name_condition}\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n       age_condition = f\"age >= {min_age} AND age <= {max_age}\"\n       names_condition = \" AND \".join([f\"name != '{name}'\" for name in exclude_names])\n       condition = f\"{age_condition} AND ({names_condition})\"\n       return f\"SELECT * FROM {self.table_name} WHERE {condition}\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        age_condition = f\"age BETWEEN {min_age} AND {max_age}\"\n        name_condition = f\"name NOT IN ({', '.join([f'{repr(name)}' for name in exclude_names])})\"\n        condition = f\"{age_condition} AND {name_condition}\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        age_condition = f\"age BETWEEN {min_age} AND {max_age}\"\n        if exclude_names:\n            name_condition = \" AND \".join([f\"name != '{name}'\" for name in exclude_names])\n            condition = f\"{age_condition} AND {name_condition}\"\n        else:\n            condition = age_condition\n        return f\"SELECT * FROM {self.table_name} WHERE {condition}\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    name_condition = \" AND \".join([f\"name != '{name}'\" for name in exclude_names])\n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND {name_condition};\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age >= {min_age} AND age <= {max_age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age >= {min_age} AND age <= {max_age} AND name NOT IN ({','.join(['?' for _ in exclude_names])})\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN ({','.join([f'\"{name}\"' for name in exclude_names])})\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age >= {min_age} AND age <= {max_age} AND name NOT IN ({','.join([f'\"{name}\"' for name in exclude_names])})\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"\n    return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN ({', '.join([f'{self.table_name}.{name}' for name in exclude_names])})\"\n    return f\"SELECT * FROM {self.table_name} WHERE {condition};\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age >= {min_age} AND age <= {max_age} AND name NOT IN ({','.join([f'\"{name}\"' for name in exclude_names])})\"\n    return f\"SELECT * FROM {self.table_name} WHERE {condition};\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition_age = f\"age >= {min_age} AND age <= {max_age}\"\n        condition_names = \" AND \".join([f\"name != '{name}'\" for name in exclude_names])\n        condition = f\"{condition_age} AND {condition_names}\"\n        return f\"SELECT * FROM {self.table_name} WHERE {condition}\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition_age = f\"age >= {min_age} AND age <= {max_age}\"\n        condition_names = \" AND \".join([f\"name != '{name}'\" for name in exclude_names])\n        condition = f\"{condition_age} AND {condition_names}\"\n        return f\"SELECT * FROM {self.table_name} WHERE {condition}\"",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age >= {min_age} AND age <= {max_age} AND name NOT IN ({', '.join([f'{repr(name)}' for name in exclude_names])})\"\n    return self.select(condition=condition)",
+                false
+            ]
+        ],
+        "level 3": [
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        exclusion_tuple = tuple(exclude_names)\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {exclusion_tuple}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        execute_names = tuple(exclude_names)\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {execute_names}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        execute_names = tuple(exclude_names) if len(exclude_names) > 1 else f\"('{exclude_names[0]}')\"\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {execute_names}\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        execute_names = tuple(exclude_names)\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {execute_names}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n    condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n       condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n       return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)\n\n",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)\n\n",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)\n\n",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)\n\n",
+                true
+            ],
+            [
+                "def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):\n        condition = f\"age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)\n\n",
+                true
+            ]
+        ]
+    },
+    "1": {
+        "level 1": [
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}')\"\n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n            log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}')\"\n        else:\n            log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'None')\"\n        \n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = ' AND '.join([f\"{key} = '{value}'\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}')\"\n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        if where:\n            condition = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n            delete_query = f\"DELETE FROM {table} WHERE {condition};\"\n            log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition}');\"\n        else:\n            delete_query = f\"DELETE FROM {table};\"\n            log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'ALL ROWS');\"\n        \n        return f\"{delete_query}\\n{log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}')\"\n    else:\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'All records')\"\n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}')\"\n        \n        return query\n\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        where_str = ' AND '.join([f\"{key} = '{value}'\" for key, value in where.items()]) if where else None\n        delete_query = SQLQueryBuilder.delete(table, where)\n        log_query = SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': where_str})\n        return delete_query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    where_clause = ' AND '.join([f\"{key}='{value}'\" for key, value in where.items()]) if where else ''\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{where_clause}');\"\n    delete_query = f\"DELETE FROM {table}\"\n    if where_clause:\n        delete_query += f\" WHERE {where_clause};\"\n    else:\n        delete_query += \";\"\n    return delete_query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    if where:\n        condition = ' AND '.join([f\"{key} = '{value}'\" for key, value in where.items()])\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition}');\"\n    else:\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'All records deleted.');\"\n    \n    delete_query = f\"DELETE FROM {table}\"\n    if where:\n        delete_query += \" WHERE \" + ' AND '.join([f\"{key} = '{value}'\" for key, value in where.items()])\n    return f\"{delete_query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = [f\"{key} = '{value}'\" for key, value in where.items()]\n            where_clause = \" AND \".join(conditions)\n            query += f\" WHERE {where_clause}\"\n\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{where_clause}')\"\n        \n        return query\n\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    if where:\n        condition = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n        query = f\"DELETE FROM {table} WHERE {condition}; INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition}');\"\n    else:\n        query = f\"DELETE FROM {table}; INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'all rows');\"\n    \n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}')\"\n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    if where is None:\n        query = f\"DELETE FROM {table};\"\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'all rows deleted');\"\n    else:\n        conditions = [f\"{key} = '{value}'\" for key, value in where.items()]\n        condition_str = \" AND \".join(conditions)\n        query = f\"DELETE FROM {table} WHERE {condition_str};\"\n        \n        conditions_log = [f\"{key} = '{value}'\" for key, value in where.items()]\n        condition_str_log = \" AND \".join(conditions_log)\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition_str_log}');\"\n    \n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            condition = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n            query += f\" WHERE {condition}\"\n\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition}')\"\n        return f\"{query}; {log_query};\"\n\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        condition = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n        query += f\" WHERE {condition}\"\n    \n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition}')\"\n    \n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = [f\"{key} = {value}\" for key, value in where.items()]\n        where_clause = \" AND \".join(conditions)\n        query += f\" WHERE {where_clause}\"\n    \n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{where}')\"\n    \n    return f\"{query}; {log_query};\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = SQLQueryBuilder.delete(table, where)\n    log_query = SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': where})\n    return query + \"; \" + log_query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = [f\"{key} = '{value}'\" for key, value in where.items()]\n        query += f\" WHERE {' AND '.join(conditions)}\"\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{where}')\"\n    return f\"{query}; {log_query};\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        if where is None:\n            query = f\"DELETE FROM {table}; INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'No condition');\"\n        else:\n            conditions = [f\"{key}={value}\" for key, value in where.items()]\n            condition_str = ' AND '.join(conditions)\n            query = f\"DELETE FROM {table} WHERE {condition_str}; INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition_str}');\"\n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions if where else 'All rows'}')\"\n    return f\"{query}; {log_query};\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    if where is None:\n        query = f\"DELETE FROM {table}; INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'all');\"\n    else:\n        conditions = ' AND '.join([f\"{key} = '{value}'\" for key, value in where.items()])\n        query = f\"DELETE FROM {table} WHERE {conditions}; INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}');\"\n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    if where:\n        condition = ' AND '.join([f\"{key}='{value}'\" for key, value in where.items()])\n        query = f\"DELETE FROM {table} WHERE {condition}; INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition}');\"\n    else:\n        query = f\"DELETE FROM {table}; INSERT INTO {log_table} (table_name) VALUES ('{table}');\"\n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    if where:\n        condition = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n        query = f\"DELETE FROM {table} WHERE {condition}; INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition}');\"\n    else:\n        query = f\"DELETE FROM {table}; INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'No condition provided');\"\n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = [f\"{key}={value}\" for key, value in where.items()]\n            condition_str = \" AND \".join(conditions)\n            query += f\" WHERE {condition_str}\"\n\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition_str if where else 'No condition specified'}')\"\n\n        return query + \"; \" + log_query\n\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n            \n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions if where else 'ALL'}');\"\n        \n        return query + ';' + log_query\n\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n\n        log_query = SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': conditions})\n        return query\n\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n            \n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}')\"\n        \n        return query, log_query\n\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n",
+                false
+            ]
+        ],
+        "level 2": [
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = ' AND '.join([f\"{key}={value}\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n    else:\n        conditions = \"None\"\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}')\"\n    return query\n\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = ' AND '.join([f\"{key} = '{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n    SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': str(where)})\n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = \"DELETE FROM {} \".format(table)\n        if where:\n            conditions = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n            query += \"WHERE \" + conditions\n            log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}')\"\n        else:\n            query += \"WHERE 1=1\"\n            log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'None')\"\n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n            SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': conditions})\n        else:\n            SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': 'None'})\n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        if where:\n            condition = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n        else:\n            condition = \"None\"\n        \n        query = f\"DELETE FROM {table}\"\n        if where:\n            query += f\" WHERE {condition}\"\n        \n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition}')\"\n        \n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = \" AND \".join([f\"{key} = {value}\" if isinstance(value, int) else f\"{key} = '{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n    \n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', {where or 'None'})\"\n    \n    return query + \";\\n\" + log_query + \";\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = SQLQueryBuilder.delete(table, where)\n        if where:\n            condition = ', '.join([f\"{key}={value}\" for key, value in where.items()])\n        else:\n            condition = 'None'\n        log_query = SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': condition})\n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n            SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': conditions})\n        else:\n            SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': 'None'})\n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n        insert_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}' if where else 'None')\"\n        return query + \";\" + insert_query + \";\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n    \n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', {conditions if where else 'None'})\"\n    \n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = [f\"{key} = '{value}'\" for key, value in where.items()]\n            where_clause = \" AND \".join(conditions)\n            query += f\" WHERE {where_clause}\"\n\n        if where:\n            log_values = \", \".join([f\"'{value}'\" for value in where.values()])\n            log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{log_values}')\"\n        else:\n            log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'None')\"\n\n        return query\n\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = [f\"{key} = '{value}'\" for key, value in where.items()]\n        where_clause = \" AND \".join(conditions)\n        query += f\" WHERE {where_clause}\"\n    \n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', {where or 'None'})\"\n    \n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = SQLQueryBuilder.delete(table, where)\n    if where is not None:\n        conditions = ', '.join([f\"{key}='{value}'\" for key, value in where.items()])\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}')\"\n    else:\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'None')\"\n    return query + \"; \" + log_query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = SQLQueryBuilder.delete(table, where)\n        if where:\n            conditions = ', '.join([f\"{key}={value}\" for key, value in where.items()])\n            log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}')\"\n        else:\n            log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'None')\"\n        return query, log_query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = [f\"{key}='{value}'\" for key, value in where.items()]\n        where_clause = \" AND \".join(conditions)\n        query += f\" WHERE {where_clause}\"\n\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', {where if where else 'None'})\"\n\n    return query\n\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions if where else 'None'}')\"\n    return query, log_query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    where_clause = ''\n    if where:\n        where_clause = ' AND '.join([f\"{key} = '{value}'\" for key, value in where.items()])\n    delete_query = f\"DELETE FROM {table}\"\n    if where_clause:\n        delete_query += f\" WHERE {where_clause}\"\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{where_clause if where_clause else 'None'}');\"\n    return delete_query + '\\n' + log_query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n    \n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}')\"\n    \n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}' or 'None' if conditions are absent)\"\n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = ' AND '.join([f\"{key}='{value}'\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n            log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}')\"\n        else:\n            log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', 'None')\"\n        \n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = [f\"{key}='{value}'\" for key, value in where.items()]\n            condition_str = \" AND \".join(conditions)\n            query += f\" WHERE {condition_str}\"\n        SQLQueryBuilder.delete(table, where)\n        log_data = f\"'{table}', '{condition_str if where else 'None'}'\"\n        SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': log_data})\n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n        if where:\n            log_condition = \", \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n            log_message = f\"'{table}', condition: {log_condition}\"\n        else:\n            log_message = f\"'{table}', condition: None\"\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ({log_message})\"\n        return query, log_query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    conditions = []\n    if where:\n        for key, value in where.items():\n            conditions.append(f\"{key} = '{value}'\")\n        condition_str = \" AND \".join(conditions)\n        query += f\" WHERE {condition_str}\"\n    if where:\n        log_condition = condition_str\n    else:\n        log_condition = \"None\"\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{log_condition}')\"\n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n    SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': conditions if where else 'None'})\n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = [f\"{key} = '{value}'\" for key, value in where.items()]\n            condition_str = \" AND \".join(conditions)\n            query += f\" WHERE {condition_str}\"\n        SQLQueryBuilder.delete(table, where)\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition_str}' if where else 'None')\"\n        SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': condition_str})\n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = \" AND \".join([f\"{key} = {value}\" if isinstance(value, int) else f\"{key} = '{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n    \n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', {where or 'None'})\"\n    \n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = SQLQueryBuilder.delete(table, where)\n    log_data = {'table_name': table, 'condition': where if where is not None else None}\n    log_query = SQLQueryBuilder.insert(log_table, log_data)\n    return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = [f\"{key} = '{value}'\" for key, value in where.items()]\n            condition_str = \" AND \".join(conditions)\n            query += f\" WHERE {condition_str}\"\n        SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': condition_str})\n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = SQLQueryBuilder.delete(table, where)\n        condition = str(where) if where is not None else 'None'\n        log_query = SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': condition})\n        return query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n    \n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', {where or 'None'})\"\n    return query, log_query",
+                false
+            ]
+        ],
+        "level 3": [
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = \"DELETE FROM \" + table\n        if where:\n            condition = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n            query += \" WHERE \" + condition\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition if where else None}')\"\n        return query + \";\" + log_query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n\n    if where:\n        conditions = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', {'None' if not where else conditions})\"\n\n    return f\"{query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n            SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': conditions})\n        else:\n            SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': 'None'})\n        return query + \";\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            condition = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n            query += f\" WHERE {condition}\"\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', {condition if where else 'None'})\"\n        return f\"{query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key}={value}\" for key, value in where.items()])\n            query += f\" WHERE {conditions}\"\n            SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': conditions})\n        else:\n            SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': 'None'})\n        return query + \";\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        delete_query = f\"DELETE FROM {table}\"\n        if where:\n            condition = ' AND '.join([f\"{key} = {value}\" for key, value in where.items()])\n            delete_query += f\" WHERE {condition}\"\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition}' if condition else 'None')\"\n        return f\"{delete_query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    delete_query = f\"DELETE FROM {table}\"\n    if where:\n        condition = ' AND '.join(f\"{key}='{value}'\" for key, value in where.items())\n        delete_query += f\" WHERE {condition}\"\n    log_data = {'table_name': table, 'condition': condition if where else 'None'}\n    log_query = SQLQueryBuilder.insert(log_table, log_data)\n    return f\"{delete_query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = SQLQueryBuilder.delete(table, where)\n        condition_string = 'None' if where is None else ' AND '.join([f\"{key} = {value}\" for key, value in where.items()])\n        log_query = SQLQueryBuilder.insert(log_table, {'table_name': table, 'condition': condition_string})\n        return f\"{query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        condition = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n        query += f\" WHERE {condition}\"\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition if where else None}')\"\n    return f\"{query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    delete_query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = ' AND '.join([f\"{key} = '{value}'\" for key, value in where.items()])\n        delete_query += f\" WHERE {conditions}\"\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}' or 'None')\"\n    return f\"{delete_query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        conditions = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions if where else None}')\"\n    return f\"{query}; {log_query};\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    if where:\n        condition = ' AND '.join([f\"{key}='{value}'\" for key, value in where.items()])\n        query += f\" WHERE {condition}\"\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition}' if where else 'None')\"\n    return f\"{query}; {log_query};\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    query = f\"DELETE FROM {table}\"\n    \n    if where:\n        conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n        query += f\" WHERE {conditions}\"\n    \n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions if where else None}')\"\n    \n    return f\"{query}; {log_query};\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        delete_query = f\"DELETE FROM {table}\"\n        if where:\n            condition = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n            delete_query += f\" WHERE {condition}\"\n\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition if where else 'None'}');\"\n\n        return delete_query + \";\" + log_query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    delete_query = f\"DELETE FROM {table}\"\n    if where:\n        condition = ' AND '.join([f\"{key}='{value}'\" for key, value in where.items()])\n        delete_query += f\" WHERE {condition}\"\n\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition}' if where else 'None');\"\n\n    return delete_query + ';' + log_query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    condition = ''\n    if where:\n        condition = ' AND '.join([f\"{key} = '{value}'\" for key, value in where.items()])\n    delete_query = f\"DELETE FROM {table}\"\n    if condition:\n        delete_query += f\" WHERE {condition}\"\n    \n    log_data = {'table_name': table, 'condition': condition if condition else 'None'}\n    log_query = SQLQueryBuilder.insert(log_table, log_data)\n\n    return f\"{delete_query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    condition = ' AND '.join([f\"{key} = '{value}'\" for key, value in where.items()]) if where else 'None'\n    delete_query = f\"DELETE FROM {table}\"\n    delete_query += f\" WHERE {condition}\" if where else \"\"\n    log_query = f\"INSERT INTO {log_table}(table_name, condition) VALUES ('{table}', '{condition}')\"\n    return delete_query + ';' + log_query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        delete_query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n            delete_query += f\" WHERE {conditions}\"\n\n        log_condition = conditions if where else \"None\"\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{log_condition}')\"\n\n        return delete_query + \";\" + log_query",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    if where:\n        condition = ' AND '.join([f\"{key} = '{value}'\" for key, value in where.items()])\n    else:\n        condition = 'None'\n    \n    delete_query = f\"DELETE FROM {table}\"\n    if where:\n        delete_query += f\" WHERE {condition}\"\n    \n    log_data = {'table_name': table, 'condition': condition}\n    insert_query = SQLQueryBuilder.insert(log_table, log_data)\n    \n    return f\"{delete_query}; {insert_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        delete_query = f\"DELETE FROM {table}\"\n        if where:\n            condition = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n            delete_query += f\" WHERE {condition}\"\n        log_data = {'table_name': table, 'condition': condition if where else 'None'}\n        log_query = SQLQueryBuilder.insert(log_table, log_data)\n        return f\"{delete_query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    delete_query = f\"DELETE FROM {table}\"\n    if where:\n        condition = ' AND '.join([f\"{key} = '{value}'\" for key, value in where.items()])\n        delete_query += f\" WHERE {condition}\"\n    \n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', {condition if where else 'None'})\"\n    \n    return f\"{delete_query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    delete_query = f\"DELETE FROM {table}\"\n    if where:\n        condition = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n        delete_query += f\" WHERE {condition}\"\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition if where else None}')\"\n    return f\"{delete_query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        delete_query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = ' AND '.join([f\"{key} = '{value}'\" for key, value in where.items()])\n            delete_query += f\" WHERE {conditions}\"\n\n        log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{conditions}' if where else 'None')\"\n\n        return f\"{delete_query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        delete_query = f\"DELETE FROM {table}\"\n        if where:\n            conditions = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n            delete_query += f\" WHERE {conditions}\"\n        \n        log_data = {'table_name': table, 'condition': conditions if where else 'None'}\n        SQLQueryBuilder.insert(log_table, log_data)\n        \n        return f\"{delete_query};\"\n\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    delete_query = f\"DELETE FROM {table}\"\n    if where:\n        condition = \" AND \".join([f\"{key}='{value}'\" for key, value in where.items()])\n        delete_query += f\" WHERE {condition}\"\n    log_query = f\"INSERT INTO {log_table} (table_name, condition) VALUES ('{table}', '{condition if where else 'None'}')\"\n    return f\"{delete_query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n    if where:\n        condition = ' AND '.join([f\"{key} = {value}\" for key, value in where.items()])\n        delete_query = f\"DELETE FROM {table} WHERE {condition};\"\n        log_query = f\"INSERT INTO {log_table} (table_name, filter_condition) VALUES ('{table}', '{condition}');\"\n    else:\n        delete_query = f\"DELETE FROM {table};\"\n        log_query = f\"INSERT INTO {log_table} (table_name, filter_condition) VALUES ('{table}', 'None');\"\n    \n    return f\"{delete_query}\\n{log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = SQLQueryBuilder.delete(table, where)\n        if where:\n            conditions = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n        else:\n            conditions = \"None\"\n        log_query = SQLQueryBuilder.insert(log_table, {'ltable_name': table, 'filter_condition': conditions})\n        return f\"{query}; {log_query}\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where:\n            condition = \" AND \".join([f\"{key}={value}\" for key, value in where.items()])\n            query += f\" WHERE {condition}\"\n        log_query = f\"INSERT INTO {log_table} (ltable_name, filter_condition) VALUES ('{table}', '{condition if where else 'None'}')\"\n        return f\"{query};\\n{log_query};\"",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        query = f\"DELETE FROM {table}\"\n        if where is not None:\n            condition = \" AND \".join([f\"{key} = '{value}'\" for key, value in where.items()])\n            query += f\" WHERE {condition}\"\n        log_query = f\"INSERT INTO {log_table} (ltable_name, filter_condition) VALUES ('{table}', '{condition}')\" if where is not None else f\"INSERT INTO {log_table} (ltable_name, filter_condition) VALUES ('{table}', 'None')\"\n        return f\"{query};\\n{log_query};\"\n\n",
+                false
+            ],
+            [
+                "def delete_with_log(table, where=None, log_table='delete_log'):\n        delete_query = SQLQueryBuilder.delete(table, where)\n        if where:\n            condition = \" AND \".join([f\"{key}={value}\" for key, value in where.items()])\n        else:\n            condition = \"None\"\n        log_query = SQLQueryBuilder.insert(log_table, {'table_name': table, 'filter_condition': condition})\n        return f\"{delete_query}; {log_query}\"",
+                false
+            ]
+        ]
+    },
+    "2": {
+        "level 1": [
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        sql_query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n        for group in exclude_groups:\n            sql_query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return sql_query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n        for group in exclude_groups:\n            query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n        for group in exclude_groups:\n            query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n        if exclude_groups:\n            for group in exclude_groups:\n                query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE age < {age} AND gender = 'Female' AND \"\n        for group in exclude_groups:\n            query += f\"NOT (age >= {group[0]} AND age <= {group[1]}) AND \"\n        query = query[:-5]  # Remove the last \"AND\" and trailing space\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n        for group in exclude_groups:\n            query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'Female' AND age < {age}\"\n        if exclude_groups:\n            for group in exclude_groups:\n                query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n        for group in exclude_groups:\n            query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = \"SELECT * FROM table_name WHERE gender = 'female' AND age < {} \".format(age)\n        for group in exclude_groups:\n            query += \"AND NOT (age >= {} AND age <= {}) \".format(group[0], group[1])\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        sql_query = f\"SELECT * FROM {self.table_name} WHERE gender='female' AND age < {age}\"\n        for group in exclude_groups:\n            sql_query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return sql_query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND \"\n        conditions = []\n        for group in exclude_groups:\n            conditions.append(f\"(age < {group[0]} OR age > {group[1]})\")\n        exclude_condition = \" AND \".join(conditions)\n        query += exclude_condition\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender='Female' AND age < {age}\"\n        for group in exclude_groups:\n            query += f\" AND NOT(age >= {group[0]} AND age <= {group[1]})\"\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n        if exclude_groups:\n            for group in exclude_groups:\n                query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        sql_query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n        for group in exclude_groups:\n            start_age, end_age = group\n            sql_query += f\" AND NOT (age >= {start_age} AND age <= {end_age})\"\n        return sql_query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        sql_query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND NOT (\"\n        conditions = []\n        for group in exclude_groups:\n            conditions.append(f\"(age >= {group[0]} AND age <= {group[1]})\")\n        sql_query += \" OR \".join(conditions) + \");\"\n        return sql_query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = \"SELECT * FROM {table} WHERE gender = 'female' AND age < {age}\".format(table=self.table_name, age=age)\n        if exclude_groups:\n            for group in exclude_groups:\n                query += \" AND NOT (age >= {start_age} AND age <= {end_age})\".format(start_age=group[0], end_age=group[1])\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n        if exclude_groups:\n            for group in exclude_groups:\n                query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n            if exclude_groups:\n                for group in exclude_groups:\n                    query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n            return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n        for group in exclude_groups:\n            query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE age < {age} AND gender = 'female' AND \"\n        for group in exclude_groups:\n            query += f\"NOT (age >= {group[0]} AND age <= {group[1]}) AND \"\n        query = query[:-5]  # Remove the extra \" AND \" at the end\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            query = \"SELECT * FROM table_name WHERE gender = 'female' AND age < \" + str(age)\n            for group in exclude_groups:\n                query += \" AND NOT (age >= \" + str(group[0]) + \" AND age <= \" + str(group[1]) + \")\"\n            return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} \"\n        for group in exclude_groups:\n            query += f\"AND NOT (age >= {group[0]} AND age <= {group[1]}) \"\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND \"\n        for group in exclude_groups:\n            query += f\"(age < {group[0]} OR age > {group[1]}) AND \"\n        query = query.rstrip(\" AND \")\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        excluded = \" OR \".join([f\"(age < {start} OR age > {end})\" for start, end in exclude_groups])\n        return f\"SELECT * FROM {self.table_name} WHERE gender = 'F' AND age < {age} AND ({excluded})\"\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            excluded_groups_conditions = []\n            for group in exclude_groups:\n                excluded_groups_conditions.append(f\"(age < {group[0]} OR age > {group[1]})\")\n            \n            excluded_groups_condition = \" AND \".join(excluded_groups_conditions)\n            \n            sql_query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n                    \n            if excluded_groups_condition:\n                sql_query += f\" AND ({excluded_groups_condition})\"\n            \n            return sql_query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        sql_query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n        for group in exclude_groups:\n            sql_query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return sql_query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            query = f\"SELECT * FROM {self.table_name} WHERE gender='female' AND age < {age}\"\n            if exclude_groups:\n                for group in exclude_groups:\n                    query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n            return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND \"\n        conditions = []\n        for group in exclude_groups:\n            conditions.append(f\"(age < {group[0]} OR age > {group[1]})\")\n        query += \" AND \".join(conditions)\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n        if exclude_groups:\n            for group in exclude_groups:\n                query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND \"\n        conditions = []\n        for group in exclude_groups:\n            conditions.append(f\"NOT (age >= {group[0]} AND age <= {group[1]})\")\n        query += \" AND \".join(conditions)\n        return query\n    \n    ",
+                false
+            ]
+        ],
+        "level 2": [
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = f\"gender = 'female' AND age < {age}\"\n            for group in exclude_groups:\n                condition += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND NOT (age >= {} AND age <= {})\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND NOT (age >= {} AND age <= {})\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        condition = \"gender = 'female' AND age < {}\".format(age)\n        \n        for group in exclude_groups:\n            condition += \" AND (age < {} OR age > {})\".format(group[0], group[1])\n        \n        return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND NOT (age >= {} AND age <= {})\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            female_condition = \"gender = 'female' AND age < {}\".format(age)\n            exclude_conditions = \"\"\n            \n            for group in exclude_groups:\n                exclude_conditions += \" AND NOT (age >= {} AND age <= {})\".format(group[0], group[1])\n            \n            return self.select(fields=None, condition=female_condition + exclude_conditions)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            criteria = f\"AGE < {age} AND GENDER = 'F'\"\n            exclusions = ' AND '.join([f\"(AGE < {start} OR AGE > {end})\" for start, end in exclude_groups])\n            return self.select(fields=None, condition=f\"{criteria} AND {exclusions}\")\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n        female_criteria = \"gender = 'female' AND age < {}\".format(age)\n        excluded_criteria = \" AND \".join([\"NOT (age >= {} AND age <= {})\".format(start_age, end_age) for start_age, end_age in exclude_groups])\n        return self.select(fields=None, condition=female_criteria + \" AND \" + excluded_criteria)\n\n",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            female_under_age_query = self.select_female_under_age(age)\n            exclusions = []\n            for group in exclude_groups:\n                exclusion_condition = f\"age < {group[0]} OR age > {group[1]}\"\n                exclusions.append(exclusion_condition)\n            exclusion_query = \" AND \".join(exclusions)\n            final_query = f\"{female_under_age_query} AND {exclusion_query}\"\n            return final_query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        female_condition = \"gender = 'female' AND age < {}\".format(age)\n        exclusion_conditions = []\n        for group in exclude_groups:\n            exclusion_conditions.append(\"NOT (age >= {} AND age <= {})\".format(group[0], group[1]))\n        final_condition = \" AND \".join([female_condition] + exclusion_conditions)\n        return self.select(fields=None, condition=final_condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = f\"gender = 'female' AND age < {age}\"\n            if exclude_groups:\n                for group in exclude_groups:\n                    condition += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n            return self.select(fields=None, condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = f\"gender = 'female' AND age < {age}\"\n            for group in exclude_groups:\n                condition += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = f\"gender = 'female' AND age < {age}\"\n            for group in exclude_groups:\n                condition += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n            return self.select(fields=None, condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = f\"gender = 'female' AND age < {age}\"\n            for group in exclude_groups:\n                condition += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = f\"gender = 'female' AND age < {age}\"\n            for group in exclude_groups:\n                condition += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n            return self.select(fields=None, condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        condition = f\"gender = 'female' AND age < {age}\"\n        for group in exclude_groups:\n            condition += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        condition = \"gender = 'female' AND age < {}\".format(age)\n        for group in exclude_groups:\n            condition += \" AND NOT (age >= {} AND age <= {})\".format(group[0], group[1])\n        return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        condition = \"gender = 'female' AND age < {}\".format(age)\n        for group in exclude_groups:\n            condition += \" AND NOT (age >= {} AND age <= {})\".format(group[0], group[1])\n        return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age}\"\n        for group in exclude_groups:\n            query += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return self.select(condition=query)\n\n",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        condition = f\"gender = 'female' AND age < {age}\"\n        for group in exclude_groups:\n            condition += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n        return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            conditions = [\"gender = 'female'\", f\"age < {age}\"]\n            for group in exclude_groups:\n                conditions.append(f\"NOT (age >= {group[0]} AND age <= {group[1]})\")\n            return self.select(fields=None, condition=\" AND \".join(conditions))\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            gender_condition = \"gender = 'female' AND age < {}\".format(age)\n            excluded_age_groups = [\"(age < {} OR age > {})\".format(start_age, end_age) for start_age, end_age in exclude_groups]\n            excluded_age_condition = \" AND \".join(excluded_age_groups)\n            final_condition = gender_condition + \" AND \" + excluded_age_condition\n            return self.select(condition=final_condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            conditions = f\"gender = 'female' AND age < {age}\"\n            for group in exclude_groups:\n                conditions += f\" AND NOT (age >= {group[0]} AND age <= {group[1]})\"\n            return self.select(fields=None, condition=conditions)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            conditions = [\"gender = 'female'\", f\"age < {age}\"]\n            for group in exclude_groups:\n                conditions.append(f\"NOT (age >= {group[0]} AND age <= {group[1]})\")\n            return self.select(fields=None, condition=\" AND \".join(conditions))\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            conditions = [\"gender = 'female'\", f\"age < {age}\"]\n            for group in exclude_groups:\n                conditions.append(f\"NOT (age >= {group[0]} AND age <= {group[1]})\")\n            return self.select(condition=\" AND \".join(conditions))\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            female_under_age_query = self.select_female_under_age(age)\n            exclude_conditions = []\n            for group in exclude_groups:\n                exclude_conditions.append(f\"(age < {group[0]} OR age > {group[1]})\")\n            exclude_query = \" AND \".join(exclude_conditions)\n            final_query = f\"{female_under_age_query} AND {exclude_query}\"\n            return final_query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            female_criteria = \"gender = 'female' AND age < {}\".format(age)\n            exclude_criteria = \" AND \".join([\"NOT (age >= {} AND age <= {})\".format(start, end) for start, end in exclude_groups])\n            return self.select(fields=None, condition=female_criteria + \" AND \" + exclude_criteria)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            female_under_age = self.select_female_under_age(age)\n            if not exclude_groups:\n                return female_under_age\n            else:\n                exclude_conditions = []\n                for group in exclude_groups:\n                    exclude_conditions.append(f\"(age < {group[0]} OR age > {group[1]})\")\n                exclude_query = \" AND \".join(exclude_conditions)\n                final_query = f\"{female_under_age} AND {exclude_query}\"\n                return final_query\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            female_under_age_sql = self.select_female_under_age(age)\n            if exclude_groups:\n                excluded_groups_sql = \" AND \".join([f\"(age < {start} OR age > {end})\" for start, end in exclude_groups])\n                full_sql = f\"{female_under_age_sql} AND {excluded_groups_sql}\"\n                return full_sql\n            return female_under_age_sql\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            female_criteria = \"gender = 'female' AND age < {}\".format(age)\n            exclude_groups_criteria = \" AND \".join([\"NOT (age >= {} AND age <= {})\".format(group[0], group[1]) for group in exclude_groups])\n            final_query = self.select(fields=None, condition=female_criteria + \" AND \" + exclude_groups_criteria)\n            return final_query\n    \n    ",
+                false
+            ]
+        ],
+        "level 3": [
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        condition = \"gender = 'female' AND age < {}\".format(age)\n        for group in exclude_groups:\n            condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n        return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = f\"gender = 'female' AND age < {age}\"\n            for group in exclude_groups:\n                condition += f\" AND age NOT BETWEEN {group[0]} AND {group[1]}\"\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < \" + str(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN \" + str(group[0]) + \" AND \" + str(group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        condition = \"gender = 'female' AND age < {}\".format(age)\n        for group in exclude_groups:\n            condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n        return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        condition = \"gender = 'female' AND age < {}\".format(age)\n        for group in exclude_groups:\n            condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n        return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        condition = \"gender = 'female' AND age < {}\".format(age)\n        for group in exclude_groups:\n            condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n        return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        base_condition = \"gender = 'female' AND age < {}\".format(age)\n        exclusion_conditions = \" AND \".join([\"age NOT BETWEEN {} AND {}\".format(group[0], group[1]) for group in exclude_groups])\n        final_condition = base_condition + \" AND \" + exclusion_conditions\n        return self.select(condition=final_condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        base_condition = \"gender = 'female' AND age < {}\".format(str(age))\n        exclusion_conditions = [f\"age NOT BETWEEN {group[0]} AND {group[1]}\" for group in exclude_groups]\n        full_condition = base_condition + \" AND \" + \" AND \".join(exclusion_conditions)\n        return self.select(condition=full_condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n        base_condition = \"gender = 'female' AND age < {}\".format(age)\n        exclusion_conditions = \" AND \".join([\"age NOT BETWEEN {} AND {}\".format(group[0], group[1]) for group in exclude_groups])\n        full_condition = base_condition + \" AND \" + exclusion_conditions\n        return self.select(condition=full_condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            base_condition = \"gender = 'female' AND age < {}\".format(age)\n            exclusion_conditions = [f\"age NOT BETWEEN {group[0]} AND {group[1]}\" for group in exclude_groups]\n            full_condition = base_condition + \" AND \" + \" AND \".join(exclusion_conditions)\n            return self.select(condition=full_condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            base_condition = \"gender = 'female' AND age < {}\".format(age)\n            exclusion_conditions = [f\"age NOT BETWEEN {group[0]} AND {group[1]}\" for group in exclude_groups]\n            full_condition = base_condition + \" AND \" + \" AND \".join(exclusion_conditions)\n            return self.select(condition=full_condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \" gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < \" + str(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN \" + str(group[0]) + \" AND \" + str(group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = f\" gender = 'female' AND age < {age}\"\n            for group in exclude_groups:\n                condition += f\" AND age NOT BETWEEN {group[0]} AND {group[1]}\"\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def  select_female_under_age_exclude_groups(age, exclude_groups):\n    \n    def select_female_under_age_exclude_groups(age, exclude_groups):\n            condition = \"gender = 'female' AND age < {}\".format(age)\n            for group in exclude_groups:\n                condition += \" AND age NOT BETWEEN {} AND {}\".format(group[0], group[1])\n            return self.select(condition=condition)\n    \n    ",
+                false
+            ]
+        ]
+    },
+    "3": {
+        "level 1": [
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%';\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%';\"\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n        return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    sql = f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    return sql",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%';\"",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n        return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE Age BETWEEN {min_age} AND {max_age} AND Name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n        return \"SELECT * FROM {} WHERE age BETWEEN {} AND {} AND name LIKE '{}%'\".format(self.table_name, min_age, max_age, names_start)",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%';\"\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n        return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%';\"\n\n",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ]
+        ],
+        "level 2": [
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(fields=None, condition=f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    condition = f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    return self.select(condition=condition)\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(fields=\"*\", condition=f\"name LIKE '{names_start}%' AND age BETWEEN {min_age} AND {max_age}\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(fields=None, condition=f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n        condition = f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n        return self.select(condition=condition)\n\n",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(fields=None, condition=f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n       condition = f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n       return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n        return self.select(fields=None, condition=f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\")\n\n",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(fields=None, condition=f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    condition = f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(fields=None, condition=f\"name LIKE '{names_start}%' AND age BETWEEN {min_age} AND {max_age}\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(fields=None, condition=\"age >= {} AND age <= {} AND name LIKE '{}%'\".format(min_age, max_age, names_start))\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(fields=None, condition=f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n        condition = f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    condition = f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n        condition = f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(fields=None, condition=f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n        condition = f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n        condition = f\"name LIKE '{names_start}%' AND age BETWEEN {min_age} AND {max_age}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(fields=None, condition=f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    condition = f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(fields=None, condition=f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n        condition = f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n        condition = f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(fields=None, condition=f\"age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE name LIKE '{names_start}%' AND age BETWEEN {min_age} AND {max_age}\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE name LIKE '{names_start}%' AND age >= {min_age} AND age <= {max_age}\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE name LIKE '{names_start}%' AND age >= {min_age} AND age <= {max_age}\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age >= {min_age} AND age <= {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ]
+        ],
+        "level 3": [
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(condition=f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(condition=f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(condition=f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(condition=f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(condition=f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_stadr}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n        return f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n\n",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(condition=f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(condition=f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(condition=f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(condition=f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_by_age_range_names_start(self, min_age, max_age, names_start):\n    \n    return self.select(condition=f\"age BETWEEN {min_age} AND {max_age} AND name LIKE '{names_start}%'\")\n    \n    ",
+                true
+            ]
+        ]
+    },
+    "4": {
+        "level 1": [
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        return f\"SELECT * FROM {self.table_name} WHERE gender='female' AND age<{age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender='female' AND age<{age} AND name NOT IN ({', '.join([f'{name}' for name in exclude_names])});\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender='female' AND age<{age} AND name NOT IN ({','.join(['?' for _ in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN ({', '.join(['?' for _ in range(len(exclude_names))])})\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        query = f\"SELECT * FROM {self.table_name} WHERE gender='female' AND age<{age} AND name NOT IN ({', '.join(['?' for name in exclude_names])})\"\n        return query",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender='female' AND age<{age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN ({','.join([f'\"{name}\"' for name in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'{repr(name)}' for name in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    sql_query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN ({', '.join(['?' for _ in exclude_names])});\"\n    return sql_query",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age <= {age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age <= {age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age <= {age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age <= {age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    sql = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age <= {age} AND name NOT IN {tuple(exclude_names)}\"\n    return sql",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'{repr(name)}' for name in exclude_names])});\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f\"'{name}'\" for name in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender='female' AND age<{age} AND name NOT IN ({', '.join([f'{name}' for name in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender='female' AND age<{age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'{name}' for name in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ]
+        ],
+        "level 2": [
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN ({','.join(['%s']*len(exclude_names))})\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'{name}' for name in exclude_names])})\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'{repr(name)}' for name in exclude_names])})\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    condition = \"gender = 'female' AND age < {} AND name NOT IN ('{}')\".format(age, \"', '\".join(exclude_names))\n    return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)\n\n",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN ({','.join(['%s']*len(exclude_names))})\"\n        return self.select(fields=None, condition=condition)\n\n",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'\\'{name}\\'' for name in exclude_names])})\"\n        return self.select(fields=None, condition=condition)\n\n",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    \n    return f\"SELECT * FROM {self.table_name} WHERE gender='female' AND age<{age} AND name NOT IN {tuple(exclude_names)}\"\n    \n    ",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    condition = \"gender = 'female' AND age < {} AND name NOT IN ({})\".format(age, ', '.join([\"'{}'\".format(name) for name in exclude_names]))\n    return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    condition = f\"gender='female' AND age<{age} AND name NOT IN ({','.join(['%s']*len(exclude_names))})\"\n    return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN ({', '.join(['%s' for _ in range(len(exclude_names))])})\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    condition = f\"gender='female' AND age<{age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(fields=None, condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    condition = f\"gender = 'female' AND age < {age} AND name NOT IN ({', '.join(['%s']*len(exclude_names))})\"\n    return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    sql = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n    return sql",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN ({', '.join(['\"' + name + '\"' for name in exclude_names])})\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        sql_query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"\n        return sql_query",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return f\"SELECT * FROM {self.table_name} WHERE gender='female' AND age<{age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        return f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    condition = f\"gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'\\'{name}\\'' for name in exclude_names])})\"\n    return self.select(fields=None, condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN ({', '.join(['%s']*len(exclude_names))})\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN ({', '.join(['%s' for _ in exclude_names])})\"\n        return self.select(fields=None, condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN ({', '.join([f'\"{name}\"' for name in exclude_names])})\"\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(fields=None, condition=condition)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = \"gender = 'female' AND age < {}\".format(age)\n        if exclude_names:\n            excluded_names_condition = \"AND name NOT IN ('{}')\".format(\"', '\".join(exclude_names))\n            condition += excluded_names_condition\n        return self.select(condition=condition)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return self.select(fields=None, condition=\"gender = 'female' AND age < {} AND name NOT IN {}\".format(age, tuple(exclude_names)))",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    \n    return self.select(fields=None, condition=f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\")\n    \n    ",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    sql_query = f\"SELECT * FROM {self.table_name} WHERE gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(condition=sql_query)",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = \"gender = 'female' AND age < {}\".format(age)\n        if exclude_names:\n            condition += \" AND name NOT IN ({})\".format(\", \".join([\"'{}'\".format(name) for name in exclude_names]))\n                \n        return self.select(condition=condition)",
+                false
+            ]
+        ],
+        "level 3": [
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)\n\n",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    \n    return self.select(condition=\"gender = 'female' AND age < {} AND name NOT IN {}\".format(age, tuple(exclude_names))\n    \n    ",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(condition=condition)\n\n",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    \n    return self.select(condition=\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\")\n    \n    ",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        filter_string = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=filter_string)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        gender_filter = \"gender = 'female'\"\n        age_filter = f\"age < {age}\"\n        names_filter = f\"name NOT IN {tuple(exclude_names)}\"\n        filter_string = f\"{gender_filter} AND {age_filter} AND {names_filter}\"\n        return self.select(condition=filter_string)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        filter_string = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=filter_string)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        filter_string = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=filter_string)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        filter_string = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=filter_string)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = \"gender = 'female' AND age < {} AND name NOT IN {}\".format(age, tuple(exclude_names))\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)\n\n",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        return self.select(condition=\"gender = 'female' AND age < {} AND name NOT IN {}\".format(age, tuple(exclude_names))",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    filter_clause = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n    return self.select(condition=filter_clause)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return self.select(fields=None, condition=\"gender = 'female' AND age < {} AND name NOT IN {}\".format(age, tuple(exclude_names)))",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    return self.select(condition=f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\")",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        return self.select(condition=\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\")",
+                false
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        return self.select(condition=f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\")",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        return self.select(condition=f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\")",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = \"gender = 'female' AND age < {} AND name NOT IN {}\".format(age, tuple(exclude_names))\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)\n\n",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n    condition = \"gender = 'female' AND age < {} AND name NOT IN {}\".format(age, tuple(exclude_names))\n    return self.select(condition=condition)",
+                true
+            ],
+            [
+                "def select_female_under_age_exclude_names(self, age, exclude_names):\n        condition = f\"gender = 'female' AND age < {age} AND name NOT IN {tuple(exclude_names)}\"\n        return self.select(condition=condition)",
+                true
+            ]
+        ]
+    }
+}

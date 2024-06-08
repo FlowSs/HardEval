@@ -1,0 +1,802 @@
+{
+    "ClassEval_0_1": [
+        "def is_start_with(self, request_uri):\n    predefined_prefixes = [\"/api/\", \"/auth/\", \"/log/\"]\n    for prefix in predefined_prefixes:\n        if request_uri.startswith(prefix):\n            return True\n    return False",
+        false
+    ],
+    "ClassEval_0_2": [
+        "def get_jwt_user(self, request):\n    # Get the JWT token from the request headers\n    token = request.headers.get(\"Authorization\")\n\n    # Check if the token is valid and not expired\n    if token and self.is_start_with(token, \"Bearer\"):\n        # Extract the user information from the token\n        user = self.extract_user_info_from_token(token)\n\n        # Set the current user information and log the request\n        self.set_current_user_info_and_log(user)\n\n        # Return the user details\n        return user\n\n    # If the token is not valid or expired, return None\n    return None",
+        false
+    ],
+    "ClassEval_10_0": [
+        "def clean_non_binary_chars(self):\n    self.binary_string = ''.join([c for c in self.binary_string if c in '01'])",
+        true
+    ],
+    "ClassEval_10_3": [
+        "def convert_to_utf8(self):\n    # Convert the binary string to a utf-8 encoded string\n    utf8_string = self.binary_string.encode('utf-8')\n    return utf8_string",
+        false
+    ],
+    "ClassEval_11_0": [
+        "def add(states, stat):\n    # Check if the parameters are legal\n    if not isinstance(states, int) or not isinstance(stat, int):\n        raise ValueError(\"The parameters must be integers\")\n\n    # Add the status to the current status\n    new_states = states | stat\n\n    # Check if the status is legal\n    if not BitStatusUtil.check(new_states):\n        raise ValueError(\"The status is not legal\")\n\n    return new_states",
+        false
+    ],
+    "ClassEval_11_1": [
+        "def has(states, stat):\n    return stat in states",
+        false
+    ],
+    "ClassEval_12_1": [
+        "def calculate_hand_value(self, hand):\n    hand_value = 0\n    for card in hand:\n        if card in ['J', 'Q', 'K']:\n            hand_value += 10\n        elif card == 'A':\n            hand_value += 11\n        else:\n            hand_value += int(card[1])\n    if hand_value > 21 and 'A' in hand:\n        hand_value -= 10\n    return hand_value",
+        false
+    ],
+    "ClassEval_12_2": [
+        "def check_winner(self, player_hand, dealer_hand):\n    player_value = self.calculate_hand_value(player_hand)\n    dealer_value = self.calculate_hand_value(dealer_hand)\n    if player_value == dealer_value:\n        return \"Tie\"\n    elif player_value <= 21:\n        return \"Player wins\"\n    else:\n        return \"Dealer wins\"",
+        false
+    ],
+    "ClassEval_13_0": [
+        "def add_book(self, title, quantity=1):\n    if title not in self.inventory:\n        self.inventory[title] = quantity\n    else:\n        self.inventory[title] += quantity",
+        true
+    ],
+    "ClassEval_13_1": [
+        "def remove_book(self, title, quantity):\n    if title not in self.inventory:\n        raise False\n    if quantity > self.inventory[title]:\n        raise False\n    self.inventory[title] -= quantity\n    if self.inventory[title] == 0:\n        del self.inventory[title]",
+        true
+    ],
+    "ClassEval_14_0": [
+        "def create_table(self):\n    self.cursor.execute(\"\"\"\n        CREATE TABLE IF NOT EXISTS book (\n            id INTEGER PRIMARY KEY,\n            title TEXT NOT NULL,\n            author TEXT NOT NULL\n        )\n    \"\"\")",
+        false
+    ],
+    "ClassEval_14_2": [
+        "def remove_book(self, book_id):\n    self.cursor.execute(\"DELETE FROM book WHERE id = ?\", (book_id,))\n    self.connection.commit()",
+        false
+    ],
+    "ClassEval_15_0": [
+        "def match_in_pattern(self, char):\n    \"\"\"\n    Finds the rightmost occurrence of the character \"char\" in \"self.pattern\". Return the index of this occurrence within \"self.pattern\" if it exists, otherwise return -1.\n    :param char: The character to be searched for, str.\n    :return: The index of the rightmost occurrence of the character in the pattern, int.\n    \"\"\"\n    for i in range(self.patLen - 1, -1, -1):\n        if self.pattern[i] == char:\n            return i\n    return -1",
+        true
+    ],
+    "ClassEval_15_2": [
+        "def bad_character_heuristic(self):\n    # Initialize the list of positions\n    positions = []\n\n    # Loop through the text\n    for i in range(self.textLen):\n        # Check if the current character matches the pattern\n        if self.text[i] == self.pattern[0]:\n            # If it does, call the match_in_pattern function\n            positions.append(i)\n\n    return positions",
+        false
+    ],
+    "ClassEval_16_1": [
+        "def precedence(self, operator):\n    precedences = {\n        '^': 3,\n        '/': 2,\n        '*': 2,\n        '+': 1,\n        '-': 1\n    }\n    return precedences.get(operator, 0)",
+        true
+    ],
+    "ClassEval_16_2": [
+        "def apply_operator(self, operand_stack, operator_stack):\n    operator = operator_stack.pop()\n    operand_2 = operand_stack.pop()\n    operand_1 = operand_stack.pop()\n    result = self.operators[operator](operand_1, operand_2)\n    operand_stack.append(result)\n    return operand_stack, operator_stack",
+        true
+    ],
+    "ClassEval_17_2": [
+        "def get_events(self, date):\n    return [event for event in self.events if event[\"date\"] == date]",
+        true
+    ],
+    "ClassEval_17_5": [
+        "def get_upcoming_events(self, num_events):\n    today = datetime.today()\n    upcoming_events = []\n    for event in self.events:\n        if event[\"start_time\"] >= today and len(upcoming_events) < num_events:\n            upcoming_events.append(event)\n    return upcoming_events",
+        true
+    ],
+    "ClassEval_18_1": [
+        "def __setitem__(self, key, value):\n    \"\"\"\n    Set the value \"value\" corresponding to the key \"key\" to the specified value in the dictionary. The key is stored in camel case format.\n    :param key:str\n    :param value:str, the specified value\n    :return:None\n    \"\"\"\n    self._data[self._convert_key(key)] = value",
+        true
+    ],
+    "ClassEval_18_5": [
+        "def _convert_key(self, key):\n    if isinstance(key, str):\n        return self._to_camel_case(key)\n    else:\n        return key",
+        true
+    ],
+    "ClassEval_19_0": [
+        "def generate_primes(self):\n    primes = []\n    for i in range(2, self.n + 1):\n        if self.is_prime(i):\n            primes.append(i)\n    return primes\n\ndef is_prime(self, n):\n    if n == 2 or n == 3:\n        return True\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True",
+        false
+    ],
+    "ClassEval_19_1": [
+        "def get_primes(self):\n    return self.primes",
+        true
+    ],
+    "ClassEval_1_1": [
+        "def calculate_sphere_area(self):\n    return 4 * math.pi * self.radius ** 2",
+        true
+    ],
+    "ClassEval_1_4": [
+        "def calculate_annulus_area(self, inner_radius, outer_radius):\n    return math.pi * (outer_radius**2 - inner_radius**2)",
+        true
+    ],
+    "ClassEval_20_0": [
+        "def add_user(self, username):\n    if username in self.users:\n        return False\n    else:\n        self.users[username] = datetime.now()\n        return True",
+        false
+    ],
+    "ClassEval_20_3": [
+        "def get_messages(self, username):\n    if username not in self.users:\n        return []\n    messages = []\n    for user in self.users[username]:\n        messages.append({\n            'sender': user['sender'],\n            'receiver': user['receiver'],\n            'message': user['message'],\n            'timestamp': datetime.now()\n        })\n    return messages",
+        false
+    ],
+    "ClassEval_21_0": [
+        "def add_course(self, course):\n    if course not in self.courses:\n        self.courses.append(course)",
+        true
+    ],
+    "ClassEval_21_1": [
+        "def remove_course(self, course):\n    for i in range(len(self.courses)):\n        if self.courses[i]['name'] == course['name']:\n            del self.courses[i]\n            break",
+        true
+    ],
+    "ClassEval_22_1": [
+        "def register_class(self, student_name, class_name):\n    if student_name not in self.students_registration_classes:\n        self.students_registration_classes[student_name] = []\n    self.students_registration_classes[student_name].append(class_name)\n    return self.students_registration_classes[student_name]",
+        true
+    ],
+    "ClassEval_22_3": [
+        "def get_all_major(self):\n    majors = []\n    for student in self.students:\n        major = student[\"major\"]\n        if major not in majors:\n            majors.append(major)\n    return majors",
+        true
+    ],
+    "ClassEval_23_1": [
+        "def count_all(n: int) -> int:\n    if n < 0 or n > 63:\n        return False\n    result = 1\n    for i in range(n):\n        result *= 2\n    if result == 2 ** 63 - 1:\n        return float('inf')\n    return result",
+        false
+    ],
+    "ClassEval_23_3": [
+        "def select_all(self) -> List[List[str]]:\n    result = []\n    for i in range(len(self.datas)):\n        for j in range(i+1, len(self.datas)):\n            result.append(self.select(i, j))\n    return result",
+        false
+    ],
+    "ClassEval_24_1": [
+        "def subtract(c1, c2):\n    return c1 - c2",
+        true
+    ],
+    "ClassEval_24_2": [
+        "def multiply(c1, c2):\n    return c1 * c2",
+        true
+    ],
+    "ClassEval_25_0": [
+        "def get_cookies(self, reponse):\n    self.cookies = reponse.get(\"cookies\", {})\n    with open(self.cookies_file, \"w\") as f:\n        json.dump(self.cookies, f)",
+        true
+    ],
+    "ClassEval_25_2": [
+        "def _save_cookies(self):\n    try:\n        with open(self.cookies_file, \"w\") as f:\n            json.dump(self.cookies, f)\n        return True\n    except:\n        return False",
+        true
+    ],
+    "ClassEval_26_0": [
+        "def read_csv(self, file_name):\n    with open(file_name, 'r') as csvfile:\n        reader = csv.reader(csvfile)\n        title = next(reader)\n        data = [row for row in reader]\n    return title, data",
+        true
+    ],
+    "ClassEval_26_2": [
+        "def process_csv_data(self, N, save_file_name):\n    # Read the CSV file\n    data = self.read_csv(save_file_name)\n\n    # Extract the N-th column\n    column = data[:, N]\n\n    # Capitalize all elements in the column\n    column = [element.upper() for element in column]\n\n    # Create a new CSV file with the processed data\n    new_file_name = save_file_name + \"_process\"\n    self.write_csv(column, new_file_name)\n\n    return 1",
+        false
+    ],
+    "ClassEval_27_2": [
+        "def add_currency_rate(self, currency, rate):\n    if currency in self.rates:\n        return False\n    else:\n        self.rates[currency] = rate\n        return None",
+        true
+    ],
+    "ClassEval_27_3": [
+        "def update_currency_rate(self, currency, new_rate):\n    if currency in self.rates:\n        self.rates[currency] = new_rate\n        return None\n    else:\n        return False",
+        true
+    ],
+    "ClassEval_28_0": [
+        "def create_table(self, table_name, key1, key2):\n    # Check if table already exists\n    if self.table_exists(table_name):\n        return\n\n    # Create table\n    self.cursor.execute(f\"CREATE TABLE {table_name} (id INTEGER PRIMARY KEY, {key1} TEXT, {key2} INTEGER)\")\n\n    # Commit changes\n    self.conn.commit()",
+        false
+    ],
+    "ClassEval_28_1": [
+        "def insert_into_database(self, table_name, data):\n    # Connect to the database\n    conn = sqlite3.connect(self.database_name)\n    cursor = conn.cursor()\n\n    # Create a list of tuples from the data\n    data_tuples = [tuple(d.values()) for d in data]\n\n    # Insert the data into the table\n    cursor.executemany(f\"INSERT INTO {table_name} VALUES (?, ?)\", data_tuples)\n\n    # Commit the changes and close the connection\n    conn.commit()\n    conn.close()",
+        false
+    ],
+    "ClassEval_29_0": [
+        "def mean(self, data):\n    return sum(data) / len(data)",
+        false
+    ],
+    "ClassEval_29_1": [
+        "def median(self, data):\n    data.sort()\n    if len(data) % 2 == 0:\n        median = (data[len(data) // 2] + data[len(data) // 2 - 1]) / 2\n    else:\n        median = data[len(data) // 2]\n    return round(median, 2)",
+        true
+    ],
+    "ClassEval_2_0": [
+        "def parse_arguments(self, command_string):\n    args = command_string.split()\n    for arg in args:\n        if arg.startswith('--'):\n            key, value = arg[2:].split('=')\n            self.add_argument(key, required=True, arg_type=str)\n            self.arguments[key] = value\n        elif arg.startswith('-'):\n            key = arg[1:]\n            self.add_argument(key, required=False, arg_type=str)\n            self.arguments[key] = True\n        else:\n            self.add_argument(arg, required=False, arg_type=str)\n            self.arguments[arg] = True\n\n    missing_args = set()\n    for key in self.required:\n        if key not in self.arguments:\n            missing_args.add(key)\n\n    if missing_args:\n        return False, missing_args\n    else:\n        return True, None",
+        false
+    ],
+    "ClassEval_2_1": [
+        "def get_argument(self, key):\n    return self.arguments.get(key)",
+        true
+    ],
+    "ClassEval_30_2": [
+        "def get_max(self):\n    return np.max(self.data)",
+        true
+    ],
+    "ClassEval_30_4": [
+        "def get_std_deviation(self):\n    return round(np.std(self.data), 2)",
+        true
+    ],
+    "ClassEval_31_0": [
+        "def correlation_coefficient(data1, data2):\n    mean1 = sum(data1) / len(data1)\n    mean2 = sum(data2) / len(data2)\n    cov = 0\n    for i in range(len(data1)):\n        cov += (data1[i] - mean1) * (data2[i] - mean2)\n    cov /= len(data1) - 1\n    return cov / (math.sqrt(sum((x - mean1) ** 2 for x in data1) * sum((x - mean2) ** 2 for x in data2)))",
+        false
+    ],
+    "ClassEval_31_2": [
+        "def kurtosis(data):\n    # Calculate the kurtosis of a set of data \"data\" and return the result as a float.\n    # The formula for kurtosis is:\n    # kurtosis = (sum((x - mean)^4) / (n * (std^4))) - 3\n    # where x is each data point, mean is the mean of the data, std is the standard deviation of the data, and n is the number of data points.\n    mean = self.mean(data)\n    std = self.std(data)\n    n = len(data)\n    sum_x_squared = 0\n    for x in data:\n        sum_x_squared += (x - mean) ** 2\n    kurtosis = (sum_x_squared / (n * (std ** 4))) - 3\n    return kurtosis",
+        false
+    ],
+    "ClassEval_32_0": [
+        "def caesar_decipher(self, ciphertext, shift):\n    \"\"\"\n    Deciphers the given \"ciphertext\" using the Caesar cipher by shifting characters back by the specified \"shift\".\n    :param ciphertext: The ciphertext to decipher,str.\n    :param shift: The shift to use for decryption,int.\n    :return: The deciphered plaintext,str.\n    \"\"\"\n    plaintext = \"\"\n    for char in ciphertext:\n        if char.isalpha():\n            pos = ord(char) - shift\n            if pos < ord('a'):\n                pos += 26\n            plaintext += chr(pos)\n        else:\n            plaintext += char\n    return plaintext",
+        false
+    ],
+    "ClassEval_32_2": [
+        "def rail_fence_decipher(self, encrypted_text, rails):\n    plaintext = \"\"\n    for i in range(rails):\n        for j in range(len(encrypted_text)):\n            if j % (rails * 2 - 2) < rails:\n                plaintext += encrypted_text[j]\n            else:\n                plaintext += encrypted_text[j]\n    return plaintext",
+        false
+    ],
+    "ClassEval_33_0": [
+        "def total(self):\n    total = 0\n    for item in self.cart:\n        total += item['quantity'] * item['price']\n    if self.promotion is not None:\n        total = self.promotion(total)\n    return total",
+        true
+    ],
+    "ClassEval_33_2": [
+        "def FidelityPromo(order):\n    customer = order.customer\n    fidelity = customer.get(\"fidelity\", 0)\n    if fidelity >= 1000:\n        return order.total() * 0.05\n    else:\n        return 0.0",
+        true
+    ],
+    "ClassEval_34_0": [
+        "def read_text(self):\n    document = Document(self.file_path)\n    text = \"\"\n    for paragraph in document.paragraphs:\n        text += paragraph.text\n    return text",
+        true
+    ],
+    "ClassEval_34_2": [
+        "def add_heading(self, heading, level=1):\n    \"\"\"\n    Adds a heading to the Word document using the specified \"heading\" text and \"level\". Return \"True\" if the heading is successfully added, otherwise return \"False\".\n    :param heading: str, the text of the heading.\n    :param level: int, optional, the level of the heading (1, 2, 3, etc.; default is 1).\n    :return: bool, True if the heading is successfully added, False otherwise.\n    \"\"\"\n    try:\n        # Create a new paragraph and set the text to the heading\n        paragraph = self.document.add_paragraph()\n        paragraph.text = heading\n\n        # Set the font size and alignment of the paragraph\n        paragraph.font.size = Pt(14)\n        paragraph.paragraph_format.alignment = self._get_alignment_value(alignment)\n\n        # Set the heading level\n        paragraph.style = self.document.styles['Heading ' + str(level)]\n\n        # Return True if the heading is successfully added\n        return True\n    except:\n        # Return False if the heading is not successfully added\n        return False",
+        false
+    ],
+    "ClassEval_35_0": [
+        "def find_blank(self, state):\n    for i in range(3):\n        for j in range(3):\n            if state[i][j] == 0:\n                return i, j",
+        true
+    ],
+    "ClassEval_35_2": [
+        "def get_possible_moves(self, state):\n    \"\"\"\n    According to the current state, identify all possible movement directions for the blank tile which can be 'up', 'down', 'left', 'right'.\n    :param state: a 3*3 size list of Integer, stores the current state.\n    :return moves: a list of str, store all the possible moving directions according to the current state.\n    \"\"\"\n    moves = []\n    blank_row, blank_col = self.find_blank(state)\n\n    # Check if the blank tile can move up\n    if blank_row > 0:\n        moves.append('up')\n\n    # Check if the blank tile can move down\n    if blank_row < 2:\n        moves.append('down')\n\n    # Check if the blank tile can move left\n    if blank_col > 0:\n        moves.append('left')\n\n    # Check if the blank tile can move right\n    if blank_col < 2:\n        moves.append('right')\n\n    return moves",
+        true
+    ],
+    "ClassEval_36_2": [
+        "def is_full_with_one_more_email(self, size):\n    return self.get_occupied_size() + size > self.capacity",
+        true
+    ],
+    "ClassEval_36_4": [
+        "def clear_inbox(self, size):\n    while self.get_occupied_size() + size > self.capacity:\n        self.inbox.pop(0)",
+        false
+    ],
+    "ClassEval_37_1": [
+        "def vigenere_cipher(self, plaintext):\n    ciphertext = \"\"\n    for i in range(len(plaintext)):\n        ciphertext += chr((ord(plaintext[i]) + ord(self.key[i % len(self.key)])) % 256)\n    return ciphertext",
+        false
+    ],
+    "ClassEval_37_2": [
+        "def rail_fence_cipher(self,plain_text, rails):\n    ciphertext = \"\"\n    for i in range(rails):\n        for c in plain_text:\n            if c != \" \":\n                ciphertext += c\n            else:\n                ciphertext += \" \"\n    return ciphertext",
+        false
+    ],
+    "ClassEval_38_1": [
+        "def write_excel(self, data, file_name):\n    wb = openpyxl.Workbook()\n    ws = wb.active\n    for i, row in enumerate(data):\n        for j, cell in enumerate(row):\n            ws.cell(row=i+1, column=j+1, value=cell)\n    wb.save(file_name)\n    return 1",
+        false
+    ],
+    "ClassEval_38_2": [
+        "def process_excel_data(self, N, save_file_name):\n    # Read the Excel file\n    data = self.read_excel(save_file_name)\n\n    # Add an uppercase version of the specified column \"N\"\n    data[N] = data[N].str.upper()\n\n    # Write the processed data to a new Excel file\n    new_file_name = \"processed_\" + save_file_name\n    result = self.write_excel(data, new_file_name)\n\n    return (result, new_file_name)",
+        false
+    ],
+    "ClassEval_39_2": [
+        "def is_operator(c):\n    return c in {'+', '-', '*', '/', '(', ')', '%'}",
+        true
+    ],
+    "ClassEval_39_5": [
+        "def transform(expression):\n    # Remove all whitespace characters\n    expression = expression.replace(\" \", \"\")\n\n    # Ensure the expression does not end with an equals sign\n    if expression.endswith(\"=\"):\n        expression = expression[:-1]\n\n    return expression",
+        false
+    ],
+    "ClassEval_3_0": [
+        "def count(n, m=None):\n    if m is None or m == n:\n        return factorial(n)\n    else:\n        return select(n, m).count()",
+        false
+    ],
+    "ClassEval_3_1": [
+        "def count_all(n):\n    return sum(self.factorial(i) for i in range(1, n+1))",
+        false
+    ],
+    "ClassEval_40_1": [
+        "def condition_judge(self):\n    BMI = self.get_BMI()\n    if BMI < self.BMI_std[self.sex][0] or BMI > self.BMI_std[self.sex][1]:\n        return 1 if BMI < self.BMI_std[self.sex][0] else -1\n    else:\n        return 0",
+        false
+    ],
+    "ClassEval_40_2": [
+        "def calculate_calorie_intake(self):\n    BMR = 0\n    if self.sex == \"male\":\n        BMR = 10 * self.weight + 6.25 * self.height - 5 * self.age + 5\n    else:\n        BMR = 10 * self.weight + 6.25 * self.height - 5 * self.age - 161\n    condition = self.condition_judge()\n    if condition == 1:\n        BMR *= 1.2\n    elif condition == -1:\n        BMR *= 1.6\n    else:\n        BMR *= 1.4\n    return BMR",
+        true
+    ],
+    "ClassEval_41_1": [
+        "def check_winner(self):\n    for row in range(self.board_size):\n        for col in range(self.board_size):\n            if self.board[row][col] == ' ':\n                continue\n            if self._check_five_in_a_row(row, col, 1) or self._check_five_in_a_row(row, col, -1) or self._check_five_in_a_row(row, col, 1j) or self._check_five_in_a_row(row, col, -1j):\n                return self.board[row][col]\n    return None",
+        false
+    ],
+    "ClassEval_41_2": [
+        "def _check_five_in_a_row(self, row, col, direction):\n    \"\"\"\n    Check if there are five consecutive symbols of the same player in a row starting from the specified cell in the specified direction.\n    :param row: int, row of the given cell\n    :param col: int, column of the given cell\n    :param direction: tuple, (int, int), named as (dx, dy). Row and col will plus several dx and dy repectively.\n    :return: True if there are five consecutive symbols of the same player, and False otherwise.\n    \"\"\"\n    # Initialize variables\n    count = 0\n    player = self.board[row][col]\n\n    # Check in the specified direction\n    for i in range(1, 5):\n        new_row = row + i * direction[0]\n        new_col = col + i * direction[1]\n        if new_row < 0 or new_row >= self.board_size or new_col < 0 or new_col >= self.board_size:\n            break\n        if self.board[new_row][new_col] == player:\n            count += 1\n        else:\n            break\n\n    # Return True if there are five consecutive symbols of the same player, and False otherwise\n    return count == 5",
+        false
+    ],
+    "ClassEval_42_0": [
+        "def book_room(self, room_type, room_number, name):\n    if room_type not in self.available_rooms:\n        return False\n    if room_number > self.available_rooms[room_type]:\n        return self.available_rooms[room_type]\n    self.available_rooms[room_type] -= room_number\n    if room_type not in self.booked_rooms:\n        self.booked_rooms[room_type] = {}\n    if name not in self.booked_rooms[room_type]:\n        self.booked_rooms[room_type][name] = 0\n    self.booked_rooms[room_type][name] += room_number\n    return 'Success!'",
+        true
+    ],
+    "ClassEval_42_1": [
+        "def check_in(self, room_type, room_number, name):\n    if room_type not in self.booked_rooms:\n        return False\n    if room_number > self.booked_rooms[room_type][name]:\n        return False\n    self.booked_rooms[room_type][name] -= room_number\n    if self.booked_rooms[room_type][name] == 0:\n        del self.booked_rooms[room_type][name]\n    return True",
+        false
+    ],
+    "ClassEval_43_1": [
+        "def remove_employee(self, employee_id):\n    if employee_id in self.employees:\n        del self.employees[employee_id]\n        return True\n    else:\n        return False",
+        true
+    ],
+    "ClassEval_43_3": [
+        "def get_employee(self, employee_id):\n    if employee_id in self.employees:\n        return self.employees[employee_id]\n    else:\n        return False",
+        true
+    ],
+    "ClassEval_44_1": [
+        "def format_line_html_text(self, html_text):\n    soup = BeautifulSoup(html_text, 'html.parser')\n    code_tags = soup.find_all('code')\n    for code_tag in code_tags:\n        code_tag.replace_with(self.CODE_MARK)\n    return str(soup)",
+        false
+    ],
+    "ClassEval_44_2": [
+        "def extract_code_from_html_text(self, html_text):\n    \"\"\"\n    Extract codes from the HTML body \"html_text\". Return a list containing all the extracted code snippets.\n    :param html_text: string, html text\n    :return: the list of code\n    \"\"\"\n    # Use BeautifulSoup to parse the HTML text\n    soup = BeautifulSoup(html_text, 'html.parser')\n\n    # Find all the code elements in the HTML text\n    code_elements = soup.find_all('code')\n\n    # Initialize an empty list to store the extracted code snippets\n    code_snippets = []\n\n    # Iterate over the code elements and extract the code snippets\n    for code_element in code_elements:\n        # Get the text content of the code element\n        code_text = code_element.text.strip()\n\n        # Add the code snippet to the list\n        code_snippets.append(code_text)\n\n    # Return the list of code snippets\n    return code_snippets",
+        false
+    ],
+    "ClassEval_45_0": [
+        "def load_image(self, image_path):\n    self.image = Image.open(image_path)",
+        true
+    ],
+    "ClassEval_45_3": [
+        "def rotate_image(self, degrees):\n    if self.image is None:\n        raise ValueError(\"No image loaded\")\n    self.image = self.image.rotate(degrees)",
+        true
+    ],
+    "ClassEval_46_0": [
+        "def interpolate_1d(x, y, x_interp):\n    \"\"\"\n    Perform linear interpolation of one-dimensional data. \"x\" and \"y\" are lists representing the x-coordinates and y-coordinates of the data points, respectively, while \"x_interp\" is a list of x-coordinates where the interpolation should be performed. The function returns a list \"y_interp\", which contains the interpolated y-coordinates corresponding to each x-coordinate in \"x_interp\".\n    :param x: The x-coordinate of the data point, list.\n    :param y: The y-coordinate of the data point, list.\n    :param x_interp: The x-coordinate of the interpolation point, list.\n    :return: The y-coordinate of the interpolation point, list.\n    \"\"\"\n    y_interp = []\n    for i in range(len(x_interp)):\n        x1 = x[i-1] if i > 0 else x[0]\n        x2 = x[i]\n        y1 = y[i-1] if i > 0 else y[0]\n        y2 = y[i]\n        y_interp.append(y1 + (y2 - y1) * (x_interp[i] - x1) / (x2 - x1))\n    return y_interp",
+        false
+    ],
+    "ClassEval_46_1": [
+        "def interpolate_2d(x, y, z, x_interp, y_interp):\n    # Initialize the output array\n    z_interp = np.zeros((len(x_interp), len(y_interp)))\n\n    # Loop over the interpolation points\n    for i, xi in enumerate(x_interp):\n        for j, yi in enumerate(y_interp):\n            # Find the nearest neighbors\n            x_near = np.argmin(np.abs(x - xi))\n            y_near = np.argmin(np.abs(y - yi))\n\n            # Compute the interpolated value\n            z_interp[i, j] = (z[x_near] * (y[y_near] - yi) + z[x_near + 1] * (yi - y[y_near])) / (y[y_near] - y[y_near + 1])\n\n    return z_interp",
+        false
+    ],
+    "ClassEval_47_0": [
+        "def is_valid(self):\n    octets = self.get_octets()\n    if len(octets) != 4:\n        return False\n    for octet in octets:\n        try:\n            if not (0 <= int(octet) <= 255):\n                return False\n        except ValueError:\n            return False\n    return True",
+        false
+    ],
+    "ClassEval_47_1": [
+        "def get_octets(self):\n    if self.is_valid():\n        return [int(x) for x in self.ip_address.split('.')]\n    else:\n        return []",
+        false
+    ],
+    "ClassEval_48_0": [
+        "def is_valid_ipv4(ip_address):\n    try:\n        socket.inet_pton(socket.AF_INET, ip_address)\n    except OSError:\n        return False\n    return True",
+        true
+    ],
+    "ClassEval_48_2": [
+        "def get_hostname(ip_address):\n    try:\n        hostname = socket.gethostbyaddr(ip_address)[0]\n    except socket.herror:\n        hostname = None\n    return hostname",
+        true
+    ],
+    "ClassEval_49_0": [
+        "def post_job(self, job_title, company, requirements):\n    job = {\n        \"title\": job_title,\n        \"company\": company,\n        \"requirements\": requirements\n    }\n    self.job_listings.append(job)",
+        false
+    ],
+    "ClassEval_49_3": [
+        "def withdraw_resume(self, resume):\n    self.resumes.remove(resume)",
+        true
+    ],
+    "ClassEval_4_1": [
+        "def add_course_score(self, name, course, score):\n    if name in self.students:\n        self.students[name][course] = score\n    else:\n        self.students[name] = {course: score}",
+        false
+    ],
+    "ClassEval_4_2": [
+        "def get_gpa(self, name):\n    if name in self.students and self.students[name]:\n        total_credits = 0\n        total_gpa = 0\n        for course, score in self.students[name].items():\n            total_credits += 1\n            total_gpa += score\n        return total_gpa / total_credits\n    else:\n        return None",
+        false
+    ],
+    "ClassEval_50_1": [
+        "def write_json(self, data, file_path):\n    try:\n        with open(file_path, 'w') as f:\n            json.dump(data, f)\n        return 1\n    except:\n        return -1",
+        true
+    ],
+    "ClassEval_50_2": [
+        "def process_json(self, file_path, remove_key):\n    # Read the JSON file\n    data = self.read_json(file_path)\n    if data is None:\n        return 0\n\n    # Remove the specified key from the data\n    if remove_key in data:\n        del data[remove_key]\n\n    # Write the modified data back to the file\n    self.write_json(data, file_path)\n\n    return 1",
+        false
+    ],
+    "ClassEval_51_0": [
+        "def kappa(testData, k):\n    N = testData.shape[0]\n    n = testData.shape[1]\n    p_o = (N - n) / (N - 1)\n    p_e = (n - 1) / (N - 1)\n    w = np.zeros((k, k))\n    for i in range(k):\n        for j in range(k):\n            w[i, j] = np.sum(testData[i, :] == testData[j, :]) / n\n    p_a = np.sum(w) / k\n    return (p_a - p_o) / (1 - p_o)",
+        false
+    ],
+    "ClassEval_51_1": [
+        "def fleiss_kappa(testData, N, k, n):\n    # Calculate the Fleiss' kappa value for a given data matrix \"testData\" with dimensions N by k. The matrix represents ratings assigned by \"n\" different raters across \"k\" categories for \"N\" subjects. Return the computed Fleiss' kappa value.\n    # Step 1: Calculate the expected agreement matrix\n    expected_agreement = np.zeros((k, k))\n    for i in range(k):\n        for j in range(k):\n            expected_agreement[i, j] = (N - n) * (N - n) / (N * (N - 1))\n\n    # Step 2: Calculate the observed agreement matrix\n    observed_agreement = np.zeros((k, k))\n    for i in range(N):\n        for j in range(k):\n            for l in range(n):\n                observed_agreement[testData[i, l], testData[i, l + n]] += 1\n\n    # Step 3: Calculate the weighted observed agreement matrix\n    weighted_observed_agreement = np.zeros((k, k))\n    for i in range(k):\n        for j in range(k):\n            weighted_observed_agreement[i, j] = observed_agreement[i, j] / n\n\n    # Step 4: Calculate the Fleiss' kappa value\n    fleiss_kappa = 1 - np.sum((weighted_observed_agreement - expected_agreement) ** 2) / np.sum((expected_agreement - np.diag(expected_agreement)) ** 2)\n\n    return fleiss_kappa",
+        false
+    ],
+    "ClassEval_52_0": [
+        "def lemmatize_sentence(self, sentence):\n    # Remove punctuations from the input sentence\n    sentence = self.remove_punctuation(sentence)\n\n    # Tokenize the sentence\n    tokens = word_tokenize(sentence)\n\n    # Assign part-of-speech tags to each word\n    pos_tags = pos_tag(tokens)\n\n    # Lemmatize each word based on its part-of-speech\n    lemmatized_words = [self.lemmatizer.lemmatize(word, pos) for word, pos in pos_tags]\n\n    return lemmatized_words",
+        false
+    ],
+    "ClassEval_52_1": [
+        "def get_pos_tag(self, sentence):\n    # Remove punctuations from the input sentence\n    sentence = self.remove_punctuation(sentence)\n\n    # Tokenize the sentence\n    tokens = word_tokenize(sentence)\n\n    # Get the part of speech tag for each word in the sentence\n    pos_tags = pos_tag(tokens)\n\n    return pos_tags",
+        false
+    ],
+    "ClassEval_53_0": [
+        "def add_word(self, word):\n    self.word_list.append(word)",
+        true
+    ],
+    "ClassEval_53_1": [
+        "def find_longest_word(self, sentence):\n    # Remove punctuation marks\n    sentence = re.sub(r'[^\\w\\s]', '', sentence.lower())\n\n    # Split the sentence into words\n    words = sentence.split()\n\n    # Find the longest word in the list that exists in the word list\n    longest_word = ''\n    for word in words:\n        if word in self.word_list:\n            if len(word) > len(longest_word):\n                longest_word = word\n\n    # Return the longest word or an empty string if the word list is empty\n    return longest_word if longest_word else ''",
+        true
+    ],
+    "ClassEval_54_2": [
+        "def has_path(self, pos1, pos2):\n    \"\"\"\n    Check if there is a path between two icons on the game board.\n    :param pos1: position tuple(x, y) of the first icon\n    :param pos2: position tuple(x, y) of the second icon\n    :return: True or False ,representing whether there is a path between two icons\n    \"\"\"\n    # Implement your solution here\n    # You can use the is_valid_move() method to check if the move is valid\n    # You can use the remove_icons() method to remove the icons from the board\n    # You can use the is_game_over() method to check if the game is over\n    # You can use the create_board() method to create a new board\n    # You can use the ICONS list to get the icons\n    # You can use the BOARD_SIZE list to get the size of the board\n    return True or False",
+        false
+    ],
+    "ClassEval_54_3": [
+        "def remove_icons(self, pos1, pos2):\n    self.board[pos1[0]][pos1[1]] = None\n    self.board[pos2[0]][pos2[1]] = None",
+        false
+    ],
+    "ClassEval_55_0": [
+        "def palindromic_length(self, center, diff, string):\n    if diff == 0:\n        return 1\n    elif diff == 1:\n        return 2\n    else:\n        left = center - diff\n        right = center + diff\n        if string[left] == string[right]:\n            return 2 + self.palindromic_length(left, diff - 1, string)\n        else:\n            return self.palindromic_length(left, diff - 1, string)",
+        false
+    ],
+    "ClassEval_55_1": [
+        "def palindromic_string(self):\n    # Find the longest palindromic substring in the given input_string\n    longest_palindrome = \"\"\n    for i in range(len(self.input_string)):\n        # Check if the character at position i is a palindrome\n        if self.is_palindrome(i, i, self.input_string):\n            # If it is a palindrome, check if it is longer than the current longest palindrome\n            if len(self.input_string[i]) > len(longest_palindrome):\n                longest_palindrome = self.input_string[i]\n\n    return longest_palindrome\n\ndef is_palindrome(self, left, right, string):\n    # Check if the substring from left to right is a palindrome\n    while left >= 0 and right < len(string) and string[left] == string[right]:\n        left -= 1\n        right += 1\n\n    # If the substring is a palindrome, return True, otherwise return False\n    return left < 0 and right >= len(string)",
+        false
+    ],
+    "ClassEval_56_1": [
+        "def precision(self, predicted_labels, true_labels):\n    true_positives = self.true_positives\n    false_positives = self.false_positives\n    precision = true_positives / (true_positives + false_positives)\n    return precision",
+        false
+    ],
+    "ClassEval_56_3": [
+        "def f1_score(self, predicted_labels, true_labels):\n    self.update(predicted_labels, true_labels)\n    precision = self.precision(predicted_labels, true_labels)\n    recall = self.recall(predicted_labels, true_labels)\n    if precision + recall == 0:\n        return 0.0\n    return 2 * (precision * recall) / (precision + recall)",
+        true
+    ],
+    "ClassEval_57_0": [
+        "def mrr(data):\n    if isinstance(data, tuple):\n        binary_values, total_count = data\n        correct_count = np.sum(binary_values)\n        reciprocal_rank = 1 / (np.arange(total_count) + 1)\n        reciprocal_rank = reciprocal_rank[correct_count - 1]\n        return reciprocal_rank\n    else:\n        return np.mean([mrr(d) for d in data])",
+        false
+    ],
+    "ClassEval_57_1": [
+        "def map(data):\n    if isinstance(data, tuple):\n        actual_results, ground_truth_num = data\n        precision = np.sum(actual_results) / ground_truth_num\n        return precision\n    elif isinstance(data, list):\n        precisions = [map(d) for d in data]\n        return np.mean(precisions), precisions\n    else:\n        raise ValueError(\"Invalid input data type\")",
+        false
+    ],
+    "ClassEval_58_2": [
+        "def check_won(self,map):\n    for i in range(self.n):\n        for j in range(self.n):\n            if map[i][j] == \"X\":\n                return False\n    return True",
+        false
+    ],
+    "ClassEval_58_3": [
+        "def sweep(self, x, y):\n    # Check if the position is a mine\n    if self.minesweeper_map[x][y] == \"mine\":\n        return False\n\n    # Check if the player has won\n    if self.check_won(self.player_map):\n        return True\n\n    # Update the player map\n    self.player_map[x][y] = \"swept\"\n\n    # Recursively sweep the surrounding positions\n    for i in range(x-1, x+2):\n        for j in range(y-1, y+2):\n            if 0 <= i < self.n and 0 <= j < self.n and self.minesweeper_map[i][j] != \"mine\":\n                self.sweep(i, j)\n\n    return self.player_map",
+        false
+    ],
+    "ClassEval_59_0": [
+        "def add_movie(self, name, price, start_time, end_time, n):\n    self.movies.append({\n        'name': name,\n        'price': price,\n        'start_time': start_time,\n        'end_time': end_time,\n        'seats': np.zeros((n, n))\n    })",
+        false
+    ],
+    "ClassEval_59_1": [
+        "def book_ticket(self, name, seats_to_book):\n    for movie in self.movies:\n        if movie[\"name\"] == name:\n            for seat in seats_to_book:\n                if movie[\"seats\"][seat[0]][seat[1]] == 0:\n                    movie[\"seats\"][seat[0]][seat[1]] = 1\n            return \"Booking success.\"\n    return \"Movie not found.\"",
+        false
+    ],
+    "ClassEval_5_0": [
+        "def interpret(self, display=False):\n    # Initialize an empty list to store the interpreted score\n    interpreted_score = []\n\n    # Iterate through the input text, one line at a time\n    for line in self.play_text.splitlines():\n        # Split the line into individual notes\n        notes = line.split()\n\n        # Initialize an empty dictionary to store the current segment of the music score\n        segment = {}\n\n        # Iterate through the notes, one at a time\n        for note in notes:\n            # If the note is a chord, add it to the \"Chord\" field of the current segment\n            if note[-1] == ':':\n                segment['Chord'] = note[:-1]\n            # If the note is a tune, add it to the \"Tune\" field of the current segment\n            else:\n                segment['Tune'] = note\n\n        # Add the current segment to the list of interpreted segments\n        interpreted_score.append(segment)\n\n    # If display is True, print the interpreted score\n    if display:\n        print(interpreted_score)\n\n    # Return the list of interpreted segments\n    return interpreted_score",
+        false
+    ],
+    "ClassEval_5_1": [
+        "def display(self, key, value):\n    return \"Normal Guitar Playing -- Chord: {}, Play Tune: {}\".format(key, value)",
+        true
+    ],
+    "ClassEval_60_1": [
+        "def insert_ticket(self, movie_name, theater_name, seat_number, customer_name):\n    self.cursor.execute(\"INSERT INTO tickets (movie_name, theater_name, seat_number, customer_name) VALUES (?, ?, ?, ?)\", (movie_name, theater_name, seat_number, customer_name))\n    self.connection.commit()",
+        true
+    ],
+    "ClassEval_60_2": [
+        "def search_tickets_by_customer(self, customer_name):\n    self.cursor.execute(\"SELECT * FROM tickets WHERE customer_name = ?\", (customer_name,))\n    results = self.cursor.fetchall()\n    return results",
+        true
+    ],
+    "ClassEval_61_0": [
+        "def add_song(self, song):\n    self.playlist.append(song)",
+        true
+    ],
+    "ClassEval_61_1": [
+        "def remove_song(self, song):\n    self.playlist.remove(song)",
+        false
+    ],
+    "ClassEval_62_1": [
+        "def remove_stop_words(self, string_list, stop_word_list):\n    return [word for word in string_list if word.lower() not in stop_word_list]",
+        false
+    ],
+    "ClassEval_62_2": [
+        "def process(self, string_list):\n    stop_word_list = self.construct_stop_word_list()\n    return self.remove_stop_words(string_list, stop_word_list)",
+        true
+    ],
+    "ClassEval_63_0": [
+        "def process_data(self, string_list):\n    # Keep only English letters and spaces\n    string_list = [re.sub(r'[^a-zA-Z\\s]', '', s) for s in string_list]\n    # Convert to lower case\n    string_list = [s.lower() for s in string_list]\n    # Split into list of words\n    words_list = [s.split() for s in string_list]\n    return words_list",
+        true
+    ],
+    "ClassEval_63_1": [
+        "def calculate_word_frequency(self, words_list):\n    word_frequency = Counter()\n    for words in words_list:\n        word_frequency.update(words)\n    return dict(word_frequency.most_common(5))",
+        true
+    ],
+    "ClassEval_64_0": [
+        "def decimal_to_binary(decimal_num):\n    return bin(decimal_num)[2:]",
+        true
+    ],
+    "ClassEval_64_5": [
+        "def hex_to_decimal(hex_num):\n    return int(hex_num, 16)",
+        true
+    ],
+    "ClassEval_65_2": [
+        "def trans_two(self, s):\n    \"\"\"\n    Converts a two-digit number \"s\" into words format. Return the conversion result as a string.\n    :param s: str, the two-digit number\n    :return: str, the number in words format\n    \"\"\"\n    if s == \"00\":\n        return \"ZERO\"\n    elif s[0] == \"1\":\n        return self.NUMBER_TEEN[int(s[1])]\n    elif s[1] == \"0\":\n        return self.NUMBER[int(s[0])]\n    else:\n        return self.NUMBER[int(s[0])] + \" \" + self.NUMBER_TEN[int(s[1])]",
+        false
+    ],
+    "ClassEval_65_3": [
+        "def trans_three(self, s):\n    \"\"\"\n    Converts a three-digit number \"s\" into words format. \n    :param s: str, the three-digit number\n    :return: str, the number in words format\n    \"\"\"\n    if s == \"000\":\n        return \"zero\"\n    else:\n        hundreds = s[:1]\n        tens = s[1:2]\n        ones = s[2:3]\n        if hundreds == \"0\":\n            if tens == \"0\" and ones == \"0\":\n                return \"\"\n            else:\n                return self.NUMBER[int(ones)]\n        elif tens == \"0\" and ones == \"0\":\n            return self.NUMBER[int(hundreds)] + \" hundred\"\n        elif tens == \"1\":\n            return self.NUMBER_TEEN[int(ones)]\n        else:\n            return self.NUMBER[int(hundreds)] + \" hundred \" + self.NUMBER_TEN[int(tens)] + \" \" + self.NUMBER[int(ones)]",
+        false
+    ],
+    "ClassEval_66_0": [
+        "def replace(self, string):\n    # Initialize an empty string to store the result\n    result = \"\"\n\n    # Iterate through the characters in the input string\n    for char in string:\n        # Check if the current character is a numeric character reference\n        if self.is_hex_char(char):\n            # If it is, replace it with its corresponding Unicode character\n            result += chr(int(char, 16))\n        else:\n            # If it's not, just append it to the result string as is\n            result += char\n\n    # Return the result string\n    return result",
+        false
+    ],
+    "ClassEval_66_1": [
+        "def is_hex_char(char):\n    return char.isdigit() and int(char, 16) < 16",
+        false
+    ],
+    "ClassEval_67_0": [
+        "def add_dish(self, dish):\n    if dish[\"dish\"] in self.menu:\n        if self.menu[dish[\"dish\"]][\"count\"] >= dish[\"count\"]:\n            self.selected_dishes.append(dish)\n            self.sales[dish[\"dish\"]] = dish[\"price\"]\n            return True\n    return False",
+        false
+    ],
+    "ClassEval_67_2": [
+        "def checkout(self):\n    if self.selected_dishes:\n        total = self.calculate_total()\n        return total\n    else:\n        return False",
+        false
+    ],
+    "ClassEval_68_0": [
+        "def get_page(self, page_number):\n    if page_number < 1 or page_number > self.total_pages:\n        raise ValueError(\"Page number must be between 1 and {}\".format(self.total_pages))\n    start_index = (page_number - 1) * self.page_size\n    end_index = start_index + self.page_size\n    return self.data[start_index:end_index]",
+        false
+    ],
+    "ClassEval_68_1": [
+        "def get_page_info(self, page_number):\n    page_info = {\n        \"current_page\": page_number,\n        \"per_page\": self.page_size,\n        \"total_pages\": self.total_pages,\n        \"total_items\": self.total_items,\n        \"has_previous_page\": page_number > 1,\n        \"has_next_page\": page_number < self.total_pages,\n        \"page_data\": self.get_page(page_number)\n    }\n    return page_info",
+        false
+    ],
+    "ClassEval_69_0": [
+        "def merge_pdfs(self, output_filepath):\n    with open(output_filepath, \"wb\") as f:\n        writer = PyPDF2.PdfFileWriter()\n        for reader in self.readers:\n            for page in range(reader.getNumPages()):\n                writer.addPage(reader.getPage(page))\n        writer.write(f)\n    return f\"Merged PDFs saved at {output_filepath}\"",
+        false
+    ],
+    "ClassEval_69_1": [
+        "def extract_text_from_pdfs(self):\n    pdf_texts = []\n    for reader in self.readers:\n        text = reader.getPage(0).extractText()\n        pdf_texts.append(text)\n    return pdf_texts",
+        true
+    ],
+    "ClassEval_6_0": [
+        "def setNum(self):\n    if self.limit <= 0:\n        raise ValueError(\"Number of partitions must be greater than 0\")\n    size = len(self.lst) // self.limit\n    remainder = len(self.lst) % self.limit\n    return size, remainder",
+        true
+    ],
+    "ClassEval_6_1": [
+        "def get(self, index):\n    # Calculate the size of each block and the remainder of the division\n    block_size = len(self.lst) // self.limit\n    remainder = len(self.lst) % self.limit\n\n    # Calculate the start and end positions of the block\n    start = index * block_size + min(index, remainder)\n    end = (index + 1) * block_size + min(index + 1, remainder)\n\n    # Return the corresponding block\n    return self.lst[start:end]",
+        true
+    ],
+    "ClassEval_70_1": [
+        "def _validate_sex(self, sex: str) -> str:\n    if sex not in (\"Man\", \"Woman\", \"UGM\"):\n        return None\n    else:\n        return sex",
+        true
+    ],
+    "ClassEval_70_2": [
+        "def _validate_phoneNumber(self, phoneNumber: str) -> str:\n    if not phoneNumber or len(phoneNumber) != 11:\n        return None\n    else:\n        return phoneNumber",
+        true
+    ],
+    "ClassEval_71_0": [
+        "def init_game(self):\n    # Initialize the player's position\n    self.player_row = self.map.index('O')\n    self.player_col = self.map[0].index('O')\n\n    # Initialize the targets\n    self.targets = []\n    for i, row in enumerate(self.map):\n        for j, col in enumerate(row):\n            if col == 'G':\n                self.targets.append((i, j))\n\n    # Initialize the boxes\n    self.boxes = []\n    for i, row in enumerate(self.map):\n        for j, col in enumerate(row):\n            if col == 'X':\n                self.boxes.append((i, j))\n\n    # Initialize the target count\n    self.target_count = len(self.targets)\n\n    # Check if the game is over\n    self.is_game_over = self.check_win()",
+        false
+    ],
+    "ClassEval_71_2": [
+        "def move(self, direction):\n    if direction == 'w':\n        self.player_row -= 1\n    elif direction == 's':\n        self.player_row += 1\n    elif direction == 'a':\n        self.player_col -= 1\n    elif direction == 'd':\n        self.player_col += 1\n    else:\n        return False\n\n    if self.map[self.player_row][self.player_col] == 'G':\n        self.targets.append((self.player_row, self.player_col))\n        self.target_count += 1\n        if self.target_count == len(self.targets):\n            self.is_game_over = True\n            return True\n    elif self.map[self.player_row][self.player_col] == 'X':\n        self.boxes.append((self.player_row, self.player_col))\n    return False",
+        false
+    ],
+    "ClassEval_72_1": [
+        "def findall(self, pattern, text):\n    return re.findall(pattern, text)",
+        true
+    ],
+    "ClassEval_72_7": [
+        "def split_sentences(self, text):\n    sentences = []\n    for sentence in text.split(\".\"):\n        if sentence[-1] in [\",\", \"!\", \"?\"]:\n            sentences.append(sentence)\n        else:\n            sentences.append(sentence + \".\")\n    return sentences",
+        false
+    ],
+    "ClassEval_73_3": [
+        "def level_up(self):\n    if self.level < 100:\n        self.level += 1\n        self.hp += 20\n        self.attack_power += 5\n        self.defense += 5\n        self.exp = 0\n    return self.level, self.hp, self.attack_power, self.defense",
+        true
+    ],
+    "ClassEval_73_4": [
+        "def is_alive(self):\n    return self.hp > 0",
+        true
+    ],
+    "ClassEval_74_3": [
+        "def send(self, info):\n    if not isinstance(info, dict):\n        return \"Error: 'info' must be a dictionary\"\n    if \"addr\" not in info or \"content\" not in info:\n        return \"Error: 'info' must contain keys 'addr' and 'content'\"\n    addr = info[\"addr\"]\n    content = info[\"content\"]\n    if addr not in self.white_list:\n        return \"Error: 'addr' is not in the white list\"\n    self.send_struct[addr] = content\n    return None",
+        false
+    ],
+    "ClassEval_74_4": [
+        "def show(self, type):\n    if type == 'send':\n        return self.send_struct\n    elif type == 'receive':\n        return self.receive_struct\n    else:\n        return False",
+        true
+    ],
+    "ClassEval_75_0": [
+        "def add_item(self, item, price, quantity=1):\n    if item not in self.items:\n        self.items[item] = {}\n    self.items[item]['price'] = price\n    self.items[item]['quantity'] = quantity",
+        false
+    ],
+    "ClassEval_75_1": [
+        "def remove_item(self, item, quantity=1):\n    if item in self.items:\n        self.items[item] -= quantity\n        if self.items[item] <= 0:\n            del self.items[item]",
+        false
+    ],
+    "ClassEval_76_1": [
+        "def sign_in(self, username):\n    if username in self.users:\n        self.users[username] = True\n        return True\n    else:\n        return False",
+        true
+    ],
+    "ClassEval_76_2": [
+        "def check_sign_in(self, username):\n    if username in self.users:\n        return self.users[username]\n    else:\n        return False",
+        true
+    ],
+    "ClassEval_77_2": [
+        "def reset(self):\n    self.length = 1\n    self.positions = [((self.SCREEN_WIDTH / 2), (self.SCREEN_HEIGHT / 2))]\n    self.score = 0\n    self.random_food_position()",
+        true
+    ],
+    "ClassEval_77_3": [
+        "def eat_food(self):\n    self.length += 1\n    self.score += 100\n    self.random_food_position()",
+        true
+    ],
+    "ClassEval_78_0": [
+        "def split_sentences(self, sentences_string):\n    sentences = re.split(r'[.?!]+ +', sentences_string)\n    return sentences",
+        false
+    ],
+    "ClassEval_78_2": [
+        "def process_text_file(self, sentences_string):\n    sentences = self.split_sentences(sentences_string)\n    max_words = 0\n    for sentence in sentences:\n        words = self.count_words(sentence)\n        if words > max_words:\n            max_words = words\n    return max_words",
+        true
+    ],
+    "ClassEval_79_4": [
+        "def select_female_under_age(self, age):\n    return self.select(fields=[\"*\"], condition=\"WHERE gender = 'female' AND age < {}\".format(age))",
+        false
+    ],
+    "ClassEval_79_5": [
+        "def select_by_age_range(self, min_age, max_age):\n    return self.select(fields=['*'], condition=f\"age BETWEEN {min_age} AND {max_age}\")",
+        true
+    ],
+    "ClassEval_7_0": [
+        "def clear_expr(self):\n    self.expr = \"\".join([c for c in self.expr if c in self.left_brackets or c in self.right_brackets])",
+        true
+    ],
+    "ClassEval_7_1": [
+        "def check_balanced_brackets(self):\n    for char in self.expr:\n        if char in self.left_brackets:\n            self.stack.append(char)\n        elif char in self.right_brackets:\n            if not self.stack or self.stack.pop() != self.left_brackets[self.right_brackets.index(char)]:\n                return False\n    return not self.stack",
+        true
+    ],
+    "ClassEval_80_2": [
+        "def delete(table, where=None):\n    query = \"DELETE FROM \" + table\n    if where is not None:\n        query += \" WHERE \" + \" AND \".join([f\"{key} = {value}\" for key, value in where.items()])\n    return query",
+        false
+    ],
+    "ClassEval_80_3": [
+        "def update(table, data, where=None):\n    query = \"UPDATE \" + table + \" SET \"\n    for key, value in data.items():\n        query += key + \" = \" + str(value) + \", \"\n    query = query[:-2]\n    if where is not None:\n        query += \" WHERE \"\n        for key, value in where.items():\n            query += key + \" = \" + str(value) + \" AND \"\n        query = query[:-5]\n    return query",
+        false
+    ],
+    "ClassEval_81_1": [
+        "def mode(data):\n    \"\"\"\n    Calculate the mode of the given list \"data\". If multiple values have the same highest frequency, return all of them in a list.\n    :param data: the given list, list.\n    :return: the mode of the given list, list.\n    \"\"\"\n    # Create a dictionary to store the frequency of each value in the list\n    freq = {}\n    for value in data:\n        if value in freq:\n            freq[value] += 1\n        else:\n            freq[value] = 1\n\n    # Find the value with the highest frequency\n    max_freq = max(freq.values())\n    mode = [k for k, v in freq.items() if v == max_freq]\n\n    return mode",
+        true
+    ],
+    "ClassEval_81_2": [
+        "def correlation(x, y):\n    x_mean = Statistics3.mean(x)\n    y_mean = Statistics3.mean(y)\n    n = len(x)\n    num = 0\n    den_x = 0\n    den_y = 0\n    for i in range(n):\n        num += (x[i] - x_mean) * (y[i] - y_mean)\n        den_x += (x[i] - x_mean) ** 2\n        den_y += (y[i] - y_mean) ** 2\n    den = math.sqrt(den_x * den_y)\n    if den == 0:\n        return 0\n    else:\n        return num / den",
+        false
+    ],
+    "ClassEval_82_3": [
+        "def sell_stock(self, stock):\n    name = stock[\"name\"]\n    quantity = stock[\"quantity\"]\n    price = stock[\"price\"]\n\n    if quantity > self.get_stock_value(name):\n        return False\n\n    self.portfolio.remove(stock)\n    self.cash_balance += price * quantity\n\n    return True",
+        false
+    ],
+    "ClassEval_82_6": [
+        "def get_stock_value(self, stock):\n    return stock[\"price\"] * stock[\"quantity\"]",
+        true
+    ],
+    "ClassEval_83_0": [
+        "def create_student_table(self):\n    with sqlite3.connect(self.database_name) as conn:\n        c = conn.cursor()\n        c.execute(\"CREATE TABLE IF NOT EXISTS students (ID INT, name TEXT, age INT, gender TEXT, grade INT)\")\n        conn.commit()",
+        true
+    ],
+    "ClassEval_83_3": [
+        "def delete_student_by_name(self, name):\n    with sqlite3.connect(self.database_name) as conn:\n        cursor = conn.cursor()\n        cursor.execute(\"DELETE FROM students WHERE name = ?\", (name,))\n        conn.commit()",
+        true
+    ],
+    "ClassEval_84_0": [
+        "def read_file_as_json(self):\n    with open(self.file_path, 'r') as f:\n        data = json.load(f)\n    return data",
+        true
+    ],
+    "ClassEval_84_1": [
+        "def read_file(self):\n    with open(self.file_path, 'r') as file:\n        return file.read()",
+        true
+    ],
+    "ClassEval_85_5": [
+        "def auto_check_conflict(self):\n    if self.mode == \"heat\" and self.current_temperature < self.target_temperature:\n        return True\n    elif self.mode == \"cool\" and self.current_temperature > self.target_temperature:\n        return True\n    else:\n        return False",
+        false
+    ],
+    "ClassEval_85_6": [
+        "def simulate_operation(self):\n    # Set the mode using the auto_set_mode method\n    self.auto_set_mode()\n\n    # Initialize the current temperature and target temperature\n    current_temperature = self.current_temperature\n    target_temperature = self.target_temperature\n\n    # Initialize the time counter\n    time = 0\n\n    # While the current temperature is not equal to the target temperature\n    while current_temperature != target_temperature:\n        # Adjust the current temperature based on the mode\n        if self.mode == \"heat\":\n            current_temperature += 1\n        elif self.mode == \"cool\":\n            current_temperature -= 1\n\n        # Check for conflicts using the auto_check_conflict method\n        self.auto_check_conflict()\n\n        # Increment the time counter\n        time += 1\n\n    # Return the time it took for the simulation to complete\n    return time",
+        false
+    ],
+    "ClassEval_86_0": [
+        "def make_move(self, row, col):\n    if self.board[row][col] != ' ':\n        return False\n    self.board[row][col] = self.current_player\n    self.current_player = 'O' if self.current_player == 'X' else 'X'\n    return True",
+        true
+    ],
+    "ClassEval_86_2": [
+        "def is_board_full(self):\n    for row in self.board:\n        for space in row:\n            if space == ' ':\n                return False\n    return True",
+        true
+    ],
+    "ClassEval_87_1": [
+        "def get_current_date(self):\n    return self.datetime.strftime(\"%Y-%m-%d\")",
+        true
+    ],
+    "ClassEval_87_4": [
+        "def datetime_to_string(self, datetime):\n    return datetime.strftime(\"%Y-%m-%d %H:%M:%S\")",
+        true
+    ],
+    "ClassEval_88_0": [
+        "def cos(self, x):\n    x = x * (pi / 180)\n    return round(fabs(self.taylor(x, 10)), 10)",
+        false
+    ],
+    "ClassEval_88_1": [
+        "def factorial(self, a):\n    if a == 0:\n        return 1\n    else:\n        return a * self.factorial(a-1)",
+        true
+    ],
+    "ClassEval_89_0": [
+        "def _generate_cards(self):\n    self.nums = [random.randint(1, 9) for _ in range(4)]",
+        true
+    ],
+    "ClassEval_89_3": [
+        "def evaluate_expression(self, expression):\n    # Evaluate the given mathematical expression \"expression\" to check if its result is 24. Return \"True\" if the result is 24, otherwise return \"False\".\n    try:\n        result = eval(expression)\n        if result == 24:\n            return True\n        else:\n            return False\n    except SyntaxError:\n        return False",
+        true
+    ],
+    "ClassEval_8_1": [
+        "def withdraw(self, amount):\n    if amount < 0:\n        raise ValueError(\"Invalid amount\")\n    if amount > self.balance:\n        raise ValueError(\"Insufficient balance\")\n    self.balance -= amount\n    return self.balance",
+        false
+    ],
+    "ClassEval_8_2": [
+        "def view_balance(self):\n    return self.balance",
+        true
+    ],
+    "ClassEval_90_0": [
+        "def get_scheme(self):\n    return self.url.split(\"://\")[0]",
+        false
+    ],
+    "ClassEval_90_1": [
+        "def get_host(self):\n    url_parts = self.url.split(\"://\")\n    if len(url_parts) == 2:\n        return url_parts[1].split(\"/\")[0]\n    else:\n        return None",
+        true
+    ],
+    "ClassEval_91_1": [
+        "def parse(self, path, charset):\n    self.segments = []\n    for segment in urllib.parse.urlparse(path).path.split('/'):\n        if segment:\n            self.segments.append(urllib.parse.unquote(segment, charset))\n    self.with_end_tag = path.endswith('/')",
+        true
+    ],
+    "ClassEval_91_2": [
+        "def fix_path(path):\n    return path.strip(\"/\")",
+        true
+    ],
+    "ClassEval_92_0": [
+        "def insert_user(self, username, password):\n    self.cursor.execute(\"INSERT INTO users (username, password) VALUES (?, ?)\", (username, password))\n    self.connection.commit()\n    return None",
+        true
+    ],
+    "ClassEval_92_1": [
+        "def search_user_by_username(self, username):\n    self.cursor.execute(\"SELECT * FROM users WHERE username = ?\", (username,))\n    result = self.cursor.fetchall()\n    return result",
+        false
+    ],
+    "ClassEval_93_1": [
+        "def cosine_similarities(vector_1, vectors_all):\n    # Compute the dot product of vector_1 and each row in vectors_all\n    dot_products = np.dot(vector_1, vectors_all.T)\n\n    # Compute the magnitude of vector_1 and each row in vectors_all\n    mag_1 = np.linalg.norm(vector_1)\n    mag_all = np.apply_along_axis(np.linalg.norm, 1, vectors_all)\n\n    # Compute the cosine similarities\n    cosine_similarities = dot_products / (mag_1 * mag_all)\n\n    return cosine_similarities",
+        false
+    ],
+    "ClassEval_93_2": [
+        "def n_similarity(vector_list_1, vector_list_2):\n    vector_1 = np.array(vector_list_1)\n    vector_2 = np.array(vector_list_2)\n    return np.dot(vector_1, vector_2.T) / (np.linalg.norm(vector_1) * np.linalg.norm(vector_2))",
+        false
+    ],
+    "ClassEval_94_1": [
+        "def insert_coin(self, amount):\n    self.balance += amount\n    return self.balance",
+        true
+    ],
+    "ClassEval_94_2": [
+        "def purchase_item(self, item_name):\n    if item_name not in self.inventory:\n        return False\n    if self.balance < self.inventory[item_name]:\n        return False\n    self.balance -= self.inventory[item_name]\n    return self.balance",
+        false
+    ],
+    "ClassEval_95_0": [
+        "def add_product(self, product_id, name, quantity):\n    if product_id in self.inventory:\n        self.inventory[product_id].quantity += quantity\n    else:\n        self.inventory[product_id] = Product(product_id, name, quantity)",
+        false
+    ],
+    "ClassEval_95_4": [
+        "def change_order_status(self, order_id, status):\n    if order_id in self.orders:\n        self.orders[order_id]['status'] = status\n        return True\n    else:\n        return False",
+        true
+    ],
+    "ClassEval_96_0": [
+        "def query(self, weather_list, tmp_units = 'celsius'):\n    \"\"\"\n    Query the weather and temperature for the specified \"city\" in the \"weather_list\", and convert the temperature to the desired \"tmp_units\". Return the temperature and weather of the city as a tuple.\n    :param weather_list: a dictionary of weather information for different cities,dict.\n    :param tmp_units: the temperature units to convert to, str.\n    :return: the temperature and weather of the city, tuple.\n    \"\"\"\n    city = self.city\n    if city in weather_list:\n        weather = weather_list[city]\n        if tmp_units == 'celsius':\n            temperature = weather['temperature']\n        elif tmp_units == 'fahrenheit':\n            temperature = (weather['temperature'] * 9/5) + 32\n        else:\n            raise ValueError('Invalid temperature units')\n        return (temperature, weather['weather'])\n    else:\n        raise KeyError('City not found in weather list')",
+        false
+    ],
+    "ClassEval_96_2": [
+        "def celsius_to_fahrenheit(self):\n    return (self.temperature * 9/5) + 32",
+        true
+    ],
+    "ClassEval_97_0": [
+        "def text2int(self, textnum):\n    textnum = textnum.lower()\n    textnum = textnum.replace(\",\", \"\").replace(\"-\", \" \")\n    textnum = textnum.split()\n    number = 0\n    scale = 0\n    for word in textnum:\n        if word in self.numwords:\n            scale, num = self.numwords[word]\n            number += num * scale\n        elif word in self.ordinal_words:\n            number += self.ordinal_words[word] * scale\n        else:\n            if word[-2:] == \"th\":\n                number += int(word[:-2]) * scale\n            elif word[-1] == \"y\":\n                number += int(word[:-1]) * scale\n            else:\n                number += int(word) * scale\n        scale *= 10\n    return str(number)",
+        false
+    ],
+    "ClassEval_97_1": [
+        "def is_valid_input(self, textnum):\n    \"\"\"\n    Check if the input text \"textnum\" contains only valid words that can be converted into numbers. Return \"True\" if the input is valid, otherwise return \"False\".\n    :param textnum: The input text containing words representing numbers.\n    :return: True if input is valid, False otherwise.\n    \"\"\"\n    words = textnum.split()\n    for word in words:\n        if word not in self.numwords and word not in self.ordinal_words:\n            return False\n    return True",
+        false
+    ],
+    "ClassEval_98_1": [
+        "def write_xml(self, file_name):\n    try:\n        tree = ET.ElementTree(self.root)\n        tree.write(file_name)\n        return True\n    except:\n        return False",
+        true
+    ],
+    "ClassEval_98_2": [
+        "def process_xml_data(self, file_name):\n    # Read the XML file\n    tree = ET.parse(self.file_name)\n    root = tree.getroot()\n\n    # Capitalize the text of each element\n    for element in root.iter():\n        element.text = element.text.upper() if element.text is not None else None\n\n    # Write the modified XML data to a new file\n    with open(file_name, 'wb') as f:\n        tree.write(f)\n\n    return True",
+        true
+    ],
+    "ClassEval_99_2": [
+        "def extract_file(self, file_name, output_path):\n    try:\n        with zipfile.ZipFile(self.file_name, 'r') as zip_ref:\n            zip_ref.extract(file_name, output_path)\n        return True\n    except zipfile.BadZipFile:\n        return False",
+        false
+    ],
+    "ClassEval_99_3": [
+        "def create_zip_file(self, files, output_file_name):\n    with zipfile.ZipFile(output_file_name, 'w') as zip_file:\n        for file in files:\n            zip_file.write(file)\n    return True",
+        false
+    ],
+    "ClassEval_9_0": [
+        "def add(num1, num2):\n    return str(int(num1) + int(num2))",
+        true
+    ],
+    "ClassEval_9_1": [
+        "def subtract(num1, num2):\n    return str(int(num2) - int(num1))",
+        false
+    ]
+}

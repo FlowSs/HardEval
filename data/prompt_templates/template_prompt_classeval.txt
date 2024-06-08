@@ -1,0 +1,107 @@
+Your task is to deliver three levels of instructions to implement a the Python function `INSERT_METHOD_NAME`. You are also given the class in which the function is contained as extra context. The instructions should be formatted as docstrings of decreasing difficulty by adding details incrementally using the previous instruction as a basis. Keep in mind that those final instructions will be used by an LLM to generate the function. All the instructions must clearly state the goal of the function in each instruction and any variable name, function name or class attribute used in the instruction should be in between quotation marks "". To generate incrementally the instruction, follow those steps: 
+
+# First Instruction:
+
+- Start this intruction with the exact same word as the given docstring in ### Docstring.
+- You can use the details of the ### Context to understand how `INSERT_METHOD_NAME` is working, however do not include details from the ### Context in the instruction. 
+- Please make sure to integrate all the information explicitly mentioned in the description of the ### Docstring except details drawn from the examples (starting with '>>>').
+- The answer is expected to be in between <first> and </first> tags. 
+
+# Second Instruction:
+
+- This instruction should rely on the base instruction given by <first> and </first>.
+- You can use the docstring in ### Docstring to further understand your task.
+- Please make use of the details of the ### Context to understand how `INSERT_METHOD_NAME` is working. 
+- You can add details from the function `INSERT_METHOD_NAME`.
+- However, any detail added can not explicitly mention any variable, module or nested / inner / helper function. Instead, rephrase the details in natural language.
+- The answer is expected to be in between <second> and </second> tags. 
+
+# Third Instruction:
+
+- This instruction should rely on the base instruction given by <second> and </second>.
+- You can use the docstring in between ### Docstring to further understand your task.
+- Please make use of the details of the ### Context to understand how `INSERT_METHOD_NAME` is working. 
+- You can add details from the function `INSERT_METHOD_NAME`.
+- Please explicitly mention details from the function `INSERT_METHOD_NAME` such as variable names or other functions from the class.
+- The answer is expected to be in between <third> and </third> tags. 
+
+Only return the final instructions formatted as docstrings.
+
+## 
+
+### Example
+### Context
+import logging
+import datetime
+class AccessGatewayFilter:  
+    """
+    This class is a filter used for accessing gateway filtering, primarily for authentication and access log recording.
+    """
+
+    def __init__(self):
+        self.lv = 2
+
+    def filter(self, req):
+        request_uri = req['path']
+        method = req['method']
+
+        if self.is_start_with(req_uri):
+            return True
+
+        try:
+            token = self.get_jwt_user(req)
+            user = token['user']
+            if user['level'] > self.lv:
+                self.set_current_user_info_and_log(user)
+                return True
+        except:
+            return False
+
+    def is_start_with(self, request_uri):
+        """
+        Check if the request URI starts with certain prefixes.
+        """
+        pass
+
+    def get_jwt_user(self, request):
+        """
+        Get the user information from the JWT token in the request.
+        """
+        pass
+
+    def set_current_user_info_and_log(self, user):
+        """
+        Set the current user information and log the access.
+        """
+        pass
+
+### Docstring
+Filter the incoming request based on certain rules and conditions,
+including the self.lv.
+:param req: dict, the incoming request details
+:return: bool, True if the request is allowed, False otherwise
+>>> filter = AccessGatewayFilter()
+>>> filter.filter({'path': '/login', 'method': 'POST'})
+True
+
+### Instruction
+<first> 
+Filter the incoming request "req" based on URI path, JWT token and "self.lv". Return "True" if the request is allowed otherwise "False".
+</first>
+
+<second>
+Filter the incoming request "req" based on URI path, JWT token and "self.lv". Return "True" if the request is allowed otherwise "False". The functions begins by extracting essential information from the incoming request, namely the URI path and HTTP method. Subsequently, it checks if the URI path starts with predefined prefixes. If it matches, the function returns True, indicating permission for the request. Otherwise, it proceeds to verify the JWT token contained in the request headers. If the obtained token is successfully parsed and contains a user which itself contains a level strictly above "self.lv", the function sets current user information and logs the event before returning True. However, if any exceptions occur during this process, it catches them and returns False, signaling denial of the request.
+</second>
+
+<third>
+Filter the incoming request "req" based on URI path, JWT token and "self.lv". Return "True" if the request is allowed otherwise "False". The function begins by extracting essential information from the incoming request, namely the URI path ("req['path']") and HTTP method ("req['method']"). Subsequently, it checks if the URI path starts with predefined prefixes using the "is_start_with method". If it matches, the function returns True, indicating permission for the request. Otherwise, it proceeds to verify the JWT token contained in the request headers via the "get_jwt_user" method. If the obtained token is successfully parsed and contains a key "user" which itself contains a "level" key which value is strictly above "self.lv",  the function sets current user information and logs the event using the "set_current_user_info_and_log" method before returning True. However, if any exceptions occur during this process, it catches them and returns False, signaling denial of the request.
+</third>
+##
+
+### Context
+INSERT_CLASS_CODE
+
+### Docstring
+INSERT_DOCSTRING
+
+### Instruction

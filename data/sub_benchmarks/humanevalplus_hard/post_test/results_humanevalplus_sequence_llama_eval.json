@@ -1,0 +1,1842 @@
+{
+    "0": {
+        "level 1": [
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    fib_seq = [1, 1]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(1 + i // 2)\n        else:\n            tri_seq.append(fib_seq[-1] + fib_seq[-2] + 1 + i // 2)\n        fib_seq.append(tri_seq[-1])\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    fib_seq = [1, 1]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(1 + i // 2)\n        else:\n            tri_seq.append(fib_seq[-1] + fib_seq[-2] + 1 + i // 2)\n        fib_seq.append(tri_seq[-1])\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    fib_seq = [1, 1]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(1 + i // 2)\n            fib_seq.append(1 + i // 2)\n        else:\n            tri_seq.append(fib_seq[-1] + fib_seq[-2] + 1 + (i+1) // 2)\n            fib_seq.append(fib_seq[-1] + fib_seq[-2])\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    fib_seq = [1, 1]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(1 + i // 2)\n            fib_seq.append(tri_seq[-1])\n        else:\n            tri_seq.append(fib_seq[-1] + fib_seq[-2] + 1 + i // 2)\n            fib_seq.append(tri_seq[-1])\n    return tri_seq[:n+1]\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    fib_seq = [1, 1]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(1 + i // 2)\n        else:\n            tri_seq.append(fib_seq[-1] + fib_seq[-2] + 1 + i // 2)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    fib_seq = [1, 1]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(tri_seq[i-1] + tri_seq[i-2])\n        else:\n            tri_seq.append(fib_seq[i-1] + fib_seq[i-2] + 1 + (i+1)//2)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    fib_seq = [1, 1]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(tri_seq[i-1] + tri_seq[i-2])\n            fib_seq.append(tri_seq[i-1])\n        else:\n            tri_seq.append(tri_seq[i-1] + tri_seq[i-2] + 1 + (i+1)//2)\n            fib_seq.append(tri_seq[i-1])\n    return fib_seq\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri = [1, 3]\n    fib = [1, 1]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri.append(1 + i // 2)\n        else:\n            tri.append(fib[-1] + fib[-2] + 1 + i // 2)\n    return tri\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    fib_seq = [1, 1]\n    for i in range(2, n + 1):\n        if i % 2 == 0:\n            tri_seq.append(tri_seq[i - 1] + 1)\n        else:\n            tri_seq.append(fib_seq[i - 1] + fib_seq[i - 2] + 1 + tri_seq[i - 1] / 2)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    fib_seq = [1, 1]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(tri_seq[i-1] + tri_seq[i-2])\n        else:\n            tri_seq.append(fib_seq[i-1] + fib_seq[i-2] + 1 + (i+1)//2)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    elif n % 2 == 0:\n        return 1 + n // 2\n    else:\n        return tri_fib(n-1) + tri_fib(n-2) + 1 + n//2\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    elif n % 2 == 0:\n        return 1 + n // 2\n    else:\n        return tri_fib(n - 1) + tri_fib(n - 2) + 1 + n // 2\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri.append(1 + i//2)\n        else:\n            tri.append(tri[-1] + tri[-2] + 1 + i//2)\n    return tri\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    else:\n        if n % 2 == 0:\n            return 1 + n // 2\n        else:\n            return tri_fib(n-1) + tri_fib(n-2) + 1 + n // 2\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    a, b = 1, 3\n    for i in range(n):\n        a, b = b, a + b\n        if i % 2 == 0:\n            a = 1 + i // 2\n    return a\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    else:\n        if n % 2 == 0:\n            return 1 + n / 2\n        else:\n            return tri_fib(n-1) + tri_fib(n+1) / 2 + 1\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    elif n % 2 == 0:\n        return 1 + n/2\n    else:\n        return tri_fib(n-1) + tri_fib(n+1) + 1 + n/2\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    a, b = 1, 3\n    for _ in range(n):\n        a, b = a + b, a + b + 1\n    return a\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    else:\n        if n % 2 == 0:\n            return 1 + n // 2\n        else:\n            return tri_fib(n-1) + tri_fib(n+1) // 2 + 1\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    a, b = 1, 3\n    for i in range(n):\n        a, b = b, (a + b) // 2 if i % 2 else a + b + 1\n    return a\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(1 + i // 2)\n        else:\n            tri_seq.append(tri_seq[-1] + tri_seq[-2] + 1 + i // 2)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(1 + i/2)\n        else:\n            tri_seq.append(tri_seq[-1] + tri_seq[-2] + 1 + i/2)\n    return tri_seq[:n+1]\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(1 + int(i/2))\n        else:\n            tri_seq.append(tri_seq[-2] + tri_seq[-1] + 1 + int((i+1)/2))\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(1 + i//2)\n        else:\n            tri_seq.append(tri_seq[-2] + tri_seq[-1] + 1 + i//2)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    tri_seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(1 + i//2)\n        else:\n            tri_seq.append(tri_seq[-2] + tri_seq[-1] + 1 + i//2)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    elif n % 2 == 0:\n        return 1 + n//2\n    else:\n        return tri_fib(n-1) + tri_fib(n-2) + 1 + n//2\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    elif n % 2 == 0:\n        return 1 + n//2\n    else:\n        return tri_fib(n-1) + tri_fib(n-2) + 1 + n//2\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    elif n % 2 == 0:\n        return 1 + n//2\n    else:\n        return tri_fib(n-1) + tri_fib(n-2) + 1 + n//2\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    elif n % 2 == 0:\n        return 1 + n//2\n    else:\n        return tri_fib(n-1) + tri_fib(n-2) + 1 + n//2\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    elif n % 2 == 0:\n        return 1 + n//2\n    else:\n        return tri_fib(n-1) + tri_fib(n-2) + 1 + n//2\n",
+                false
+            ]
+        ],
+        "level 2": [
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n in [0, 1]:\n        return [1] * n\n    else:\n        seq = [1, 3]\n        while len(seq) != n + 1:\n            index = len(seq)\n            if index % 2 == 0:\n                value = 1 + index // 2\n            else:\n                value = seq[-2] + seq[-1] + 1 + index // 2\n            if is_fibonacci(value):\n                seq.append(value)\n        return seq\n\ndef is_fibonacci(n):\n    return (5 * n * n + 4) % 7 == 0\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n <= 1:\n        return [1] if n == 0 else [1, 3]\n    else:\n        seq = [1, 3]\n        while len(seq) < n+1:\n            if seq[-1] % 2 == 0:\n                seq.append(1 + seq[-1] // 2)\n            else:\n                seq.append(seq[-1] + seq[-2] + 1 + seq[-1] // 2)\n            if is_fibonacci(seq[-1]):\n                seq.append(seq[-1])\n        return seq\n\ndef is_fibonacci(n):\n    return (5 * n * n + 4) % 7 == 0\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n in [0, 1]:\n        return [1]\n    if n == 2:\n        return [1, 3]\n\n    seq = [1, 3]\n    while len(seq) <= n + 1:\n        last_two = seq[-2:]\n        if len(seq) % 2 == 0:\n            seq.append(1 + seq[-1] // 2)\n        else:\n            seq.append(last_two[0] + last_two[1] + seq[-1] // 2)\n\n        if is_fibonacci(seq[-1]):\n            seq.append(seq[-1])\n\n    return seq[:n+1]\n\ndef is_fibonacci(n):\n    a, b = 5, 2\n    x = (5 ** 0.5 + 1) / 2\n    y = (5 ** 0.5 - 1) / 2\n    while a <= n:\n        if a == n:\n            return True\n        elif b == n:\n            return True\n        a, b = b, a + b\n        x, y = y, x + y\n    return False\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n <= 1:\n        return [1]\n    if n == 2:\n        return [1, 3]\n    sequence = [1, 3]\n    while len(sequence) <= n + 1:\n        if len(sequence) % 2 == 0:\n            sequence.append(1 + sequence[-1] / 2)\n        else:\n            sequence.append(sequence[-1] + sequence[-2] + sequence[-1] / (sequence[-1] + 2))\n        if is_fibonacci(sequence[-1]):\n            sequence.append(sequence[-1])\n    return sequence[:n+1]\n\ndef is_fibonacci(n):\n    phi = (1 + 5**0.5) / 2\n    return round(n * phi) == round(phi * n)\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n <= 1:\n        return [1]\n    if n == 2:\n        return [1, 3]\n    fib_seq = [1, 3]\n    while len(fib_seq) < n + 1:\n        last_two = fib_seq[-2:]\n        if len(fib_seq) % 2 == 0:\n            fib_seq.append(1 + fib_seq[-1] / 2)\n        else:\n            fib_seq.append(last_two[0] + last_two[1] + fib_seq[-1] / 2)\n        if is_fib_num(fib_seq[-1]):\n            fib_seq.append(fib_seq[-1])\n    return fib_seq[:n+1]\n\ndef is_fib_num(n):\n    phi = (1 + 5**0.5) / 2\n    return round(n * phi) == round(phi * n)\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n <= 1:\n        return [1]\n    if n == 2:\n        return [1, 3]\n\n    result = [1, 3]\n    for i in range(3, n+1):\n        if i % 2 == 0:\n            result.append(result[i//2] + 1)\n        else:\n            result.append(result[i-1] + result[i-2] + 1)\n        if is_fibonacci(result[-1]):\n            result.append(result[-1])\n        else:\n            result.pop()\n    return result\n\ndef is_fibonacci(n):\n    a, b = 5*n*n, 3*n + 1\n    return (a + b) % 4 == 0\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n <= 1:\n        return [1]\n    if n == 2:\n        return [1, 3]\n\n    result = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            result.append(result[i//2] + 1)\n        else:\n            result.append(result[i//2-1] + result[i//2] + 1)\n\n        if not is_fibonacci(result[-1]):\n            result.pop()\n            break\n\n    return result\n\ndef is_fibonacci(n):\n    a, b = 5*n*n, 8*n + 1\n    root = a**0.5\n    if root == int(root):\n        return True\n    else:\n        return False\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n <= 1:\n        return [1] * n\n    if n == 2:\n        return [1, 3]\n\n    seq = [1, 3]\n    for i in range(2, n + 1):\n        if i % 2 == 0:\n            seq.append(int((i + 1) / 2))\n        else:\n            seq.append(int(seq[i - 1] + seq[i - 2] + (i + 1) / 2))\n\n        if is_fib(seq[-1]):\n            seq.append(seq[-1])\n\n    return seq\n\ndef is_fib(n):\n    a, b = 5 * math.sqrt(5) / 4, (5 - math.sqrt(5)) / 4\n    return round(pow(pow(a, 2) + pow(b, 2), 0.5) - pow(a, 2) / pow(b, 2)) == n\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n <= 1:\n        return [1]\n    if n == 2:\n        return [1, 3]\n    fib_list = [1, 3]\n    while len(fib_list) < n + 1:\n        for i in range(len(fib_list)):\n            if i % 2 == 0:\n                fib_list.append(fib_list[i] + (fib_list[i] + 1) / 2)\n            else:\n                fib_list.append(fib_list[i] + fib_list[i + 1] + 1 + (fib_list[i + 1] + 1) / 2)\n        if not is_fibonacci(fib_list[-1]):\n            fib_list = fib_list[:-1]\n    return fib_list\n\ndef is_fibonacci(n):\n    a, b = 5 * math.sqrt(5) / 4, math.sqrt(5) / 2\n    return abs(round(a * n / b) - round(b * n / a)) / n <= 1e-9\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n <= 1:\n        return [1] if n == 0 else [1, 3]\n\n    fib_seq = [1, 3]\n\n    while len(fib_seq) < n + 1:\n        if len(fib_seq) % 2 == 0:\n            fib_seq.append(1 + fib_seq[len(fib_seq) - 1] / 2)\n        else:\n            fib_seq.append(fib_seq[-2] + fib_seq[-1] + 1 + fib_seq[len(fib_seq)] / 2)\n\n        if not is_fibonacci(fib_seq[-1]):\n            fib_seq.pop()\n\n    return fib_seq\n\ndef is_fibonacci(n):\n    a, b = 5, 3\n    while b < n:\n        a, b = b, a + b\n        if n == b:\n            return True\n    return False\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n <= 1:\n        return [1] * n\n    fib_list = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            fib_list.append(1 + int(i/2))\n        else:\n            fib_list.append(fib_list[-1] + fib_list[-2] + 1 + int(i/2))\n        if not is_fibonacci(fib_list[-1]):\n            return []\n    return fib_list\n\ndef is_fibonacci(n):\n    a, b = 5, 3\n    while b < n:\n        a, b = b, a + b\n    return b == n\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n in [0, 1]:\n        return [1]\n    elif n == 2:\n        return [1, 3]\n\n    tri_seq = [1, 3]\n    fib_seq = [1, 3]\n\n    for i in range(n+1):\n        if i % 2 == 0:\n            tri_seq.append(int(((i + 1) / 2) ** 0.5) + 1)\n        else:\n            tri_seq.append(int(((i + 1) / 2) ** 0.5))\n\n        if is_fib_num(tri_seq[-1]):\n            fib_seq.append(tri_seq[-1])\n\n    return fib_seq\n\ndef is_fib_num(n):\n    phi = (1 + 5**0.5) / 2\n    return round(phi**n / 5**(n/2)) == round(phi**(n-1) / 5**((n-1)/2))\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n <= 1:\n        return [1]\n    fib_seq = [1, 3]\n    for i in range(n-1):\n        even_idx = fib_seq[i] + (fib_seq[i] / 2)\n        odd_idx = fib_seq[i+1] + fib_seq[i+2] + (fib_seq[i+1] / 2)\n        fib_seq.append(even_idx if i % 2 == 0 else odd_idx)\n    return fib_seq[:n+1]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n <= 1:\n        return [1]\n    else:\n        fib_seq = [1, 3]\n        while len(fib_seq) < n + 1:\n            new_val = fib_seq[-1] + fib_seq[-2]\n            if new_val % 2 == 0:\n                fib_seq.append(new_val // 2)\n            else:\n                fib_seq.append((fib_seq[-1] + fib_seq[-2]) // 2)\n            if is_fibonacci(new_val):\n                fib_seq.append(new_val)\n        return fib_seq\n\ndef is_fibonacci(n):\n    phi = (1 + 5**0.5) / 2\n    return round(n * phi) == round(phi * n)\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n <= 1:\n        return [1]\n    elif n == 2:\n        return [1, 3]\n    else:\n        sequence = [1, 3]\n        while len(sequence) < n + 1:\n            last_two = sequence[-2:]\n            if len(last_two) == 1:\n                sequence.append(last_two[0] + 1)\n            else:\n                sequence.append(last_two[0] + last_two[1])\n            index = len(sequence) - 1\n            if index % 2 == 0:\n                sequence.append(1 + index // 2)\n            elif index % 2 == 1:\n                sequence.append(last_two[0] + last_two[1] + 1 + index // 2)\n            if is_fibonacci(sequence[-1]):\n                sequence.append(sequence[-1])\n        return sequence\n\ndef is_fibonacci(n):\n    a, b = 5*sqrt(5) - 4, (5*sqrt(5))/2\n    return (n*(a**2) + (b**2))/2 == n*(a**2) + (b**2)\n",
+                false
+            ],
+            [
+                "\ndef tri_fib(n):\n    if n <= 1:\n        return [1]\n    else:\n        seq = [1, 3]\n        for i in range(2, n+1):\n            if i % 2 == 0:\n                seq.append(seq[-1] + seq[i//2])\n            else:\n                seq.append(seq[-1] + seq[i//2] + 1)\n            if is_fib(seq[-1]):\n                seq.append(seq[-1])\n            else:\n                seq.pop()\n        return seq\n\ndef is_fib(n):\n    phi = (1 + 5**0.5) / 2\n    return round(phi**n / 5**n) == round(phi**(n+1) / 5**(n+1))\n",
+                false
+            ]
+        ],
+        "level 3": [
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n\n    ans = [1, 3]\n    while len(ans) != n + 1:\n        i = len(ans) - 1\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n        if is_perfect_square(candidate_ans):\n            ans.append(candidate_ans)\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n <= 1:\n        return [1]\n    if n == 2:\n        return [1, 3]\n\n    ans = [1, 3]\n    i = 2\n    while len(ans) != n + 1:\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n\n        if is_perfect_square(candidate_ans):\n            ans.append(candidate_ans)\n\n        i += 1\n\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n\n    ans = [1, 3]\n    i = 2\n\n    while len(ans) != n + 1:\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n\n        if is_perfect_square(candidate_ans):\n            ans.append(candidate_ans)\n\n        i += 1\n\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    \n    ans = [1, 3]\n    i = 2\n    while len(ans) != n + 1:\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n        if is_perfect_square(candidate_ans):\n            ans.append(candidate_ans)\n        i += 1\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n <= 1:\n        return [1]\n    elif n == 2:\n        return [1, 3]\n\n    ans = [1, 3]\n    i = 2\n\n    while len(ans) != n + 1:\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n\n        if is_perfect_square(candidate_ans):\n            ans.append(candidate_ans)\n\n        i += 1\n\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n in [0, 1]:\n        return [1]\n    elif n == 2:\n        return [1, 3]\n\n    ans = [1, 3]\n    i = 2\n    while len(ans) != n + 1:\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n        if is_perfect_square(candidate_ans):\n            ans.append(candidate_ans)\n        i += 1\n\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n <= 1:\n        return [1]\n    elif n == 2:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 0\n        while len(ans) != n + 1:\n            candidate_ans = 1 + i / 2 if i % 2 == 0 else ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(candidate_ans):\n                ans.append(candidate_ans)\n            i += 1\n        return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n in [0, 1]:\n        return [1]\n    ans = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n        if is_perfect_square(candidate_ans):\n            ans.append(candidate_ans)\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5*x*x + 4) % 1 == 0 or math.sqrt(5*x*x - 4) % 1 == 0\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0 or n == 1:\n        return [1]\n    elif n == 2:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 2\n        while len(ans) != n + 1:\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(candidate_ans):\n                ans.append(candidate_ans)\n            i += 1\n        return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n\n    ans = [1, 3]\n    i = 2\n\n    while len(ans) != n + 1:\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n\n        if is_perfect_square(5 * candidate_ans * candidate_ans + 4) or is_perfect_square(5 * candidate_ans * candidate_ans - 4):\n            ans.append(candidate_ans)\n\n        i += 1\n\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(x) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    if n == 1:\n        return [1, 3]\n\n    ans = [1, 3]\n    i = 2\n    while len(ans) != n + 1:\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n\n        if is_perfect_square(5 * candidate_ans * candidate_ans + 4) or is_perfect_square(5 * candidate_ans * candidate_ans - 4):\n            ans.append(candidate_ans)\n\n        i += 1\n\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(x) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n in [0, 1]:\n        return [1]\n    if n == 2:\n        return [1, 3]\n\n    ans = [1, 3]\n    i = 0\n    while len(ans) != n + 1:\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n        if is_perfect_square(5 * candidate_ans * candidate_ans + 4) or is_perfect_square(5 * candidate_ans * candidate_ans - 4):\n            ans.append(candidate_ans)\n        i += 1\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(x) % 1 == 0\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    if n == 1:\n        return [1, 3]\n\n    ans = [1, 3]\n    i = 2\n    while len(ans) != n + 1:\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n\n        if is_perfect_square(5 * candidate_ans * candidate_ans + 4) or is_perfect_square(5 * candidate_ans * candidate_ans - 4):\n            ans.append(candidate_ans)\n\n        i += 1\n\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(x) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        for i in range(2, n+1):\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(5*candidate_ans*candidate_ans + 4) or is_perfect_square(5*candidate_ans*candidate_ans - 4):\n                ans.append(candidate_ans)\n        return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(x) % 1 == 0\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 0\n        while len(ans) != n + 1:\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(candidate_ans):\n                ans.append(candidate_ans)\n            i += 1\n        return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    ans = [1, 3]\n    i = 2\n    while len(ans) != n + 1:\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n        if is_perfect_square(candidate_ans):\n            ans.append(candidate_ans)\n        i += 1\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 0\n        while len(ans) != n + 1:\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(candidate_ans):\n                ans.append(candidate_ans)\n            i += 1\n        return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 2\n        while len(ans) != n+1:\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(candidate_ans):\n                ans.append(candidate_ans)\n            i += 1\n        return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5*x*x + 4) == math.sqrt(5*x*x - 4)\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 0\n        while len(ans) != n + 1:\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(candidate_ans):\n                ans.append(candidate_ans)\n            i += 1\n        return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 2\n        while len(ans) != n + 1:\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(candidate_ans):\n                ans.append(candidate_ans)\n            i += 1\n        return ans\n\ndef is_perfect_square(x):\n    return (5 * x * x + 4) ** 0.5 == math.sqrt(5 * x * x + 4) or (5 * x * x - 4) ** 0.5 == math.sqrt(5 * x * x - 4)\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    ans = [1, 3]\n    i = 2\n    while len(ans) != n + 1:\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n        if is_perfect_square(candidate_ans):\n            ans.append(candidate_ans)\n        i += 1\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 0\n        while len(ans) != n + 1:\n            i += 1\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(candidate_ans):\n                ans.append(candidate_ans)\n        return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 2\n        while len(ans) != n+1:\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(candidate_ans):\n                ans.append(candidate_ans)\n            i += 1\n        return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5*x*x + 4) % 1 == 0 or math.sqrt(5*x*x - 4) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 0\n        while len(ans) != n + 1:\n            i += 1\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(candidate_ans):\n                ans.append(candidate_ans)\n        return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 2\n        while len(ans) != n + 1:\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(5*candidate_ans*candidate_ans + 4) or is_perfect_square(5*candidate_ans*candidate_ans - 4):\n                ans.append(candidate_ans)\n            i += 1\n        return ans\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    ans = [1, 3]\n    i = 2\n    while len(ans) != n + 1:\n        if i % 2 == 0:\n            candidate_ans = 1 + i / 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n        if is_perfect_square(5 * candidate_ans * candidate_ans + 4) or is_perfect_square(5 * candidate_ans * candidate_ans - 4):\n            ans.append(candidate_ans)\n        i += 1\n    return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5 * x * x + 4) % 1 == 0 or math.sqrt(5 * x * x - 4) % 1 == 0\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 0\n        while len(ans) != n + 1:\n            i += 1\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(5 * candidate_ans * candidate_ans + 4) or is_perfect_square(5 * candidate_ans * candidate_ans - 4):\n                ans.append(candidate_ans)\n        return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(x) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 2\n        while len(ans) != n+1:\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(candidate_ans):\n                ans.append(candidate_ans)\n            i += 1\n        return ans\n\ndef is_perfect_square(x):\n    return math.sqrt(5*x*x + 4) % 1 == 0 or math.sqrt(5*x*x - 4) % 1 == 0\n",
+                true
+            ],
+            [
+                "\nimport math\n\ndef tri_fib(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        i = 2\n        while len(ans) != n + 1:\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if is_perfect_square(5 * candidate_ans * candidate_ans + 4) or is_perfect_square(5 * candidate_ans * candidate_ans - 4):\n                ans.append(candidate_ans)\n            i += 1\n        return ans\n",
+                false
+            ]
+        ]
+    },
+    "1": {
+        "level 1": [
+            [
+                "\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for _ in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n    if a % 2 == 0 and a != 2:\n        return a // 2\n    else:\n        return a\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    fib_seq = [0, 1, 1, 2]\n    for i in range(n):\n        sum = fib_seq[i] + fib_seq[i+1] + fib_seq[i+2] + fib_seq[i+3]\n        if is_prime(sum):\n            fib_seq.append(sum)\n    return fib_seq[n]\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(n):\n        if n == 0 or n == 1:\n            return False\n        for i in range(2, int(n ** 0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    def fib4(n):\n        a, b, c, d = 0, 1, 1, 2\n        for _ in range(n):\n            a, b, c, d = b, c, d, a + b + c + d\n        return a, b, c, d\n\n    a, b, c, d = fib4(n)\n    while not is_prime(a):\n        a, b, c, d = fib4(n + 1)\n    return a\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        e = a + b + c + d\n        if is_prime(e):\n            a, b, c, d = b, c, d, e\n    return e\n\ndef is_prime(n):\n    if n == 1:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for _ in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n    if a % 2 == 0 and a % 3 == 0:\n        return a\n    else:\n        return -1\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 1\n    elif n == 2:\n        return 1\n    elif n == 3:\n        return 2\n    else:\n        a, b, c, d = 0, 1, 1, 2\n        for i in range(n-3):\n            a, b, c, d = b, c, d, a + b + c + d\n            if a % 2 == 0:\n                a //= 2\n            if b % 2 == 0:\n                b //= 2\n            if c % 2 == 0:\n                c //= 2\n            if d % 2 == 0:\n                d //= 2\n        return a + b + c + d\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 1\n    elif n == 2:\n        return 1\n    elif n == 3:\n        return 2\n    else:\n        a, b, c, d = 0, 1, 1, 2\n        for i in range(n-3):\n            a, b, c, d = b, c, d, a + b + c + d\n            if is_prime(a):\n                return a\n        return a\n\ndef is_prime(n):\n    if n == 1 or n == 0:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    if n == 2:\n        return 1\n    if n == 3:\n        return 2\n    else:\n        return sum(prime_fib4(n-1)) + sum(prime_fib4(n-2)) + sum(prime_fib4(n-3)) + sum(prime_fib4(n-4))\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    if n <= 3:\n        return n\n    else:\n        a, b, c, d = 0, 1, 1, 2\n        for i in range(n-3):\n            a, b, c, d = b, c, d, a + b + c + d\n        return a + b + c + d\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    if n <= 3:\n        return n\n    else:\n        a, b, c, d = 0, 1, 1, 2\n        for i in range(n-3):\n            a, b, c, d = b, c, d, a + b + c + d\n            if a % 2 == 0:\n                a += 1\n            if b % 2 == 0:\n                b += 1\n            if c % 2 == 0:\n                c += 1\n            if d % 2 == 0:\n                d += 1\n        return a + b + c + d\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for _ in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n    return d\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for _ in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n    return d\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n    return d\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n    return d\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for _ in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n    return d\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    elif n == 2:\n        return 1\n    else:\n        return sum(prime_fib4(n-i) for i in range(4))\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    if n <= 3:\n        return n\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n-3):\n        a, b, c, d = b, c, d, a + b + c + d\n        if not is_prime(a):\n            a, b, c, d = b, c, d, a + 1\n    return a\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    if n <= 3:\n        return n\n    else:\n        a, b, c, d = 0, 1, 1, 2\n        for i in range(n-3):\n            a, b, c, d = b, c, d, a + b + c + d\n            if a % 2 == 0 or b % 2 == 0 or c % 2 == 0 or d % 2 == 0:\n                a, b, c, d = b, c, d, a + b + c + d\n        return d\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    if n <= 3:\n        return [0, 1, 2][n]\n    else:\n        a, b, c, d = 0, 1, 1, 2\n        for i in range(n-3):\n            a, b, c, d = b, c, d, a + b + c + d\n        return d\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    if n <= 3:\n        return n\n    else:\n        a, b, c, d = 0, 1, 1, 2\n        for i in range(n-3):\n            a, b, c, d = b, c, d, a + b + c + d\n            if a % 2 == 0 or b % 2 == 0 or c % 2 == 0 or d % 2 == 0:\n                a, b, c, d = a + 1, b + 1, c + 1, d + 1\n        return d\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b + b\n    return a\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b = 0, 1\n    for i in range(n):\n        a, b = b, a + b + b\n    return a\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b = 0, 1\n    for i in range(n):\n        a, b = b, a + b + b\n    return a\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b = 0, 1\n    for i in range(n):\n        a, b = b, a + b + b + b\n    return a\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b = 0, 1\n    for i in range(n):\n        a, b = b, a + b + b + b\n    return a\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    if n <= 3:\n        return [0, 1, 1, 2][n]\n    else:\n        a, b, c, d = 0, 1, 1, 2\n        for _ in range(n - 3):\n            a, b, c, d = b, c, d, a + b + c + d\n        return d\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    if n <= 3:\n        return n\n    else:\n        a, b, c, d = 0, 1, 1, 2\n        for i in range(n-3):\n            a, b, c, d = b, c, d, a + b + c + d\n            if not is_prime(a):\n                a, b, c, d = b, c, d, a + b + c\n            if not is_prime(b):\n                a, b, c, d = c, d, a, b + c + d\n            if not is_prime(c):\n                a, b, c, d = d, a, b, c + d\n            if not is_prime(d):\n                a, b, c, d = a + b + c, b + c + d, c + d, a\n        return a\n\ndef is_prime(n):\n    if n == 1:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        e = a + b + c + d\n        if is_prime(e):\n            a, b, c, d = b, c, d, e\n    return e\n\ndef is_prime(n):\n    if n == 1:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        e = a + b + c + d\n        if is_prime(e):\n            a, b, c, d = b, c, d, e\n    return e\n\ndef is_prime(n):\n    if n == 1:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for _ in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n    return d\n",
+                false
+            ]
+        ],
+        "level 2": [
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef prime_check(n):\n    if n == 0 or n == 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef prime_fib4(n):\n    a, b = 0, 1\n    count = 0\n    while count < n:\n        a, b = b, a + b\n        if prime_check(a):\n            count += 1\n    return a\n",
+                false
+            ],
+            [
+                "\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef prime_fib4(n):\n    a, b = 0, 1\n    count = 0\n    while count < n:\n        a, b = b, a + b\n        if is_prime(a):\n            count += 1\n    return a\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(n):\n        if n == 1:\n            return False\n        for i in range(2, int(n ** 0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    count = 3\n    while count <= n:\n        fib_seq.append(sum(fib_seq[-4:]) if is_prime(sum(fib_seq[-4:])) else 0)\n        count += 1\n\n    return fib_seq[n]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    count = 4\n    while len(fib_seq) <= n:\n        fib_seq.append(sum(fib_seq[-count:]) + 1)\n        if is_prime(fib_seq[-1]):\n            count += 1\n    return fib_seq[n]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    for i in range(3, n + 1):\n        fib_seq.append(fib_seq[-1] + fib_seq[-2] + fib_seq[-3] + fib_seq[-4])\n        if is_prime(fib_seq[-1]):\n            fib_seq = fib_seq[:-3]\n    return fib_seq[-1]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n        if is_prime(a):\n            return a\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(n):\n        if n == 1 or n == 0:\n            return False\n        for i in range(2, int(n ** 0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    for i in range(3, n):\n        fib_seq.append(sum(fib_seq[-4:]) + fib_seq[-1])\n        if is_prime(fib_seq[-1]):\n            fib_seq = fib_seq[:-1]\n    return fib_seq[n]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    while len(fib_seq) <= n:\n        fib_seq.append(sum(fib_seq[-4:]) + fib_seq[-1])\n        if is_prime(fib_seq[-1]):\n            fib_seq.pop()\n\n    return fib_seq[n]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    for i in range(3, n):\n        fib_seq.append(fib_seq[-1] + fib_seq[-2] + fib_seq[-3] + fib_seq[-4])\n        if is_prime(fib_seq[-1]):\n            return fib_seq[-1]\n    return fib_seq[-1]\n",
+                false
+            ],
+            [
+                "\ndef is_prime(n):\n    if n == 0 or n == 1:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef prime_fib4(n):\n    def fib(n):\n        a, b = 0, 1\n        for _ in range(n):\n            a, b = b, a + b\n        return a\n\n    def prime_fib(n):\n        result = []\n        for i in range(n):\n            num = fib(i)\n            if is_prime(num):\n                result.append(num)\n        return result\n\n    return prime_fib(n)[-1]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    for i in range(3, n):\n        fib_seq.append(fib_seq[i - 1] + fib_seq[i - 2])\n        if is_prime(fib_seq[-1]):\n            fib_seq.append(fib_seq[-1])\n        else:\n            fib_seq.pop()\n\n    return fib_seq[n]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    while len(fib_seq) <= n:\n        fib_seq.append(fib_seq[-1] + fib_seq[-2] + fib_seq[-3] + fib_seq[-4])\n        if is_prime(fib_seq[-1]):\n            fib_seq.pop()\n    return fib_seq[n]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    count = 3\n    while count < n:\n        fib_seq.append(sum(fib_seq[-4:]) % 10)\n        if is_prime(fib_seq[-1]):\n            count += 1\n\n    return fib_seq[n]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    count = 3\n    while count <= n:\n        fib_seq.append(sum(fib_seq[-4:]) + sum(fib_seq[-3:]))\n        if is_prime(fib_seq[-1]):\n            count += 1\n\n    return fib_seq[n]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(n):\n        if n == 1 or n == 0:\n            return False\n        for i in range(2, int(n ** 0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    prime_seq = []\n    for i in range(4, n + 1):\n        fib_seq.append(sum(fib_seq[-4:]))\n        if is_prime(fib_seq[-1]):\n            prime_seq.append(fib_seq[-1])\n\n    return prime_seq[n]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    count = 3\n    while count < n:\n        fib_seq.append(sum(fib_seq[-4:]))\n        if is_prime(fib_seq[-1]):\n            count += 1\n\n    return fib_seq[n]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    for i in range(n):\n        term = sum(fib_seq[-4:])\n        if is_prime(term):\n            fib_seq.append(term)\n\n    return fib_seq[n]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    count = 0\n    while count < n:\n        fib_seq = fib_seq[-4:]\n        new_term = sum(fib_seq)\n        if is_prime(new_term):\n            fib_seq.append(new_term)\n            count += 1\n    return fib_seq[-1]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(n):\n        if n <= 1:\n            return False\n        for i in range(2, int(n ** 0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    for i in range(4, n + 1):\n        fib_seq.append(sum(fib_seq[-4:]) % 1000000007)\n        if is_prime(fib_seq[-1]):\n            return fib_seq[-1]\n    return -1\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num < 2:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    for i in range(n):\n        prime_terms = [fib_seq[i] for i in range(len(fib_seq)) if is_prime(fib_seq[i])]\n        fib_seq = [sum(prime_terms[-4:])] + prime_terms\n\n    return fib_seq[n]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    for i in range(3, n + 1):\n        fib_seq.append(sum(fib_seq[-4:]) + 1)\n        if is_prime(fib_seq[-1]):\n            return fib_seq[-1]\n    return fib_seq[-1]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    for i in range(3, n):\n        fib_seq.append(sum(fib_seq[-4:]) - fib_seq[-5])\n        if is_prime(fib_seq[-1]):\n            fib_seq.pop()\n\n    return fib_seq[n]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    for i in range(3, n+1):\n        fib_seq.append(sum(fib_seq[-4:]) + sum(fib_seq[-3:]))\n        if is_prime(fib_seq[-1]):\n            return fib_seq[-1]\n    return None\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    for i in range(3, n):\n        fib_seq.append(sum(fib_seq[-4:]) - fib_seq[-5])\n        if is_prime(fib_seq[-1]):\n            fib_seq.append(fib_seq[-1])\n    return fib_seq[-1]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(num):\n        if num == 1:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    fib_seq = [0, 1, 1, 2]\n    for i in range(3, n + 1):\n        fib_seq.append(sum(fib_seq[-4:]) + 1)\n        if is_prime(fib_seq[-1]):\n            fib_seq = fib_seq[:-1]\n    return fib_seq[-1]\n",
+                false
+            ]
+        ],
+        "level 3": [
+            [
+                "\nimport math\n\ndef prime_fib4(n):\n    if n < 4:\n        return [0, 1, 1, 2][n]\n\n    last_terms = [0, 1, 1, 2]\n    for i in range(n - 3):\n        new_term = sum(last_terms[-4:])\n        if is_prime(new_term):\n            last_terms.append(new_term)\n        else:\n            i -= 1\n\n    return last_terms[-1]\n\ndef is_prime(p):\n    if p == 2 or p == 3:\n        return True\n    if p < 2 or p % 2 == 0 or p % 3 == 0:\n        return False\n    for i in range(5, int(math.sqrt(p)) + 1, 6):\n        if p % i == 0 or p % (i + 2) == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef prime_fib4(n):\n    def is_prime(p):\n        for i in range(2, int(math.sqrt(p)) + 1):\n            if p % i == 0:\n                return False\n        return True\n\n    a, b, c, d = 0, 1, 1, 2\n    for _ in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n        if is_prime(d):\n            n -= 1\n            if n == 0:\n                return d\n    return -1\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef prime_fib4(n):\n    from math import sqrt\n\n    def is_prime(p):\n        for i in range(2, int(sqrt(p)) + 1):\n            if p % i == 0:\n                return False\n        return True\n\n    terms = [0, 1, 1, 2]\n    count = 4\n    while len(terms) <= n:\n        terms += [sum(terms[-count:])]\n        if is_prime(terms[-1]):\n            count += 1\n    return terms[n]\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef prime_fib4(n):\n    from math import sqrt\n    def is_prime(p):\n        for i in range(2, int(sqrt(p)) + 1):\n            if p % i == 0:\n                return False\n        return True\n\n    a, b, c, d = 0, 1, 1, 2\n    count = 0\n    while count < n:\n        a, b, c, d = b, c, d, a + b + c + d\n        if is_prime(d):\n            count += 1\n    return d\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef prime_fib4(n):\n    from math import sqrt\n    def is_prime(p):\n        for i in range(2, int(sqrt(p)) + 1):\n            if p % i == 0:\n                return False\n        return True\n\n    last_terms = [0, 1, 1, 2]\n    count = 4\n    for i in range(n - 3):\n        new_term = sum(last_terms[-count:])\n        if is_prime(new_term):\n            count += 1\n            last_terms.append(new_term)\n        else:\n            count = 4\n            last_terms.append(new_term)\n\n    return last_terms[n]\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef is_prime(p):\n    for i in range(2, int(math.sqrt(p)) + 1):\n        if p % i == 0:\n            return False\n    return True\n\ndef prime_fib4(n):\n    a, b = 0, 1\n    for i in range(n):\n        a, b = b, a + b + c + d\n        c, d = a, b\n    return a if is_prime(a) else b if is_prime(b) else -1\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef is_prime(p):\n    for i in range(2, int(math.sqrt(p)) + 1):\n        if p % i == 0:\n            return False\n    return True\n\ndef prime_fib4(n):\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    if n == 2:\n        return 1\n    if n == 3:\n        return 2\n\n    def fib4(n):\n        a, b, c, d = 0, 1, 1, 2\n        for _ in range(n):\n            a, b, c, d = b, c, d, a + b + c + d\n        return d\n\n    for i in range(n - 4):\n        fib4(4)\n\n    p = fib4(4)\n    while not is_prime(p):\n        fib4(4)\n        p = fib4(4)\n\n    return p\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef is_prime(p):\n    for i in range(2, int(math.sqrt(p)) + 1):\n        if p % i == 0:\n            return False\n    return True\n\ndef prime_fib4(n):\n    a, b = 0, 1\n    for i in range(n):\n        a, b = b, a + b + b + b\n        if is_prime(a):\n            return a\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef is_prime(p):\n    for i in range(2, int(math.sqrt(p)) + 1):\n        if p % i == 0:\n            return False\n    return True\n\ndef prime_fib4(n):\n    a, b = 0, 1\n    for i in range(4):\n        a, b = b, a + b\n        if is_prime(a):\n            n -= 1\n            if n == 0:\n                return a\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef prime_fib4(n):\n    def is_prime(p):\n        for i in range(2, int(math.sqrt(p)) + 1):\n            if p % i == 0:\n                return False\n        return True\n\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n        if is_prime(d):\n            i += 1\n    return d\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\nfrom math import is_prime\n\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n        if is_prime(a):\n            return a\n",
+                false
+            ],
+            [
+                "\nfrom math import is_prime\n\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n        if is_prime(d):\n            return d\n",
+                false
+            ],
+            [
+                "\nfrom math import is_prime\n\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n        if is_prime(a):\n            return a\n",
+                false
+            ],
+            [
+                "\nfrom math import is_prime\n\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n        if is_prime(a):\n            return a\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(p):\n        for i in range(2, int(p ** 0.5) + 1):\n            if p % i == 0:\n                return False\n        return True\n\n    a, b, c, d = 0, 1, 1, 2\n    for _ in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n        if is_prime(d):\n            return d\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(p):\n        for i in range(2, int(p ** 0.5) + 1):\n            if p % i == 0:\n                return False\n        return True\n\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n        if is_prime(a):\n            return a\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    def is_prime(p):\n        for i in range(2, int(p**0.5) + 1):\n            if p % i == 0:\n                return False\n        return True\n\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n        if is_prime(d):\n            return d\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b = 0, 1\n    for i in range(n):\n        c = a + b\n        d = a + b + c\n        if is_prime(c) and is_prime(d):\n            a, b = b, d\n    return b\n\ndef is_prime(n):\n    if n == 1 or n == 0:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b = 0, 1\n    c, d = 1, 2\n    for _ in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n        if is_prime(a):\n            n -= 1\n    return a\n\ndef is_prime(n):\n    if n == 1 or n == 0:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b = 0, 1\n    fib = [a, b]\n    for i in range(n-2):\n        c = a + b\n        d = b + c\n        fib += [c, d]\n        a, b = c, d\n    for i in range(n):\n        if is_prime(fib[i]):\n            return fib[i]\n",
+                false
+            ],
+            [
+                "\ndef prime_fib4(n):\n    a, b = 0, 1\n    for i in range(n):\n        c = a + b\n        a, b = b, c\n        if is_prime(c):\n            n -= 1\n    return c\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\nimport math\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(math.sqrt(n)) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        e = a + b + c + d\n        if is_prime(e):\n            return e\n        a, b, c, d = b, c, d, e\n    return -1\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        a, b, c, d = b, c, d, a + b + c + d\n        if is_prime(d):\n            return d\n    return -1\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(math.sqrt(n)) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndef prime_fib4(n):\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        e = a + b + c + d\n        if is_prime(e):\n            return e\n        a, b, c, d = b, c, d, e\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef prime_fib4(n):\n    def is_prime(p):\n        return math.sqrt(p) % 1 == 0\n\n    a, b, c, d = 0, 1, 1, 2\n    for i in range(n):\n        e = a + b + c + d\n        if is_prime(e):\n            return e\n        a, b, c, d = b, c, d, e\n",
+                false
+            ]
+        ]
+    },
+    "2": {
+        "level 1": [
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 0\n    elif n == 2:\n        return 1\n    else:\n        a = tri_fibfib(n-1) + tri_fibfib(n-2)\n        b = tri_fibfib(n-3) + tri_fibfib(n-4)\n        if n % 2 == 0:\n            return a + (n//2)\n        else:\n            return a + b + (n//2) + 1\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 2:\n        return n\n    else:\n        a = tri_fibfib(n-3)\n        b = tri_fibfib(n-2)\n        c = tri_fibfib(n-1)\n        if n % 2 == 0:\n            return a + b + c\n        else:\n            return a + b + c + 1\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 2:\n        return n\n    else:\n        fibfib_n_2 = tri_fibfib(n - 2)\n        fibfib_n_3 = tri_fibfib(n - 3)\n        if n % 2 == 0:\n            return fibfib_n_2 + fibfib_n_3\n        else:\n            return fibfib_n_2 + fibfib_n_3 + 1 + n // 2\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 0\n    elif n == 2:\n        return 1\n    else:\n        a = tri_fibfib(n-1) + tri_fibfib(n-2)\n        b = tri_fibfib(n-3)\n        if n % 2 == 0:\n            return a + b\n        else:\n            return a + b + 1 + (n+1) // 2\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_figib(n):\n    if n <= 2:\n        return n\n    else:\n        fibfib_prev = tri_figib(n-1)\n        fibfib_prev2 = tri_figib(n-2)\n        tri_n = tri(n)\n        return fibfib_prev + fibfib_prev2 + tri_n\n",
+                false
+            ],
+            [
+                "\ndef tri_figib(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 0\n    elif n == 2:\n        return 1\n    else:\n        fibfib_prev = tri_figib(n-1)\n        fibfib_prev2 = tri_figib(n-2)\n        tri_prev = tri(n-3)\n        return fibfib_prev + fibfib_prev2 + tri_prev\n\ndef tri(n):\n    if n % 2 == 0:\n        return tri(n/2) + 1\n    else:\n        return tri(n-1) + tri(n-2) + 1\n",
+                false
+            ],
+            [
+                "\ndef tri_figib(n):\n    if n <= 2:\n        return n\n    else:\n        fibfib_prev = 0\n        fibfib_curr = 0\n        tri_prev = 1\n        tri_curr = 3\n        for i in range(3, n+1):\n            if i % 2 == 0:\n                fibfib_curr = fibfib_prev + tri_prev\n                tri_prev = tri_curr\n                tri_curr = tri_prev + tri_curr\n            else:\n                fibfib_curr = fibfib_prev + tri_curr\n                tri_prev = tri_curr\n                tri_curr = tri_prev + tri_curr\n            fibfib_prev = fibfib_curr\n        return fibfib_curr\n",
+                false
+            ],
+            [
+                "\ndef tri_figib(n):\n    if n <= 2:\n        return n\n    else:\n        fibfib_prev = fibfib(n-1)\n        fibfib_prev_prev = fibfib(n-2)\n        tri_prev = tri(n-3)\n        if n % 2 == 0:\n            return fibfib_prev + fibfib_prev_prev + tri_prev\n        else:\n            return fibfib_prev + fibfib_prev_prev + tri_prev + 1\n\ndef tri(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    else:\n        if n % 2 == 0:\n            return (n//2) + 1\n        else:\n            return (n-1) + (n//2)\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    if n <= 2:\n        return n\n    else:\n        fibfib_n_2 = tri_fibfig(n-2)\n        fibfib_n_3 = tri_fibfig(n-3)\n        tri_n = tri(n)\n        return fibfib_n_2 + fibfib_n_3 + tri_n\n\ndef tri(n):\n    if n <= 1:\n        return 1\n    else:\n        return 1 + (n/2) if n % 2 == 0 else (tri(n-1) + tri(n-2))\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    if n <= 2:\n        return n\n    else:\n        fibfib_n_minus_3 = tri_fibfig(n-3)\n        fibfib_n_minus_2 = tri_fibfig(n-2)\n        fibfib_n_minus_1 = tri_fibfig(n-1)\n        return fibfib_n_minus_2 + fibfib_n_minus_3 + fibfib_n_minus_1\n\ndef tri(n):\n    if n <= 1:\n        return 1\n    else:\n        return tri(n-1) + 3\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    if n <= 2:\n        return n\n    else:\n        a, b = 0, 0\n        for i in range(n-3):\n            a, b = b, a + b + tri(i)\n        return a + b\n\ndef tri(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    elif n % 2 == 0:\n        return 1 + n//2\n    else:\n        return 1 + n//2 + tri(n+1)\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    tri = [1, 3]\n    fibfib = [0, 0, 1]\n    if n < 3:\n        return fibfib[n]\n    else:\n        for i in range(3, n+1):\n            fibfib.append(tri[i-2] + tri[i-1] + fibfib[i-3])\n            if i % 2 == 0:\n                tri.append(int((i/2) + 1))\n            else:\n                tri.append(tri[i-1] + tri[i])\n        return fibfib[n]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(3, n+1):\n        fibfib.append(fibfib[-1] + fibfib[-2] + tri[i-3])\n        if i % 2 == 0:\n            tri.append(int(1 + 0.5 * i))\n        else:\n            tri.append(fibfib[-1] + fibfib[-2] + 1 + 0.5 * (i+1))\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(3, n+1):\n        fibfib.append(fibfib[-1] + fibfib[-2] + tri[i-3])\n        if i % 2 == 0:\n            tri.append(1 + i//2)\n        else:\n            tri.append(tri[i-1] + tri[i-2] + 1 + i//2)\n    return fibfib[-1]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(3, n+1):\n        fibfib.append(fibfib[-1] + fibfib[-2] + tri[i-3])\n        if i % 2 == 0:\n            tri.append(int(1 + 0.5 * i))\n        else:\n            tri.append(int(fibfib[i-2] + fibfib[i-1] + 0.5 * (i+1)))\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    tri = [1, 3]\n    fibfib = [0, 0, 1]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            fibfib.append(int((fibfib[i-2] + fibfib[i-3]) / 2))\n        else:\n            fibfib.append(int((fibfib[i-2] + fibfib[i-3] + 1) / 2))\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    if n <= 2:\n        return n\n    else:\n        fibfib_prev = tri_fibfig(n-1)\n        fibfib_prev_prev = tri_fibfig(n-2)\n        tri_prev = tri(n-3)\n        if n % 2 == 0:\n            return fibfib_prev + fibfib_prev_prev + tri_prev\n        else:\n            return fibfib_prev + fibfib_prev_prev + tri_prev + (n+1) // 2\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    if n <= 2:\n        return n\n    else:\n        fibfib_n_2 = tri_fibfig(n - 2)\n        fibfib_n_1 = tri_fibfig(n - 1)\n        tri_n_minus_3 = tri(n - 3)\n        return fibfib_n_2 + fibfib_n_1 + tri_n_minus_3\n\ndef tri(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    else:\n        if n % 2 == 0:\n            return tri(n // 2) + 1\n        else:\n            return tri(n - 1) + tri(n + 1) // 2\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    tri = [1, 3]\n    fibfib = [0, 0, 1]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            j = int(i/2)\n            fibfib.append(fibfib[j] + tri[j])\n        else:\n            j = int((i-1)/2)\n            k = int((i+1)/2)\n            fibfib.append(fibfib[j] + fibfib[k] + tri[k])\n    return fibfib[-1]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    tri = [1, 3]\n    fibfib = [0, 0, 1]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri.append(tri[-1] + tri[-2])\n        else:\n            tri.append(tri[-1] + tri[-2] + tri[-3])\n        fibfib.append(fibfib[-1] + tri[-1])\n    return fibfib[-1]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(3, n+1):\n        if i % 2 == 0:\n            fibfib.append(1 + i // 2)\n        else:\n            fibfib.append(1 + fibfib[i-1] + fibfib[i-2])\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(3, n+1):\n        if i % 2 == 0:\n            fibfib.append(1 + i//2)\n        else:\n            fibfib.append(fibfib[i-2] + fibfib[i-3] + tri[i-1])\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(3, n+1):\n        if i % 2 == 0:\n            fibfib.append(1 + i//2)\n        else:\n            fibfib.append(fibfib[-1] + fibfib[-2])\n    return fibfib[-1]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfig(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(3, n+1):\n        if i % 2 == 0:\n            fibfib.append(1 + int(i/2))\n        else:\n            fibfib.append(fibfib[i-1] + fibfib[i-2] + tri[i-3])\n            tri.append(1 + int((i+1)/2))\n    return fibfib[n]\n",
+                false
+            ]
+        ],
+        "level 2": [
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 2:\n        return 1 if n == 0 else 3\n    else:\n        a, b = 1, 3\n        for i in range(2, n):\n            if i % 2 == 0:\n                a, b = b, a + b + 1 + i // 2\n            else:\n                a, b = b, a + b + 1 + (i + 1) // 2\n        return b\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    def tri_helper(x):\n        if x <= 1:\n            return 1 if x == 0 else 3\n        else:\n            return tri_helper(x-1) + tri_helper(x-2)\n    tri = [tri_helper(i) for i in range(n+1)]\n    fibfib = [0, 0, 1]\n    for i in range(3, n+1):\n        if i % 2 == 0:\n            fibfib.append(1 + i//2)\n        else:\n            fibfib.append(fibfib[i-1] + fibfib[i-2] + 1 + i//2)\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    def tri(x):\n        if x <= 1:\n            return 1\n        else:\n            return 3\n    fibfib = [0, 0, 1]\n    for i in range(3, n+1):\n        if i % 2 == 0:\n            fibfib.append(1 + i // 2)\n        else:\n            fibfib.append(fibfib[i-1] + fibfib[i-2] + 1 + i // 2)\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 2:\n        return n\n    else:\n        def tri(n):\n            if n <= 1:\n                return 1\n            elif n % 2 == 0:\n                return 1 + n // 2\n            else:\n                return tri(n - 1) + tri(n - 2) + 1 + n // 2\n        a, b = 0, 1\n        for i in range(3, n + 1):\n            a, b = b, a + b + tri(i - 3)\n        return b\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    def tri(n):\n        if n <= 1:\n            return 1\n        if n == 2:\n            return 3\n        if n % 2 == 0:\n            return tri(n-1) + 1 + (n+1)//2\n        else:\n            return tri(n-1) + tri(n-2) + 1 + (n+1)//2\n    return tri(n)\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 2:\n        return n\n    else:\n        def tri(n):\n            if n == 0 or n == 1:\n                return 1\n            elif n % 2 == 0:\n                return 1 + int(n/2)\n            else:\n                return tri(n-1) + tri(n-2) + 1 + int(n/2)\n        return fibfib(n-3) + tri(n-3)\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 1:\n        return n\n    else:\n        def tri(n):\n            if n <= 1:\n                return 1\n            else:\n                return 3 * tri(n-1) + tri(n-2)\n        a, b = 0, 1\n        for i in range(2, n+1):\n            if i % 2 == 0:\n                a, b = b, a + b + 1 + i // 2\n            else:\n                a, b = b, a + b + 1 + (i+1) // 2\n        return a\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    def tri(n):\n        if n <= 1:\n            return 1\n        return tri(n-1) + tri(n-2)\n    \n    a, b = 0, 0\n    for i in range(n):\n        if i % 2 == 0:\n            a = 1 + i // 2\n        else:\n            b = a + b + 1 + i // 2\n        a, b = b, a + b\n    return a + b\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n == 0 or n == 1:\n        return n\n\n    def tri_sequence(n):\n        if n == 0 or n == 1:\n            return 1\n        else:\n            return 3 + tri_sequence(n - 1) + tri_sequence(n - 2)\n\n    a, b = 0, 1\n    for i in range(2, n):\n        if i % 2 == 0:\n            a, b = b, a + b + 1 + i // 2\n        else:\n            a, b = b, a + b + 1 + (i + 1) // 2\n\n    return b\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 2:\n        return n\n    else:\n        def tri(k):\n            if k <= 1:\n                return 1\n            else:\n                return tri(k-1) + tri(k-2) + 1 + k/2\n        fibfib = [0, 0, 1]\n        for i in range(3, n+1):\n            fibfib.append(fibfib[-1] + fibfib[-2] + tri(i-3))\n        return fibfib[-1]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    def tri(n):\n        if n <= 1:\n            return 1\n        if n == 2:\n            return 3\n        if n % 2 == 0:\n            return tri(n-1) + n//2\n        else:\n            return tri(n-1) + tri(n-2) + n//2 + 1\n    return tri(n)\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    def tri(n):\n        if n <= 1:\n            return 1\n        if n == 2:\n            return 3\n        if n % 2 == 0:\n            return tri(n-1) + n//2\n        else:\n            return tri(n-1) + tri(n-2) + n//2 + 1\n    return tri(n)\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 2:\n        return n\n    else:\n        return tri_helper(n-3) + tri_helper(n-2)\n\ndef tri_helper(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    else:\n        return 0\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    def tri(n):\n        if n == 0:\n            return 1\n        elif n == 1:\n            return 3\n        else:\n            return tri(n-1) + tri(n-2)\n    if n <= 2:\n        return n\n    else:\n        return tri(n-3) + tri(n-2) + tri(n-1) + 1\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    def tri(n):\n        if n == 0 or n == 1:\n            return 1\n        else:\n            return 3\n    if n == 0:\n        return 0\n    if n == 1:\n        return 0\n    if n == 2:\n        return 1\n    else:\n        return tri(n-3) + tri_fibfib(n-2) + tri_fibfib(n-3)\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 2:\n        return n\n    else:\n        def tri(n):\n            if n <= 1:\n                return 1\n            else:\n                return tri(n-1) + tri(n-2)\n        a, b = fibfib(n-1), fibfib(n-2)\n        return (a + b) * tri(n-3)\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 2:\n        return n\n    else:\n        def tri(n):\n            if n <= 1:\n                return 1\n            else:\n                return 3 + tri(n-1)\n        fibfib = [0, 0, 1]\n        for i in range(3, n+1):\n            fibfib.append(fibfib[i-2] + fibfib[i-3] + tri(i-3))\n        return fibfib[n]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 2:\n        return n\n    else:\n        def tri(n):\n            if n <= 1:\n                return 1\n            else:\n                return tri(n-1) + tri(n-2)\n        a, b = 0, 1\n        for i in range(n-2):\n            a, b = b, a + b + tri(i)\n        return a\n",
+                false
+            ]
+        ],
+        "level 3": [
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 2:\n        return n\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(2, n):\n        if i % 2 == 0:\n            tri.append(1 + i // 2)\n        else:\n            tri.append(tri[i - 1] + tri[i - 2] + 1 + (i + 1) // 2)\n        fibfib.append(tri[i - 1] + fibfib[i - 1] + fibfib[i - 2])\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(2, n):\n        if i % 2 == 0:\n            tri.append(1 + i // 2)\n        else:\n            tri.append(tri[i - 1] + tri[i - 2] + 1 + (i + 1) // 2)\n        fibfib.append(fibfib[i - 1] + fibfib[i - 2] + tri[i - 3])\n    return fibfib[n - 1]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 0\n    elif n == 2:\n        return 1\n    else:\n        fibfib = [0, 0, 1]\n        tri = [1, 3]\n        for i in range(2, n):\n            if i % 2 == 0:\n                tri.append(1 + i / 2)\n            else:\n                tri.append(tri[i - 1] + tri[i - 2] + 1 + i / 2)\n            fibfib.append(tri[i - 1] + tri[i - 2])\n        return fibfib[n]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(2, n+1):\n        fibfib_prev = fibfib[i-1]\n        fibfib_prev_prev = fibfib[i-2]\n        tri_prev = tri[i-1]\n        if i % 2 == 0:\n            ans = 1 + i / 2\n        else:\n            ans = tri_prev + tri_prev_prev + 1 + (i + 1) / 2\n        fibfib.append(fibfib_prev + fibfib_prev_prev + ans)\n        tri.append(ans)\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 2:\n        return n\n    else:\n        fibfib = [0, 0, 1]\n        tri = [1, 3]\n        for i in range(2, n):\n            fibfib_prev = fibfib[i-1]\n            fibfib_prev_prev = fibfib[i-2]\n            tri_prev = tri[i-1]\n            if i % 2 == 0:\n                tri.append(1 + i // 2)\n            else:\n                tri.append(tri_prev + tri_prev_prev + 1 + (i + 1) // 2)\n            fibfib.append(fibfib_prev + fibfib_prev_prev + tri_prev)\n        return fibfib[n-1]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(2, n):\n        fibfib_prev = fibfib[i-1]\n        fibfib_prev_prev = fibfib[i-2]\n        tri_prev = tri[i-1]\n        if i % 2 == 0:\n            tri.append(1 + i // 2)\n        else:\n            tri.append(tri_prev + tri_prev_prev + 1 + (i + 1) // 2)\n        fibfib.append(fibfib_prev + fibfib_prev_prev + tri_prev)\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(2, n+1):\n        fibfib_prev = fibfib[-2]\n        fibfib_prev_prev = fibfib[-3]\n        tri_prev = tri[-1]\n        if i % 2 == 0:\n            tri.append(1 + i // 2)\n        else:\n            tri.append(tri_prev + tri_prev_prev + 1 + i // 2)\n        fibfib.append(fibfib_prev + fibfib_prev_prev + tri_prev)\n    return fibfib[-1]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    ans_prev = 1\n    ans_prev_prev = 3\n    for i in range(2, n):\n        if i % 2 == 0:\n            tri_i = 1 + i // 2\n        else:\n            tri_i = ans_prev + ans_prev_prev + 1 + (i + 1) // 2\n        fibfib_i = fibfib[i - 1] + fibfib[i - 2] + tri[i - 3]\n        fibfib.append(fibfib_i)\n        tri.append(tri_i)\n        ans_prev = fibfib_i\n        ans_prev_prev = tri_i\n    return fibfib[n - 1]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 0\n    elif n == 2:\n        return 1\n    else:\n        fibfib_prev = tri_fibfib(n-1)\n        fibfib_prev_prev = tri_fibfib(n-2)\n        tri_prev = tri(n-3)\n        if n % 2 == 0:\n            return fibfib_prev + fibfib_prev_prev + tri_prev + (n+1) // 2\n        else:\n            return fibfib_prev + fibfib_prev_prev + tri_prev + (n+1) // 2 + 1\n\ndef tri(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    else:\n        if n % 2 == 0:\n            return 1 + n // 2\n        else:\n            return n // 2 + 1\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(2, n):\n        fibfib.append(fibfib[i-1] + fibfib[i-2] + tri[i-3])\n        if i % 2 == 0:\n            tri.append(1 + i // 2)\n        else:\n            tri.append(tri[i-1] + tri[i-2] + 1 + i // 2)\n    return fibfib[n-1]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 0\n    elif n == 2:\n        return 1\n    else:\n        fibfib_prev = tri_fibfib(n-1)\n        fibfib_prev_prev = tri_fibfib(n-2)\n        tri_prev = tri(n-3)\n        if n % 2 == 0:\n            return fibfib_prev + fibfib_prev_prev + tri_prev\n        else:\n            return fibfib_prev + fibfib_prev_prev + 1 + (n+1)//2\n\ndef tri(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    else:\n        if n % 2 == 0:\n            return 1 + n//2\n        else:\n            return n//2 + 1 + n//2\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    ans_prev = 0\n    ans_prev_prev = 0\n    for i in range(3, n+1):\n        if i % 2 == 0:\n            ans = 1 + i / 2\n        else:\n            ans = ans_prev + ans_prev_prev + 1 + (i + 1) / 2\n        fibfib.append(ans)\n        tri.append(ans + ans_prev)\n        ans_prev_prev = ans_prev\n        ans_prev = ans\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 0\n    elif n == 2:\n        return 1\n    else:\n        ans_prev = tri_fibfib(n-1)\n        ans_prev_prev = tri_fibfib(n-2)\n        tri_prev = tri(n-3)\n        if n % 2 == 0:\n            return ans_prev + ans_prev_prev + 1 + (n + 1) / 2\n        else:\n            return tri_prev + (n + 1) / 2\n\ndef tri(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    else:\n        return 1 + n / 2\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(3, n+1):\n        if i % 2 == 0:\n            tri.append(1 + i // 2)\n            fibfib.append(fibfib[i-1] + fibfib[i-2] + tri[i-3])\n        else:\n            tri.append(ans_prev + ans_prev_prev + 1 + (i + 1) // 2)\n            fibfib.append(fibfib[i-1] + fibfib[i-2] + tri[i-3])\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 0\n    elif n == 2:\n        return 1\n    else:\n        ans_prev = tri_fibfib(n-1)\n        ans_prev_prev = tri_fibfib(n-2)\n        tri_ans = tri(n-3)\n        if n % 2 == 0:\n            return 1 + (n // 2) + (ans_prev + ans_prev_prev)\n        else:\n            return (tri_ans + n // 2) + (ans_prev + ans_prev_prev + 1)\n\ndef tri(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    else:\n        return tri(n-1) + tri(n-2)\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    ans_prev = 0\n    ans_prev_prev = 0\n    for i in range(3, n+1):\n        if i % 2 == 0:\n            tri.append(1 + i // 2)\n        else:\n            tri.append(ans_prev + ans_prev_prev + 1 + (i + 1) // 2)\n        fibfib.append(fibfib[i-1] + fibfib[i-2] + tri[i-3])\n        ans_prev_prev = ans_prev\n        ans_prev = fibfib[i]\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(2, n):\n        fibfib.append(fibfib[i-1] + fibfib[i-2] + tri[i-3])\n        if i % 2 == 0:\n            tri.append(1 + i // 2)\n        else:\n            tri.append(ans_prev + ans_prev_prev + 1 + (i + 1) // 2)\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    ans_prev = 0\n    ans_prev_prev = 0\n    for i in range(3, n+1):\n        if i % 2 == 0:\n            tri.append(1 + i // 2)\n        else:\n            tri.append(ans_prev + ans_prev_prev + 1 + (i + 1) // 2)\n        fibfib.append(fibfib[i-1] + fibfib[i-2] + tri[i-3])\n        ans_prev_prev = ans_prev\n        ans_prev = fibfib[i]\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            fibfib.append(fibfib[i-1] + fibfib[i-2] + tri[i-3])\n            tri.append(1 + i // 2)\n        else:\n            fibfib.append(fibfib[i-1] + fibfib[i-2] + tri[i-3] + (i + 1) // 2)\n            tri.append(ans_prev + ans_prev_prev + 1 + (i + 1) // 2)\n    return fibfib[n]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n <= 2:\n        return n\n    else:\n        fibfib = [0, 0, 1]\n        tri = [1, 3]\n        for i in range(2, n):\n            if i % 2 == 0:\n                fibfib.append(fibfib[i-1] + fibfib[i-2] + tri[i-3])\n                tri.append(1 + i / 2)\n            else:\n                fibfib.append(fibfib[i-1] + fibfib[i-2] + tri[i-3] + (i + 1) / 2)\n                tri.append(ans_prev + ans_prev_prev + 1 + (i + 1) / 2)\n        return fibfib[n-1]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    fibfib = [0, 0, 1]\n    tri = [1, 3]\n    for i in range(2, n):\n        fibfib.append(fibfib[i-1] + fibfib[i-2] + tri[i-3])\n        if i % 2 == 0:\n            tri.append(1 + i // 2)\n        else:\n            tri.append(tri[i-1] + tri[i-2] + 1 + i // 2)\n    return fibfib[n-1]\n",
+                false
+            ],
+            [
+                "\ndef tri_fibfib(n):\n    if n == 0:\n        return 0\n    if n == 1:\n        return 0\n    if n == 2:\n        return 1\n\n    def tri(i):\n        if i == 0:\n            return 1\n        if i == 1:\n            return 3\n        if i % 2 == 0:\n            return 1 + i // 2\n        else:\n            return ans_prev + ans_prev_prev + 1 + (i + 1) // 2\n\n    ans_prev = 0\n    ans_prev_prev = 0\n    for i in range(2, n+1):\n        ans_prev_prev = ans_prev\n        ans_prev = tri_fibfib(i-1)\n        ans = tri(i) + ans_prev + ans_prev_prev\n    return ans\n",
+                false
+            ]
+        ]
+    },
+    "3": {
+        "level 1": [
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 != 0:\n            if i % 2 == 0:\n                tri_seq.append(tri_seq[i - 1] + (i // 2))\n            else:\n                tri_seq.append(tri_seq[i - 1] + tri_seq[i - 2] + 1 + (i // 2))\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 != 0:\n            if i % 2 == 0:\n                tri_seq.append(1 + (i // 2))\n            else:\n                tri_seq.append((tri_seq[-2] + tri_seq[-1] + 1) + (i // 2))\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 == 0:\n            continue\n        if i % 2 == 0:\n            tri_seq.append(1 + i // 2)\n        else:\n            tri_seq.append(tri_seq[-2] + tri_seq[-1] + 1 + i // 2)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 != 0:\n            if i % 2 == 0:\n                tri_seq.append(1 + (i // 2))\n            else:\n                tri_seq.append(tri_seq[-2] + tri_seq[-1] + 1 + (i // 2))\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_sequence = [1, 3]\n    for i in range(2, n):\n        if i % 7 != 0:\n            if i % 2 == 0:\n                tri_sequence.append(tri_sequence[-1] + 0.5 * i)\n            else:\n                tri_sequence.append(tri_sequence[-1] + tri_sequence[-2] + 0.5 * i)\n    return tri_sequence\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 != 0:\n            if i % 2 == 0:\n                tri_seq.append(tri_seq[i - 1] + tri_seq[i - 2] // 2)\n            else:\n                tri_seq.append(tri_seq[i - 1] + tri_seq[i - 2] + 1 + tri_seq[i + 1] // 2)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 != 0:\n            if i % 2 == 0:\n                tri_seq.append(tri_seq[i - 1] + tri_seq[i - 2] // 2)\n            else:\n                tri_seq.append(tri_seq[i - 1] + tri_seq[i - 2])\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 == 0:\n            continue\n        if i % 2 == 0:\n            tri_seq.append(1 + i // 2)\n        else:\n            tri_seq.append(tri_seq[i-2] + tri_seq[i-1] + 1 + i // 2)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 != 0:\n            if i % 2 == 0:\n                tri_seq.append(tri_seq[i - 1] + tri_seq[i - 2] // 2)\n            else:\n                tri_seq.append(tri_seq[i - 1] + tri_seq[i - 2] + 1 // 2)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_sequence = [1, 3]\n    for i in range(2, n):\n        if i % 7 != 0:\n            if i % 2 == 0:\n                tri_sequence.append(tri_sequence[i - 1] + 0.5 * i)\n            else:\n                tri_sequence.append(tri_sequence[i - 2] + tri_sequence[i - 1] + 1 + 0.5 * (i + 1))\n    return tri_sequence\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri = [1, 3]\n    for i in range(2, n):\n        if i % 2 == 0:\n            tri.append(tri[i // 2] + 1)\n        else:\n            tri.append(tri[i - 1] + tri[i // 2] + 1)\n    return tri\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    triplet = [1, 3]\n    for i in range(2, n):\n        if i % 2 == 0:\n            triplet.append(triplet[i // 2] + 1)\n        else:\n            triplet.append(triplet[i - 1] + triplet[i // 2] + 1)\n    return triplet\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri = [1, 3]\n    for i in range(2, n):\n        if i % 2 == 0:\n            tri.append(tri[i // 2] + 1)\n        else:\n            tri.append(tri[i - 1] + tri[i // 2] + 1)\n    return tri\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri = [1, 3]\n    for i in range(2, n):\n        if i % 2 == 0:\n            tri.append(tri[i // 2] + 1)\n        else:\n            tri.append(tri[i - 1] + tri[i // 2] + 1)\n    return tri\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri = [1, 3]\n    for i in range(2, n):\n        if i % 2 == 0:\n            tri.append(tri[i // 2] + 1)\n        else:\n            tri.append(tri[i - 1] + tri[i // 2] + 1)\n    return tri\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 1:\n        return [1, 3]\n    else:\n        seq = skip_7_tri(n-1)\n        if n % 2 == 0:\n            return [seq[-1], seq[-2] + seq[-1] // 2]\n        else:\n            return [seq[-1], seq[-2] + seq[-1] // 2 + 1]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 2 == 0:\n            tri_seq.append(1 + (i // 2))\n        else:\n            tri_seq.append((tri_seq[-2] + tri_seq[-1]) + (i // 2))\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 == 0:\n            continue\n        if i % 2 == 0:\n            tri_seq.append(tri_seq[i - 1] + tri_seq[i - 2] / 2)\n        else:\n            tri_seq.append(tri_seq[i - 1] + tri_seq[i - 2] + i / 2)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 != 0:\n            tri_seq.append(tri_seq[-2] + tri_seq[-1] + (i + 1) // 2)\n    return tri_seq[:n]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_sequence = [1, 3]\n    for i in range(2, n):\n        if i % 7 != 0:\n            tri_sequence.append(tri_sequence[-2] + tri_sequence[-1] + i // 2)\n    return tri_sequence\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return []\n    elif n == 1:\n        return [1]\n    elif n == 2:\n        return [1, 3]\n    else:\n        seq = [1, 3]\n        for i in range(2, n):\n            if i % 2 == 0:\n                seq.append(seq[i - 1] + (i // 2))\n            else:\n                seq.append(seq[i - 1] + seq[i - 2] + 1 + (i // 2))\n        return seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 1:\n        return 1\n    elif n == 2:\n        return 3\n    else:\n        current = skip_7_tri(n-1) + skip_7_tri(n-2)\n        if n % 2 == 0:\n            return current + (n//2)\n        else:\n            return current + (n//2) + 1\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 1:\n        return [1, 3]\n    else:\n        prev = skip_7_tri(n-1)\n        even = (prev[n-2] + prev[n-1]) // 2\n        odd = (prev[n-1] + prev[n-2]) // 2\n        return prev + [even, odd]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 1:\n        return [1, 3]\n    else:\n        last_two = skip_7_tri(n-1)\n        even_position = (n//2)*(n//2)+1\n        odd_position = last_two[0] + last_two[1] + 1 + (n//2)*(n//2)\n        return [even_position, odd_position]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri = [1, 3]\n    for i in range(2, n):\n        if i % 2 == 0:\n            tri.append(tri[i-1] + tri[i-2] // 2)\n        else:\n            tri.append(tri[i-1] + tri[i-2] + tri[i-3] // 2)\n    return tri\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 == 0:\n            continue\n        if i % 2 == 0:\n            tri_seq.append(tri_seq[i // 2] + 1)\n        else:\n            tri_seq.append(tri_seq[i - 1] + tri_seq[i - 2] + 1)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 == 0:\n            continue\n        else:\n            tri_seq.append(tri_seq[i-1] + tri_seq[i-2] + 1)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 == 0:\n            continue\n        tri_seq.append(tri_seq[i-2] + tri_seq[i-1] + 1)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n):\n        if i % 7 == 0:\n            continue\n        else:\n            tri_seq.append(tri_seq[i - 1] + tri_seq[i - 2] + 1)\n    return tri_seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_sequence = [1, 3]\n    for i in range(2, n):\n        if i % 7 != 0:\n            tri_sequence.append(tri_sequence[i-1] + tri_sequence[i-2] + 1)\n    return tri_sequence\n",
+                false
+            ]
+        ],
+        "level 2": [
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    sequence = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            sequence.append(int((i/2)+1))\n        else:\n            sequence.append(sequence[-1] + sequence[-2] + 1 + int(i/2))\n        if sequence[-1] % 7 == 0:\n            sequence.pop()\n    return sequence[:n+1]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 7 == 0:\n            continue\n        if i % 2 == 0:\n            seq.append(int(i/2) + 1)\n        else:\n            seq.append(seq[-1] + seq[-2] + int(i/2) + 1)\n    return seq[:n+1]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n+2):\n        if i % 2 == 0:\n            tri_seq.append(int((i/2) + 1))\n        else:\n            tri_seq.append(tri_seq[-1] + tri_seq[-2] + 1 + int(i/2))\n        if tri_seq[-1] % 7 == 0:\n            tri_seq.pop()\n    return tri_seq[:n+1]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n <= 1:\n        return n\n    elif n % 2 == 0:\n        return (n // 2) + 1\n    else:\n        return skip_7_tri(n - 1) + skip_7_tri(n - 2) + 1\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    sequence = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            sequence.append(int((i+1)/2) + 1)\n        else:\n            sequence.append(sequence[-1] + sequence[-2] + int((i+1)/2) + 1)\n    return sequence[:n+1]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            seq.append(int((i+1)/2))\n        else:\n            seq.append(seq[-1] + seq[-2] + 1 + int(i/2))\n    return seq[:n]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n <= 0:\n        return []\n    seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            seq.append(int((i+1)/2 + 1))\n        else:\n            seq.append(int(seq[-2] + seq[-1] + (i+1)/2 + 1))\n        if any(x % 7 == 0 for x in seq):\n            seq = seq[:-1]\n            break\n    return seq\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(int((i + 1) / 2))\n        else:\n            tri_seq.append(tri_seq[-2] + tri_seq[-3] + 1 + (i + 1) / 2)\n    return tri_seq[:n+1]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(tri_seq[i-1] + 0.5*i)\n        else:\n            tri_seq.append(tri_seq[i-2] + tri_seq[i-1] + 0.5*i)\n    return [x for x in tri_seq if x % 7 != 0]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(int((i + 0.5) * (i + 1) / 2))\n        else:\n            tri_seq.append(tri_seq[-1] + tri_seq[-2] + 1 + 0.5 * (i + 1))\n    return tri_seq[:n+1]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_sequence = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_sequence.append(int((i + 1) / 2))\n        else:\n            tri_sequence.append(tri_sequence[-2] + tri_sequence[-1] + 1 + int(i / 2))\n    return tri_sequence[:n+1]\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1, 3]\n    else:\n        seq = [1, 3]\n        for i in range(1, n):\n            if i % 2 == 0:\n                seq.append(seq[-1] + int(seq[-1] / 2))\n            else:\n                seq.append(seq[-1] + seq[-2] + 1 + int(seq[-1] / 2))\n            if seq[-1] % 7 != 0:\n                n += 1\n        return seq[:n]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    seq = [1, 3]\n    for i in range(n):\n        if i % 2 == 0:\n            seq.append(int(i / 2) + 1)\n        else:\n            seq.append(seq[-1] + seq[-2] + 1 + int(i / 2))\n        if len(seq) % 7 == 0:\n            seq.pop()\n    return seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n+2):\n        if i % 2 == 0:\n            tri_seq.append(int(i/2) + tri_seq[-1])\n        else:\n            tri_seq.append(tri_seq[-2] + tri_seq[-1] + int(i/2) + 1)\n    return tri_seq[:n+1]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1, 3]\n    else:\n        seq = [1, 3]\n        for i in range(n-1):\n            if seq[-1] % 7 == 0:\n                seq.append(seq[-1] + 1)\n            else:\n                seq.append(seq[-1] + seq[-2] + 1)\n            if seq[-1] % 7 == 0:\n                seq.append(seq[-1] + 1)\n            else:\n                seq.append(seq[-1] + seq[-2] + 1)\n        return seq[:n]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 3\n    else:\n        current = 1\n        next = 3\n        for i in range(2, n+1):\n            if i % 7 != 0:\n                current, next = next, current + next\n        return current\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    seq = [1, 3]\n    for i in range(n-1):\n        if i % 2 == 0:\n            seq.append(int(seq[i] / 2) + 1)\n        else:\n            seq.append(seq[-1] + seq[-2] + 1)\n        if seq[-1] % 7 == 0:\n            seq.pop()\n            i -= 1\n    return seq[:n]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 7 == 0:\n            continue\n        if i % 2 == 0:\n            seq.append(int(seq[i-1] + seq[i-1] / 2))\n        else:\n            seq.append(int(seq[i-1] + seq[i-2] + seq[i-1] / 2))\n    return seq\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_sequence = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_sequence.append(int(tri_sequence[i-1] + tri_sequence[i-1] / 2))\n        else:\n            tri_sequence.append(int(tri_sequence[i-1] + tri_sequence[i-2] + tri_sequence[i-1] / 2))\n    return tri_sequence[:n]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            tri_seq.append(tri_seq[i//2] + 1)\n        else:\n            tri_seq.append(tri_seq[i-1] + tri_seq[i//2] + 1)\n    return tri_seq[:n+1]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    triplet = [1, 3]\n    for i in range(n):\n        if i % 2 == 0:\n            triplet.append(triplet[i] + triplet[i // 2])\n        else:\n            triplet.append(triplet[i - 1] + triplet[i] + triplet[i + 1])\n        if triplet[-1] % 7 != 0:\n            n += 1\n    return triplet[:n]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    sequence = [1, 3]\n    for i in range(2, n+1):\n        if i % 7 == 0:\n            continue\n        if i % 2 == 0:\n            sequence.append(i // 2)\n        else:\n            sequence.append(sequence[-2] + sequence[-1] + 1 + i // 2)\n    return sequence[:n]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    seq = [1, 3]\n    for i in range(2, n+1):\n        if i % 7 == 0:\n            continue\n        if i % 2 == 0:\n            seq.append(int(i/2) + 1)\n        else:\n            seq.append(seq[-1] + seq[-2] + 1 + int(i/2))\n    return seq[:n+1]\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    tri_sequence = [1, 3]\n    i = 2\n    while len(tri_sequence) < n + 1:\n        if i % 7 == 0:\n            continue\n        if i % 2 == 0:\n            tri_sequence.append(tri_sequence[i // 2] + 1)\n        else:\n            tri_sequence.append(tri_sequence[i - 1] + tri_sequence[i // 2] + 1)\n        i += 1\n    return tri_sequence[:n]\n",
+                false
+            ]
+        ],
+        "level 3": [
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    if n == 1:\n        return [1, 3]\n    ans = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            candidate_ans = 1 + i // 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + i // 2\n        if candidate_ans % 7 != 0:\n            ans.append(candidate_ans)\n    return ans\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    if n == 1:\n        return [1, 3]\n    ans = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            candidate_ans = 1 + i // 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) // 2\n        if candidate_ans % 7 != 0:\n            ans.append(candidate_ans)\n    return ans\n",
+                true
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        for i in range(2, n+1):\n            if i % 2 == 0:\n                candidate_ans = 1 + i // 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) // 2\n            if candidate_ans % 7 != 0:\n                ans.append(candidate_ans)\n        return ans\n",
+                true
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    if n == 1:\n        return [1, 3]\n    ans = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            candidate_ans = 1 + i // 2\n        else:\n            candidate_ans = (ans[-1] + ans[-2]) // 2 + 1 + i // 2\n        if candidate_ans % 7 != 0:\n            ans.append(candidate_ans)\n    return ans\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    if n == 1:\n        return [1, 3]\n    ans = [1, 3]\n    for i in range(2, n+1):\n        if i % 2 == 0:\n            candidate_ans = 1 + i // 2\n        else:\n            candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) // 2\n        if candidate_ans % 7 != 0:\n            ans.append(candidate_ans)\n    return ans\n",
+                true
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        for i in range(2, n+1):\n            candidate_ans = 1 + i / 2 if i % 2 == 0 else ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if candidate_ans % 7 != 0:\n                ans.append(candidate_ans)\n        return ans\n",
+                true
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    if n == 1:\n        return [1, 3]\n    ans = [1, 3]\n    for i in range(2, n+1):\n        candidate_ans = 1 + i / 2 if i % 2 == 0 else sum(ans[-2:]) + 1 + (i + 1) / 2\n        if candidate_ans % 7 != 0:\n            ans.append(candidate_ans)\n    return ans\n",
+                true
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    if n == 1:\n        return [1, 3]\n    ans = [1, 3]\n    for i in range(2, n+1):\n        candidate_ans = 1 + (i // 2) if i % 2 == 0 else ans[-1] + ans[-2] + 1 + (i + 1) // 2\n        if candidate_ans % 7 != 0:\n            ans.append(candidate_ans)\n    return ans\n",
+                true
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        for i in range(2, n+1):\n            candidate_ans = 1 + i / 2\n            if i % 2 == 0:\n                candidate_ans = sum(ans[-2:]) + 1 + (i + 1) / 2\n            if candidate_ans % 7 != 0:\n                ans.append(candidate_ans)\n        return ans\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    if n == 1:\n        return [1, 3]\n    ans = [1, 3]\n    for i in range(2, n+1):\n        candidate_ans = 1 + i / 2\n        if i % 2 == 0:\n            candidate_ans += ans[-1] + ans[-2]\n        elif i % 2 == 1:\n            candidate_ans += 1 + (i + 1) / 2\n        if candidate_ans % 7 != 0:\n            ans.append(candidate_ans)\n    return ans\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        for i in range(2, n+1):\n            candidate_ans = 1 + i / 2\n            if i % 2 == 0:\n                candidate_ans += sum(ans[-2:]) + 1\n            if candidate_ans % 7 != 0:\n                ans.append(candidate_ans)\n        return ans\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    if n == 1:\n        return [1, 3]\n    ans = [1, 3]\n    for i in range(2, n+1):\n        candidate_ans = 1 + (i / 2) if i % 2 == 0 else ans[-2] + ans[-1] + (i / 2)\n        if candidate_ans % 7 != 0:\n            ans.append(candidate_ans)\n    return ans\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        for i in range(2, n+1):\n            candidate_ans = 1 + i / 2 if i % 2 == 0 else sum(ans[-2:]) + (i + 1) / 2\n            if candidate_ans % 7 != 0:\n                ans.append(candidate_ans)\n        return ans\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    if n == 1:\n        return [1, 3]\n    ans = [1, 3]\n    for i in range(2, n+1):\n        candidate_ans = (1 + i) / 2 if i % 2 == 0 else ans[-1] + ans[-2] + (i + 1) / 2\n        if candidate_ans % 7 != 0:\n            ans.append(candidate_ans)\n    return ans\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        for i in range(2, n+1):\n            candidate_ans = 1 + i / 2 if i % 2 == 0 else ans[-2] + ans[-1] + (i + 1) / 2\n            if candidate_ans % 7 != 0:\n                ans.append(candidate_ans)\n        return ans\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        for i in range(2, n+1):\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if candidate_ans % 7 != 0:\n                ans.append(candidate_ans)\n        return ans\n",
+                true
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    if n == 0:\n        return [1]\n    elif n == 1:\n        return [1, 3]\n    else:\n        ans = [1, 3]\n        for i in range(2, n+1):\n            if i % 2 == 0:\n                candidate_ans = 1 + i / 2\n            else:\n                candidate_ans = ans[-1] + ans[-2] + 1 + (i + 1) / 2\n            if candidate_ans % 7 != 0:\n                ans.append(candidate_ans)\n        return ans\n",
+                true
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    ans = [1, 3]\n    for i in range(2, n+1):\n        candidate_ans = 1 + i / 2 if i % 2 == 0 else ans[-1] + ans[-2] + 1 + i / 2\n        if candidate_ans % 7 != 0:\n            ans.append(candidate_ans)\n    return ans\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    ans = [1, 3]\n    for i in range(2, n+1):\n        candidate_ans = 1 + (i / 2) if i % 2 == 0 else ans[-1] + ans[-2] + 1 + (i / 2)\n        if candidate_ans % 7 != 0:\n            ans.append(candidate_ans)\n    return ans\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    ans = [1, 3]\n    for i in range(2, n+1):\n        candidate_ans = 1 + i / 2 if i % 2 == 0 else ans[-1] + ans[-2] + 1 + i / 2\n        if candidate_ans % 7 != 0:\n            ans.append(candidate_ans)\n    return ans\n",
+                false
+            ],
+            [
+                "\ndef skip_7_tri(n):\n    ans = [1, 3]\n    for i in range(2, n+1):\n        candidate_ans = 1 + i / 2 if i % 2 == 0 else ans[-1] + ans[-2] + 1 + i / 2\n        if candidate_ans % 7 != 0:\n            ans.append(candidate_ans)\n    return ans\n",
+                false
+            ]
+        ]
+    },
+    "4": {
+        "level 1": [
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = [get_prime_fibonacci_number(i) for i in range(n, 0, -1)]\n    odd_nums = [num for num in prime_fib_nums if num % 2 != 0]\n    collatz_seq = [num for num in odd_nums if num > 1]\n    while len(collatz_seq) > 0:\n        next_num = collatz_seq.pop()\n        if next_num == 1:\n            break\n        elif next_num % 2 == 0:\n            collatz_seq.append(next_num // 2)\n        else:\n            collatz_seq.append((next_num * 3) + 1)\n    return sorted(collatz_seq)\n\ndef get_prime_fibonacci_number(n):\n    a, b = 0, 1\n    for i in range(n):\n        a, b = b, (a + b) % 754011\n    if a < 4:\n        return 2\n    else:\n        return 3\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = [get_n_th_prime_fibonacci_number(i) for i in range(n, n+100)]\n    odd_nums = []\n    for num in prime_fib_nums:\n        curr_num = num\n        while curr_num != 1:\n            if curr_num % 2 == 0:\n                curr_num //= 2\n            else:\n                curr_num = (curr_num * 3) + 1\n            if curr_num % 2 != 0:\n                odd_nums.append(curr_num)\n    return sorted(odd_nums)\n\ndef get_n_th_prime_fibonacci_number(n):\n    prime_fib_seq = [1, 1]\n    current_index = 2\n    while len(prime_fib_seq) <= n:\n        prime_fib_seq.append(prime_fib_seq[current_index-1] + prime_fib_seq[current_index])\n        current_index += 1\n    return prime_fib_seq[n]\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = [x for x in fibonacci(n) if is_prime(x)]\n    collatz_seq = []\n    for num in prime_fib_nums:\n        if num % 2 == 0:\n            collatz_seq.append(num / 2)\n        else:\n            collatz_seq.append((num * 3) + 1)\n    return sorted(collatz_seq)\n\ndef is_prime(num):\n    if num < 2:\n        return False\n    for i in range(2, int(num ** 0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\ndef fibonacci(n):\n    a, b = 0, 1\n    for _ in range(n):\n        yield a\n        a, b = b, a + b\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = [get_n_th_prime_fibonacci_number(i) for i in range(n, 0, -1)]\n    odd_nums = []\n    for num in prime_fib_nums:\n        seq = [num]\n        while seq[-1] != 1:\n            if seq[-1] % 2 == 0:\n                seq.append(seq[-1] // 2)\n            else:\n                seq.append(3 * seq[-1] + 1)\n        odd_nums += [x for x in seq if x % 2 != 0]\n    return sorted(odd_nums)\n\ndef get_n_th_prime_fibonacci_number(n):\n    prime_fib_seq = [1, 1]\n    while len(prime_fib_seq) <= n:\n        prime_fib_seq.append(sum(prime_fib_seq[-2:]))\n    return prime_fib_seq[n]\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = [get_n_th_prime_fibonacci_number(i) for i in range(n, 0, -1)]\n    odd_prime_fib_nums = [num for num in prime_fib_nums if num % 2 != 0]\n    collatz_seq = [1]\n    for num in odd_prime_fib_nums:\n        collatz_seq.extend([num] + [int((num * 3 + 1) / 2) for _ in range(len(collatz_seq))])\n    return sorted(collatz_seq)\n\ndef get_n_th_prime_fibonacci_number(n):\n    prime_fib_nums = [get_nth_fibonacci_number(i) for i in range(n, 0, -1)]\n    return next(num for num in prime_fib_nums if is_prime(num))\n\ndef get_nth_fibonacci_number(n):\n    a, b = 0, 1\n    for i in range(n):\n        a, b = b, a + b\n    return a\n\ndef is_prime(n):\n    if n == 1 or n == 0:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = [get_n_th_prime_fibonacci_number(i) for i in range(n, 0, -1)]\n    odd_prime_fib_nums = [num for num in prime_fib_nums if num % 2 != 0]\n    collatz_seq = []\n    for num in odd_prime_fib_nums:\n        curr_num = num\n        while curr_num != 1:\n            if curr_num % 2 == 0:\n                curr_num = curr_num // 2\n            else:\n                curr_num = (3 * curr_num) + 1\n            collatz_seq.append(curr_num)\n    return sorted(collatz_seq)\n\ndef get_n_th_prime_fibonacci_number(n):\n    prime_fib_nums = [3, 5, 8]\n    while len(prime_fib_nums) <= n:\n        new_fib_num = get_next_fibonacci_number(prime_fib_nums[-1], prime_fib_nums[-2])\n        prime_fib_nums.append(new_fib_num)\n    return prime_fib_nums[n]\n\ndef get_next_fibonacci_number(a, b):\n    return a + b\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = []\n    a, b = 0, 1\n    while len(prime_fib_nums) < n:\n        if a % 2 == 0:\n            a = a // 2\n        else:\n            a = 3 * a + 1\n        if a > 1:\n            prime_fib_nums.append(a)\n    return sorted(prime_fib_nums)\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = [x for x in fibonacci(n) if is_prime(x)]\n    collatz_seq = []\n    for num in prime_fib_nums:\n        if num == 1:\n            collatz_seq.append(num)\n            break\n        else:\n            collatz_seq.append(num)\n            while num != 1:\n                if num % 2 == 0:\n                    num = num // 2\n                else:\n                    num = 3 * num + 1\n                collatz_seq.append(num)\n    return sorted(collatz_seq)\n\ndef fibonacci(n):\n    a, b = 0, 1\n    for i in range(n):\n        yield a\n        a, b = b, a + b\n\ndef is_prime(n):\n    if n == 1 or n == 0:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = []\n    a, b = 0, 1\n    while len(prime_fib_nums) < n:\n        if a % 2 != 0:\n            prime_fib_nums.append(a)\n        a, b = b, a + b\n    return sorted(prime_fib_nums)\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = []\n    a, b = 0, 1\n    while len(prime_fib_nums) < n:\n        a, b = b, a + b\n        if a % 2 != 0:\n            prime_fib_nums.append(a)\n    return sorted([x for x in prime_fib_nums if x % 2 != 0])\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_seq = [3, 5, 8, 13, 21, 34]\n    odd_prime_fib_seq = []\n    for i in range(n, len(prime_fib_seq)):\n        num = prime_fib_seq[i]\n        while num != 1:\n            if num % 2 == 0:\n                num = num // 2\n            else:\n                num = num * 3 + 1\n            odd_prime_fib_seq.append(num)\n    return sorted(odd_prime_fib_seq)\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_seq = [x for x in fibonacci_sequence if is_prime(x)]\n    collatz_seq = []\n    for num in prime_fib_seq[n:]:\n        curr_num = num\n        while curr_num != 1:\n            if curr_num % 2 == 0:\n                curr_num = curr_num // 2\n            else:\n                curr_num = (curr_num * 3) + 1\n            collatz_seq.append(curr_num)\n    return sorted(collatz_seq)\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_seq = [x for x in fibonacci_sequence if is_prime(x)]\n    collatz_seq = [x for x in prime_fib_seq if is_odd(x)]\n    return sorted(collatz_seq)\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime = get_nth_prime(n)\n    sequence = [prime]\n    while sequence[-1] != 1:\n        if sequence[-1] % 2 == 0:\n            sequence.append(sequence[-1] // 2)\n        else:\n            sequence.append(3 * sequence[-1] + 1)\n    return sorted(sequence)\n\ndef get_nth_prime(n):\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    is_prime = [True] * (n + 1)\n    for i in range(2, int(n ** 0.5) + 1):\n        if is_prime[i]:\n            for j in range(i * i, n + 1, i):\n                is_prime[j] = False\n    return [i for i in range(2, n + 1) if is_prime[i]]\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_numbers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]\n    fib_sequence = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377]\n    collatz_sequence = []\n    for i in range(n, len(prime_numbers)):\n        num = prime_numbers[i]\n        while num != 1:\n            if num % 2 == 0:\n                num = num // 2\n            else:\n                num = num * 3 + 1\n            collatz_sequence.append(num)\n    return sorted(collatz_sequence)\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = [1, 1]\n    a, b = 1, 1\n    while len(prime_fib_nums) < n:\n        a, b = b, a + b\n        if b % 2 == 1:\n            prime_fib_nums.append(b)\n    return sorted([x for x in prime_fib_nums if x % 2 == 1])\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = []\n    a, b = 0, 1\n    while len(prime_fib_nums) < n:\n        a, b = b, a + b\n        if a % 2 == 1:\n            prime_fib_nums.append(a)\n    return sorted([x for x in prime_fib_nums if x % 2 != 0])\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = []\n    a, b = 0, 1\n    while len(prime_fib_nums) < n:\n        next_num = a * b\n        if next_num % 2 == 0:\n            next_num //= 2\n        else:\n            next_num = 3 * next_num + 1\n        prime_fib_nums.append(next_num)\n        a, b = b, next_num\n    return sorted(prime_fib_nums)\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = []\n    a, b = 0, 1\n    while len(prime_fib_nums) < n:\n        next_num = a + b\n        if next_num % 2 == 0:\n            next_num //= 2\n        else:\n            next_num = 3*next_num + 1\n        if is_prime(next_num):\n            prime_fib_nums.append(next_num)\n        a, b = b, next_num\n    return prime_fib_nums\n\ndef is_prime(n):\n    if n == 1 or n == 0:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    # Calculate the n-th prime Fibonacci number\n    fib_n = get_fibonacci_number(n)\n\n    # Initialize the Collatz sequence with the prime Fibonacci number\n    sequence = [fib_n]\n\n    # Iterate until the sequence concludes with one\n    while sequence[-1] != 1:\n        if sequence[-1] % 2 == 0:\n            sequence.append(sequence[-1] // 2)\n        else:\n            sequence.append(sequence[-1] * 3 + 1)\n\n    # Return a sorted list of odd integers in the sequence\n    return sorted([x for x in sequence if x % 2 == 1])\n\ndef get_fibonacci_number(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    # Generate the n-th prime Fibonacci number\n    a, b = 0, 1\n    while n > 1:\n        a, b = b, a + b\n        n -= 1\n\n    # Start the Collatz sequence with the n-th prime Fibonacci number\n    current = a\n\n    # Generate the odd numbers in the sequence\n    odd_numbers = []\n    while current != 1:\n        if current % 2 == 1:\n            odd_numbers.append(current)\n        current = current * 3 + 1\n\n    return sorted(odd_numbers)\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def fib(n):\n        a, b = 0, 1\n        for _ in range(n):\n            a, b = b, a+b\n        return a\n\n    def collatz(x):\n        if x == 1:\n            return [1]\n        else:\n            sequence = [x]\n            while x != 1:\n                if x % 2 == 0:\n                    x //= 2\n                else:\n                    x = 3*x + 1\n                sequence.append(x)\n            return sequence\n\n    prime_fib = fib(n)\n    odd_prime_fib_collatz = collatz(prime_fib)\n    return sorted(odd_prime_fib_collatz)\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = []\n    a, b = 0, 1\n    while len(prime_fib_nums) < n:\n        if a % 2 != 0:\n            prime_fib_nums.append(a)\n        a, b = b, a + b\n    return sorted(prime_fib_nums)\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    # Find the n-th prime Fibonacci number\n    a, b = 0, 1\n    for i in range(n):\n        a, b = b, a + b\n    # Generate the sorted collection of odd numbers following the Collatz rules\n    result = [a]\n    while a != 1:\n        if a % 2 == 0:\n            a = a // 2\n        else:\n            a = 3 * a + 1\n        result.append(a)\n    return result\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    # Generate the n-th prime Fibonacci number\n    fib_n = get_fibonacci_number(n)\n\n    # Check if the number is odd\n    if fib_n % 2 == 0:\n        fib_n += 1\n\n    # Initialize the collection of odd numbers\n    odd_numbers = []\n\n    # While the number is not one\n    while fib_n != 1:\n        # If the number is odd, append it to the collection\n        if fib_n % 2 != 0:\n            odd_numbers.append(fib_n)\n\n        # Halve the number if it is even\n        if fib_n % 2 == 0:\n            fib_n //= 2\n        # Or triple and increase by one if it is odd\n        else:\n            fib_n = (fib_n * 3) + 1\n\n    # Return the sorted collection of odd numbers\n    return sorted(odd_numbers)\n\ndef get_fibonacci_number(n):\n    a, b = 0, 1\n    for i in range(n):\n        a, b = b, a + b\n    return a\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = [get_n_th_prime_fibonacci_number(i) for i in range(n, 0, -1)]\n    odd_prime_fib_nums = [num for num in prime_fib_nums if num % 2 != 0]\n    collatz_seq = [1]\n    for num in odd_prime_fib_nums:\n        collatz_seq.extend([num // 2] if num % 2 == 0 else [3 * num + 1])\n    return sorted(collatz_seq)\n\ndef get_n_th_prime_fibonacci_number(n):\n    a, b = 0, 1\n    for i in range(n + 1):\n        a, b = b, (a + b) % 1000000\n    return a\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def collatz(x):\n        if x == 1:\n            return x\n        elif x % 2 == 0:\n            return x // 2\n        else:\n            return 3 * x + 1\n\n    prime_fibs = [x for x in fibonacci(n) if is_prime(x)]\n    return sorted([collatz(x) for x in prime_fibs])\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = [x for x in fibonacci(n) if is_prime(x)]\n    collatz_seq = []\n    for num in prime_fib_nums:\n        collatz_seq.extend(collatz_sequence(num))\n    return sorted(list(set(collatz_seq)))\n\ndef fibonacci(n):\n    a, b = 0, 1\n    for i in range(n):\n        yield a\n        a, b = b, a + b\n\ndef is_prime(n):\n    if n == 1:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef collatz_sequence(n):\n    seq = [n]\n    while n != 1:\n        if n % 2 == 0:\n            n //= 2\n        else:\n            n = 3 * n + 1\n        seq.append(n)\n    return seq\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = []\n    a, b = 0, 1\n    while len(prime_fib_nums) < n:\n        if a % 2 != 0:\n            prime_fib_nums.append(a)\n        a, b = b, a + b\n    odd_prime_fib_collatz = []\n    while odd_prime_fib_collatz[-1] != 1:\n        if odd_prime_fib_collatz[-1] % 2 == 0:\n            odd_prime_fib_collatz.append(odd_prime_fib_collatz[-1] // 2)\n        else:\n            odd_prime_fib_collatz.append(3 * odd_prime_fib_collatz[-1] + 1)\n    return sorted(odd_prime_fib_collatz)\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_nums = []\n    a, b = 0, 1\n    while len(prime_fib_nums) < n:\n        a, b = b, a + b\n        if a % 2 != 0:\n            prime_fib_nums.append(a)\n    odd_prime_fib_nums = []\n    for num in prime_fib_nums:\n        if num % 2 != 0:\n            odd_prime_fib_nums.append(num)\n    return odd_prime_fib_nums\n",
+                false
+            ]
+        ],
+        "level 2": [
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num <= 1:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def fibonacci(n):\n        a, b = 0, 1\n        for _ in range(n):\n            yield a\n            a, b = b, a + b\n\n    def collatz(n):\n        while n != 1:\n            if n % 2 == 0:\n                n //= 2\n            else:\n                n = 3 * n + 1\n            yield n\n\n    prime_fib = next(num for num in fibonacci(n) if is_prime(num))\n    return sorted([num for num in collatz(prime_fib) if num % 2 != 0])\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def fibonacci_sequence(n):\n        a, b = 0, 1\n        for _ in range(n):\n            yield a\n            a, b = b, a + b\n\n    def generate_collatz_sequence(start):\n        current = start\n        sequence = [current]\n        while current != 1:\n            if current % 2 == 0:\n                current //= 2\n            else:\n                current = 3 * current + 1\n            sequence.append(current)\n        return sequence\n\n    prime_fib_num = None\n    for fib_num in fibonacci_sequence(n):\n        if is_prime(fib_num):\n            prime_fib_num = fib_num\n            break\n\n    return generate_collatz_sequence(prime_fib_num)\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num <= 1:\n            return False\n        for i in range(2, num):\n            if num % i == 0:\n                return False\n        return True\n\n    def fibonacci(n):\n        a, b = 0, 1\n        for i in range(n):\n            yield a\n            a, b = b, a + b\n\n    def collatz_sequence(n):\n        seq = [n]\n        while n != 1:\n            if n % 2 == 0:\n                n //= 2\n            else:\n                n = 3 * n + 1\n            seq.append(n)\n        return seq\n\n    prime_fib = None\n    for fib in fibonacci(n):\n        if is_prime(fib):\n            prime_fib = fib\n            break\n\n    return sorted([x for x in collatz_sequence(prime_fib) if x % 2 != 0])\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def get_fibonacci_prime(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n\n    return sorted([x for x in collatz_sequence(get_fibonacci_prime(n)) if x % 2 != 0])\n\ndef collatz_sequence(n):\n    sequence = [n]\n    while n != 1:\n        if n % 2 == 0:\n            n //= 2\n        else:\n            n = 3 * n + 1\n        sequence.append(n)\n    return sequence\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def get_nth_prime_fibonacci(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n\n    def generate_collatz_sequence(n):\n        seq = [n]\n        while n != 1:\n            if n % 2 == 0:\n                n = n // 2\n            else:\n                n = 3 * n + 1\n            seq.append(n)\n        return seq\n\n    return sorted([x for x in generate_collatz_sequence(get_nth_prime_fibonacci(n)) if is_prime(x)])\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def get_nth_prime(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n\n    def collatz_sequence(n):\n        sequence = [n]\n        while n != 1:\n            if n % 2 == 0:\n                n = n // 2\n            else:\n                n = 3 * n + 1\n            sequence.append(n)\n        return sequence\n\n    return sorted([x for x in collatz_sequence(get_nth_prime(n)) if is_prime(x) and x % 2 != 0])\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def get_nth_prime_fibonacci(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n\n    def generate_collatz_sequence(n):\n        sequence = [n]\n        while n != 1:\n            if n % 2 == 0:\n                n = n // 2\n            else:\n                n = 3 * n + 1\n            sequence.append(n)\n        return sequence\n\n    return sorted([x for x in generate_collatz_sequence(get_nth_prime_fibonacci(n)) if is_prime(x)])\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def get_nth_fibonacci(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n        return a\n\n    def get_collatz_sequence(num):\n        sequence = [num]\n        while num != 1:\n            if num % 2 == 0:\n                num //= 2\n            else:\n                num = 3 * num + 1\n            sequence.append(num)\n        return sequence\n\n    prime_fib_num = get_nth_fibonacci(n)\n    if is_prime(prime_fib_num):\n        return get_collatz_sequence(prime_fib_num)\n    else:\n        return []\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def get_nth_prime_fib(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n\n    def collatz_sequence(n):\n        seq = [n]\n        while n != 1:\n            if n % 2 == 0:\n                n //= 2\n            else:\n                n = 3 * n + 1\n            seq.append(n)\n        return seq\n\n    return sorted([x for x in collatz_sequence(get_nth_prime_fib(n)) if x % 2 != 0 and is_prime(x)])\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def get_fibonacci_number(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n        return a\n\n    def get_collatz_sequence(n):\n        sequence = [n]\n        while n != 1:\n            if n % 2 == 0:\n                n //= 2\n            else:\n                n = 3 * n + 1\n            sequence.append(n)\n        return sequence\n\n    prime_fib_number = get_fibonacci_number(n)\n    while not is_prime(prime_fib_number):\n        prime_fib_number = get_fibonacci_number(n)\n\n    return sorted([num for num in get_collatz_sequence(prime_fib_number) if num % 2 != 0])\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def get_fibonacci_sequence(n):\n        a, b = 0, 1\n        for i in range(n):\n            yield a\n            a, b = b, a + b\n\n    def get_collatz_sequence(num):\n        while num != 1:\n            if num % 2 == 0:\n                num //= 2\n            else:\n                num = 3 * num + 1\n            yield num\n\n    prime_fib_nums = []\n    fib_seq = get_fibonacci_sequence(n)\n    for i, fib_num in enumerate(fib_seq):\n        if is_prime(fib_num):\n            prime_fib_nums.append(fib_num)\n            if i == n - 1:\n                break\n\n    collatz_seq = get_collatz_sequence(prime_fib_nums[0])\n    odd_prime_fib_collatz = []\n    for num in collatz_seq:\n        if num % 2 != 0:\n            odd_prime_fib_collatz.append(num)\n\n    return odd_prime_fib_collatz\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    # Find the n-th prime in the Fibonacci sequence\n    def is_prime(n):\n        if n <= 1:\n            return False\n        for i in range(2, int(n ** 0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    def fibonacci(n):\n        a, b = 0, 1\n        for i in range(n):\n            yield a\n            a, b = b, a + b\n\n    def collatz(n):\n        while n != 1:\n            if n % 2 == 0:\n                n //= 2\n            else:\n                n = 3 * n + 1\n            yield n\n\n    prime_fib = None\n    for i, fib in enumerate(fibonacci(n)):\n        if is_prime(fib):\n            prime_fib = fib\n            break\n\n    return sorted(collatz(prime_fib))\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    # Find the n-th prime in the Fibonacci sequence\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def get_fibonacci(n):\n        a, b = 0, 1\n        for i in range(n):\n            yield a\n            a, b = b, a + b\n\n    def get_collatz_sequence(num):\n        sequence = [num]\n        while num != 1:\n            if num % 2 == 0:\n                num //= 2\n            else:\n                num = 3 * num + 1\n            sequence.append(num)\n        return sequence\n\n    prime_fib = next(num for num in get_fibonacci(n) if is_prime(num))\n    return sorted([num for num in get_collatz_sequence(prime_fib) if num % 2 != 0])\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def fibonacci(n):\n        a, b = 0, 1\n        for i in range(n):\n            yield a\n            a, b = b, a + b\n    def is_prime(n):\n        if n == 1 or n == 2:\n            return True\n        for i in range(2, int(n ** 0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n    fibs = fibonacci(n)\n    for i, fib in enumerate(fibs):\n        if is_prime(fib):\n            return [fib] + list(filter(lambda x: x % 2 != 0, fibonacci(i + 1)))\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def collatz(num):\n        if num == 1:\n            return num\n        elif num % 2 == 0:\n            return collatz(num // 2)\n        else:\n            return collatz(3 * num + 1)\n\n    def fibonacci(n):\n        a, b = 0, 1\n        for i in range(n):\n            yield a\n            a, b = b, a + b\n\n    prime_fib = next(fibonacci(n) for fibonacci in fibonacci(n) if is_prime(fibonacci))\n    return sorted(filter(lambda x: x % 2 != 0, map(collatz, fibonacci(prime_fib))))\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n    \n    def fibonacci(n):\n        a, b = 0, 1\n        for i in range(n):\n            yield a\n            a, b = b, a + b\n    \n    def collatz(num):\n        while num != 1:\n            if num % 2 == 0:\n                num //= 2\n            else:\n                num = 3 * num + 1\n            yield num\n    \n    prime_fib = next(fibonacci(n) for fibonacci in fibonacci(n) if is_prime(fibonacci))\n    return sorted([fibonacci for fibonacci in collatz(prime_fib) if fibonacci % 2 != 0])\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def fibonacci(n):\n        a, b = 0, 1\n        for i in range(n):\n            yield a\n            a, b = b, a + b\n\n    def collatz(n):\n        while n != 1:\n            if n % 2 == 0:\n                n //= 2\n            else:\n                n = 3 * n + 1\n            yield n\n\n    fib_seq = list(fibonacci(n))\n    prime_fib_idx = next(i for i, x in enumerate(fib_seq) if is_prime(x))\n    prime_fib = fib_seq[prime_fib_idx]\n    odd_collatz = list(collatz(prime_fib))\n    return sorted([x for x in odd_collatz if is_prime(x)])\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    # Find the n-th prime number in the Fibonacci sequence\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def get_fibonacci_number(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n        return a\n\n    prime_fib_num = get_fibonacci_number(n)\n    while not is_prime(prime_fib_num):\n        prime_fib_num = get_fibonacci_number(n)\n\n    # Construct the sorted list of odd entries from the Collatz sequence\n    collatz_seq = [prime_fib_num]\n    while collatz_seq[-1] != 1:\n        if collatz_seq[-1] % 2 == 0:\n            collatz_seq.append(collatz_seq[-1] // 2)\n        else:\n            collatz_seq.append(3 * collatz_seq[-1] + 1)\n\n    return sorted(collatz_seq)\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    # Find the n-th prime number in the Fibonacci sequence\n    prime = fibonacci_prime(n)\n\n    # Construct a sorted list of odd entries from the Collatz sequence\n    # starting from the identified prime\n    collatz = [prime]\n    for i in range(len(collatz)):\n        if collatz[i] % 2 == 0:\n            collatz[i] //= 2\n        else:\n            collatz[i] *= 3\n            collatz[i] += 1\n        if collatz[i] == 1:\n            break\n\n    return collatz\n\ndef fibonacci_prime(n):\n    # Helper function to check if a number is prime\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    # Helper function to generate the Fibonacci sequence\n    def fibonacci(n):\n        a, b = 0, 1\n        for i in range(n):\n            yield a\n            a, b = b, a + b\n\n    # Iterate over the Fibonacci sequence and check if each number is prime\n    fib = fibonacci(n)\n    for i in fib:\n        if is_prime(i):\n            return i\n    return None\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    # Helper function to check if a number is prime\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    # Helper function to generate the Fibonacci sequence\n    def fibonacci_sequence(n):\n        a, b = 0, 1\n        for _ in range(n):\n            yield a\n            a, b = b, a + b\n\n    # Generate the Fibonacci sequence and find the n-th prime\n    fib_seq = fibonacci_sequence(n)\n    prime_fib_num = next(num for num in fib_seq if is_prime(num))\n\n    # Construct the sorted list of odd entries in the Collatz sequence\n    collatz_seq = [prime_fib_num]\n    while collatz_seq[-1] != 1:\n        if collatz_seq[-1] % 2 == 0:\n            collatz_seq.append(collatz_seq[-1] // 2)\n        else:\n            collatz_seq.append(3 * collatz_seq[-1] + 1)\n\n    return collatz_seq\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    # Find the n-th prime number in the Fibonacci sequence\n    prime = get_n_th_prime(n)\n\n    # Construct a sorted list of odd entries from the Collatz sequence\n    # starting from the identified prime\n    collatz_list = [prime]\n    while prime not in collatz_list:\n        if prime % 2 == 0:\n            prime = int(prime / 2)\n        else:\n            prime = int(3 * prime + 1)\n        collatz_list.append(prime)\n\n    return sorted(collatz_list)\n\ndef get_n_th_prime(n):\n    # Check if the number is prime using a helper function\n    if is_prime(n):\n        return n\n    else:\n        # If not prime, find the next prime number in the Fibonacci sequence\n        prime = get_next_prime(n)\n        return get_n_th_prime(prime)\n\ndef get_next_prime(n):\n    # Find the next prime number in the Fibonacci sequence\n    a, b = 0, 1\n    while not is_prime(a + b):\n        a, b = b, a + b\n    return a + b\n\ndef is_prime(n):\n    # Check if the number is prime using the Miller-Rabin primality test\n    if n <= 1:\n        return False\n    for _ in range(10):\n        a = random.randint(2, n - 2)\n        x = pow(a, n - 1, n)\n        if x == 1 or x == n - 1:\n            continue\n        for _ in range(10):\n            x = pow(x, 2, n)\n            if x == n - 1:\n                break\n        else:\n            return False\n    return True\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    # Find the n-th prime number in the Fibonacci sequence\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def find_prime(n):\n        a, b = 0, 1\n        while True:\n            a, b = b, a + b\n            if is_prime(a):\n                if n == 1:\n                    return a\n                n -= 1\n\n    prime = find_prime(n)\n\n    # Construct the sorted list of odd entries in the Collatz sequence\n    def collatz(num):\n        if num == 1:\n            return 1\n        if num % 2 == 0:\n            return 1 + collatz(num // 2)\n        else:\n            return 1 + collatz(3 * num + 1)\n\n    return [prime] + sorted([collatz(prime)] + [collatz(x) for x in range(1, prime) if collatz(x) % 2 == 1])\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def sift_fibonacci(n):\n        a, b = 0, 1\n        while a < n:\n            yield a\n            a, b = b, a + b\n\n    def generate_collatz(n):\n        while n != 1:\n            if n % 2 == 0:\n                n = n // 2\n            else:\n                n = 3 * n + 1\n            yield n\n\n    prime_fib = next(filter(is_prime, sift_fibonacci(n)))\n    return sorted(filter(lambda x: x % 2 != 0, generate_collatz(prime_fib)))\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(num):\n        if num <= 1:\n            return False\n        for i in range(2, num):\n            if num % i == 0:\n                return False\n        return True\n\n    def collatz_sequence(num):\n        sequence = [num]\n        while num != 1:\n            if num % 2 == 0:\n                num //= 2\n            else:\n                num *= 3\n                num += 1\n            sequence.append(num)\n        return sequence\n\n    def get_n_th_prime_fibonacci(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n\n    return sorted(collatz_sequence(get_n_th_prime_fibonacci(n)))\n",
+                false
+            ],
+            [
+                "\ndef get_odd_prime_fib_collatz(n):\n    # Helper function to determine if a number is prime\n    def is_prime(num):\n        if num == 1 or num == 0:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    # Helper function to generate the Collatz sequence\n    def collatz_sequence(num):\n        sequence = [num]\n        while num != 1:\n            if num % 2 == 0:\n                num //= 2\n            else:\n                num *= 3\n                num += 1\n            sequence.append(num)\n        return sequence\n\n    # Find the n-th prime Fibonacci number\n    fib_seq = [0, 1]\n    a, b = 0, 1\n    while len(fib_seq) < n:\n        fib_seq.append(a)\n        a, b = b, a + b\n\n    # Find the first prime in the Fibonacci sequence\n    for i in range(len(fib_seq)):\n        if is_prime(fib_seq[i]):\n            prime = fib_seq[i]\n            break\n\n    # Generate the sorted odd Collatz sequence\n    collatz_seq = collatz_sequence(prime)\n    odd_seq = [x for x in collatz_seq if x % 2 != 0]\n    odd_seq.sort()\n\n    return odd_seq\n",
+                false
+            ]
+        ],
+        "level 3": [
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        def is_prime(p):\n            for i in range(2, int(math.sqrt(p)) + 1):\n                if p % i == 0:\n                    return False\n            return True\n        a, b = 0, 1\n        while a < n:\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n        return -1\n    \n    prime_fib_n = prime_fib(n)\n    if prime_fib_n == -1:\n        return []\n    else:\n        ans = []\n        x = prime_fib_n\n        while x != 1:\n            if x % 2 == 0:\n                x //= 2\n            else:\n                x = x * 3 + 1\n            if x % 2 == 1:\n                ans.append(x)\n        return sorted(ans)\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        def is_prime(p):\n            if p == 1 or p == 2:\n                return True\n            for i in range(2, int(math.sqrt(p)) + 1):\n                if p % i == 0:\n                    return False\n            return True\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n        return -1\n    \n    fib_n = prime_fib(n)\n    if fib_n == -1:\n        return []\n    else:\n        ans = []\n        x = fib_n\n        while x != 1:\n            if x % 2 == 0:\n                x //= 2\n            else:\n                x = x * 3 + 1\n            if x % 2 != 0:\n                ans.append(x)\n        return sorted(ans)\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        def is_prime(p):\n            if p == 1 or p == 2:\n                return True\n            for i in range(2, int(math.sqrt(p)) + 1):\n                if p % i == 0:\n                    return False\n            return True\n        a, b = 0, 1\n        while a < n:\n            a, b = b, a + b\n        return a\n    \n    def collatz(x):\n        ans = []\n        while x != 1:\n            if x % 2 == 0:\n                x //= 2\n            else:\n                x = x * 3 + 1\n            ans.append(x)\n        return ans\n    \n    prime = prime_fib(n)\n    return sorted(collatz(prime))\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        def is_prime(p):\n            for i in range(2, int(p ** 0.5) + 1):\n                if p % i == 0:\n                    return False\n            return True\n\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n\n    prime = prime_fib(n)\n    ans = []\n    x = prime\n    while x != 1:\n        if x % 2 == 0:\n            x //= 2\n        else:\n            x = x * 3 + 1\n        if x % 2 == 1:\n            ans.append(x)\n    return sorted(ans)\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        def is_prime(p):\n            return math.sqrt(p) % 1 == 0\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(b):\n                return b\n    return prime_fib(n)\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(p):\n        if p == 1 or p == 2:\n            return False\n        for i in range(2, int(math.sqrt(p)) + 1):\n            if p % i == 0:\n                return False\n        return True\n\n    def prime_fib(n):\n        a, b = 0, 1\n        while a < n:\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n\n    return sorted([x for x in [prime_fib(n)] if x % 2 != 0])\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        def is_prime(p):\n            if p == 1 or p == 2:\n                return True\n            for i in range(2, int(math.sqrt(p)) + 1):\n                if p % i == 0:\n                    return False\n            return True\n\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(a):\n                break\n        return a\n\n    def collatz_sequence(n):\n        sequence = [n]\n        while n != 1:\n            if n % 2 == 0:\n                n = n // 2\n            else:\n                n = n * 3 + 1\n            sequence.append(n)\n        return sequence\n\n    def get_collatz_sequence_odd_numbers(sequence):\n        return [x for x in sequence if x % 2 != 0]\n\n    return get_collatz_sequence_odd_numbers(collatz_sequence(prime_fib(n)))\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        def is_prime(p):\n            if p == 1 or p == 2:\n                return True\n            for i in range(2, int(math.sqrt(p)) + 1):\n                if p % i == 0:\n                    return False\n            return True\n        a, b = 0, 1\n        while prime_fib.count < n:\n            a, b = b, a + b\n            if is_prime(b):\n                prime_fib.count += 1\n        return b\n    return sorted([x for x in prime_fib(n) if x % 2 == 1])\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        def is_prime(p):\n            for i in range(2, int(p ** 0.5) + 1):\n                if p % i == 0:\n                    return False\n            return True\n\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n\n    prime = prime_fib(n)\n    sequence = [prime]\n    while prime != 1:\n        if prime % 2 == 0:\n            prime = prime // 2\n        else:\n            prime = prime * 3 + 1\n        sequence.append(prime)\n\n    return sorted([x for x in sequence if x % 2 != 0])\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        def is_prime(p):\n            return math.sqrt(p) % 1 == 0\n        fib = [0, 1]\n        a, b = 0, 1\n        while len(fib) <= n:\n            fib.append(a)\n            a, b = b, a + b\n        return fib[n]\n    \n    prime = prime_fib(n)\n    if is_prime(prime):\n        collatz = [prime]\n        x = prime\n        while x != 1:\n            if x % 2 == 0:\n                x //= 2\n            else:\n                x = x * 3 + 1\n            collatz.append(x)\n        return collatz\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(p):\n        if p == 1 or p == 0:\n            return False\n        for i in range(2, int(math.sqrt(p)) + 1):\n            if p % i == 0:\n                return False\n        return True\n\n    def prime_fib(n):\n        a, b = 0, 1\n        while a < n:\n            a, b = b, a + b\n        return a\n\n    prime = prime_fib(n)\n    if not is_prime(prime):\n        return []\n\n    result = []\n    x = prime\n    while x != 1:\n        if x % 2 == 0:\n            x //= 2\n        else:\n            x = x * 3 + 1\n        result.append(x)\n    return result\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        def is_prime(p):\n            if p <= 1:\n                return False\n            for i in range(2, int(p ** 0.5) + 1):\n                if p % i == 0:\n                    return False\n            return True\n        fib = [0, 1]\n        a, b = 0, 1\n        while len(fib) <= n:\n            a, b = b, a + b\n            fib.append(a)\n        return fib[n] if is_prime(fib[n]) else None\n    return [x for x in collatz(prime_fib(n)) if x % 2 != 0]\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        def is_prime(p):\n            return math.sqrt(p) == int(math.sqrt(p)) and p % 6 != 1 and p % 6 != 5\n        fib = [0, 1]\n        a, b = 0, 1\n        while len(fib) <= n:\n            fib.append(a)\n            a, b = b, a + b\n        return fib[n]\n    \n    prime = prime_fib(n)\n    if not is_prime(prime):\n        return []\n    \n    collatz = [prime]\n    x = prime\n    while x != 1:\n        if x % 2 == 0:\n            x //= 2\n        else:\n            x = x * 3 + 1\n        collatz.append(x)\n    \n    return sorted(collatz)\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        def is_prime(p):\n            for i in range(2, int(p ** 0.5) + 1):\n                if p % i == 0:\n                    return False\n            return True\n\n        a, b = 0, 1\n        while a < n:\n            a, b = b, a + b\n        return a\n\n    prime = prime_fib(n)\n    if not is_prime(prime):\n        return []\n\n    x = prime\n    result = []\n    while x != 1:\n        if x % 2 == 0:\n            x //= 2\n        else:\n            x = 3 * x + 1\n        result.append(x)\n    return result\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if math.is_prime(a):\n                return a\n    return sorted([x for x in collatz_sequence(prime_fib(n)) if x % 2 != 0])\n\ndef collatz_sequence(n):\n    sequence = [n]\n    while n != 1:\n        if n % 2 == 0:\n            n = n // 2\n        else:\n            n = n * 3 + 1\n        sequence.append(n)\n    return sequence\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if math.is_prime(a):\n                return a\n    return sorted([x for x in collatz_sequence(prime_fib(n)) if x % 2 != 0])\n\ndef collatz_sequence(n):\n    sequence = [n]\n    while n != 1:\n        if n % 2 == 0:\n            n //= 2\n        else:\n            n = n * 3 + 1\n        sequence.append(n)\n    return sequence\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if math.is_prime(a):\n                return a\n    return sorted([x for x in collatz_sequence(prime_fib(n)) if x % 2 != 0])\n\ndef collatz_sequence(n):\n    sequence = [n]\n    while n != 1:\n        if n % 2 == 0:\n            n //= 2\n        else:\n            n = n * 3 + 1\n        sequence.append(n)\n    return sequence\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if math.is_prime(a):\n                return a\n    return sorted(list(map(lambda x: x if x % 2 else x // 2, collatz_seq(prime_fib(n)))))\n\ndef collatz_seq(n):\n    seq = [n]\n    while n != 1:\n        n = n if n % 2 else n // 2\n        n = n * 3 + 1 if n % 2 else n\n        seq.append(n)\n    return seq\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if math.is_prime(b):\n                return b\n    return sorted([x for x in collatz_sequence(prime_fib(n)) if x % 2 != 0])\n\ndef collatz_sequence(n):\n    sequence = [n]\n    while n != 1:\n        if n % 2 == 0:\n            n //= 2\n        else:\n            n = n * 3 + 1\n        sequence.append(n)\n    return sequence\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        a, b = 0, 1\n        while a < n:\n            a, b = b, a + b\n        return a\n\n    def is_prime(n):\n        if n <= 1:\n            return False\n        for i in range(2, int(math.sqrt(n)) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    def collatz(x):\n        sequence = [x]\n        while x != 1:\n            if x % 2 == 0:\n                x //= 2\n            else:\n                x = x * 3 + 1\n            sequence.append(x)\n        return sequence\n\n    prime = prime_fib(n)\n    return sorted(collatz(prime))\n",
+                false
+            ],
+            [
+                "",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        a, b = 0, 1\n        while a < n:\n            a, b = b, a+b\n        return a\n\n    def is_prime(n):\n        if n == 1 or n == 0:\n            return False\n        for i in range(2, int(math.sqrt(n)) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    def collatz(n):\n        result = []\n        while n != 1:\n            if n % 2 == 0:\n                n //= 2\n            else:\n                n = n * 3 + 1\n            result.append(n)\n        return result\n\n    return sorted(collatz(prime_fib(n)))\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n    def is_prime(n):\n        if n == 1 or n == 0:\n            return False\n        for i in range(2, int(math.sqrt(n)) + 1):\n            if n % i == 0:\n                return False\n        return True\n    def collatz_seq(x):\n        seq = [x]\n        while x != 1:\n            if x % 2 == 0:\n                x //= 2\n            else:\n                x = x * 3 + 1\n            seq.append(x)\n        return seq\n    return sorted(collatz_seq(prime_fib(n)))\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(b):\n                return b\n        return -1\n\n    def is_prime(n):\n        if n == 1 or n == 0:\n            return False\n        for i in range(2, int(n ** 0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    def collatz_seq(x):\n        seq = [x]\n        while x != 1:\n            if x % 2 == 0:\n                x //= 2\n            else:\n                x = x * 3 + 1\n            seq.append(x)\n        return seq\n\n    prime = prime_fib(n)\n    if prime == -1:\n        return []\n    else:\n        return sorted(list(set(collatz_seq(prime))))\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef prime_fib(n):\n    a, b = 0, 1\n    for i in range(n):\n        a, b = b, a + b\n        if is_prime(a):\n            return a\n\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_n = prime_fib(n)\n    sequence = [prime_fib_n]\n    while prime_fib_n != 1:\n        if prime_fib_n % 2 == 0:\n            prime_fib_n //= 2\n        else:\n            prime_fib_n = 3 * prime_fib_n + 1\n        sequence.append(prime_fib_n)\n    return sorted(sequence)\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def is_prime(p):\n        if p == 1 or p == 0:\n            return False\n        for i in range(2, int(math.sqrt(p)) + 1):\n            if p % i == 0:\n                return False\n        return True\n\n    def prime_fib(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n\n    def collatz(x):\n        sequence = [x]\n        while x != 1:\n            if x % 2 == 0:\n                x //= 2\n            else:\n                x = x * 3 + 1\n            sequence.append(x)\n        return sequence\n\n    return sorted(collatz(prime_fib(n)))\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef prime_fib(n):\n    a, b = 0, 1\n    for i in range(n):\n        a, b = b, a + b\n        if is_prime(a):\n            return a\n\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_n = prime_fib(n)\n    odd_numbers = []\n    current_number = prime_fib_n\n    while current_number != 1:\n        if current_number % 2 == 0:\n            current_number //= 2\n        else:\n            current_number = current_number * 3 + 1\n        odd_numbers.append(current_number)\n    return sorted(odd_numbers)\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef prime_fib(n):\n    a, b = 0, 1\n    for i in range(n):\n        a, b = b, a + b\n        if is_prime(b):\n            return b\n\ndef get_odd_prime_fib_collatz(n):\n    prime_fib_n = prime_fib(n)\n    odd_numbers = []\n    current_number = prime_fib_n\n    while current_number != 1:\n        if current_number % 2 == 0:\n            current_number //= 2\n        else:\n            current_number = current_number * 3 + 1\n        odd_numbers.append(current_number)\n    return sorted(odd_numbers)\n",
+                false
+            ],
+            [
+                "\nimport math\n\ndef get_odd_prime_fib_collatz(n):\n    def prime_fib(n):\n        a, b = 0, 1\n        for i in range(n):\n            a, b = b, a + b\n            if is_prime(a):\n                return a\n        return -1\n\n    def is_prime(p):\n        if p == 1 or p == 0:\n            return False\n        for i in range(2, int(math.sqrt(p)) + 1):\n            if p % i == 0:\n                return False\n        return True\n\n    prime_fib_number = prime_fib(n)\n    if prime_fib_number == -1:\n        return []\n    else:\n        result = [prime_fib_number]\n        while prime_fib_number != 1:\n            if prime_fib_number % 2 == 0:\n                prime_fib_number //= 2\n            else:\n                prime_fib_number = prime_fib_number * 3 + 1\n            result.append(prime_fib_number)\n        return result\n",
+                false
+            ]
+        ]
+    }
+}

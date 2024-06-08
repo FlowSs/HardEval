@@ -1,0 +1,106 @@
+Your task is to deliver three levels of instructions to implement a given Python function. The instructions should be formatted as paragraphs of decreasing difficulty by adding details incrementally using the previous instruction as a basis. Keep in mind that those final instructions will be used by an LLM to generate the function. To generate incrementally the instruction, follow those steps: 
+
+# First Instruction:
+
+- It should only rely on the given extra information in ### Extra Information.
+- You can make use of the details in the function to understand the extra information better. However, you can not integrate those details in the instruction.
+- Make sure to integrate all content of the extra information in the instruction
+- The answer is expected to be in between <first> and </first> tags. 
+
+# Second Instruction:
+
+- It should rely on the base instruction given by <first> and </first>.
+- You can use the extra information in ### Extra Information to further understand your task.
+- The details you will add are based on the function itself.
+- Do not explicitly mentioned with single quotation mark any variable, module or nested / inner / helper function. Instead, rephrase them in natural language.
+- The answer is expected to be in between <second> and </second> tags. 
+
+# Third Instruction:
+
+- It should rely on the base instruction given by <second> and </second>.
+- You can use the extra information in between ### Extra Information to further understand your task.
+- The details you will add are based on the function itself.
+- Explicitly mention details from the function such as variable names or helper function using quotation marks "".
+- The answer is expected to be in between <third> and </third> tags. 
+
+Only return the final instructions as single paragraphs. Start the instructions with "Write a function " followed by the name of the function and clearly state the goal of the function. 
+
+## 
+
+### Example
+### Function
+import math
+
+def colors(color_list):
+    def get_sum_color(c_list):
+        my_sum = 0
+        for color in c_list:
+            if color == 'red':
+               my_sum += -1
+            elif color == 'white':
+               my_sum += 0.11
+            else:
+               my_sum += 1
+
+        return my_sum
+        
+    tot_sum = get_sum_color(color_list)
+    return round(math.exp(tot_sum), 2)  
+
+### Extra Information
+Given an array color_list with n objects colored red, white, or blue, return the exponential of the sum of the value of the n objects. Round the value to the second digits.
+
+The value of the objects based on their color is -1, 0.1, and 1 for the color red, white, and blue, respectively.
+
+Examples
+colors(['red', 'red', 'white']) => 0.15
+colors(['red', 'white', 'blue']) => 1.11
+
+### Instruction
+
+<first>Write a function named 'colors' which calculates the rounded value at 2 digits of the exponential of the sum of the values associated with the colors of n objects in a list. The values are determined based on the color, with 'red' being -1, 'white' being 0.1, and 'blue' being 1.</first>
+
+<second>Write a function named 'colors' which takes as input a list containing strings representing colors. The function aims to calculate the rounded value at 2 digits of the exponential of the sum of the values associated with the colors of n objects in a list. The values are determined based on the color, with 'red' is -1, 'white' is 0.11, and 'blue' is 1. It makes use of an inner function to calculate the sum of the values associated with the colors. This inner function iterates over each color in the list and updates the variable based on the value associated with the color. After the loop, it returns the sum to the main function. The function then calculates the exponential of this sum and rounds the result to 2 decimal places. Finally, it returns the rounded result.</second>
+
+<third>Write a function named 'colors' which takes as input a list "color_list" containing strings representing colors. The function aims to calculate the exponential of the sum of the values associated with the colors in the list. For each color in the list, if it is 'red', the value is decreased by 1, if it is 'white', the value is increased by 0.1, and for 'blue' the value is increased by 1. The function utilizes the math module. It make use of an inner function "get_sum_color()" to calculate the sum of the values associated with the colors. It starts by using the inner function "get_sum_color()" with "color_list". The inner function starts by initializing a variable "my_sum" to 0. Then, it iterates over each color in color_list. Inside the loop, it updates "my_sum" based on the value associated with the color. After the loop, it returns the value of "my_sum" to the main function affecting it to a variable "tot_sum". The function then calculates the exponential of "tot_sum" using "math.exp()" and rounds the result to 2 decimal places using "round()". Finally, it returns the rounded result "tot_sum".</third>
+
+##
+
+### Example
+### Function
+def insertion_sort(my_list):  
+        for i in range(1, len(my_list)):   
+            a = my_list[i]  
+            j = i - 1 
+           
+            while j >= 0 and a < my_list[j]:  
+                my_list[j + 1] = my_list[j]  
+                j -= 1   
+               
+            my_list[j + 1] = a  
+             
+        return my_list 
+
+### Extra Information
+You are given a list of number. Your goal is to sort a list in ascending order using the insertion sort algorithm.
+
+>>> insertion_sort([1, 4, 2, 0])
+>>> [0, 1, 2, 4]
+
+### Instruction
+
+<first>Write a function named 'insertion_sort' which aims to sort a list of numbers in ascending order using the insertion sort algorithm.</first>
+
+<second>Write a function named 'insertion_sort' which takes as input a list of numbers. The goal of the function is to sort the input list in ascending order using the insertion sort algorithm. To do so, the function iterates with a for loop over the elements of the list starting from the second element. For each iteration of the loop, it stores the value of the current element in a variable. Then, it iterates backwards with a while loop from the current index to find the correct position for this current element, moving elements larger than the current element one position to the right. Once the correct position is found, outside of the while loop, the current element is inserted into the list and the function moves to the next iteration of the for loop. Finally, the sorted list is returned by the function.</second>
+
+<third>Write a function named `insertion_sort` which takes as input a list of numbers "my_list". The goal of the function is to sort the input list "my_list" in ascending order using the insertion sort algorithm. To do so, the function iterates with a for loop over the elements of the list starting from the index 1 to "len(my_list)". For each iteration i of the loop, it stores the value of the current element "my_list[i]" in a variable "a" and create a variable "j" with value "i - 1". Then, it iterates backwards with a while loop from the current index to find the correct position for this current element, that is as long as 'j' is positive and "a" is strictly lower than "my_list[j]". It does so by moving elements larger than the current element one position to the right by assigning the value of "my_list[j]" to the element "my_list[j + 1]" and decrementing "j" by 1 at each step of the while loop. Once the correct position is found, outside of the while loop, the current element "a" is inserted into "my_list" at the"j + 1". Finally, the sorted "my_list" is returned by the function.</third>
+
+##
+
+### Function
+INSERT_FUNCTION
+
+### Extra Information
+INSERT_PROMPT
+
+### Instruction

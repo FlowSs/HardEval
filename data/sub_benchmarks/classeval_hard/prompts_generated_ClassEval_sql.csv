@@ -1,0 +1,911 @@
+class_id;class_name;class_code;class_text;method_signature;method_name;method_code;method_params;skeleton;test;original prompt;level 1;level 2;level 3
+79_51;SQLGenerator;"
+class SQLGenerator:  
+    """"""
+    This class generates SQL statements for common operations on a table, such as SELECT, INSERT, UPDATE, and DELETE.
+    """"""
+
+    def __init__(self, table_name):
+        """"""
+        Initialize the table name.
+        :param table_name: str
+        """"""
+        self.table_name = table_name
+
+    def select(self, fields=None, condition=None):
+        """"""
+        Generates a SELECT SQL statement based on the specified fields and conditions.
+        """"""
+        pass
+
+    def insert(self, data):
+        """"""
+        Generates an INSERT SQL statement based on the given data.
+        """"""
+        pass
+
+    def update(self, data, condition):
+        """"""
+        Generates an UPDATE SQL statement based on the given data and condition.
+        """"""
+        pass
+
+    def delete(self, condition):
+        """"""
+        Generates a DELETE SQL statement based on the given condition.
+        """"""
+        pass
+
+    def select_female_under_age(self, age):
+        """"""
+        Generates a SQL statement to select females under a specified age.
+        """"""
+        pass
+
+    def select_by_age_range(self, min_age, max_age):
+        pass
+    
+    def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):
+        condition = f""age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}""
+        return self.select(condition=condition)
+
+";"
+class SQLGenerator:  
+    """"""
+    This class generates SQL statements for common operations on a table, such as SELECT, INSERT, UPDATE, and DELETE.
+    """"""
+
+    def __init__(self, table_name):
+        """"""
+        Initialize the table name.
+        :param table_name: str
+        """"""
+        self.table_name = table_name
+
+    def select(self, fields=None, condition=None):
+        pass
+
+    def insert(self, data):
+        pass
+
+    def update(self, data, condition):
+        pass
+
+    def delete(self, condition):
+        pass
+
+    def select_female_under_age(self, age):
+        pass
+
+    def select_by_age_range(self, min_age, max_age):
+       pass
+
+    def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):
+
+    
+";select_by_age_range_exclude_names(self, min_age, max_age, exclude_names);select_by_age_range_exclude_names;"def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):
+        condition = f""age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}""
+        return self.select(condition=condition)";":param min_age: int. The minimum age.
+:param max_age: int. The maximum age.
+:param exclude_names: list of str. The names to exclude.
+:return: str. The generated SQL statement.
+";"class SQLGenerator:
+    def __init__(self, table_name):
+        self.table_name = table_name
+
+    def select(self, fields=None, condition=None):
+        if fields is None:
+            fields = ""*""
+        else:
+            fields = "", "".join(fields)
+        sql = f""SELECT {fields} FROM {self.table_name}""
+        if condition is not None:
+            sql += f"" WHERE {condition}""
+        return sql + "";""
+
+    def insert(self, data):
+        fields = "", "".join(data.keys())
+        values = "", "".join([f""'{value}'"" for value in data.values()])
+        sql = f""INSERT INTO {self.table_name} ({fields}) VALUES ({values})""
+        return sql + "";""
+
+    def update(self, data, condition):
+        set_clause = "", "".join([f""{field} = '{value}'"" for field, value in data.items()])
+        sql = f""UPDATE {self.table_name} SET {set_clause} WHERE {condition}""
+        return sql + "";""
+
+    def delete(self, condition):
+        sql = f""DELETE FROM {self.table_name} WHERE {condition}""
+        return sql + "";""
+
+    def select_female_under_age(self, age):
+        condition = f""age < {age} AND gender = 'female'""
+        return self.select(condition=condition)
+
+    def select_by_age_range(self, min_age, max_age):
+        condition = f""age BETWEEN {min_age} AND {max_age}""
+        return self.select(condition=condition)
+
+    def select_by_age_range_exclude_names(self, min_age, max_age, exclude_names):
+        pass";"import unittest
+
+class SQLGeneratorTestSelectByAgeRangeExcludeName(unittest.TestCase):
+    def test_select_by_age_range(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_by_age_range_exclude_names(20, 30, ['Alice'])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age BETWEEN 20 AND 30"", split_where[1])
+        self.assertIn(""name NOT IN ('Alice',)"", split_where[1])
+        self.assertEqual(result.count('AND'), 2)
+        self.assertEqual(result[-1], ';')
+
+
+    def test_select_by_age_range_2(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_by_age_range_exclude_names(10, 20, ['Alice'])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age BETWEEN 10 AND 20"", split_where[1])
+        self.assertIn(""name NOT IN ('Alice',)"", split_where[1])
+        self.assertEqual(result.count('AND'), 2)
+        self.assertEqual(result[-1], ';')
+
+    def test_select_by_age_range_3(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_by_age_range_exclude_names(30, 40, ['Alice', 'Bob'])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age BETWEEN 30 AND 40"", split_where[1])
+        self.assertIn(""name NOT IN ('Alice', 'Bob')"", split_where[1])
+        self.assertEqual(result.count('AND'), 2)
+        self.assertEqual(result[-1], ';')
+
+    def test_select_by_age_range_4(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_by_age_range_exclude_names(40, 50, ['Alice', 'Bob'])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age BETWEEN 40 AND 50"", split_where[1])
+        self.assertIn(""name NOT IN ('Alice', 'Bob')"", split_where[1])
+        self.assertEqual(result.count('AND'), 2)
+        self.assertEqual(result[-1], ';')
+
+    def test_select_by_age_range_5(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_by_age_range_exclude_names(50, 60, ['Alice', 'Bob', 'Charlie'])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age BETWEEN 50 AND 60"", split_where[1])
+        self.assertIn(""name NOT IN ('Alice', 'Bob', 'Charlie')"", split_where[1])
+        self.assertEqual(result.count('AND'), 2)
+        self.assertEqual(result[-1], ';')";"Generate a SQL statement to select records within a specified age range and which name is not in a given list.
+:param min_age: int. The minimum age.
+:param max_age: int. The maximum age.
+:param exclude_names: list of str. The names to exclude.
+:return: str. The generated SQL statement.
+>>> sql.select_by_age_range_exclude_names(20, 30, ['Alice', 'Bob'])
+'SELECT * FROM table1 WHERE age BETWEEN 20 AND 30 AND name NOT IN ('Alice', 'Bob');'
+";"['Generate a SQL statement to select records where the age is between ""min_age"" and ""max_age"" and the records\' names are not in ""exclude_names"".', ""Create a SQL query to fetch entries with ages between 'min_age' and 'max_age' while excluding entries whose names appear in 'exclude_names'."", ""Formulate a SQL command to retrieve data where the age falls between 'min_age' and 'max_age' and to omit records with names listed in 'exclude_names'."", ""Construct a SQL expression to select rows where the age is within the range 'min_age' to 'max_age' and avoids names found in 'exclude_names'."", ""Develop a SQL statement that selects individuals aged between 'min_age' and 'max_age' excluding those whose names are contained in 'exclude_name'."", ""Compose a SQL query to extract records, ensuring the age is from 'min_age' to 'max_age' and the record's names are not included in 'exclude_names'.""]";"['Generate a SQL statement to select records where the age is between ""min_age"" and ""max_age"" and the records\' names are not in ""exclude_names"". Begin by constructing a condition string that describes entries with age within the specified range but whose names do not appear in the provided exclusion list. This condition is then used to retrieve the matching entries from the table, excluding specified names.', ""Craft a SQL condition to fetch rows where the age falls between 'min_age' and 'max_age' and the names are not contained in 'exclude_names'. Start by forming a string that specifies the age constraint within the given interval and excludes names on the provided list. Use this string to perform a selection of entries from the database that meet these criteria, omitting the names listed."", ""Create a SQL query to retrieve records that meet the age criteria of being between 'min_age' and 'max_age', and where the name is not among those in 'exclude_names'. First, formulate a condition string representing entries where age is inside this range and names are excluded as specified. This condition then aids in selecting the appropriate records from the table while omitting those names."", ""Develop a SQL expression to select entries where ages lie between 'min_age' and 'max_age' and names are not part of 'exclude_names'. Initially, construct a string that defines this specific age range and name exclusion. Following this, use the condition to filter and obtain records from the table excluding the specified names."", ""Produce a SQL clause that selects data entries with ages between 'min_age' and 'max_age', excluding any entries where the name is listed in 'exclude_names'. Begin with drafting a condition string that identifies records in the required age bracket while ensuring names on the exclusion list are omitted. Utilize this condition to filter and extract relevant records from the database, excluding the names detailed."", ""Formulate a SQL statement to isolate records where the age range is between 'min_age' and 'max_age' and the names do not include those on 'exclude_names'. Start by creating a condition string that outlines age within the desired range and excludes names as listed. Utilize this condition to select the appropriate entries from the database, avoiding the mentioned names.""]";"['Generate a SQL statement to select records where the age is between ""min_age"" and ""max_age"" and the records\' names are not in ""exclude_names"". Begin by constructing a condition string that describes entries with age within the specified range but whose names do not appear in the provided exclusion list. This condition is formed using the string ""age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}"". The function then calls the ""select"" method of the ""SQLGenerator"" class, passing this condition to generate the SQL query that retrieves the desired records.', ""Create a SQL query to retrieve records where the age falls between 'min_age' and 'max_age' and the names of these records are not listed in 'exclude_names'. Start by crafting a condition string that identifies records in the specified age bracket excluding entries that have names on the provided blacklist. This condition is expressed as 'age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}'. Subsequently, this string is used to invoke the 'select' method of the 'SQLGenerator' class to produce the needed SQL query."", ""Construct a SQL statement that filters records with ages between 'min_age' and 'max_age' while omitting records with names found in 'exclude_names'. Initiate this by forming a condition statement that defines records with ages in the given range and names not included in the exclusion list. The condition is written as 'age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(execute_names)}'. This condition is then utilized to call the 'select' function from the 'SQLGenerator' class to compose the appropriate SQL query."", ""Develop a SQL command to select entries where ages are within the range of 'min_age' to 'max_age' and excluding any entries whose names are in 'exclude_names'. Begin by setting up a string condition that specifies entries aged within the defined limits and whose names are not in the designated exclusion list. This condition takes the form 'age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}'. The 'select' method of the 'SQLGenerator' class is then employed, using this condition to generate the corresponding SQL command."", ""Formulate a SQL query targeting records that have ages between 'min_age' and 'max_age', but whose names aren't contained within 'exclude_names'. Initially design a string for the condition that filters for records within this age range and excludes those named in the exclude list, defined as 'age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}'. Following the configuration of this condition, apply it by calling the 'select' function of the 'SQLGenerator' class, which constructs the requested SQL query."", ""Generate a SQL query to find records with ages from 'min_age' to 'max_age' that do not include names specified in 'exclude_names'. To achieve this, construct a condition string that identifies only entries that meet the age criteria and lack names from the exclusion list. This condition is formulated as 'age BETWEEN {min_age} AND {max_age} AND name NOT IN {tuple(exclude_names)}'. Use this condition to initiate the 'select' method in the 'SQLGenerator' class in order to obtain the desired SQL query.""]"
+80_21;SQLQueryBuilder;"
+class SQLQueryBuilder:  
+    """"""
+    This class provides to build SQL queries, including SELECT, INSERT, UPDATE, and DELETE statements. 
+    """"""
+
+    def select(table, columns='*', where=None):
+        """"""
+        Generate the SELECT SQL statement from the given parameters.
+        """"""
+        pass
+
+    @staticmethod
+    def insert(table, data):
+        """"""
+        Generate the INSERT SQL statement from the given parameters.
+        """"""
+        pass
+
+    @staticmethod
+    def delete(table, where=None):
+        pass
+
+    @staticmethod
+    def update(table, data, where=None):
+        """"""
+        Generate the UPDATE SQL statement from the given parameters.
+        """"""
+        pass
+    
+    @staticmethod
+    def delete_with_log(table, where=None, log_table='delete_log'):
+        query = f""DELETE FROM {table}""
+        if where:
+            condition = ' AND '.join(f""{k}='{v}'"" for k, v in where.items())
+            query += """""" WHERE """""" + condition
+        if where:
+          query += ';' + f""""""INSERT INTO {log_table} (table_name, condition) VALUES (""{table}"", ""{condition}"")""""""
+        else:
+          query += ';' + f""""""INSERT INTO {log_table} (table_name, condition) VALUES (""{table}"", ""None"")""""""
+        return query
+
+";"
+class SQLQueryBuilder:  
+    """"""
+    This class provides to build SQL queries, including SELECT, INSERT, UPDATE, and DELETE statements. 
+    """"""
+
+    def select(table, columns='*', where=None):
+        pass
+
+    @staticmethod
+    def insert(table, data):
+        pass
+
+    @staticmethod
+    def update(table, data, where=None):
+        pass
+
+    @staticmethod
+    def delete(table, where=None):
+        pass
+
+    @staticmethod
+    def delete_with_log(table, where=None, log_table='delete_log'):
+
+";delete_with_log(table, where=None, log_table='delete_log');delete_with_log;"def delete_with_log(table, where=None, log_table='delete_log'):
+        query = f""DELETE FROM {table}""
+        if where:
+            condition = ' AND '.join(f""{k}='{v}'"" for k, v in where.items())
+            query += """""" WHERE """""" + condition
+        if where:
+          query += ';' + f""""""INSERT INTO {log_table} (table_name, condition) VALUES (""{table}"", ""{condition}"")""""""
+        else:
+          query += ';' + f""""""INSERT INTO {log_table} (table_name, condition) VALUES (""{table}"", ""None"")""""""
+        return query";":param table: str, the table that will be excuted with DELETE operation in database
+:param where: dict, {key1: value1, key2: value2 ...}. The query condition.
+:param log_table: str, the table where delete operations will be logged.
+:return query: str, the SQL delete statement.
+";"class SQLQueryBuilder:
+
+    @staticmethod
+    def select(table, columns='*', where=None):
+        if columns != '*':
+            columns = ', '.join(columns)
+        query = f""SELECT {columns} FROM {table}""
+        if where:
+            query += "" WHERE "" + ' AND '.join(f""{k}='{v}'"" for k, v in where.items())
+        return query
+
+    @staticmethod
+    def insert(table, data):
+        keys = ', '.join(data.keys())
+        values = ', '.join(f""'{v}'"" for v in data.values())
+        return f""INSERT INTO {table} ({keys}) VALUES ({values})""
+
+    @staticmethod
+    def delete(table, where=None):
+        query = f""DELETE FROM {table}""
+        if where:
+            query += "" WHERE "" + ' AND '.join(f""{k}='{v}'"" for k, v in where.items())
+        return query
+
+    @staticmethod
+    def update(table, data, where=None):
+        update_str = ', '.join(f""{k}='{v}'"" for k, v in data.items())
+        query = f""UPDATE {table} SET {update_str}""
+        if where:
+            query += "" WHERE "" + ' AND '.join(f""{k}='{v}'"" for k, v in where.items())
+        return query
+    
+    @staticmethod
+    def delete_with_log(table, where=None, log_table='delete_log'):
+          pass";"import unittest
+
+class SQLQueryBuilderTestDeteleWithLog(unittest.TestCase):
+    def test_delete_1(self):
+        self.assertEqual(
+            SQLQueryBuilder.delete_with_log('table1', {'name': 'Test', 'age': 14}, 'delete_log'),
+            """"""DELETE FROM table1 WHERE name='Test' AND age='14';INSERT INTO delete_log (table_name, condition) VALUES (""table1"", ""name='Test' AND age='14'"")""""""
+        )
+
+    def test_delete_2(self):
+        self.assertEqual(
+            SQLQueryBuilder.delete_with_log('students', {'name': 'Tom'}, 'delete_log'),
+            """"""DELETE FROM students WHERE name='Tom';INSERT INTO delete_log (table_name, condition) VALUES (""students"", ""name='Tom'"")""""""
+        )
+
+    def test_delete_3(self):
+        self.assertEqual(
+            SQLQueryBuilder.delete_with_log('items', {'name': 'apple'}, 'delete_log'),
+            """"""DELETE FROM items WHERE name='apple';INSERT INTO delete_log (table_name, condition) VALUES (""items"", ""name='apple'"")""""""
+        )
+
+    def test_delete_4(self):
+        self.assertEqual(
+            SQLQueryBuilder.delete_with_log('items', {'name': 'aaa'}, 'delete_log'),
+            """"""DELETE FROM items WHERE name='aaa';INSERT INTO delete_log (table_name, condition) VALUES (""items"", ""name='aaa'"")""""""
+        )
+
+    def test_delete_5(self):
+        self.assertEqual(
+            SQLQueryBuilder.delete_with_log('items', {'name': 'bbb'}, 'delete_log'),
+            """"""DELETE FROM items WHERE name='bbb';INSERT INTO delete_log (table_name, condition) VALUES (""items"", ""name='bbb'"")""""""
+        )
+
+    def test_delete_6(self):
+        self.assertEqual(
+            SQLQueryBuilder.delete_with_log('items'),
+            """"""DELETE FROM items;INSERT INTO delete_log (table_name, condition) VALUES (""items"", ""None"")""""""
+        )";"Generate the DELETE SQL statement from the given parameters and log the delete operation
+ :param table: str, the table that will be executed with DELETE operation in database
+ :param where: dict, {key1: value1, key2: value2 ...}. The query condition.
+ :param log_table: str, the table where delete operations will be logged.
+ :return query: str, the SQL delete statement.
+ >>> SQLQueryBuilder.delete_with_log('table1', {'name': 'Test', 'age': 14}, 'delete_log')
+ ""DELETE FROM table_1 WHERE name=\'Test\' AND age=\'14\';INSERT INTO delete_log (table_name, condition) VALUES (""table_1"", ""name=\'Test\' AND age=\'14\'"")""";"['Generate a DELETE SQL statement using the provided ""table"" and optional ""where"" filter, represented as a dictionnary, and log the delete operation in ""log_table"", which has two columns table_name and condition. Return the composed SQL query string.', ""Construct a DELETE SQL command for the specified 'table' with an optional 'where' parameter, formatted as a dictionary. Record the deletion in 'log_table' that includes columns for table_name and condition. The method should return the resulting SQL query string."", ""Formulate an SQL DELETE query for a given 'table,' optionally using a 'where' filter as a dictionary; log the deletion details in 'log_log_table,' with columns named table_name and condition, and return the full SQL query."", ""Create a SQL DELETE statement targeted at the provided 'table'. If a 'where' filter is provided as a dictionary, include it. Log this action in a 'log_table' that records the table_name and condition, returning the aggregate SQL query."", ""Compose an SQL deletion operation for the designated 'table' and an optional dictionary-form 'where' filter, log this operation in 'log_table' with table_name and condition columns. Produce and return the complete SQL query string."", ""Generate and return an SQL query that deletes from a specified 'table', using an optional 'where' clause presented as a dictionary, and logs the operation in a 'log_table' with columns for table_name and condition.""]";"['Generate a DELETE SQL statement using the provided ""table"" and optional ""where"" filter, represented as a dictionnary, and log the delete operation in ""log_table"", which has two columns table_name and condition. Return the composed SQL query string. The function constructs a basic DELETE statement by specifying the target table. If a ""where"" condition is provided, it appends this condition to the DELETE statement by unpacking the elements of the dictionnary representing ""where"". After performing the DELETE operation, it logs this action in the table ""log_table"", recording both the table name and the conditions used for the deletion, if any. If no condition is specified, it logs the operation with a condition value of ""None"".', ""Compose a DELETE SQL command targeting the specified 'table', including an optional 'where' filter as a dictionary. Log the operation in 'log_table', which features two columns: table_name and condition. The function initiates by forming a basic DELETE command for the designated table. If a 'where' filter exists, it integrates this into the DELETE command by unraveling the dictionary. Post-DELETE, it captures the event in 'log_table' with details of both the table name and the applied conditions, or 'None' if no conditions were specified."", ""Create a DELETE SQL query for a given 'table', potentially incorporating a 'where' filter presented as a dictionary, and document the deletion in 'log_table' with columns for table_name and condition. Start by generating a simple DELETE statement for the specified table. Append 'where' conditions if provided, by disassembling the dictionary elements. Following the deletion, track the deletion details in 'log_table', noting the table's name and the conditions applied, or 'None' if unconditioned."", ""Construct a DELETE SQL query using 'table' and an optional dictionary-based 'where' filter, and record the deletion detail in 'log_table', which includes columns table_barne and condition. The function builds an initial DELETE statement targeting the listed table. If supplied, 'where' conditions are attached to the DELETE statement by decomposing the constituent dictionary. It concludes by logging the operation in 'log_table', registering the table name alongside the utilized conditions, or 'None' if conditions are absent."", ""Generate a DELETE SQL statement for the 'table' specified, with an optional 'where' filter in dictionary form, and log this deletion in 'logDateFormatimplementation's columns table_name and condition. The function first composes a straightforward DELETE statement for the mentioned table. If a 'where' condition is provided, it is appended by breaking down the dictionary's contents. Following the execution of the DELETE, the action is logged in 'log_table', recording the table name and either the conditions applied or 'None' if no conditions were provided."", ""Formulate a DELETE SQL phrase for the intended 'table', possibly utilizing an optional 'where' filter depicted as a dictionary, and register the deletion activity in 'log_table', consisting of columns such as table_name and condition. The process begins with structuring a basic DELETE statement for the fixed table. Should a 'where' condition exist, it's merged by disentangling the dictionary details. After carrying out the DELETE, it logs the transaction in 'log_table', detailing the table name and either the observed conditions or 'None' if none were specified.""]";"['Generate a DELETE SQL statement using the provided ""table"" and optional ""where"" filter, represented as a dictionnary, and log the delete operation in ""log_table"", which has two columns table_name and condition. Return the composed SQL query string. The function begins by forming a basic DELETE statement with the table name provided in ""table"". It then checks if a ""where"" dictionary is provided and constructs the condition part of the DELETE statement by concatenating each key-value pair into a single string condition. This condition is appended to the DELETE statement. Then, a subsequent logging operation is performed by inserting into ""log_table"", recording both the the table name and the conditions used for the deletion if a condition was provided, otherwise recording the table name and ""None"". The complete SQL query is then returned, containing both the DELETE and INSERT operations separated by a "";"".', 'Create a SQL DELETE command from the specified ""table"" with an optional ""where"" condition presented as a dictionary, and document this deletion in ""log_table"" having columns for table_name and condition. The function initiates by generating a basic DELETE query using the given ""table"" name. If a ""where"" dictionary is present, a condition string is constructed by amalgamating each key-value pair from the dictionary. This string is then added to the DELETE query. Following the deletion, an insertion into ""log_table"" logs the deletion details - the table_name and either the condition string or ""None"" if no condition was given. The output is a full SQL query string containing the DELETE and INSERT commands, joined by a semicolon.', 'Form a SQL DELETE query using the ""table"" provided and an optional ""where"" dictionary as a filter, while logging the delete action in ""log_table"" with columns named table_name and condition. Starting with a basic DELETE statement using the ""table"", if a ""where"" dictionary exists, it joins each key-value into a single condition string. This string is attached to the DELETE query. Following this, the function performs an insert into ""log_table"" to log the event, recording the table\'s name and the deletion condition - or ""None"" if no condition was specified. It then returns the entire SQL query, combining the DELETE and INSERT actions with a semicolon.', 'Produce a SQL DELETE statement drawing on the provided ""table"" and an optional ""where"" clause symbolized by a dictionary, also logging the operation in ""log_txable"" across two columns: table_name and condition. The procedure starts by crafting a DELETE statement based on the ""table"". Should there be a ""where"" dictionary, it synthesizes a condition by merging each dictionary entry into a single string which supplements the DELETE statement. Subsequently, an INSERT operation logs the deletion in ""log_table"", capturing the table name and the condition used or ""None"" if no condition exists. The function returns the compounded SQL query string of the DELETE and INSERT segmented by a semicolon.', 'Construct a SQL DELETE directive using a given ""table"" and potentially a ""where"" dictionary as a filter, then chronicle this deletion in ""log_table"", which incorporates columns for table_name and condition. The function opens by drafting a simple DELETE query using the ""table"" name. If there is a ""where"" dictionary, it assembles a single condition string by integrating each key-value combination. This condition is added to the DELETE query. Then, an insert into ""log_table"" is executed to log the action, jotting down the table name and either the joined condition or ""None"" if absent. Finally, the function returns the complete SQL query combining both DELETE and INSERT statements via a semicolon.', 'Generate a SQL DELETE query with the specified ""table"" and an optional dictionary-based ""where"" filter, and document the operation in ""log_table"" including columns named table_height as ltable_name and filter condition, provided the function constructs a principal DELETE statement through the ""table"" name initially. Upon receiving a ""where"" dictionary, it constructs a condition by linking each key-value pair into one aggregated string which is then connected to the DELETE statement. Afterwards, an insert logs into ""log_table"" indicating the table name and the employed condition, or ""None"" if undefined. The full SQL query returned encompasses the DELETE and INSERT statement separated by a "";"".']"
+79_41;SQLGenerator;"
+class SQLGenerator:  
+    """"""
+    This class generates SQL statements for common operations on a table, such as SELECT, INSERT, UPDATE, and DELETE.
+    """"""
+
+    def __init__(self, table_name):
+        """"""
+        Initialize the table name.
+        :param table_name: str
+        """"""
+        self.table_name = table_name
+
+    def select(self, fields=None, condition=None):
+        """"""
+        Generates a SELECT SQL statement based on the specified fields and conditions.
+        """"""
+        pass
+
+    def insert(self, data):
+        """"""
+        Generates an INSERT SQL statement based on the given data.
+        """"""
+        pass
+
+    def update(self, data, condition):
+        """"""
+        Generates an UPDATE SQL statement based on the given data and condition.
+        """"""
+        pass
+
+    def delete(self, condition):
+        """"""
+        Generates a DELETE SQL statement based on the given condition.
+        """"""
+        pass
+
+    def select_female_under_age(self, age):
+       pass
+
+    def select_by_age_range(self, min_age, max_age):
+        """"""
+        Generates a SQL statement to select records within a specified age range.
+        """"""
+        pass
+
+     def select_female_under_age_exclude_groups(self, age, exclude_groups):
+        condition = f""age < {age} AND gender = 'female'""
+        for t in exclude_groups:
+             condition += f' AND age NOT BETWEEN {t[0]} AND {t[1]} '
+        return self.select(condition=condition)
+
+";"
+class SQLGenerator:  
+    """"""
+    This class generates SQL statements for common operations on a table, such as SELECT, INSERT, UPDATE, and DELETE.
+    """"""
+
+    def __init__(self, table_name):
+        """"""
+        Initialize the table name.
+        :param table_name: str
+        """"""
+        self.table_name = table_name
+
+    def select(self, fields=None, condition=None):
+        pass
+
+    def insert(self, data):
+        pass
+
+    def update(self, data, condition):
+        pass
+
+    def delete(self, condition):
+        pass
+
+    def select_by_age_range(self, min_age, max_age):
+        pass
+
+    def select_female_under_age(self, age):
+        pass
+
+    def select_female_under_age_exclude_groups(self, age, exclude_groups):
+"; select_female_under_age_exclude_groups(age, exclude_groups);select_female_under_age_exclude_groups;"def select_female_under_age_exclude_groups(self, age, exclude_groups):
+        condition = f""age < {age} AND gender = 'female'""
+        for t in exclude_groups:
+             condition += f' AND age NOT BETWEEN {t[0]} AND {t[1]} '
+        return self.select(condition=condition)";":param age: int. The specified age.
+:param exclude_groups: list of tuples. Each tuple contains two integers representing the start and end of an age group to exclude.
+:return: str. The generated SQL statement.
+";"class SQLGenerator:
+    def __init__(self, table_name):
+        self.table_name = table_name
+
+    def select(self, fields=None, condition=None):
+        if fields is None:
+            fields = ""*""
+        else:
+            fields = "", "".join(fields)
+        sql = f""SELECT {fields} FROM {self.table_name}""
+        if condition is not None:
+            sql += f"" WHERE {condition}""
+        return sql + "";""
+
+    def insert(self, data):
+        fields = "", "".join(data.keys())
+        values = "", "".join([f""'{value}'"" for value in data.values()])
+        sql = f""INSERT INTO {self.table_name} ({fields}) VALUES ({values})""
+        return sql + "";""
+
+    def update(self, data, condition):
+        set_clause = "", "".join([f""{field} = '{value}'"" for field, value in data.items()])
+        sql = f""UPDATE {self.table_name} SET {set_clause} WHERE {condition}""
+        return sql + "";""
+
+    def delete(self, condition):
+        sql = f""DELETE FROM {self.table_name} WHERE {condition}""
+        return sql + "";""
+
+    def select_female_under_age(self, age):
+        condition = f""age < {age} AND gender = 'female'""
+        return self.select(condition=condition)
+
+    def select_by_age_range(self, min_age, max_age):
+        condition = f""age BETWEEN {min_age} AND {max_age}""
+        return self.select(condition=condition)
+
+    def select_female_under_age_exclude_groups(self, age, exclude_groups):
+        pass";"import unittest
+
+class SQLGeneratorTestSelectFemaleUnderAge(unittest.TestCase):
+    def test_select_by_age_range(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_female_under_age_exclude_groups(30, [(10, 15), (20, 25)])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age < 30"", split_where[1])
+        self.assertIn(""gender = 'female'"", split_where[1])
+        self.assertIn(""age NOT BETWEEN 20 AND 25"", split_where[1])
+        self.assertIn(""age NOT BETWEEN 10 AND 15"", split_where[1])
+        self.assertEqual(result.count('AND'), 5)
+        self.assertEqual(result[-1], ';')
+
+    def test_select_by_age_range_2(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_female_under_age_exclude_groups(30, [(20, 25)])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age < 30"", split_where[1])
+        self.assertIn(""gender = 'female'"", split_where[1])
+        self.assertIn(""age NOT BETWEEN 20 AND 25"", split_where[1])
+        self.assertEqual(result.count('AND'), 3)
+        self.assertEqual(result[-1], ';')
+
+    def test_select_by_age_range_3(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_female_under_age_exclude_groups(30, [(10, 15), (15, 20), (20, 25)])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age < 30"", split_where[1])
+        self.assertIn(""gender = 'female'"", split_where[1])
+        self.assertIn(""age NOT BETWEEN 10 AND 15"", split_where[1])
+        self.assertIn(""age NOT BETWEEN 15 AND 20"", split_where[1])
+        self.assertIn(""age NOT BETWEEN 20 AND 25"", split_where[1])
+        self.assertEqual(result.count('AND'), 7)
+        self.assertEqual(result[-1], ';')
+
+    def test_select_by_age_range_4(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_female_under_age_exclude_groups(30, [])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age < 30"", split_where[1])
+        self.assertIn(""gender = 'female'"", split_where[1])
+        self.assertEqual(result.count('AND'), 1)
+        self.assertEqual(result[-1], ';')";"Generate a SQL statement to select females under a specified age, excluding certain age groups.
+:param age: int. The specified age.
+:param exclude_groups: list of tuples. Each tuple contains two integers representing the start and end of an age group to exclude.
+:return: str. The generated SQL statement.
+>>> sql.select_female_under_age_exclude_groups(30, [(10, 15), (20, 25)])
+""SELECT * FROM table1 WHERE age < 30 AND gender = 'female' AND age NOT BETWEEN 10 AND 15 AND age NOT BETWEEN 20 AND 25;""";"[' Generates a SQL statement to select females under a specified ""age"", excluding certain age groups specified in the list of tuple ""exclude_groups"". Return the resulting SQL query as a string.', ""Create a SQL query that selects females younger than a given 'age', while leaving out specific age ranges provided in the 'exclude_groups' list of tuples. The function should return the SQL query string."", ""Construct a SQL statement to filter and return females who are younger than a designated 'age'. This should exclude any females within the age ranges specified in the list 'exclude_groups'. The SQL query should be returned as a string."", ""Formulate a SQL query string to retrieve female entries from a database where their age is less than a specified 'age'. Additionally, exclude entries from certain age intervals listed in 'exclude,groups'. The query should then be returned as a string."", ""Generate an SQL string that queries for female individuals under a specified 'age', but excludes any from age groups defined in 'exclude_groups'. Return the final composed SQL query."", ""Develop a SQL query to extract records of females who are below a stated 'age' and not part of the age intervals mentioned in 'exclude_groups'. The resultant SQL string should then be returned.""]";"['Generates a SQL statement to select females under a specified ""age"", excluding certain age groups specified  in the list of tuple ""exclude_groups"". The function constructs a condition string starting with criteria for gender as female and age being less than the provided ""age"". It then extends this condition by adding clauses that exclude specified age ranges from ""exclude_groups"". Each exclusion is formatted to exclude ages between the start and end values of the tuples in ""exclude_groups"". Finally, the function invokes another method to build the complete SQL query using the constructed condition and returns the resulting SQL query as a string.', ""Constructs a SQL query to retrieve female entries younger than a given 'age', while ignoring those within certain age intervals given in 'exclude_groups'. Begins by specifying criteria for females under the input age, then concatenates additional exclusions for age ranges specified by the tuples in 'exclude_groups'. Each tuple's start and end ages define the excluded range. Finally, uses another method to finalize the SQL query using these conditions and returns it as a string."", ""This function generates a SQL statement aimed at selecting 'female' gender entries below a given 'age' but excludes certain age intervals defined in 'exclude_groups' list of tuples. First, it forms a condition for the female gender and the upper age limit. Then, it iteratively broadens this condition to omit specified age ranges found in the 'exclude_groups'. Each tuple's values represent the beginning and the ending of an excluded interval. The resultant condition is then used to construct and return the full SQL query from another method."", ""Builds and returns a SQL query for selecting records of females who are younger than a provided 'status age', excluding specific age ranges detailed in 'exclude_groups'. Starts by defining selection criteria based on gender and the 'age', continuing to append clauses excluding age ranges specified by the tuples in 'exclude_groups', where each tuple lays out the min and max age to exclude. Finally, the function deploys another method to utilize the condition string to generate the final SQL query, and delivers it as a string."", ""This method formulates a SQL statement for fetching female individuals below a particular 'age', excluding them from defined age ranges appearing in 'exclude_filter'. Initially setting criteria for gender as 'female' and under a certain age, it augments this filtering by excluding specific age ranges given in intervals through tuples in 'exclude_groups', with each tuple defining start and end ages. Another method is then employed to craft the complete SQL query from the built conditions and it returns this query as a string."", ""Creates a SQL query to filter female individuals who are under a certain 'age', while explicitly omitting those in specific age ranges provided in 'exclude_groups'. It initiates by setting basic filtering criteria for females under the specified 'age'. Sequentially, it appends conditions to leave out age ranges listed by the tuples in 'exclude_groups', where each tuple specifies range boundaries. Eventually, it calls an additional function to compile the entire SQL query based on these criteria and outputs the produced query string.""]";"['Generates a SQL statement to select females under a specified ""age"", excluding certain age groups specified in ""exclude_groups"". The function begins by constructing a condition string with the initial criteria specifying ""gender = \'female\'"" and ""age < age"". It then iteratively enhances this string with exclusion conditions for each tuple in ""exclude_groups"", formatting these exclusions as ""age NOT BETWEEN t[0] AND t[1]"", where ""t[0]"" and ""t[1]"" represent the start and the end of each age group tuple, respectively. After assembling the full condition, the function calls the ""select"" method of the class ""SQLGenerator"", passing the complete condition string to generate and return the final SQL query.', ""Crafts a SQL query to filter out females younger than a certain 'age', while also omitting specified groups of ages detailed in 'exclude_groups'. Initially, a condition string is built with the requirements 'gender = 'female'' and 'age < age'. The condition is repeatedly appended with exclusions for each age group range from 'exclude_groups', formatted as 'age NOT BETWEEN t[0] AND t[1]' where 't' refers to the beginning and end of the excluded age group. Consequently, the 'select' method of 'SQLBuilder' is invoked with the completed condition string to produce and return the SQL query."", ""Develops a SQL command to retrieve females younger than a given 'age', excluding certain specified age ranges from 'exclude_groups'. Starts by setting up a condition declaring 'gender = 'female'' and 'age < age'. Continuing, the string extends with non-inclusions for each duo in 'exclude_groups', expressed as 'age NOT BETWEEN t[0] AND t[1]', with 't[0]' and 't[1]' marking the extremes of each age group. The finished condition is used to call the 'select' function of the 'SQLHandler' class, which outputs the complete SQL query."", ""Constructs a SQL statement to get female records under a specified 'age', excluding some age brackets detailed in 'exclude_groups'. Begins with creating a base condition 'gender = 'female'' and 'age < age'. It then appends this string with exclusions formatted as 'age NOT BETWEEN t[0] AND t[1]' for each tuple in 'exclude_groups', where 't[0]' and 't[1]' depict the start and conclusion of each group. The full condition is then utilized in the 'select' method of the class 'SQLGenerator' to form and yield the ultimate SQL query."", ""Builds a SQL query aimed at selecting females below a defined 'age', but skips over defined age ranges listed in 'exclude_groups'. The process starts with formulating an initial condition that states 'gender = 'female'' and 'age < age'. Subsequently, this condition is enhanced iteratively by appending non-inclusion clauses for each pair in 'exclude_groups', using the format 'age NOT BETWEEN t[0] AND t[1]', where 't[0]' and 't[1]' are the bounds of each age group. After synthesizing the cumulative condition, it invokes the 'select' function of 'SQLGenerator' to generate and deliver the final SQL output."", ""Formulates a SQL directive to fetch female entries younger than a defined 'studied age', while also skipping specified age intervals listed in 'exclude_groups'. It sets up by forming an initial condition phrase that includes 'gender = 'female'' and 'age < age'. It continues by iteratively adding non-include options for each tuple in 'exclude_sorts', presented as 'age NOT BETWEEN t[0] AND t[1]', where 't[0]' and 't[1]' are the bounds of each age group. Eventually, using the whole condition, the 'select' operation of the class 'SQLGenerator' is executed, returning the final SQL demand.""]"
+79_52;SQLGenerator;"
+class SQLGenerator:  
+    """"""
+    This class generates SQL statements for common operations on a table, such as SELECT, INSERT, UPDATE, and DELETE.
+    """"""
+
+    def __init__(self, table_name):
+        """"""
+        Initialize the table name.
+        :param table_name: str
+        """"""
+        self.table_name = table_name
+
+    def select(self, fields=None, condition=None):
+        """"""
+        Generates a SELECT SQL statement based on the specified fields and conditions.
+        """"""
+        pass
+
+    def insert(self, data):
+        """"""
+        Generates an INSERT SQL statement based on the given data.
+        """"""
+        pass
+
+    def update(self, data, condition):
+        """"""
+        Generates an UPDATE SQL statement based on the given data and condition.
+        """"""
+        pass
+
+    def delete(self, condition):
+        """"""
+        Generates a DELETE SQL statement based on the given condition.
+        """"""
+        pass
+
+    def select_female_under_age(self, age):
+        """"""
+        Generates a SQL statement to select females under a specified age.
+        """"""
+        pass
+
+    def select_by_age_range(self, min_age, max_age):
+        pass
+    
+    def select_by_age_range_names_start(self, min_age, max_age, names_start):
+        condition = f""name LIKE '{names_start}%' AND age BETWEEN {min_age} AND {max_age}""
+        return self.select(condition=condition)
+
+";"
+class SQLGenerator:  
+    """"""
+    This class generates SQL statements for common operations on a table, such as SELECT, INSERT, UPDATE, and DELETE.
+    """"""
+
+    def __init__(self, table_name):
+        """"""
+        Initialize the table name.
+        :param table_name: str
+        """"""
+        self.table_name = table_name
+
+    def select(self, fields=None, condition=None):
+        pass
+
+    def insert(self, data):
+        pass
+
+    def update(self, data, condition):
+        pass
+
+    def delete(self, condition):
+        pass
+
+    def select_female_under_age(self, age):
+        pass
+
+    def select_by_age_range(self, min_age, max_age):
+       pass
+
+    def select_by_age_range_names_start(self, min_age, max_age, names_start):
+
+    
+";select_by_age_range_names_start(self, min_age, max_age, names_start);select_by_age_range_names_start;"def select_by_age_range_names_start(self, min_age, max_age, names_start):
+        condition = f""LIKE '{names_start}%' AND age BETWEEN {min_age} AND {max_age}""
+        return self.select(condition=condition)";":param min_age: int. The minimum age.
+:param max_age: int. The maximum age.
+:param names_start: str. The letter with which the name stats with.
+:return: str. The generated SQL statement.
+";"class SQLGenerator:
+    def __init__(self, table_name):
+        self.table_name = table_name
+
+    def select(self, fields=None, condition=None):
+        if fields is None:
+            fields = ""*""
+        else:
+            fields = "", "".join(fields)
+        sql = f""SELECT {fields} FROM {self.table_name}""
+        if condition is not None:
+            sql += f"" WHERE {condition}""
+        return sql + "";""
+
+    def insert(self, data):
+        fields = "", "".join(data.keys())
+        values = "", "".join([f""'{value}'"" for value in data.values()])
+        sql = f""INSERT INTO {self.table_name} ({fields}) VALUES ({values})""
+        return sql + "";""
+
+    def update(self, data, condition):
+        set_clause = "", "".join([f""{field} = '{value}'"" for field, value in data.items()])
+        sql = f""UPDATE {self.table_name} SET {set_clause} WHERE {condition}""
+        return sql + "";""
+
+    def delete(self, condition):
+        sql = f""DELETE FROM {self.table_name} WHERE {condition}""
+        return sql + "";""
+
+    def select_female_under_age(self, age):
+        condition = f""age < {age} AND gender = 'female'""
+        return self.select(condition=condition)
+
+    def select_by_age_range(self, min_age, max_age):
+        condition = f""age BETWEEN {min_age} AND {max_age}""
+        return self.select(condition=condition)
+
+    def select_by_age_range_names_start(self, min_age, max_age, names_start):
+        pass";"import unittest
+
+class SQLGeneratorTestSelectByAgeRangeNamesStart(unittest.TestCase):
+    def test_select_by_age_range(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_by_age_range_names_start(20, 30, 'T')
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age BETWEEN 20 AND 30"", split_where[1])
+        self.assertIn(""name LIKE 'T%'"", split_where[1])
+        self.assertEqual(result.count('AND'), 2)
+        self.assertEqual(result[-1], ';')
+
+    def test_select_by_age_range_2(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_by_age_range_names_start(10, 20, 'T')
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age BETWEEN 10 AND 20"", split_where[1])
+        self.assertIn(""name LIKE 'T%'"", split_where[1])
+        self.assertEqual(result.count('AND'), 2)
+        self.assertEqual(result[-1], ';')
+
+    def test_select_by_age_range_3(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_by_age_range_names_start(30, 40, 'A')
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age BETWEEN 30 AND 40"", split_where[1])
+        self.assertIn(""name LIKE 'A%'"", split_where[1])
+        self.assertEqual(result.count('AND'), 2)
+        self.assertEqual(result[-1], ';')
+
+    def test_select_by_age_range_4(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_by_age_range_names_start(40, 50, 'A')
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age BETWEEN 40 AND 50"", split_where[1])
+        self.assertIn(""name LIKE 'A%'"", split_where[1])
+        self.assertEqual(result.count('AND'), 2)
+        self.assertEqual(result[-1], ';')";"Generate a SQL statement to select records within a specified age range and with a name starting with a given letter.
+:param min_age: int. The minimum age.
+:param max_age: int. The maximum age.
+:param names_start: str. The letter with which the name stats with.
+:return: str. The generated SQL statement.
+>>> sql.select_by_age_range_names_start(20, 30, 'T')
+'SELECT * FROM table1 WHERE name LIKE 'T%' AND age BETWEEN 20 AND 30;'
+";"['Generates a SQL statement to select records within a specified ""min_age"" and ""max_age"" and with a name that starts with ""names_start"".', ""Constructs a SQL query to retrieve entries where the age falls between 'min_age' and 'max_age' and the name begins with 'names_bar'."", ""Produces a SQL statement that filters data for individuals whose age is between 'min_age' and 'maxij_age' and whose names initiate with 'names_start'."", ""Forms a SQL command to select entries having ages from 'min_age' to 'max_age' and names starting with 'names_start'."", ""Creates a SQL script to extract records where age is within the range 'min_age' to 'max_age' and names commence with 'names_start'."", ""Composes a SQL query that selects data for people aged between 'min_age' and 'max_age' and with names that start with 'names_start'.""]";"['Generates a SQL statement to select records within a specified ""min_age"" and ""max_age"" and with a name that starts with ""names_start"". This function constructs a query by defining a condition that filters out entries based on the age range and whether the name starts with the specified prefix. It then pass the constructed  SQL condition to another method that can be executed to retrieve the desired data.', ""Creates an SQL query to filter records where the age falls between 'min_age' and 'max_age' and the first letters of the name match 'names_start'. This function builds a condition to narrow down results by both age limit and name prefix, then forwards this SQL condition to another function for data extraction."", ""This function forms a SQL command that selects entries with ages in the range between 'min_dispatch' and 'max_dispatch', and whose names begin with 'names_start'. It constructs a condition to filter these specific entries and sends the generated SQL condition to another method for fetching the necessary records."", ""Constructs a query in SQL to retrieve data for individuals whose ages are between 'min_age' and 'max_age' and names start with 'names_unstart'. It defines a filter condition based on these criteria and passes the tailored SQL condition to another method designed to perform the extraction of the relevant data."", ""Develops a SQL statement that selects database records adhering to specified age limits ('min_age' to 'max_age') and beginning with the name prefix 'names_start'. The function crafts a filtering condition incorporating these parameters and delegates the execution-ready SQL condition to a separate method for data retrieval."", ""This function compiles an SQL query designed to select records with names initiating with 'names_start' and whose age is bounded within 'min_age' and 'max_no'. It formulates a condition that applies these filters and then transmits the resulting SQL condition to another module tasked with executing the query and collecting the data.""]";"['Generates a SQL statement to select records within a specified ""min_age"" and ""max_age"" and with a name that starts with ""names_start"". The condition filters out entries based on the age range specified by ""min_age"" and ""max_age"" using ""age BETWEEN {min_age} AND {max_age}"" and include entries where the name starts with the specified prefix ""names_start"" using ""name LIKE \'%{names_start}\'"". It then constructs and returns the complete SQL condition that can be executed to retrieve the desired data, making use of the ""select"" method.', ""Create a SQL statement that retrieves records limited to a certain 'min_age' and 'max_age'. The name should begin with 'names_start'. It uses 'age BETWEEN {min_age} AND {max_age}' to filter by the specified age range and 'name LIKE '{names_start}%' to include only names starting with the given prefix. The full SQL condition is constructed and returned, allowing the execution of 'select' method to fetch the relevant data."", ""Fabricates a SQL condition to filter and select database entries where 'age' falls within 'min_age' and 'max_age' and 'name' begins with 'names_start'. The query specifically uses the condition 'age BETWEEN {min_age} AND {max_age}' for age constraints and 'name LIKE '{names_start}%' for filtering by name start. This full condition is built and returned, enabling the use of 'select' method for data acquisition."", ""Constructs and returns a SQL filter condition for choosing records that both lie within a defined 'min_age' and 'max_age' range and start with 'names_start'. Uses 'age BETWEEN {min_age} AND {max_up}' for age filtering and 'name LIKE '{names_start}%' for initial name letter matching. The condition allows the execution of the 'select' method to obtain the appropriate entries."", ""Produces and returns a SQL query condition designed to extract records where the age lies between 'min_age' and 'max_age' and where names start with 'names_start'. The filtering condition applies 'age BETWEEN {min_age} AND {max_age}' for age range and 'name LIKE '{names_stadr}%' for name prefix matching. This generated condition is used by the 'select' method to fetch the relevant records."", ""Generates and returns a SQL condition that selects database records within the given 'min_age' to 'max_age' range where names start with 'names_start'. It crafts the condition using 'age BETWEEN {min_age} AND {max_age}' for age filtering and 'name LIKE '{names_start}%' for name prefix selection. The condition is then utilized to perform data retrieval through the 'select' method.""]"
+79_42;SQLGenerator;"
+class SQLGenerator:  
+    """"""
+    This class generates SQL statements for common operations on a table, such as SELECT, INSERT, UPDATE, and DELETE.
+    """"""
+
+    def __init__(self, table_name):
+        """"""
+        Initialize the table name.
+        :param table_name: str
+        """"""
+        self.table_name = table_name
+
+    def select(self, fields=None, condition=None):
+        """"""
+        Generates a SELECT SQL statement based on the specified fields and conditions.
+        """"""
+        pass
+
+    def insert(self, data):
+        """"""
+        Generates an INSERT SQL statement based on the given data.
+        """"""
+        pass
+
+    def update(self, data, condition):
+        """"""
+        Generates an UPDATE SQL statement based on the given data and condition.
+        """"""
+        pass
+
+    def delete(self, condition):
+        """"""
+        Generates a DELETE SQL statement based on the given condition.
+        """"""
+        pass
+
+    def select_female_under_age(self, age):
+       pass
+
+    def select_by_age_range(self, min_age, max_age):
+        """"""
+        Generates a SQL statement to select records within a specified age range.
+        """"""
+        pass
+
+     def select_female_under_age_exclude_names(self, age, exclude_names):
+        condition = f""age < {age} AND gender = 'female' AND name NOT IN {tuple(exclude_names)}""
+        return self.select(condition=condition)
+
+";"
+class SQLGenerator:  
+    """"""
+    This class generates SQL statements for common operations on a table, such as SELECT, INSERT, UPDATE, and DELETE.
+    """"""
+
+    def __init__(self, table_name):
+        """"""
+        Initialize the table name.
+        :param table_name: str
+        """"""
+        self.table_name = table_name
+
+    def select(self, fields=None, condition=None):
+        pass
+
+    def insert(self, data):
+        pass
+
+    def update(self, data, condition):
+        pass
+
+    def delete(self, condition):
+        pass
+
+    def select_by_age_range(self, min_age, max_age):
+        pass
+
+    def select_female_under_age(self, age):
+        pass
+
+    def select_female_under_age_exclude_names(self, age, exclude_names):
+";select_female_under_age_exclude_names(self, age, exclude_names);select_female_under_age_exclude_names;"def select_female_under_age_exclude_names(self, age, exclude_names):
+        condition = f""age < {age} AND gender = 'female' AND name NOT IN {tuple(exclude_names)}""
+        return self.select(condition=condition)";":param age: int. The specified age.
+:param exclude_names: list of names. The names to exclude.
+:return: str. The generated SQL statement.
+";"class SQLGenerator:
+    def __init__(self, table_name):
+        self.table_name = table_name
+
+    def select(self, fields=None, condition=None):
+        if fields is None:
+            fields = ""*""
+        else:
+            fields = "", "".join(fields)
+        sql = f""SELECT {fields} FROM {self.table_name}""
+        if condition is not None:
+            sql += f"" WHERE {condition}""
+        return sql + "";""
+
+    def insert(self, data):
+        fields = "", "".join(data.keys())
+        values = "", "".join([f""'{value}'"" for value in data.values()])
+        sql = f""INSERT INTO {self.table_name} ({fields}) VALUES ({values})""
+        return sql + "";""
+
+    def update(self, data, condition):
+        set_clause = "", "".join([f""{field} = '{value}'"" for field, value in data.items()])
+        sql = f""UPDATE {self.table_name} SET {set_clause} WHERE {condition}""
+        return sql + "";""
+
+    def delete(self, condition):
+        sql = f""DELETE FROM {self.table_name} WHERE {condition}""
+        return sql + "";""
+
+    def select_female_under_age(self, age):
+        condition = f""age < {age} AND gender = 'female'""
+        return self.select(condition=condition)
+
+    def select_by_age_range(self, min_age, max_age):
+        condition = f""age BETWEEN {min_age} AND {max_age}""
+        return self.select(condition=condition)
+
+    def select_female_under_age_exclude_names(self, age, exclude_names):
+        pass";"import unittest
+
+class SQLGeneratorTestSelectFemaleUnderAgeExcludeNames(unittest.TestCase):
+    def test_select_by_age_range(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_female_under_age_exclude_names(30, ['Alice'])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age < 30"", split_where[1])
+        self.assertIn(""gender = 'female'"", split_where[1])
+        self.assertIn(""name NOT IN ('Alice',)"", split_where[1])
+        self.assertEqual(result[-1], ';')
+        self.assertEqual(result.count('AND'), 2)
+        
+
+    def test_select_by_age_range_2(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_female_under_age_exclude_names(20, ['Alice'])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age < 20"", split_where[1])
+        self.assertIn(""gender = 'female'"", split_where[1])
+        self.assertIn(""name NOT IN ('Alice',)"", split_where[1])
+        self.assertEqual(result[-1], ';')
+        self.assertEqual(result.count('AND'), 2)
+
+    def test_select_by_age_range_3(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_female_under_age_exclude_names(30, ['Alice', 'Bob'])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age < 30"", split_where[1])
+        self.assertIn(""gender = 'female'"", split_where[1])
+        self.assertIn(""name NOT IN ('Alice', 'Bob')"", split_where[1])
+        self.assertEqual(result[-1], ';')
+        self.assertEqual(result.count('AND'), 2)
+
+    def test_select_by_age_range_4(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_female_under_age_exclude_names(50, ['Alice', 'Bob'])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age < 50"", split_where[1])
+        self.assertIn(""gender = 'female'"", split_where[1])
+        self.assertIn(""name NOT IN ('Alice', 'Bob')"", split_where[1])
+        self.assertEqual(result[-1], ';')
+        self.assertEqual(result.count('AND'), 2)
+
+    def test_select_by_age_range_5(self):
+        sql = SQLGenerator('table1')
+        result = sql.select_female_under_age_exclude_names(60, ['Alice', 'Bob', 'Charlie'])
+        split_where = result.split('WHERE')
+        self.assertEqual(len(split_where), 2)
+        self.assertEqual(split_where[0], ""SELECT * FROM table1 "")
+        self.assertIn(""age < 60"", split_where[1])
+        self.assertIn(""gender = 'female'"", split_where[1])
+        self.assertIn(""name NOT IN ('Alice', 'Bob', 'Charlie')"", split_where[1])
+        self.assertEqual(result[-1], ';')
+        self.assertEqual(result.count('AND'), 2)";"Generate a SQL statement to select females under a specified age, excluding certain names.
+:param age: int. The specified age.
+:param exclude_names: list of names. The names to exclude.
+:return: str. The generated SQL statement.
+>>> sql.select_female_under_age_exclude_names(30, ['Alice', 'Bob'])
+""SELECT * FROM table1 WHERE age < 30 AND gender = 'female' AND name NOT IN ('Alice', 'Bob');""";"['Generates a SQL statement to select females under the specified ""age"", excluding certain ""exclude_names"".', ""Create a SQL query to filter and select female records below a certain 'age' while omitting specific 'exclude_names'."", ""Construct a SQL command to retrieve female entries younger than the given 'age' and not including certain 'exclude_total_daystable_names'."", ""Develop a SQL statement that selects females not older than the specified 'age' and excludes a list of 'exclude_names'."", ""Formulate a SQL query for selecting female individuals who are under the defined 'age' and are not listed in 'exclude_names'."", ""Write a SQL statement to pick out females who are less than the provided 'age' and exclude those with names in 'exclude_names'.""]";"['Generates a SQL statement to select females under the specified ""age"", excluding certain ""exclude_names"". This function constructs a SQL condition that filters records based on gender being \'female\', the age being below the given ""age"", and the names not included in ""exclude_names"". It then invokes another method of the class to execute the SQL statement using the constructed condition.', ""Creates a SQL query to select female individuals younger than a specified 'age', while omitting names listed in 'exclude_names'. This function builds a SQL filter to only include records where gender is 'female', the age is less than the specified 'age', and the names are excluded from 'exclude_names'. Another method of this class is then called to run the SQL query with the tailored condition."", ""Develops a SQL command to filter and retrieve women under a certain 'age' while ignoring specified 'exclude_names'. The function forms a SQL condition that ensures the gender is 'female', age is below the provided 'age', and no name appears in 'exclude_names'. It subsequently employs a different method in the class to execute the SQL query under the defined condition."", ""This function constructs a SQL constraint to fetch female records below a predefined 'age' and not in 'exclude_names'. The condition crafted filters for 'female' records with age under the mentioned 'age' and excludes specified names. Another function in the class is tasked with running the SQL query with this constructed filter."", ""Formulates a SQL selection statement for females younger than a designated 'friends' age while excluding those with names in 'exclude_names'. It constructs a fetching condition that filters by gender as 'female', ages below the stated 'age', and names not among 'exclude_names', then calls a class method to process the SQL with the created condition."", ""Designs a SQL query to identify female persons under an indicated 'age' while excluding certain 'exclude_names'. This function designs a SQL filter ensuring record selection where gender equals 'female', age falls under the defined 'age', and names are not within 'exclude_names'. The function then activates another method within the class to implement the SQL statement with this condition.""]";"['Generates a SQL statement to select females under the specified ""age"", excluding certain ""exclude_names"". This function constructs a SQL condition that filters records where ""gender"" is \'female\' (""gender = \'female\'""), ""age"" is less than the specified ""age"" (""age < {age}""), and ""name"" is not in the ""exclude_names"" list (""name NOT IN {tuple(exclude_names)}""). This condition is then passed to the ""select"" method of the SQLGenerator class to generate and return the full SQL statement.', ""Produces a SQL command to filter records to include only females younger than the given 'age' while omitting names within the 'exclude_names' list. The function creates a SQL filter string highlighting records where 'gender' equals 'female' ('gender = 'female''), 'age' is below the specified 'age' ('age < {age}'), and 'name' is excluded from the 'exclude_list' ('name NOT IN {tuple(exclude_names)}'). This filter string is then used by the 'select' method of the SQLGenerator class to produce and return the comprehensive SQL statement."", ""This function formulates a SQL query to select female individuals, whose 'age' is less than the provided age value, and are not listed under the specified 'exclude_names'. It constructs a SQL condition stating that the 'gender' must be 'female' ('gender = 'female''), the 'age' must be less than the given 'age' ('age < {age}'), and the 'name' should not match any in 'exclude_names' ('name NOT IN {tuple(exclude_names)}'). The generated condition is then utilized by the 'select' method in the SQLGenerator class to create and return a complete SQL query."", ""Constructs a SQL filter for fetching records of female individuals younger than the specified 'age', excluding those whose 'name' falls within 'exclude_names'. The function sets up a SQL filtering clause where records must satisfy 'gender' being female ('gender = 'female''), 'age' being less than the given 'age' ('age < {age}'), and 'name' not appearing in the 'exclude_names' list ('name NOT IN {tuple(exclude_names)}'). This clause is then supplied to the 'select' method of the SQLGenerator class, which generates and delivers the full SQL statement."", ""Develops a SQL criterion to retrieve information about females younger than a stipulated 'age' and not containing names from 'exclude_names'. Here, the function establishes a SQL condition that specifically ensures 'gender' is set to female ('gender = 'female''), 'age' is lower than designated 'age' ('age < {age}'), and 'name' does not fall within 'exclude_names' ('name NOT IN {tuple(exclude_names)}'). This filter is then put through the 'select' feature of the SQLGenerator class to provide the finished SQL statement."", ""This function devises a SQL statement to select female individuals who are below the defined 'age' and whose 'name' is not included in 'exclude_names'. The SQL condition crafted mandates that the 'gender' must be female ('gender = 'female''), the 'age' less than the specified 'age' ('age < {age}'), and the 'name' not amongst those listed in 'exclude_names' ('name NOT IN {tuple(exclude_names)}'). After constructing this condition, it is passed to the 'select' method of the SQLGenerator class which in turn yields the requisite SQL statement.""]"

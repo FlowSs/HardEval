@@ -1,0 +1,17 @@
+You are given a list of programming tasks. Each task is either considered "hard" or "easy". Use those tasks list to generate new "hard" programming tasks. To generate new "hard" tasks, think step-by-step: first, identify elements making the provided tasks "easy" and "hard" by analyzing them and output your full reasoning for it. Only base your analysis on the provided tasks list. Then, for each new task to generate, select an approach among the following:
+
+- Modifying a "hard" task by adding a twist or a constraint. The constraint should be external to any of the tasks listed provided or any other generated tasks.
+
+- Modifying an "easy" task by adding a twist or a constraint taken from a "hard" task. You should not use a constraint from an "easy" task, it has to come from a "hard" task.
+
+Choose the "hard" and/or "easy" tasks that you will use in the selected approach. Those chosen tasks can only come from the tasks list, not any of the other responses. Then, clearly mention the approach used, the tasks chosen, the constraints added for the new task as well as form which task this constraint is from in case you are modifying an "easy" task. Finally, generate a new task based on the approach. You should also provide some descriptions for your invented task so it can be understood. Please, select different tasks and approaches for each new task generated. You must make sure the generated tasks are different from each other and different from the list of tasks. An example of the expected format is given. Please generate 5 new tasks following the previously mentioned procedure. 
+
+## Tasks list
+
+`INSERT_LIST_OF_TASKS`
+
+## Example
+
+`INSERT_EXAMPLE`
+
+## Response
