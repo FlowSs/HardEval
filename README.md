@@ -1,5 +1,12 @@
 This is the replication package for the paper "DiffEval: Assessing Difficulty of Code Generation Tasks for Large Language Models" submitted at ASE 2024.
 
+## Note on the replication package
+
+* Some files (especially the raw generated codes) can be larger than the maximum file size allowed on `anonymous.4open.science`. As such, they will not be visible. We plan on moving them to a more permanent solution (Zenodo ...) 
+
+* The code has a lot of redundancy and is split into a lot of smaller scripts to show the different part of the process as part of a replication package. We are working on a more unified structure of the package.
+
+
 ## Organization of the repository
 
 * `data/`: contains all data from the experiments.
@@ -14,18 +21,14 @@ This is the replication package for the paper "DiffEval: Assessing Difficulty of
 
 ## Setting up the environment
 
-We used Python 3.10 in our experiments in an anaconda environments. The file `environment.yaml` can be used to recreate the environment with anaconda (`conda env create -f environment.yml`)
+We used Python 3.10 in our experiments in an anaconda environments. The file `environment.yaml` can be used to recreate the environment with anaconda (`conda env create -f environment.yml`).
 
-## Note on running the code
-
- * The scripts uses GPT4 for generating the prompts as well as GPT3.5 as a Code LLM. As such, an OpenAI key is required. Similarly, it uses some model from HuggingFace that requires a token. For the scripts to work, one needs to add a `key.json` file in the `script/` directory. This file needs to contain both OpenAI and HuggingFace key/token as follow:
+The scripts for having GPT4 generates the prompts as well as having the LLMs generate codes uses OpenAI and HuggingFace API. As such, both an OpenAI key and HuggingFace token are required. For the scripts to work, one needs to add a `key.json` file in the `script/` directory. This file needs to contain both OpenAI and HuggingFace key/token as follow:
 
 ```json
 {'OPENAI': YOUR_OPENAI_KEY,
 'HF_TOKEN': YOUR_HF_TOKEN}
 ```
-
-* The code has a lot of redundancy and is split into a lot of smaller scripts to show the different part of the process as part of a replication package. We are working on a more unified structure of the package.
 
 ## Generating the level/rephrasing prompts
 
