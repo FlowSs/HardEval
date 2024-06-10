@@ -41,8 +41,8 @@ generate_prompts.py [-h] [-d DATASET] [-s SUB_BENCHMARK] [--levels] [--rephrase]
 
 options:
   -h, --help            show this help message and exit
-  -d DATASET, --dataset DATASET
-  -s SUB_BENCHMARK, --sub_benchmark SUB_BENCHMARK
+  -d DATASET, --dataset DATASET [humaneval|ClassEval]
+  -s SUB_BENCHMARK, --sub_benchmark SUB_BENCHMARK [check|sequence|replacement] for humanevalplus or [sql|sc|df] for ClassEval
   --levels
   --rephrase
 ```
@@ -62,9 +62,9 @@ run_llm.py [-h] [-m MODEL] [-d DATASET] [-s SUB_BENCHMARK]
 
 options:
   -h, --help            show this help message and exit
-  -m MODEL, --model MODEL
-  -d DATASET, --dataset DATASET
-  -s SUB_BENCHMARK, --sub_benchmark SUB_BENCHMARK
+  -m MODEL, --model MODEL [llama|gemma|gpt|deepseek|magicoder]
+  -d DATASET, --dataset DATASET [humaneval|ClassEval]
+  -s SUB_BENCHMARK, --sub_benchmark SUB_BENCHMARK [check|sequence|replacement] for humanevalplus or [sql|sc|df] for ClassEval
 ```
 
 The generated output will be a `.json` file named `results_{DATASET}_{MODEL}.json` or `results_{DATASET}_{SUB_BENCHMARK}_{MODEL}.json` for the script `run_llm.py`. For `run_greedy_llm.py` will have the same output with a `_greedy.json` at the end. In the provided scripts, the files are saved at the root of the `script/` folder. The actual data are in `data/`. 
@@ -111,8 +111,8 @@ test_pipeline_humaneval_hard.py [-h] [-m MODEL] [-s SUB_BENCHMARK]
 
 options:
   -h, --help            show this help message and exit
-  -m MODEL, --model MODEL
-  -s SUB_BENCHMARK, --sub_benchmark SUB_BENCHMARK
+  -m MODEL, --model MODEL [llama|gemma|gpt|deepseek|magicoder]
+  -s SUB_BENCHMARK, --sub_benchmark SUB_BENCHMARK [check|sequence|replacement] for humanevalplus or [sql|sc|df] for ClassEval
 ```
 
 *Note*: Some requirements are needed to run the tasks of the benchmarks. One should install the requirements using the `rq.txt` file in each of the `data` repository. We recommend to use a Docker installation to run those pipelines.
@@ -128,7 +128,7 @@ get_sim_humanevalplus_hard.py [-h] [-s SUB_BENCHMARK]
 
 options:
   -h, --help            show this help message and exit
-  -s SUB_BENCHMARK, --sub_benchmark SUB_BENCHMARK
+  -s SUB_BENCHMARK, --sub_benchmark SUB_BENCHMARK [check|sequence|replacement] for humanevalplus or [sql|sc|df] for ClassEval
 ```
 
 The results obtained are `.json` files named `results_{DATASET}_{MODEL}_sim.json` or `results_{DATASET}_{SUB_BENCHMARK}_{MODEL}_sim.json`. All the results obtain from those scripts will be saved in a `sim/` sub-directory in each of the data sub-folders. For instance, `results_humanevalplus_gpt_sim.json` will be in `data/humanevalplus/sim/`
@@ -137,4 +137,28 @@ The results obtained are `.json` files named `results_{DATASET}_{MODEL}_sim.json
 
 Finally, one can obtain the difficulty score by running the relevant script in the sub-folder `diff_score/`. For the benchmarks HumanEval+ and ClassEval, this will also return the Pass@1 score obtained on the level prompts as well as the cumulative distribution shown in the paper (see Fig 2). This returns the hard task per LLM as well as the hard tasks Overall LLMs. In that last case, we also get the difficulty score per hard task as well as the score per level.
 
-*Note*: The difficulty score is computed such as the higher the more difficult while the scores on the individual level (Eq 4 in the paper) are computed such as lower is more difficult. Thus, it's normal for the difficulty scores and the scores per level to have opposing trend in the output.
+*Note*: The difficulty score is computed such as the higher the more difficult while the scores on the individual level (Eq 4 in the paper, that is 1 - ($\alpha \times L_1 + \beta \times L_2 + \gamma \times L_3$ )) are computed such as lower is more difficult. Thus, it's normal for the difficulty scores and the scores per level to have opposing trend in the output.
+
+## RQ1: Computing correlation
+
+To compute the correlation like in RQ1, execute the script `get_corrr.py` in `scipts/`.
+
+```python
+get_corr.py [-h] [-d DATASET]
+
+options:
+  -h, --help            show this help message and exit
+  -d DATASET, --dataset DATASET [humaneval|ClassEval]
+```
+
+## RQ2: Difference DiffEval vs Greedy
+
+This is obtained by running `comp_greedy.py` in `scripts/`. This scripts requires to have the `score_per_task_X.npy` computed after *Getting the difficulty score* and the evaluation on greedy computed after *Checking the functional correctness*. 
+
+```python
+comp_greedy.py [-h] [-d DATASET]
+
+options:
+  -h, --help            show this help message and exit
+  -d DATASET, --dataset DATASET [humaneval|ClassEval]
+```

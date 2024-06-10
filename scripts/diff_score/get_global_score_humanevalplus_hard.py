@@ -35,16 +35,26 @@ def get_per_llm_score(model, sub_benchmark):
     mean_x_level2_tot = np.mean([(x_level2[i] + x_level2_sim[i])/2 for i in range(len(x_level2_sim))], axis=-1)
     mean_x_level3_tot = np.mean([(x_level3[i] + x_level3_sim[i])/2 for i in range(len(x_level3_sim))], axis=-1)
 
+    score_per_task_level1 = np.array([(x_level1[i] + x_level1_sim[i])/2 for i in range(len(x_level1_sim))])
+    score_per_task_level1 = np.array([np.mean(score_per_task_level1[:,i*5:i*5+5], axis=-1) for i in range(6)]).T
+    score_per_task_level2 = np.array([(x_level2[i] + x_level2_sim[i])/2 for i in range(len(x_level2_sim))])
+    score_per_task_level2 = np.array([np.mean(score_per_task_level2[:,i*5:i*5+5], axis=-1) for i in range(6)]).T
+    score_per_task_level3 = np.array([(x_level3[i] + x_level3_sim[i])/2 for i in range(len(x_level3_sim))])
+    score_per_task_level3 = np.array([np.mean(score_per_task_level3[:,i*5:i*5+5], axis=-1) for i in range(6)]).T
+
     print("############################################")
     print("Calculating difficulty score per task")
-    score = []
+    score, score_per_task = [], []
     weights = [0.2, 0.3, 0.5]
 
     for i in range(len(mean_x_level1_tot)):
         score.append((1 - np.sum(np.array(weights) * np.array([mean_x_level3_tot[i], mean_x_level2_tot[i], mean_x_level1_tot[i]])), mean_x_level3_tot[i], mean_x_level2_tot[i], mean_x_level1_tot[i]) )
+        score_per_task.append( (score_per_task_level3[i], score_per_task_level2[i], score_per_task_level1[i]) )
 
-    score_file = f'humanevalplus_{sub_benchmark}_{model}'
-    np.save(os.path.join('..', '..', 'data', 'sub_benchmarks', 'humanevalplus_hard', 'scores', f'score_{score_file}.npy'), np.array(score, dtype=object))
+    # Uncomment to save
+    # score_file = f'humanevalplus_{sub_benchmark}_{model}'
+    # np.save(os.path.join('..', '..', 'data', 'sub_benchmarks', 'humanevalplus_hard', 'scores', f'score_{score_file}.npy'), np.array(score, dtype=object))
+    # np.save(os.path.join('..', '..', 'data', 'sub_benchmarks', 'humanevalplus_hard', 'scores', f'score_per_task_{score_file}.npy'), np.array(score_per_task, dtype=object))
 
     task_indices = np.where(np.array([s[0] for s in score]) > 0.5)[0]
     print("Task IDs with a score higher than 0.5: ", list(task_indices))
