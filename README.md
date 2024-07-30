@@ -1,8 +1,10 @@
-## This is the replication package for the paper "DiffEval: Assessing Difficulty of Code Generation Tasks for Large Language Models" submitted at ASE 2024.
+## This is the replication package for the paper "Assessing Programming Task Difficulty for Efficient Evaluation of Large Language Models".
+
+A preprint is available [here]()
 
 ## Note on the replication package
 
-* Some files (especially the raw generated codes) can be larger than the maximum file size allowed on `anonymous.4open.science`. As such, they will not be visible. We plan on moving them to a more permanent solution (Zenodo ...) 
+* We plan on moving the files to a more permanent solution (Zenodo ...) once we have added all necessary experiments.
 
 * The code has a lot of redundancy and is split into a lot of smaller scripts to show the different part of the process as part of a replication package. We are working on a more unified structure of the package.
 
@@ -139,7 +141,7 @@ Finally, one can obtain the difficulty score by running the relevant script in t
 
 *Note*: The difficulty score is computed such as the higher the more difficult while the scores on the individual level (Eq 4 in the paper, that is 1 - ($\alpha \times L_1 + \beta \times L_2 + \gamma \times L_3$ )) are computed such as lower is more difficult. Thus, it's normal for the difficulty scores and the scores per level to have opposing trend in the output.
 
-## RQ1: Computing correlation
+## Validation of Context Information Levels
 
 To compute the correlation like in RQ1, execute the script `get_corrr.py` in `scipts/`.
 
@@ -151,7 +153,7 @@ options:
   -d DATASET, --dataset DATASET [humaneval|ClassEval]
 ```
 
-## RQ2: Difference DiffEval vs Greedy
+## RQ1: Difference DiffEval vs Greedy
 
 This is obtained by running `comp_greedy.py` in `scripts/`. This scripts requires to have the `score_per_task_X.npy` computed after *Getting the difficulty score* and the evaluation on greedy computed after *Checking the functional correctness*. 
 
