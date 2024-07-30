@@ -1,0 +1,829 @@
+class_id;class_name;class_code;class_text;method_signature;method_name;method_code;test;method_params;original prompt;level 1;level 2;level 3
+65_21;NumberWordFormatter;"
+class NumberWordFormatter:  
+    """"""
+    This is a class that provides to convert numbers into their corresponding English word representation, including handling the conversion of both the integer and decimal parts, and incorporating appropriate connectors and units.
+    """"""
+
+    def __init__(self):
+        """"""
+        Initialize NumberWordFormatter object.
+        """"""
+        self.NUMBER = ["""", ""ONE"", ""TWO"", ""THREE"", ""FOUR"", ""FIVE"", ""SIX"", ""SEVEN"", ""EIGHT"", ""NINE""]
+        self.NUMBER_TEEN = [""TEN"", ""ELEVEN"", ""TWELVE"", ""THIRTEEN"", ""FOURTEEN"", ""FIFTEEN"", ""SIXTEEN"", ""SEVENTEEN"",
+                            ""EIGHTEEN"",
+                            ""NINETEEN""]
+        self.NUMBER_TEN = [""TEN"", ""TWENTY"", ""THIRTY"", ""FORTY"", ""FIFTY"", ""SIXTY"", ""SEVENTY"", ""EIGHTY"", ""NINETY""]
+        self.NUMBER_MORE = ["""", ""THOUSAND"", ""MILLION"", ""BILLION""]
+        self.NUMBER_SUFFIX = [""k"", ""w"", """", ""m"", """", """", ""b"", """", """", ""t"", """", """", ""p"", """", """", ""e""]
+        self.ORDINAL = ["""", ""FIRST"", ""SECOND"", ""THIRD""]
+
+    def format(self, x):
+        """"""
+        Converts a number into words format
+        """"""
+        pass
+
+    def format_string(self, x):
+        """"""
+        Converts a string representation of a number into words format
+        """"""
+        pass
+
+    def trans_two(self, s):
+        pass
+
+    def trans_three(self, s):
+        """"""
+        Converts a three-digit number into words format
+        """"""
+        pass
+
+    def parse_more(self, i):
+        """"""
+        Parses the thousand/million/billion suffix based on the index
+        """"""
+        pass
+
+    def trans_two_ordinal(self, s):
+        s = s.zfill(2)
+        if s[0] == ""0"":
+            if 1 <= int(s[-1]) <= 3:
+                return self.ORDINAL[int(s[-1])]
+            else:
+                return self.NUMBER[int(s[-1])]
+        elif s[0] == ""1"":
+               return self.NUMBER_TEEN[int(s) - 10]
+        elif s[1] == ""0"":
+               return self.NUMBER_TEN[int(s[0]) - 1]
+         else:
+               first_digit = self.NUMBER[int(s[-1])] if int(s[-1]) not in [1, 2, 3] else self.ORDINAL[int(s[-1])]
+               return self.NUMBER_TEN[int(s[0]) - 1] + "" "" + first_digit
+
+";"
+class NumberWordFormatter:  
+    """"""
+    This is a class that provides to convert numbers into their corresponding English word representation, including handling the conversion of both the integer and decimal parts, and incorporating appropriate connectors and units.
+    """"""
+
+    def __init__(self):
+        """"""
+        Initialize NumberWordFormatter object.
+        """"""
+        self.NUMBER = ["""", ""ONE"", ""TWO"", ""THREE"", ""FOUR"", ""FIVE"", ""SIX"", ""SEVEN"", ""EIGHT"", ""NINE""]
+        self.NUMBER_TEEN = [""TEN"", ""ELEVEN"", ""TWELVE"", ""THIRTEEN"", ""FOURTEEN"", ""FIFTEEN"", ""SIXTEEN"", ""SEVENTEEN"",
+                            ""EIGHTEEN"",
+                            ""NINETEEN""]
+        self.NUMBER_TEN = [""TEN"", ""TWENTY"", ""THIRTY"", ""FORTY"", ""FIFTY"", ""SIXTY"", ""SEVENTY"", ""EIGHTY"", ""NINETY""]
+        self.NUMBER_MORE = ["""", ""THOUSAND"", ""MILLION"", ""BILLION""]
+        self.NUMBER_SUFFIX = [""k"", ""w"", """", ""m"", """", """", ""b"", """", """", ""t"", """", """", ""p"", """", """", ""e""]
+        self.ORDINAL = ["""", ""FIRST"", ""SECOND"", ""THIRD""]
+
+    def format(self, x):
+        pass
+
+    def format_string(self, x):
+        pass
+
+    def trans_three(self, s):
+        pass
+
+    def parse_more(self, i):
+        pass
+
+    def trans_two(self, s):
+         pass
+    
+    def trans_two_ordinal(self, s):";trans_two_ordinal(self, s);trans_two_ordinal;"def trans_two_ordinal(self, s):
+        s = s.zfill(2)
+        if s[0] == ""0"":
+            if 1 <= int(s[-1]) <= 3:
+                return self.ORDINAL[int(s[-1])]
+            else:
+                return self.NUMBER[int(s[-1])]
+        elif s[0] == ""1"":
+               return self.NUMBER_TEEN[int(s) - 10]
+        elif s[1] == ""0"":
+               return self.NUMBER_TEN[int(s[0]) - 1]
+         else:
+               first_digit = self.NUMBER[int(s[-1])] if int(s[-1]) not in [1, 2, 3] else self.ORDINAL[int(s[-1])]
+               return self.NUMBER_TEN[int(s[0]) - 1] + "" "" + first_digit";"import unittest
+
+class NumberWordFormatterTestTransTwoOrdinal(unittest.TestCase):
+    def test_trans_two_1(self):
+        formatter = NumberWordFormatter()
+        self.assertEqual(formatter.trans_ordinal(""23""), ""TWENTY THIRD"")
+
+    def test_trans_two_2(self):
+        formatter = NumberWordFormatter()
+        self.assertEqual(formatter.trans_ordinal(""10""), ""TEN"")
+
+    def test_trans_two_3(self):
+        formatter = NumberWordFormatter()
+        self.assertEqual(formatter.trans_ordinal(""5""), ""FIVE"")
+
+    def test_trans_two_4(self):
+        formatter = NumberWordFormatter()
+        self.assertEqual(formatter.trans_ordinal(""00""), """")
+
+    def test_trans_two_5(self):
+        formatter = NumberWordFormatter()
+        self.assertEqual(formatter.trans_ordinal(""01""), ""FIRST"")
+
+    def test_trans_two_6(self):
+        formatter = NumberWordFormatter()
+        self.assertEqual(formatter.trans_ordinal(""80""), ""EIGHTY"")";":param s: str, the two-digit number
+:return: str, the number in words format
+";"Converts a two-digit number into words format. Account for the first three ordinal ('first', 'second' and 'third')
+:param s: str, the two-digit number
+:return: str, the number in words format
+>>> formatter = NumberWordFormatter()
+>>> formatter.trans_two_ordinal(""23"")
+""TWENTY THIRD""
+";"['Converts a two-digit number ""s"" into words format considering the special case for the first three ordinals (\'first\', \'second\', \'third\'). Return the number in words format.', ""Transform a two-digit string 's' into its written word format, specifically observing the unique conversions for the first, second, and third ordinals. The function outputs the string number in words."", ""Rewrite a string 's' representing a two-digit number into its English words representation, with a special emphasis on converting the numbers one, two, and three into their ordinal forms ('first', 'second', 'third'). Return the converted string."", ""For a string input 'a' corresponding to two digits, convert it into its corresponding textual description, making sure to handle '1', '2', and '3' as their ordinals ('first', 'second', 'third'). Provide the result as a worded string."", ""Take a two-digit number as a string 's' and output the number in words, paying special attention to the ordinals 'first', 'second', and 'third' for values '1', '2', and '3'. Return the verbal representation."", ""Process a string 's' which consists of two numerals, converting it into its corresponding word form, specifically treating the numbers 1, 2, and 3 as their ordinal counterparts ('first', 'second', 'third'). The output should be the number in word format.""]";"['Converts a two-digit number ""s"" into words format considering the special case for the first three ordinals (\'first\', \'second\', \'third\'). The function first adjusts the number ""s"" to ensure it has two digits. It then processes the number based on its tens and units digits to generate a word or phrase representative of the number, handling the first three numbers with their ordinal equivalents. Return the number in words format.', ""Transforms a two-digit string 's' into its corresponding word representation, particularly focusing on the ordinal representation for the numbers one, two, and three. The function pads 'ilod; with zeros to guarantee it is two digits long, then breaks it down based on its tens and ones positions, using special ordinal names for the values one through three, and outputs the result as a text."", ""Renders the two-digit string 's' in a textual format, particularly addressing 'first', 'second', and 'third' for values 01, 02, and 03 respectively. Initially, 's' is ensured to have two digits via padding. Subsequently, the function delineates the number based on tens and units, utilizing ordinal terms for the initial three numbers, finally returning the described texts."", ""Converts the string 's', which represents a two-digit number, into its word form, emphasizing the ordinal terms 'first', 'second', and 'third' for the respective figures. The function begins by ensuring 's' comprises two digits, and then it deciphers the digits to produce a relevant word or phrase that accounts for the ordinals of the first three digits, returning the described phrase."", ""Changes the two-digit character string 's' into its word equivalent, especially highlighting the numbers 'first', 'second', and 'third' for respective early values. The process initiates by padding 's' to affirm it's two digits, afterward interpreting these digits to formulate an appropriate word or phrase, particularly for the first three values as ordinals, and producing the resultant string."", ""Reformats a two-digit numeral string 's' into words, notably providing special consideration for the numerals 'first', 'second', and 'third'. It starts by extending 's' to two digits if necessary and then decomposes the number according to the tens and units digit, employing ordinal representations for numbers one to three, and returns the articulated format.""]";"['Converts a two-digit number ""s"" into words format considering the special case for the first three ordinals (\'first\', \'second\', \'third\'). The function first ensures that the string ""s"" is zero-padded to two digits using ""s.zfill(2)"". If the first digit of ""s"" is ""0"" (indicating a single-digit number), it checks the last digit; if it\'s 1 to 3, it uses the ""self.ORDINAL"" list to return the ordinal word, otherwise, it uses the ""self.NUMBER"" list to return the cardinal number. If the number is a teen (10-19), it fetches the appropriate teen representation from ""self.NUMBER_TEEN"". For other numbers, it constructs the number word by combining the appropriate tens word from ""self.NUMBER_TEN"" and the cardinal or ordinal word for the units digit based on whether it\'s between 1 and 3. Return the result as a string representing the two-digit number in words format.', ""Transforms a two-digit string 's' into its word representation, recognizing ordinal words for the first three numbers ('first', 'second', 'third'). It first pads 's' to two digits with 's.zfill(2)'. When 's' starts with '0' (signifying it's effectively a single-digit), it checks whether the last digit falls between 1 and 3 for ordinals using 'self.ORDINAL', or uses 'self.NUMBER' for other digits. For teen values (10-19), it retrieves the word from 'self.NUMBER_TEEN'. For multiples of ten or other two-digit numbers, it combines tens and units into words, selecting ordinals for 1 to 3 and cardinals otherwise. The function returns this as a string."", ""This function, taking a two-digit string 's', converts it into its corresponding word format, especially noting ordinal words ('first', 'second', 'third') for the first three. Initially, it ensures 's' has two characters using 's.zfill(2)'. If 's' begins with '0', denoting a single-digit, the last character's integer is checked; values 1-3 get ordinal words from 'self.ORDINAL', and others get cardinal numbers from 'self.NUMBER'. If 's' is a teen number (10-19), the function fetches the respective word from 'self.NUMBER_TEEN'. For other numbers, it constructs the word by merging the correct tens from 'self.NUMBER_TEN' with either cardinal or ordinal words for the units, depending on whether they are between 1 and 3. It returns the resultant string."", ""Changes a two-digit numeral string 's' to its textual equivalent, addressing 'first', 'second', and 'third' as special ordinals. Initially, it pads 's' to ensure two characters through 's.zfill(2)'. If 's' commences with '0' (implying it's akin to a single digit), it examines the final digit; for 1-3, it fetches ordinals from 'self.ORDINAL', while other numerals are derived from 'self.NUMBER'. Teen numbers (10-19) utilize 'self.NUMBER_TEEN'. All other numerals are articulated by fusing a tens word from 'self.NUMBER_TEN' with either a cardinal or ordinal for the units digit if it's 1-3. The assembled word string is then returned."", ""Rewords a two-digit numeral string 's' into a verbal format while particularly acknowledging ordinals ('first', 'second', 'third') for initial numbers. The function starts by zero-padding 's' to two digits using 's.zfill(2)'. If the first character of 's' is '0' (showing it's essentially a single-digit), it verifies the second digit; for values from 1 to 3, it utilizes 'self.ORDINAL' for ordinals, otherwise 'self.NUMBER' for cardinals. For teen figures (10-19), the phrase is obtained from 'self.NUMBER_TEEN'. For others, the verbal format is constructed by integrating the appropriate tens term from 'self.NUMBER_TEN' and appending the cardinal or ordinal term of the units number if it lies between 1 and 3. The result is returned as a fully formed word string."", ""Converts a pair-digit string 's' into its word-based representation, particularly including words like 'first', 'second', 'third' for initial units. It prefaces by padding 's' with zeros to two digits through 's.zfill(2)'. If 's' begins with '0', indicating a number lower than 10, it evaluates the last digit; digits from 1 to 3 yield ordinaries from 'self.ORDINAL', and other numbers yield cards from 'self.NUMBER'. Numbers in the teen range (10-19) pull their corresponding word from 'self.NUMBER_TEEN'. For other numbers, the function merges the tens word from 'self.NUMBER_TEN' with the card or ord number for the last digit (1-3 get ordinals). This constructed word sequence is returned.""]"
+64_01;NumberConverter;"
+class NumberConverter:  
+    """"""
+    The class allows to convert  decimal to binary, octal and hexadecimal repectively and contrarily
+    """"""
+
+    def decimal_to_binary(decimal_num):
+        pass
+
+    @staticmethod
+    def binary_to_decimal(binary_num):
+        """"""
+        Convert a number from binary format to decimal format.
+        """"""
+        pass
+
+    @staticmethod
+    def decimal_to_octal(decimal_num):
+        """"""
+        Convert a number from decimal format to octal format.
+        """"""
+        pass
+
+    @staticmethod
+    def octal_to_decimal(octal_num):
+        """"""
+        Convert a number from octal format to decimal format.
+        """"""
+        pass
+
+    @staticmethod
+    def decimal_to_hex(decimal_num):
+        """"""
+        Convert a number from decimal format to hex format.
+        """"""
+        pass
+
+    @staticmethod
+    def hex_to_decimal(hex_num):
+        """"""
+        Convert a number from hex format to decimal format.
+        """"""
+        pass
+
+    def decimal_to_word_binary(decimal_num):
+        binary_num = bin(decimal_num)[2:]
+        return "" "".join(['ONE' if int(b) == 1 else 'ZERO' for b in binary_num])
+
+";"
+class NumberConverter:  
+    """"""
+    The class allows to convert  decimal to binary, octal and hexadecimal repectively and contrarily
+    """"""
+
+    @staticmethod
+    def binary_to_decimal(binary_num):
+        pass
+
+    @staticmethod
+    def decimal_to_octal(decimal_num):
+        pass
+
+    @staticmethod
+    def octal_to_decimal(octal_num):
+        pass
+
+    @staticmethod
+    def decimal_to_hex(decimal_num):
+        pass
+
+    @staticmethod
+    def hex_to_decimal(hex_num):
+        pass
+   
+    def decimal_to_binary(decimal_num):
+         pass
+
+    def decimal_to_word_binary(decimal_num):
+";decimal_to_word_binary(decimal_num);decimal_to_word_binary;"def decimal_to_word_binary(decimal_num):
+        binary_num = bin(decimal_num)[2:]
+        return "" "".join(['ONE' if int(b) == 1 else 'ZERO' for b in binary_num])";"import unittest
+
+class NumberConverterTestDecimalToWordBinary(unittest.TestCase):
+    def test_decimal_to_binary(self):
+        self.assertEqual('ONE ONE ZERO ZERO', NumberConverter.decimal_to_word_binary(12))
+
+    def test_decimal_to_binary_2(self):
+        self.assertEqual('ONE ONE ZERO ZERO ONE ZERO ZERO', NumberConverter.decimal_to_word_binary(100))
+
+    def test_decimal_to_binary_3(self):
+        self.assertEqual('ONE ZERO ZERO ZERO ZERO ONE ONE ONE ZERO ZERO ONE ONE ZERO', NumberConverter.decimal_to_word_binary(4326))
+
+    def test_decimal_to_binary_4(self):
+        self.assertEqual('ZERO', NumberConverter.decimal_to_word_binary(0))";":param decimal_num: int, decimal number
+:return: str, the string representation of an integer in binary with words 'ZERO' or 'ONE'
+";"Convert a number from decimal format to a string of 'ONE' and 'ZERO' based on its binary representation
+:param decimal_num: int, decimal number
+:return: str, the string representation of an integer in binary with words 'ZERO' or 'ONE'
+>>> NumberConverter.decimal_to_binary(12)
+'ONE ONE ZERO ZERO'
+";"['Convert a decimal number ""decimal_num"" into its binary representation expressed as words. Replace each ""1"" with the word \'ONE\' and each ""0"" with the word \'ZERO\'. Return the resulting string.', ""Translate a decimal number 'decimal_num' to its binary word form. For this conversion, use 'ONE' for '1' and 'ZERO' for '0', and then return the binary word sequence as a string."", ""For a decimal number 'decimal_name', create a binary representation where the digits are replaced by words: '1' becomes 'ONE' and '0' becomes 'ZERO'. Provide the final string output."", ""Change a given decimal integer 'decimal_num' into a string of words representing its binary form. All '1's should be substituted with 'ONE' and all '0's with 'ZERO'. Return this string."", ""Transform a decimal integer 'decimal_num' into binary, remapping its digits so that '1' transforms to 'ONE' and '0' to 'ZERO'. The binary should be returned as a string of words."", ""Redefine a whole number 'decimal_num' to its equivalent binary expressed entirely in words, with '1' replaced by 'ONE' and '0' replaced by 'ZERO'. The function returns this string.""]";"['Convert a decimal number ""decimal_num"" into its binary representation expressed as words. First, convert the decimal number to its pure binary form. Then, replace each digit in the binary string: ""1"" with the word \'ONE\' and ""0"" with the word \'ZERO\'. Finally, combine these words into a single string with spaces separating each word. Return the resulting string.', ""Take a decimal number 'decimal_num', and first transform it to its binary format without prefixes. Next, map each binary digit, converting '1' to 'ONE' and '0' to 'ZERO', and then assemble these words into a spaced string. The function should return this final string."", ""For the input 'decimal_num', change it into binary format initially. Subsequently, for each digit in this binary number, turn '1' into 'ONE' and '0' into 'ZERO'. Concatenate these words with spaces in between. Return the concatenated string."", ""Start by converting a decimal 'decimal_num' to binary. Replace every '1' in the binary string with 'ONE' and every '0' with 'ZERO'. Then merge these words, with a space separating each, into one single string. Output this string."", ""Transform a given decimal number 'decimal_num' to binary. In this binary sequence, substitute '1' with the word 'ONE' and '0' with 'ZERO'. Join these words by spaces to form a unified string. The final output should be this string."", ""Process a given decimal number 'decimala_num' by first converting it to binary. Each '1' in this binary result should be swapped for 'ONE' and each '0' for 'ZERO'. Bring these words together with spaces in between into a single output string.""]";"['Convert a decimal number ""decimal_num"" into its binary representation expressed as words. Use the built-in Python function ""bin()"" to convert the decimal number into a binary string, then remove the \'0b\' prefix with slicing ""[2:]"". Iterate over each character in the binary string and replace \'1\' with \'ONE\' and \'0\' with \'ZERO\' using a list comprehension. Concatenate the list of words into a single string separated by spaces using the ""join()"" method. Return this result as the final string output.', ""For a given decimal number 'decimal_num', transform it into a binary format represented in words. Employ the 'bin()' function to convert the number to a binary string, slicing off the initial '0b' using '[2:]'. Subsequently, convert each digit in this binary string, mapping '1' to 'ONE' and '0' to 'ZERO' via a list comprehension. Combine these words into one space-separated string with the 'join()' method and return the combined string."", ""Transform a decimal number 'decimal_num' into its binary form, articulated in words. Using Python's 'bin()' function, convert the decimal number to a binary string and eliminate the prefix '0b' by employing slicing '[2:]'. Replace each character in the binary string, substituting '1' with 'ONE' and '0' with 'ZERO' through a list comprehension. Merge these words into a single, space-separated string using the 'join()' function and return the resulting string."", ""Use the built-in function 'bin()' to convert a given decimal number 'decimal_num' into a binary string, then slice off the '0b' prefix with '[2:]'. In this binary string, replace each '1' with 'ONE' and each '0' with 'ZERO' applying a list comprehension. Combine all resulting words into a unified string separated by spaces with the 'join()' method. Return this concatenated result as the final output."", ""Take a decimal number 'decimal_num', and using the 'bin()' method, convert it to a binary string, removing the '0b' using the slice notation '[2:]'. In the resulting binary string, substitute '1' for 'ONE' and '0' for 'ZERO' using a list comprehension. Concatenate the resultant list into a single string with spaces in between each word using the 'join()' method. Output the final combined string."", ""Convert the decimal number 'decimal_num' to a binary represented in words. Begin by converting the number using 'bin()' and strip the '0b' prefix from the string by slicing '[2:]'. For each digit in the binary string, use a list comprehension to swap '1' to 'ONE' and '0' to 'ZERO'. Utilize the 'join()' method to concatenate these words into a single space-seperated string and return this final output.""]"
+97_01;Words2Numbers;"
+class Words2Numbers:  
+    """"""
+    The class provides a text-to-number conversion utility, allowing conversion of written numbers (in words) to their numerical representation.
+    """"""
+
+    def __init__(self):
+        """"""
+        Initialize the word lists and dictionaries required for conversion
+        """"""
+        self.numwords = {}
+        self.units = [
+            ""zero"", ""one"", ""two"", ""three"", ""four"", ""five"", ""six"", ""seven"", ""eight"",
+            ""nine"", ""ten"", ""eleven"", ""twelve"", ""thirteen"", ""fourteen"", ""fifteen"",
+            ""sixteen"", ""seventeen"", ""eighteen"", ""nineteen"",
+        ]
+        self.tens = ["""", """", ""twenty"", ""thirty"", ""forty"", ""fifty"", ""sixty"", ""seventy"", ""eighty"", ""ninety""]
+        self.scales = [""hundred"", ""thousand"", ""million"", ""billion"", ""trillion""]
+
+        self.numwords[""and""] = (1, 0)
+        for idx, word in enumerate(self.units):
+            self.numwords[word] = (1, idx)
+        for idx, word in enumerate(self.tens):
+            self.numwords[word] = (1, idx * 10)
+        for idx, word in enumerate(self.scales):
+            self.numwords[word] = (10 ** (idx * 3 or 2), 0)
+
+        self.ordinal_words = {'first': 1, 'second': 2, 'third': 3, 'fifth': 5, 'eighth': 8, 'ninth': 9, 'twelfth': 12}
+        self.ordinal_endings = [('ieth', 'y'), ('th', '')]
+
+
+    def text2int(self, textnum):
+        pass
+
+    def is_valid_input(self, textnum):
+        """"""
+        Check if the input text contains only valid words that can be converted into numbers.
+        """"""
+        pass
+
+    def text2int_with_minus(self, textnum):
+        textnum = textnum.replace('-', ' ')
+        
+        current = result = 0
+        curstring = """"
+        onnumber = False
+        for word in textnum.split():
+            if word in self.ordinal_words:
+                scale, increment = (1, self.ordinal_words[word])
+                current = current * scale + increment
+                onnumber = True
+            else:
+                for ending, replacement in self.ordinal_endings:
+                    if word.endswith(ending):
+                        word = ""%s%s"" % (word[:-len(ending)], replacement)
+
+                if word not in self.numwords:
+                    if onnumber:
+                        curstring += repr(result + current) + "" ""
+                    curstring += word + "" ""
+                    result = current = 0
+                    onnumber = False
+                else:
+                    scale, increment = self.numwords[word]
+                    current = current * scale + increment
+                    if scale > 100:
+                        result += current
+                        current = 0
+                    onnumber = True
+
+        if onnumber:
+            curstring += repr(result + current)
+        if 'minus' in textnum:
+          curstring = curstring.replace('minus', '')
+          curstring = ""-"" + curstring[1:]
+        return curstring
+
+";"
+class Words2Numbers:  
+    """"""
+    The class provides a text-to-number conversion utility, allowing conversion of written numbers (in words) to their numerical representation.
+    """"""
+
+    def __init__(self):
+        """"""
+        Initialize the word lists and dictionaries required for conversion
+        """"""
+        self.numwords = {}
+        self.units = [
+            ""zero"", ""one"", ""two"", ""three"", ""four"", ""five"", ""six"", ""seven"", ""eight"",
+            ""nine"", ""ten"", ""eleven"", ""twelve"", ""thirteen"", ""fourteen"", ""fifteen"",
+            ""sixteen"", ""seventeen"", ""eighteen"", ""nineteen"",
+        ]
+        self.tens = ["""", """", ""twenty"", ""thirty"", ""forty"", ""fifty"", ""sixty"", ""seventy"", ""eighty"", ""ninety""]
+        self.scales = [""hundred"", ""thousand"", ""million"", ""billion"", ""trillion""]
+
+        self.numwords[""and""] = (1, 0)
+        for idx, word in enumerate(self.units):
+            self.numwords[word] = (1, idx)
+        for idx, word in enumerate(self.tens):
+            self.numwords[word] = (1, idx * 10)
+        for idx, word in enumerate(self.scales):
+            self.numwords[word] = (10 ** (idx * 3 or 2), 0)
+
+        self.ordinal_words = {'first': 1, 'second': 2, 'third': 3, 'fifth': 5, 'eighth': 8, 'ninth': 9, 'twelfth': 12}
+        self.ordinal_endings = [('ieth', 'y'), ('th', '')]
+
+
+    def is_valid_input(self, textnum):
+        pass
+
+    def text2int(self, textnum):
+        pass
+
+    def text2int_with_minus(self, textnum):
+        textnum = textnum.replace('-', ' ')
+        
+        current = result = 0
+        curstring = """"
+        onnumber = False
+        for word in textnum.split():
+            if word in self.ordinal_words:
+                scale, increment = (1, self.ordinal_words[word])
+                current = current * scale + increment
+                onnumber = True
+            else:
+                for ending, replacement in self.ordinal_endings:
+                    if word.endswith(ending):
+                        word = ""%s%s"" % (word[:-len(ending)], replacement)
+
+                if word not in self.numwords:
+                    if onnumber:
+                        curstring += repr(result + current) + "" ""
+                    curstring += word + "" ""
+                    result = current = 0
+                    onnumber = False
+                else:
+                    scale, increment = self.numwords[word]
+                    current = current * scale + increment
+                    if scale > 100:
+                        result += current
+                        current = 0
+                    onnumber = True
+
+        if onnumber:
+            curstring += repr(result + current)
+        if 'minus' in textnum:
+          curstring = curstring.replace('minus', '')
+          curstring = ""-"" + curstring[1:]
+        return curstring
+";text2int_with_minus(self, textnum);text2int_with_minus;"def text2int_with_minus(self, textnum):
+        textnum = textnum.replace('-', ' ')
+        
+        current = result = 0
+        curstring = """"
+        onnumber = False
+        for word in textnum.split():
+            if word in self.ordinal_words:
+                scale, increment = (1, self.ordinal_words[word])
+                current = current * scale + increment
+                onnumber = True
+            else:
+                for ending, replacement in self.ordinal_endings:
+                    if word.endswith(ending):
+                        word = ""%s%s"" % (word[:-len(ending)], replacement)
+
+                if word not in self.numwords:
+                    if onnumber:
+                        curstring += repr(result + current) + "" ""
+                    curstring += word + "" ""
+                    result = current = 0
+                    onnumber = False
+                else:
+                    scale, increment = self.numwords[word]
+                    current = current * scale + increment
+                    if scale > 100:
+                        result += current
+                        current = 0
+                    onnumber = True
+
+        if onnumber:
+            curstring += repr(result + current)
+        if 'minus' in textnum:
+          curstring = curstring.replace('minus', '')
+          curstring = ""-"" + curstring[1:]
+        return curstring";"import unittest
+
+class Words2NumbersTestText2IntWithMinus(unittest.TestCase):
+    def test_text2int(self):
+        w2n = Words2Numbers()
+        self.assertEqual(w2n.text2int_with_minus(""minus thirty-two""), ""-32"")
+
+    def test_text2int2(self):
+        w2n = Words2Numbers()
+        self.assertEqual(w2n.text2int_with_minus(""one hundred and twenty-three""), ""123"")
+
+    def test_text2int3(self):
+        w2n = Words2Numbers()
+        self.assertEqual(w2n.text2int_with_minus(""two thousand and nineteen""), ""2019"")
+
+    def test_text2int4(self):
+        w2n = Words2Numbers()
+        self.assertEqual(w2n.text2int_with_minus(""one hundred and one""), ""101"")
+
+    def test_text2int5(self):
+        w2n = Words2Numbers()
+        self.assertEqual(w2n.text2int_with_minus(""minus one million and eleven""), ""-1000011"")
+
+    def test_text2int6(self):
+        w2n = Words2Numbers()
+        self.assertEqual(w2n.text2int_with_minus(""one million one hundred sixty-ninth""), ""1000169"")";":param textnum: string, the word string to be converted
+:return: string, the final converted integer string
+";"Convert the word string to the corresponding integer string. The function can handle negative number using 'minus' in the word string.
+:param textnum: string, the word string to be converted
+:return: string, the final converted integer string
+>>> w2n = Words2Numbers()
+>>> w2n.text2int_with_minus(""minus thirty-two"")
+""-32""
+";"['Convert the word string ""textnum"" to the corresponding integer string. The function can handle negative numbers using \'minus\' in the word string. If \'minus\' is present, the result should be negative.', ""Transform the string 'textnum' into its corresponding integer representation. If the string includes the word 'minus', the output should be a negative number."", ""Translate the word string 'textname' into an integer string, managing negative values denoted by the inclusion of 'minus' in the word string."", ""Change the word string 'textnum' into its numeral string equivalent. Detect 'minus' in the string to produce a negative integer in the result."", ""Convert the wording in 'textnum' to its integer string form. Consider the word 'minus' to invert the result to a negative number."", ""Modify the string 'textnum' from text to integer form, ensuring that if 'minus' appears, the numeric result will be negative.""]";"['Convert the word string ""textnum"" to the corresponding integer string. The function can handle negative numbers using \'minus\' in the word string. If \'minus\' is present, the result should be negative. This function processes the string by first replacing hyphens with spaces to simplify parsing. It then iterates over each word, converting valid numerical words into their numerical equivalents and accumulating the result. If a word not recognized as a valid number is encountered, it breaks the current accumulation and starts anew. If the input string contains \'minus\', the entire result is negated to reflect the negative number.', ""Interpret the string 'textnum' as integers, dealing specifically with negative numbers signaled by the term 'minus'. This function treats hyphens as spaces for easier text handling. Words are parsed individually, translating those recognized as numbers while separating them by unrecognized terms to disrupt the sequence. The presence of 'minus' in the string precedes conversion of the entire result to a negative integer."", ""Change the string 'textnum' to its integer representation, focusing especially on negative numbers denoted by 'minus'. The function starts by converting hyphens into spaces to ease the word separation process. It progresses by parsing words, converting them to numbers when identifiable, and discontinuing accumulations when non-numerical words appear. Should 'minus' exist in the string, the output is adjusted to be negative."", ""Transform the textual input 'textnum' into an integer sequence, accurately accounting for negatives indicated by 'minus'. The function simplifies parsing by remapping hyphens to spaces. It analyses each piece, turning recognized numbers into integers while halting numerical accumulation upon encountering non-numerical words. The inclusion of 'minus' requires the resultant integer to reflect a negative value."", ""Encode the string 'textnum' into integers, specifically accounting for the presence of negative values indicated by the inclusion of 'minus'. The function mitigates parsing complexity by replacing hyphens with spaces. In processing, it systematically converts recognizably numerical words and interrupts number building when non-numerical entries occur. A detected 'minus' inverts the aggregate into a negative total."", ""Render the text input as 'textnum' into a sequence of integers, being cognizant of any negative numbers noted by 'minus' in text. The process initiates by simplifying hyphens into spaces for better word diagnostics. Throughout, words are converted to numbers if recognized, with sequences disrupted by any non-numerical words, and if 'minus' is detected, the entire resulting value is transformed into its negative counterpart.""]";"['Convert the word string ""textnum"" to the corresponding integer string using the ""text2int_with_minus"" function. The function can handle negative numbers using \'minus\' in the word string. If \'minus\' is present, the result should be negative. This function begins by replacing hyphens with spaces in ""textnum"" using the line `textnum = textnum.replace(\'-\', \' \')`. It iteratively processes each word in the modified string. If a word matches an entry in ""self.ordinal_words"", it updates a running total ""current"", which keeps track of the current segment of the number. If the word ends with a specific suffix from ""self.ordinal_endings"", the word is modified accordingly. If a word is not found in ""self.numwords"", it either concatenates the current accumulated number to ""curstring"" if a number was being processed or adds the word directly if not. For valid numerical words, ""current"" is updated according to the scales and values in ""self.numwords"". If the input string contains \'minus\', after all words are processed, the result string in ""curstring"" is adjusted to start with a negative sign by replacing \'minus\' with \'\' and ""curstring = \'-\' + curstring[1:]"". The function then returns the final converted string ""curstring"".', ""Transform the word sequence 'textnum' into an integer string using the method 'text2int_with_minus'. This method is designed to process negative numbers indicated by the inclusion of 'minus' in the word sequence, producing a negative outcome. The function first changes all hyphens in 'textnum' to spaces. As it parses each word of the altered string, it either updates a cumulative sum 'current' for words found in 'self.ordinal_words', or alters a word according to suffixes in 'self.ordinal_endsings' list. For unrecognized words not in 'self.numwords', the function adds either the combined numerical value 'current' to 'curstring' if a numerical processing is ongoing, or just the word itself. When valid numerical terms are processed, 'current' is recalculated and if 'minus' is present after parsing, 'curstring' is modified to ensure the output begins with a negative sign. The result is the completed 'curstring'."", ""Use the function 'text2int_with_minus' to translate the string 'textnum' into its numerical string equivalent, and this function is equipped to manage negative figures if 'minus' is used in the string. First, it substitutes hyphens in 'textnum' with spaces. Subsequently, it interprets each word in this adjusted string: if a word is linked to an ordinal value in 'self.ordinal_words', it accumulates into the 'current' subtotal. If a word ends with particular suffixes noted in 'self.ordinal_endings', the word itself is adjusted. When a word doesn't comply with 'self.numwords', it either appends the current number and resets or attaches the non-numeral word. For suitable numerical words from 'self.numwords', the function updates 'current' appropriately. If 'minus' is detected, a negative sign precedes the output by modifying 'curstring'. The final 'curstring' is returned."", ""Employ the 'text2int_with_minus' function to convert the textual representation 'textnum' into an integer string, taking into account potential negation signaled by 'minus'. Initially, it replaces dashes in 'textnum' with spaces. It examines each word following this alteration, incrementing the 'current' total for matches within 'self.ordinal_words' and altering words ending with suffixes from 'self.ordinal_endings'. Non-matching words to 'self.numwords' leads to appending the respective accumulated total to 'curstring' or the word itself. Proper numerical terms adjust 'current' based on 'self.numwords' values and scales. Post-processing includes amending the result in 'curstring' to reflect negativity if 'minus' is included, finalizing with the adjusted 'curstring'."", ""In the function 'text2int_with_minus', convert the input 'textnum' into an interpreted integer string that can incorporate negative numbers indicated via 'minus'. Initially, it swaps out hyphens in 'textnum' for spaces, then assesses each word in the revised sequence. Words correlating with 'self.ordinal_words' update the 'current' running tally. Words ending with recognized suffixes from 'self.ordinal_endings' are amended. If a word falls outside 'self.numwords', the routine concatenates either the cumulative 'current' or the actual word to 'curstring'. For fitting numeral expressions, 'current' is recalculated based on 'self.numwords'. Presence of 'minus' alters the final output in 'curstring' to start with a negative sign. Finally, it outputs the corrected 'curstring'."", ""Invoke the 'text2int_with_minus' to convert the phrase 'textnum' into a numeric string representation, handling negative numbers when 'minus' appears in the input. First, replace all hyphens with spaces in 'textnum'. Process each resulting word; use 'self.ordinal_words' to update the running 'current' sum for matched words, and modify the word based on 'self.ordinal_endings' if ending matches are found. If a word isn't present in 'self.numwords', append either the total of 'current' or the word itself to 'curstring', based on whether a number was being processed. Update 'current' using values and scales from 'self.numwords' for recognized numbers. If 'minus' exists, modify 'curstring' to ensure a negative result. The function results in the adjusted replica of 'curstring'.""]"
+65_22;NumberWordFormatter;"
+class NumberWordFormatter:  
+    """"""
+    This is a class that provides to convert numbers into their corresponding English word representation, including handling the conversion of both the integer and decimal parts, and incorporating appropriate connectors and units.
+    """"""
+
+    def __init__(self):
+        """"""
+        Initialize NumberWordFormatter object.
+        """"""
+        self.NUMBER = ["""", ""ONE"", ""TWO"", ""THREE"", ""FOUR"", ""FIVE"", ""SIX"", ""SEVEN"", ""EIGHT"", ""NINE""]
+        self.NUMBER_TEEN = [""TEN"", ""ELEVEN"", ""TWELVE"", ""THIRTEEN"", ""FOURTEEN"", ""FIFTEEN"", ""SIXTEEN"", ""SEVENTEEN"",
+                            ""EIGHTEEN"",
+                            ""NINETEEN""]
+        self.NUMBER_TEN = [""TEN"", ""TWENTY"", ""THIRTY"", ""FORTY"", ""FIFTY"", ""SIXTY"", ""SEVENTY"", ""EIGHTY"", ""NINETY""]
+        self.NUMBER_MORE = ["""", ""THOUSAND"", ""MILLION"", ""BILLION""]
+        self.NUMBER_SUFFIX = [""k"", ""w"", """", ""m"", """", """", ""b"", """", """", ""t"", """", """", ""p"", """", """", ""e""]
+
+    def format(self, x):
+        """"""
+        Converts a number into words format
+        """"""
+        pass
+
+    def format_string(self, x):
+        """"""
+        Converts a string representation of a number into words format
+        """"""
+        pass
+
+    def trans_two(self, s):
+        pass
+
+    def trans_three(self, s):
+        """"""
+        Converts a three-digit number into words format
+        """"""
+        pass
+
+    def parse_more(self, i):
+        """"""
+        Parses the thousand/million/billion suffix based on the index
+        """"""
+        pass
+
+    def trans_two_minus(self, s):
+        if s[0] == '-': 
+           c = 'MINUS '
+        else:
+            c = ''
+        s = s.zfill(2)
+        if s[0] == ""0"":
+            return c + self.NUMBER[int(s[-1])]
+        elif s[0] == ""1"":
+            return c + self.NUMBER_TEEN[int(s) - 10]
+        elif s[1] == ""0"":
+            return c + self.NUMBER_TEN[int(s[0]) - 1]
+        else:
+            return c + self.NUMBER_TEN[int(s[0]) - 1] + "" "" + self.NUMBER[int(s[-1])]
+
+";"
+class NumberWordFormatter:  
+    """"""
+    This is a class that provides to convert numbers into their corresponding English word representation, including handling the conversion of both the integer and decimal parts, and incorporating appropriate connectors and units.
+    """"""
+
+    def __init__(self):
+        """"""
+        Initialize NumberWordFormatter object.
+        """"""
+        self.NUMBER = ["""", ""ONE"", ""TWO"", ""THREE"", ""FOUR"", ""FIVE"", ""SIX"", ""SEVEN"", ""EIGHT"", ""NINE""]
+        self.NUMBER_TEEN = [""TEN"", ""ELEVEN"", ""TWELVE"", ""THIRTEEN"", ""FOURTEEN"", ""FIFTEEN"", ""SIXTEEN"", ""SEVENTEEN"",
+                            ""EIGHTEEN"",
+                            ""NINETEEN""]
+        self.NUMBER_TEN = [""TEN"", ""TWENTY"", ""THIRTY"", ""FORTY"", ""FIFTY"", ""SIXTY"", ""SEVENTY"", ""EIGHTY"", ""NINETY""]
+        self.NUMBER_MORE = ["""", ""THOUSAND"", ""MILLION"", ""BILLION""]
+        self.NUMBER_SUFFIX = [""k"", ""w"", """", ""m"", """", """", ""b"", """", """", ""t"", """", """", ""p"", """", """", ""e""]
+
+    def format(self, x):
+        pass
+
+    def format_string(self, x):
+        pass
+
+    def trans_three(self, s):
+        pass
+
+    def parse_more(self, i):
+        pass
+
+    def trans_two(self, s):
+        pass
+
+    def trans_two_minus(self, s):";trans_two_minus(self, s);trans_two_minus;"def trans_two_minus(self, s):
+        if s[0] == '-': 
+           c = 'MINUS '
+        else:
+            c = ''
+        s = s.zfill(2)
+        if s[0] == ""0"":
+            return c + self.NUMBER[int(s[-1])]
+        elif s[0] == ""1"":
+            return c + self.NUMBER_TEEN[int(s) - 10]
+        elif s[1] == ""0"":
+            return c + self.NUMBER_TEN[int(s[0]) - 1]
+        else:
+            return c + self.NUMBER_TEN[int(s[0]) - 1] + "" "" + self.NUMBER[int(s[-1])]";"import unittest
+
+class NumberWordFormatterTestTransTwoMinus(unittest.TestCase):
+    def test_trans_two_1(self):
+        formatter = NumberWordFormatter()
+        self.assertEqual(formatter.trans_minus(""23""), ""TWENTY THREE"")
+
+    def test_trans_two_2(self):
+        formatter = NumberWordFormatter()
+        self.assertEqual(formatter.trans_minus(""10""), ""TEN"")
+
+    def test_trans_two_3(self):
+        formatter = NumberWordFormatter()
+        self.assertEqual(formatter.trans_minus(""-5""), ""MINUS FIVE"")
+
+    def test_trans_two_4(self):
+        formatter = NumberWordFormatter()
+        self.assertEqual(formatter.trans_minus(""00""), """")
+
+    def test_trans_two_5(self):
+        formatter = NumberWordFormatter()
+        self.assertEqual(formatter.trans_minus(""-01""), ""MINUS ONE"")
+
+    def test_trans_two_6(self):
+        formatter = NumberWordFormatter()
+        self.assertEqual(formatter.trans_minus(""80""), ""EIGHTY"")";":param s: str, the two-digit number
+:return: str, the number in words format
+";"Converts a two-digit number, including negative numbers, into words format
+:param s: str, the two-digit number
+:return: str, the number in words format
+>>> formatter = NumberWordFormatter()
+>>> formatter.trans_two_with_minus(""-23"")
+""MINUS TWENTY THREE""
+";"['Convert the two-digit number ""s"" into its words format, including handling negative numbers. If ""s"" is negative, prefix the result with ""MINUS"".', ""Translate a two-digit string 's' into its corresponding word representation, including processing any negatives by adding 'MINUS' at the beginning."", ""Transform the two-digit string 's' into the word equivalent of the number it represents. If 's' carries a negative sign, prepend 'MINUS' to the output."", ""For a two-digit numeral 's', generate its word form, appending 'MINUS' beforehand if it represents a negative number."", ""Convert the string 's', which contains a two-digit number, into its literal word format. Start the result with 'MINUS' if the number is below zero."", ""Change the two-digit input 's' into written words, starting with 'MINUS' if the number is negative.""]";"['Convert the string ""s"" representing a two-digit number into its corresponding English words format, including handling any negative values. Begin by checking if ""s"" starts with a minus sign, in which case prepend ""MINUS"" to the output. Then, ensure the number has two digits by padding with zeros if necessary. Then, depending on the characteristics of the digits, translate the number to words by accessing appropriate lists for units, teens, and tens. Concatenate these words to form the full numeral expression in English.', ""Transform a two-digit number described by the string 's' into its English word representation, considering negative numbers as well. Initially determine if 's' begins with a hyphen to prefix 'MINUS' to the result. Zero-pad 's' to ensure it has exactly two characters. Next, depending on the digit patterns, convert the number into words using specific lists for single digits, 'teens', and multiples of ten, then assemble these words into the complete verbal number form."", ""Rewrite the string 's', which denotes a two-digit integer, into its English words format. Pay attention to negative numbers signified by a leading minus, prefixing the result with 'MINUS'. Make 's' two characters long by adding zeros if needed. Then, interpret the digits of 's' using arrays for ones, teens, and tens values and combine them to articulate the entire number in English words."", ""For a string 's' representing a two-digit number, convert this to its English language equivalent, also addressing cases where the number might be negative by adding 'MINUS' upfront. Pad 's' with zeros to maintain a length of two, then use different lists for ones, teens, and tens to translate each digit or combination of digits into words, which are then concatenated to produce the full English phrase for the number."", ""Take the string 's', which presents a two-digit number, and render it in English speech format, including managing negatives by beginning with 'MINUSA' if required. Confirm that 's' comprises exactly two digits by padding zeros, then apply distinct lists mapped to unit, teen, and decade values to decode the digits into words, ultimately merging these to express the entire number verbally."", ""Rephrase the two-digit numeral in string 's' into its spoken English form, accommodating also for negative values by prepending 'MINUS' if the string starts with a minus. Zero-pad 's' to adjust its length to two digits. Subsequently, convert the digits based on their positions using specified lists for units, teens, and tens to formulate the complete number in English lexicon.""]";"['Convert the string ""s"" representing a two-digit number into its corresponding English words format, including handling any negative values. The function checks if ""s"" starts with a minus sign (\'-\'), and if true, it sets a prefix ""c"" to ""MINUS"". If ""s"" is not negative, ""c"" begins empty. Then, the function ensures the number has exactly two digits by padding with zeros if necessary using ""s.zfill(2)"". It then decides how to convert the digits into words based on their values. If the first digit of ""s"" is ""0"", it uses the ""self.NUMBER"" list to get the word for the last digit. If the first digit is ""1"", it retrieves the word from the ""self.NUMBER_TEEN"" list using the entire number minus ten. If the last digit is ""0"", it retrieves the word from the ""self.NUMBER_TEN"" list using the first digit minus one. For other cases, it combines the words from ""self.NUMBER_TEN"" (for the first digit minus one) and ""self.NUMBER"" (for the last digit). The function returns the formed words composed of the prefix ""c"" and the converted digits into words.', ""Translate the two-digit string 's' into English words representation, including processing any minus signs. If 's' starts with '-', a prefix 'c' is set as 'MINUS', otherwise, 'c' is kept empty. The function ensures 's' contains two characters by padding zeros using 's.zfill(2)'. When converting, if 's' first digit is '0', words are fetched using 'self.NUMBER'. If it is '1', words are pulled from 'self.NUMBER_TEEN' reducing the number by ten. If the terminal character is '0', words are taken from 'self.NUMBER_TEN' using the first digit minus one. Other scenarios combine words from 'self.NUMNER_TEN' (for the first digit minus one) and 'self.NUMBER' (for the last digit). It returns the final string composed of the prefix 'c' and converted numerals to words."", ""Transform the two-digit textual number 's' into its English lexical equivalent, managing negative numbers as well. The character 'c' is initialized as 'MINUS' if 's' begins with a minus sign, otherwise, it starts empty. The string 's' gets padded with zeroes to ensure it is two digits long using 's.zfill(2)'. The conversion logic checks if the initial digit of 's' is '0', obtaining the correlating word from 'self.NUMBER'. If it is '1', it derives from 'self.NUMBER_TEEN' subtracting ten from the number. For cases where the last digit is '0', it sources from 'self.NUMBER_TEN' subtracting one from the first digit. For all other cases, it synthesizes words from 'self.NUMBER_TEN' (initial digit minus one) with 'self.NUMER'. The output is the combination of 'c' and the English words of the digits."", ""Convert the string 's', depicting a two-digit numeral, to its English word equivalent, considering negative numbers accordingly. Initial checks on 's' determine if it commences with '-', setting 'c' to 'MINUS' if true; else, 'c' remains unset. The string 's' is modified to a two-character format using 's.zfill(2)'. To translate digits into words: if the foremost digit of 's' is '0', words are gathered from 'self.NUMBER'. If it appears '1', it retrieves from 'self.NUMBER_TEEN' with the value diminished by ten. If the ending digit is '0', it garners from 'self.NUMBER_TEN' subtracting one from the first digit. Different arrangements compile words from 'self.NUMBER_TEN' (for the first digit minus one) and 'self.NUMBER' (for the last digit). Returns the concatenated string of 'c' and the words mapped from digits."", ""Interpret the character string 's' of a two-digit number by translating it into English words, incorporating the handling of negatives as well. Should 's' start with a '-', 'c' is designated as 'MINUS'; otherwise, 'c' starts undefined. Padding 's' with zeros to maintain two digits is achieved via 's.zfill(2)'. Conversion from digits to words depends if the starting digit of 's' is '0', utilizing 'self.NUMBER' for the word. If '1', it extracts from 'self.NUMBER_TEEN' subtracting ten from 's'. If the last digit equals '0', it retrieves from 'self.NUMBER_TEN' deducting one from the primary digit. Other scenarios employ a combination of 'self.NUMBER_TEN' (primary digit minus one) and 'self.NUMBER' (last digit). Returns the accumulated string of prefix 'c' with converted number words."", ""Turn the string 's' representing a two-digit value into its English worded form, also adjusting for negatives when present. Initially, if 's' is prefixed with '-', set 'c' to 'MINUS'; otherwise, let 'c' be empty. The function pads 's' to ensure it always has two characters using 's.zfill(2)'. Depending on the lead digit, if '0', it gets the corresponding word from 'self.NUMBER'. If the first digit is '1', it seeks words from 'self.NUMBER_TEEN', decreasing the full number by ten. When the last digit is '0', it accesses words from 'self.NUMBER_TEN', reducing the initial digit by one. In other variations, it joins words from 'self.NUMBER_TEN' (initial digit decreased by one) and 'self.NUMBER' (last digit). Alternatively returns the compound string from the prefix 'c' and the translated digits to words.""]"
+97_02;Words2Numbers;"class Words2Numbers:  
+    """"""
+    The class provides a text-to-number conversion utility, allowing conversion of written numbers (in words) to their numerical representation.
+    """"""
+
+    def __init__(self):
+        """"""
+        Initialize the word lists and dictionaries required for conversion
+        """"""
+        self.numwords = {}
+        self.units = [
+            ""zero"", ""one"", ""two"", ""three"", ""four"", ""five"", ""six"", ""seven"", ""eight"",
+            ""nine"", ""ten"", ""eleven"", ""twelve"", ""thirteen"", ""fourteen"", ""fifteen"",
+            ""sixteen"", ""seventeen"", ""eighteen"", ""nineteen"",
+        ]
+        self.tens = ["""", """", ""twenty"", ""thirty"", ""forty"", ""fifty"", ""sixty"", ""seventy"", ""eighty"", ""ninety""]
+        self.scales = [""hundred"", ""thousand"", ""million"", ""billion"", ""trillion""]
+
+        self.numwords[""and""] = (1, 0)
+        for idx, word in enumerate(self.units):
+            self.numwords[word] = (1, idx)
+        for idx, word in enumerate(self.tens):
+            self.numwords[word] = (1, idx * 10)
+        for idx, word in enumerate(self.scales):
+            self.numwords[word] = (10 ** (idx * 3 or 2), 0)
+
+        self.ordinal_words = {'first': 1, 'second': 2, 'third': 3, 'fifth': 5, 'eighth': 8, 'ninth': 9, 'twelfth': 12}
+        self.ordinal_endings = [('ieth', 'y'), ('th', '')]
+
+
+    def text2int(self, textnum):
+        pass
+
+    def is_valid_input(self, textnum):
+        """"""
+        Check if the input text contains only valid words that can be converted into numbers.
+        """"""
+        pass
+
+    def text2int_with_decimal(self, textnum):
+        textnum = textnum.replace('-', ' ')
+        
+        current = result = 0
+        curstring = """"
+        onnumber = False
+        for word in textnum.split():
+            
+            if word in self.ordinal_words:
+                scale, increment = (1, self.ordinal_words[word])
+                current = current * scale + increment
+                onnumber = True
+            else:
+                for ending, replacement in self.ordinal_endings:
+                    if word.endswith(ending):
+                        word = ""%s%s"" % (word[:-len(ending)], replacement)
+
+                if word not in self.numwords:
+                    if onnumber:
+                        curstring += repr(result + current) + "" ""
+                    
+                    if word == 'point':
+                      result = current = 0
+                      curstring = curstring[:-1]
+                      curstring += '.'
+                    else:
+                      curstring += word + "" ""
+                    result = current = 0
+                    onnumber = False
+                else:
+                    scale, increment = self.numwords[word]
+                    current = current * scale + increment
+                    if scale > 100:
+                        result += current
+                        current = 0
+                    onnumber = True
+
+        if onnumber:
+            curstring += repr(result + current)
+        
+        return curstring";"
+class Words2Numbers:  
+    """"""
+    The class provides a text-to-number conversion utility, allowing conversion of written numbers (in words) to their numerical representation.
+    """"""
+
+    def __init__(self):
+        """"""
+        Initialize the word lists and dictionaries required for conversion
+        """"""
+        self.numwords = {}
+        self.units = [
+            ""zero"", ""one"", ""two"", ""three"", ""four"", ""five"", ""six"", ""seven"", ""eight"",
+            ""nine"", ""ten"", ""eleven"", ""twelve"", ""thirteen"", ""fourteen"", ""fifteen"",
+            ""sixteen"", ""seventeen"", ""eighteen"", ""nineteen"",
+        ]
+        self.tens = ["""", """", ""twenty"", ""thirty"", ""forty"", ""fifty"", ""sixty"", ""seventy"", ""eighty"", ""ninety""]
+        self.scales = [""hundred"", ""thousand"", ""million"", ""billion"", ""trillion""]
+
+        self.numwords[""and""] = (1, 0)
+        for idx, word in enumerate(self.units):
+            self.numwords[word] = (1, idx)
+        for idx, word in enumerate(self.tens):
+            self.numwords[word] = (1, idx * 10)
+        for idx, word in enumerate(self.scales):
+            self.numwords[word] = (10 ** (idx * 3 or 2), 0)
+
+        self.ordinal_words = {'first': 1, 'second': 2, 'third': 3, 'fifth': 5, 'eighth': 8, 'ninth': 9, 'twelfth': 12}
+        self.ordinal_endings = [('ieth', 'y'), ('th', '')]
+
+
+    def is_valid_input(self, textnum):
+        pass
+
+    def text2int(self, textnum):
+        pass
+
+    def text2int_with_decimal(self, textnum):
+        textnum = textnum.replace('-', ' ')
+        
+        current = result = 0
+        curstring = """"
+        onnumber = False
+        for word in textnum.split():
+            if word in self.ordinal_words:
+                scale, increment = (1, self.ordinal_words[word])
+                current = current * scale + increment
+                onnumber = True
+            else:
+                for ending, replacement in self.ordinal_endings:
+                    if word.endswith(ending):
+                        word = ""%s%s"" % (word[:-len(ending)], replacement)
+
+                if word not in self.numwords:
+                    if onnumber:
+                        curstring += repr(result + current) + "" ""
+                    curstring += word + "" ""
+                    result = current = 0
+                    onnumber = False
+                else:
+                    scale, increment = self.numwords[word]
+                    current = current * scale + increment
+                    if scale > 100:
+                        result += current
+                        current = 0
+                    onnumber = True
+
+        if onnumber:
+            curstring += repr(result + current)
+        if 'minus' in textnum:
+          curstring = curstring.replace('minus', '')
+          curstring = ""-"" + curstring[1:]
+        return curstring
+";text2int_with_decimal(self, textnum);text2int_with_decimal;"def text2int_with_decimal(self, textnum):
+        textnum = textnum.replace('-', ' ')
+        
+        current = result = 0
+        curstring = """"
+        onnumber = False
+        for word in textnum.split():
+            
+            if word in self.ordinal_words:
+                scale, increment = (1, self.ordinal_words[word])
+                current = current * scale + increment
+                onnumber = True
+            else:
+                for ending, replacement in self.ordinal_endings:
+                    if word.endswith(ending):
+                        word = ""%s%s"" % (word[:-len(ending)], replacement)
+
+                if word not in self.numwords:
+                    if onnumber:
+                        curstring += repr(result + current) + "" ""
+                    
+                    if word == 'point':
+                      result = current = 0
+                      curstring = curstring[:-1]
+                      curstring += '.'
+                    else:
+                      curstring += word + "" ""
+                    result = current = 0
+                    onnumber = False
+                else:
+                    scale, increment = self.numwords[word]
+                    current = current * scale + increment
+                    if scale > 100:
+                        result += current
+                        current = 0
+                    onnumber = True
+
+        if onnumber:
+            curstring += repr(result + current)
+        
+        return curstring";"import unittest
+
+class Words2NumbersTestText2IntWithDecimal(unittest.TestCase):
+    def test_text2int(self):
+        w2n = Words2Numbers()
+        self.assertEqual(w2n.text2int_with_decimal(""thirty-two""), ""32"")
+
+    def test_text2int2(self):
+        w2n = Words2Numbers()
+        self.assertEqual(w2n.text2int_with_decimal(""one hundred and twenty-three""), ""123"")
+
+    def test_text2int3(self):
+        w2n = Words2Numbers()
+        self.assertEqual(w2n.text2int_with_decimal(""two thousand and nineteen""), ""2019"")
+
+    def test_text2int4(self):
+        w2n = Words2Numbers()
+        self.assertEqual(w2n.text2int_with_decimal(""one hundred and one point ninety five""), ""101.95"")
+
+    def test_text2int5(self):
+        w2n = Words2Numbers()
+        self.assertEqual(w2n.text2int_with_decimal(""one million and eleven""), ""1000011"")
+
+    def test_text2int6(self):
+        w2n = Words2Numbers()
+        self.assertEqual(w2n.text2int_with_decimal(""one million one hundred sixty-ninth point forty fourth""), ""1000169.44"")";":param textnum: string, the word string to be converted
+:return: string, the final converted integer string
+";"Convert the word string to the corresponding float string using the word 'point' to represent the decimal separator '.'
+:param textnum: string, the word string to be converted
+:return: string, the final converted integer string
+>>> w2n = Words2Numbers()
+>>> w2n.text2int_with_decimal(""thirty-two point nine"")
+""32.9""
+";"['Convert the word string ""textnum"" to a corresponding float string using the word ""point"" to represent the decimal separator ""."". Return the final converted integer string.', ""Transform the string 'textnum', using the term 'point' as the decimal separator, and return the resulting string as a float representation."", ""Translate the string variable 'textnum' into a float equivalent, interpreting 'point' to signify the decimal point '.' and return the transformed string."", ""Change the input string 'textnum' into a float-like string, using the word 'point' as the delimiter for decimal places, and produce the converted output."", ""Reformat the string 'textnum' into a floating-point expression, with 'point' serving as the decimal point indicator '.', and return the new string format."", ""Convert 'textnum' from a textual representation to a string that represents the float value, where 'point' serves as the decimal point, and output the altered string.""]";"['Convert the word string ""textnum"" to a corresponding float string using the word ""point"" to represent the decimal separator ""."". The function starts by replacing hyphens with spaces to normalize the input. It processes each word sequentially, converting recognized number words and ordinal words into their numerical equivalents and appending them to a result string. Whenever the word ""point"" is encountered, it shifts the ongoing number to the left of the decimal point and continues processing potential decimal values. If an unrecognized word appears, it interrupts the number processing and adds the previous numerical result to the string. Return the final formatted string with numbers and other text as they appear in ""textnum"".', ""Translate the string 'textnum' into a float representation where the term 'point' denotes the decimal point '.'. Begin by substituting dashes with spaces in the input. Sequentially process each word, turning known number and ordinal terms into their numerical forms, adding them to a building result string. On encountering 'point', it's treated as the decimal shift, continuing with possible decimal figures. Unfamiliar words halt the numeric conversion and incorporate any prior number into the string. Yield the completed string reflecting numbers and text as found in 'textnum'."", ""Transform the input string 'textnum' into a string that represents a float, with 'point' used as the decimal point '.'. First replace all hyphens with spaces. Then, for each word, convert known number and ordinal words to their respective numerical values, appending to a running result. Upon encountering 'point', adjust for decimal placement and continue processing any subsequent decimal numbers. If a word isn't recognized, conclude that numeric segment and add the accumulated value to the output. Return the final string, consisting of numbers and text as in 'textnum'."", ""Render the 'textnum' string into a float-like string where 'point' functions as the decimal delimiter '.'. Start by changing hyphens in 'texttextnum' to spaces. Process each word in order, converting recognized numerals and ordinal expressions to numbers and compiling these into a result string. When 'point' is encountered, it signals a decimal continuation, appending following numbers as decimals. Words not in the numeral list stop the current numeric addition, transferring completed numbers to the string. Output the final mixed string of numbers and textual elements from 'textnum'."", ""Create a floating-point representation from the string 'textnum', using 'point' to signify the decimal separator '.'. The conversion starts by replacing all dashes with spaces. Analyze each word subsequently, transmuting identified numbers and ordinals to numeric form, accumulating them into an ongoing string. Encountering 'point' adjusts processing to decimal values, continuing from there. Non-numeric words pause the sequence and add the accumulated numbers to the build. Finally, produce and return a string displaying numbers and texts just as in 'textnum'."", ""Develop a function to convert the string 'textnum' into a floating-point number string format, where 'point' indicates the decimal breakpoint '.'. Initially, convert dashes in 'textnum' to spaces for consistency. Progressively evaluate each word, converting known numerics and ordinals into numerical equivalents, which are then appended to a resultant string. Coming across 'point' triggers transitioning to decimal figures. Any word that is not recognized ceases the numerical sequence and the previous number results are appended to the outcome. Provide the ending string composed as per the original structure in 'textnum'.""]";"['Convert the word string ""textnum"" to a corresponding float string using the word ""point"" to represent the decimal separator ""."" in the function ""text2int_with_decimal"". This function first replaces hyphens in ""textnum"" with spaces for uniform processing. It initializes ""current"" and ""result"" to zero, and uses ""curstring"" to accumulate the resultant string. The function iterates over each word in ""textnum"". If the word matches an entry in ""self.ordinal_words"", it calculates its value and updates ""current"". If a word ends with an ordinal ending from ""self.ordinal_endings"", it transforms the word accordingly before checking against ""self.numwords"". If the word is ""point"", it signifies the decimal point: the numbers processed up to this point are finalized to ""curstring"" with a decimal point appended. Unrecognized words reset the current numerical processing and get appended to ""curstring"" as normal text. Finally, if any numbers are left unprocessed (indicated by ""onnumber""), they are appended to ""curstring"". Return the final content of ""curstring"" which now contains the mixed text and number representation.', ""In the function 'text2int_with_decimal', transform the string 'textnum' into a float format string, where the word 'point' serves as the decimal marker '.'. This function starts by converting hyphens in 'textnum' to spaces. It sets both 'current' and 'result' initially to zero, using 'curstring' to build the output. As it loops through each word in 'textnum', it checks if a word is in 'self.ordinal_words' and adjusts 'current' accordingly. Words ending with an ordinal ending specified in 'self.ordinal_endings' are modified before validation against 'self.numwords'. The word 'point' indicates a decimal separation, finalizing the processed number into 'curstring' with a decimal. Any unprocessed numbers at the end are added to 'curglstring' if 'onnumber' is True. Non-matching words reset number tracking and are added to 'curstring' normally. The function returns 'curstring' which is a mix of text and numbers."", ""Rewrite 'textnum' as a floating-point format string using the word 'point' as the decimal symbol '.' in the 'text2int_with_decimal' method. Initially, this function replaces all hyphen symbols in 'textnum' with spaces and initializes both 'current' and 'result' as zero. It accumulates results in 'curstring'. During iteration over 'textnum' words, it updates 'current' upon matching with 'self.ordinal_words'. Adjustments are made for words having ordinal endings as per 'self.ordinal_endings' before checking them against 'self.numwords'. When encountering 'point', it transforms processed numbers into 'curstring' with a decimal added. It appends words that don't match to 'curstring' as plain text, and if onnumber is true after the loop, it appends remaining numbers to 'curstring'. Finally, it returns 'curstring' comprising mixed text and numbers."", ""Transform the input string 'textnum' into a string representing a floating-point number, using 'point' to denote the decimal place in the function 'text2int_with_decimal'. First, replace all hyphens in 'textnum' with spaces, then set 'current' and 'result' to zero, and begin forming the final string in 'curstring'. Iteratively process each word in 'textnum', updating 'current' if the word matches 'self.ordinal_words' or modifying it in accordance with 'self.ordinal_endings' before comparing to 'self.numwords'. If the word 'point' appears, append the accumulated number to 'curstring' with a '.' and reset numbers handling. Non-recognized words are added to 'curstring' normally, and finalize by appending any remaining numbers if 'onnumber' remains True. The generated 'curstring' is then returned containing both numbers and text."", ""In the 'text2int_with_decimal', convert the string 'textnum' to a float representation with 'point' representing decimal separator '.'. Begin by substituting any dashes in 'textnum' with spaces. It initializes 'current' and 'result' both to zero while 'curstring' compiles the result. Throughout the iteration over words in 'textnum', it handles numbers associated with 'self.ordinal_words', tweaks words ending as defined in 'self.ordinal_endings' prior to comparison with 'self.numwords'. Encountering 'point' concludes numeric processing into 'curstring' with a '.', and any words not in the dictionary reset accumulators, appending the word to 'curstring' as text. Conclude by appending the result of the last numbers if still active. Output 'curstring' which displays the composite result of text and figures."", ""Utilize 'text2int_with_decimal' to parse the string 'textnode' into a floating-point formatted string, using 'point' to symbolize the decimal '.'. First, hyphens in 'textnum' are replaced with spaces. It initializes both 'current' and 'result' to zero and constructs the result in 'curstring'. Throughout iteration of each word in 'textnum', it aligns with 'self.ordinal_words' to modify 'current', or alters the word as per 'self.ordinal_endings' before matching against 'self.numwords'. If a word is 'point', it attaches the calculated number to 'curstring' with a '.' added. Unrecognized words, however, initiate a reset in numerical processing, being added to 'curstring' as literals. At the end, if 'onnumber' is True, append the remaining numbers to 'curstring'. The function eventually returns 'curstring', representing both text and numerical data.""]"

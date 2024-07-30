@@ -3,7 +3,12 @@ import os
 import pandas as pd
 import json
 import matplotlib.pyplot as plt
+import scienceplots
 
+plt.style.use(['science'])
+plt.rcParams.update({
+    "font.size":30})
+    
 def pass_at_k(n, c, k):
     """
     :param n: total number of samples
@@ -13,8 +18,9 @@ def pass_at_k(n, c, k):
     if n - c < k: return 1.0
     return 1.0 - np.prod(1.0 - k / np.arange(n - c + 1, n + 1))
 
-def get_per_llm_score(model):
-    print(f"STATS FOR {model.upper()}")
+def get_per_llm_score(model, weights = [0.15, 0.225, 0.625]):
+    assert sum(weights) == 1.0, "Weights for context information does not sum to 1"
+    
     eval_file = f'results_ClassEval_{model}_eval.json'
     sim_file = f'results_ClassEval_{model}_sim.json'
     
@@ -44,6 +50,20 @@ def get_per_llm_score(model):
     score_per_task_level3 = np.array([(x_level3[i] + x_level3_sim[i])/2 for i in range(len(x_level3_sim))])
     score_per_task_level3 = np.array([np.mean(score_per_task_level3[:,i*5:i*5+5], axis=-1) for i in range(6)]).T
 
+    score, score_per_task = [], []
+    
+
+    for i in range(len(mean_x_level1_tot)):
+        score.append((1 - np.sum(np.array(weights) * np.array([mean_x_level3_tot[i], mean_x_level2_tot[i], mean_x_level1_tot[i]])), mean_x_level3_tot[i], mean_x_level2_tot[i], mean_x_level1_tot[i]) )
+        score_per_task.append( (score_per_task_level3[i], score_per_task_level2[i], score_per_task_level1[i]) )
+
+    # Uncomment to save
+    score_file = f'ClassEval_{model}'
+    np.save(os.path.join('..', '..', 'data', 'classeval', 'scores', f'score_{score_file}.npy'), np.array(score, dtype=object))
+    np.save(os.path.join('..', '..', 'data', 'classeval', 'scores', f'score_per_task_{score_file}.npy'), np.array(score_per_task, dtype=object))
+
+    task_indices = np.where(np.array([s[0] for s in score]) > 0.5)[0]
+    print(f"STATS FOR {model.upper()}")
     print("############################################")
     print("Avg Pass@1 for each level:")
     print("Level 1: ", np.mean([pass_at_k(len(c), sum(c), 1) for _, c in enumerate(x_level1)]))
@@ -52,25 +72,11 @@ def get_per_llm_score(model):
 
     print("############################################")
     print("Calculating difficulty score per task")
-    score, score_per_task = [], []
-    weights = [0.2, 0.3, 0.5]
-
-    for i in range(len(mean_x_level1_tot)):
-        score.append((1 - np.sum(np.array(weights) * np.array([mean_x_level3_tot[i], mean_x_level2_tot[i], mean_x_level1_tot[i]])), mean_x_level3_tot[i], mean_x_level2_tot[i], mean_x_level1_tot[i]) )
-        score_per_task.append( (score_per_task_level3[i], score_per_task_level2[i], score_per_task_level1[i]) )
-
-    # Uncomment to save
-    # score_file = f'ClassEval_{model}'
-    # np.save(os.path.join('..', '..', 'data', 'classeval', 'scores', f'score_{score_file}.npy'), np.array(score, dtype=object))
-    # np.save(os.path.join('..', '..', 'data', 'classeval', 'scores', f'score_per_task_{score_file}.npy'), np.array(score_per_task, dtype=object))
-
-    task_indices = np.where(np.array([s[0] for s in score]) > 0.5)[0]
     print("Task IDs with a score higher than 0.5: ", list(task_indices))
     print("Number: ", len(task_indices))
     #print("Obtained score per level: ")
     #for i in task_indices:
     #    print(f"For task {i}, Overall score is {score[i][0]}, Level 1 is {score[i][3]}, Level 2 is {score[i][2]} and Level 3 is {score[i][1]}")
-    
     return np.array(score)
 
 
@@ -79,6 +85,7 @@ final_list = []
 task_diff_1 = np.zeros(200)
 task_diff_2 = np.zeros(200)
 task_diff_3 = np.zeros(200)
+
 models = ['deepseek', 'magicoder', 'gpt', 'gemma', 'llama']
 for sc in models:
     score_file = os.path.join('..', '..', 'data', 'classeval', 'scores', f'score_ClassEval_{sc}.npy')
@@ -96,21 +103,31 @@ task_diff_2 /= len(models)
 task_diff_3 /= len(models)
 
 fig = plt.figure(figsize=(14, 7))
-a = plt.hist(final_score, bins=np.arange(0, 1.1, 0.1), label='Average LLMs', linewidth=3,  density=True, histtype='step',
-                           cumulative=True)
+a = plt.hist(final_score, bins=np.arange(0, 1.01, 0.01), label='Average LLMs', linewidth=3,  density=True, histtype='step',
+                        cumulative=True)
+
+
+print("Pct of task below 0.1: ", np.mean(final_score <= 0.1))
+print("Pct of task below 0.4: ", np.mean(final_score <= 0.4))
+print("Pct of task above 0.5: ", np.mean(final_score >= 0.5))
 for i in range(len(models)):
-    a = plt.hist(final_list[i], bins=np.arange(0, 1.1, 0.1), label=f'{models[i]}', linewidth=3, density=True, histtype='step',
-                           cumulative=True)
+    a = plt.hist(final_list[i], bins=np.arange(0, 1.01, 0.01), label=f'{models[i]}', linewidth=3, density=True, histtype='step',
+                        cumulative=True)
     
 plt.xlabel('Task difficulty score')
 plt.ylabel('Frequency of tasks')
+plt.xticks([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
+plt.yticks([0.25, 0.5, 0.75, 1.0])
+plt.xlim([0, 1])
 plt.legend(loc='lower right', bbox_to_anchor=(0.9,-0.01))
+plt.minorticks_off()
+plt.grid(True)
 plt.tight_layout()
 plt.show()
 
 task_indices = np.where(final_score >= 0.5)[0]
 print("Task IDs with a score higher than 0.5: ", list(task_indices))
 print("Number: ", len(task_indices))
-print("Obtained score per level: ")
-for i in task_indices:
-    print(f"For task {i}, Overall score is {final_score[i]}, Level 1 is {task_diff_1[i]}, Level 2 is {task_diff_2[i]} and Level 3 is {task_diff_3[i]}")
+#print("Obtained score per level: ")
+#for i in task_indices:
+#    print(f"For task {i}, Overall score is {final_score[i]}, Level 1 is {task_diff_1[i]}, Level 2 is {task_diff_2[i]} and Level 3 is {task_diff_3[i]}")

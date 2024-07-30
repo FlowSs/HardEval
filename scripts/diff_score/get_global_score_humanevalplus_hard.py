@@ -45,7 +45,7 @@ def get_per_llm_score(model, sub_benchmark):
     print("############################################")
     print("Calculating difficulty score per task")
     score, score_per_task = [], []
-    weights = [0.2, 0.3, 0.5]
+    weights = [0.15, 0.225, 0.625]
 
     for i in range(len(mean_x_level1_tot)):
         score.append((1 - np.sum(np.array(weights) * np.array([mean_x_level3_tot[i], mean_x_level2_tot[i], mean_x_level1_tot[i]])), mean_x_level3_tot[i], mean_x_level2_tot[i], mean_x_level1_tot[i]) )
@@ -91,9 +91,9 @@ task_diff_1 /= len(models)
 task_diff_2 /= len(models)
 task_diff_3 /= len(models)
 
-task_indices = np.where(final_score >= 0.5)[0]
-print("Task IDs with a score higher than 0.5: ", list(task_indices))
-print("Number: ", len(task_indices))
+task_indices = np.where(final_score >= 0.0)[0]
+#print("Task IDs with a score higher than 0.5: ", list(task_indices))
+#print("Number: ", len(task_indices))
 print("Obtained score per level: ")
 for i in task_indices:
     print(f"For task {i}, Overall score is {final_score[i]}, Level 1 is {task_diff_1[i]}, Level 2 is {task_diff_2[i]} and Level 3 is {task_diff_3[i]}")
